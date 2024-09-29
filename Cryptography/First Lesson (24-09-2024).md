@@ -1,0 +1,100 @@
+# Introduction
+
+_main focus_: Modern cryptography
+_modern_: from art to science
+_today_: security on digital app
+_Science_: precise definitions of security and proofs of security.
+_Best thing_: Prove cryptosystem $X$ and proofs of security.
+_Next Best things_: As above but modern some assumptions.
+_Assumption_: Hardness of some well studied computational task.
+
+Attacker is efficient $\to$ there are hard problems: $P \not = NP$ 
+Think of some problem that we don't know how to solve efficiently: $n = p \cdot q$ with $p,q$ primes
+
+_Factoring_: Given $n$, find $q$ and $p$ ; $\lambda = 2048$ (each prime has this weight)
+_goal_: Prove $X$ (encryption) as secure if problem $y$ is hard. If exists efficient $A$ breaking $X$, then exist efficient $M$ breacking $y$.
+
+_What X_? Secure communication!
+
+![[diagramma1 (1).png]]
+We will study this two case.
+
+```ad-info
+Bob does not always represent a person, he can be for example a server.
+Alice = client
+Bob = server
+```
+
+
+# Encryption 
+
+![[Diagramma2.png]]
+
+- $c$ is the ciphertext
+- $m$ is the message
+- $k$ is the secret key (is an input for ENC and DEC)
+$$X = \pi = (ENC, DEC)$$
+## Kerchaff Principle: Algorithms must be public.
+Secret key encryption $\pi = (ENC, DEC)$
+$ENC: K \times M \to C$
+$DEC: K \times C \to M$
+
+- $K$ = key
+- $M =$ message
+- $C =$ ciphertext
+
+## Correctness
+$$\forall K \in K, \forall m \in M, DEC(k,ENC(k,n)) = n:$$
+## Security
+Note that for sure $k \in K$ must be random and secret.
+
+## Problem
+```ad-warning
+Keys must be secret and shared.
+
+```
+
+
+# Encryption 2
+![[diagramma3.png]]
+Alice, by using bob's public key, can generate the ciphertext.
+The public key is an information published on web, every user can find and use it.
+public key encryption (PKE) $\to \lambda = (K gen, Enc, Dec)$
+
+## Problem
+Public keys must be authentic. We cannot check if this key is correct!
+
+## Authentication
+
+![[Diagramma4.png]]
+Tag: $K \times M \to T$ 
+Verify: message $\to$ Tag with key $\to$ $\tau'$ = $\tau$ ?  
+
+
+# Message Authentication Code (MAC)
+
+![[diagramma5.png]]
+
+Signature: $SK \times M \to φ$ 
+Verify: $PK \times M \times φ \to \{0,1\}$
+$\pi = (Kgen, Sign, Verify)$ Digital Signature
+
+> In this case we have double completion.
+
+# Perfect Secretly
+Information-theoretic treatment of SKE (Unconditional security)
+
+```ad-abstract
+title: Definition Shannon 1949
+Let $M$ be a distribution over $M$ and $K$ be uniform over $K$ (then $C=ENC(K,M)$ is also a distribution). We say $\pi = (ENC, DEC)$ as perfectly secret: 
+$$\forall M, \forall m \in M, \forall \tau \in T: Pr[M = m] = Pr[M=m | T = \tau]$$
+
+```
+
+>$Pr$ is the probability.
+
+![[Diagramma6.png]]
+
+_Information_
+A priority problem that $M = m$ as same as a posterior prob. That $M = m$ given that $C = ENC(K, M = m) = T$
+
