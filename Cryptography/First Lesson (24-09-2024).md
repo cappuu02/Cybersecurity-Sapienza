@@ -96,5 +96,44 @@ $$\forall M, \forall m \in M, \forall \tau \in T: Pr[M = m] = Pr[M=m | T = \tau]
 ![[Diagramma6.png]]
 
 _Information_
-A priority problem that $M = m$ as same as a posterior prob. That $M = m$ given that $C = ENC(K, M = m) = T$
+- A priority problem that $M = m$ as same as a posterior prob. 
+- That $M = m$ given that $C = ENC(K, M = m) = T$
 
+# Recap of Shannon theorem
+
+```ad-question
+title: Segretezza Perfetta
+Un sistema di crittografia ha **segretezza perfetta** se, conoscendo il testo cifrato, un intercettatore non può ottenere **nessuna informazione** utile sul messaggio in chiaro, indipendentemente dalla potenza computazionale dell'intercettatore o dalle tecniche usate per decifrare.
+
+```
+
+```ad-question
+title: The Role of the key $K$
+La chiave segreta $K$ è fondamentale per garantire la segretezza perfetta:
+
+- **La chiave deve essere casuale** e scelta in modo uniforme.
+- **La chiave deve essere lunga quanto il messaggio**.
+- **La chiave deve essere usata una sola volta** per quel messaggio (come avviene in un sistema chiamato **one-time pad**).
+
+Con queste condizioni, un sistema di crittografia come il **one-time pad** garantisce la segretezza perfetta, perché il testo cifrato prodotto potrebbe corrispondere a qualsiasi possibile messaggio. Senza conoscere la chiave, l'intercettatore non può fare nessuna inferenza su quale sia il messaggio originale.
+
+```
+
+```ad-question
+title: Matematicamente: Shannon Definition of perfect secrecy
+Matematicamente:
+
+Il sistema crittografico $π=(ENC,DEC)$ (dove ENC è la funzione di crittografia e DEC quella di decrittografia) è **perfettamente segreto** se per ogni messaggio $M$ e per ogni possibile valore del testo cifrato $C$, vale la seguente proprietà:
+
+$$Pr⁡[M=m]=Pr⁡[M=m∣C=c]$$
+
+Questo significa che, anche dopo aver osservato il testo cifrato $C$, la probabilità che il messaggio originale sia $m$ è esattamente la stessa di prima di vedere il testo cifrato. In altre parole, **vedere il testo cifrato non fornisce alcuna informazione utile** all'intercettatore per ridurre l'incertezza sul messaggio.
+
+
+```
+
+```ad-example
+title: Example to understand better this concept
+Immagina che tu voglia inviare un messaggio che può essere "sì" o "no". Se un intercettatore osserva solo il testo cifrato, ma il sistema di crittografia ha segretezza perfetta, anche dopo aver visto il testo cifrato, l'intercettatore non potrà capire se il messaggio originale era "sì" o "no". Entrambe le possibilità avranno ancora una probabilità uguale (es. 50% ciascuna), proprio come prima di vedere il testo cifrato.
+
+```
