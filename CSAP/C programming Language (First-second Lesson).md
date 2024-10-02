@@ -140,11 +140,130 @@ Inserire foto.
 # Compiler and Linker
 Image compiler and linker
 
-## writing programs 
+## Writing programs 
 
 file .c for definitions, main program
 file .h for variable, declarations, constants, defines, ecc...
 Then use make and make files.
 
 a program consist of many modules, often there are dependencies, if one file changes, one or more others need to change.
+
+# Third Lesson (programming in C)
+- Compiler must be GCC
+- any text editor with gdb debugger
+- Vscode = ok
+
+principle file = main.c
+`gcc main.c` = create executable `a.out`.
+`-o` to change the name.e
+to run the program: `./a.out`
+
+## Program Structure
+1. preprocessor directives: create a new source (temporally file)
+2. `stdio.h` contains the definitions of many functions, including `printf`
+3. main function = the first function run into the C program. (only one main function can exist), is the mostly important function in the C program. entry point called when program starts. This function take parameters (or nothing) and can return a value of type void or int. `{}` marks the start and the end of the function.
+
+```c
+int main(void){
+
+}
+```
+
+Contains program statements
+last statement is return:
+- ends the main function.
+- 0, as convention, tells the OS that everything went right.
+- if omitted, a random value would be send back.
+
+- Statement are actions to be performed, translated into one or more executable instructions.
+	- expression
+	- compound
+	- control
+	Always end with a `; = empty statement` (if we write only `;`)
+- Comments:
+	- Line (single line)
+	- Block (multi line)
+
+```ad-info
+title: Info statement
+statements inside one block are executed sequentially, from top to bottom. This is  a convention for all procedural languages. For readability, write only one statemente per line.
+
+```
+
+## Program with sequential flow
+Prof explain some example of simple C program.
+
+## Control Statement
+- If-else statement $\to$ i know it ;)
+	- logical expression
+	- we can have nested if
+- else is optional
+>In C anything different than $0$ is considered true (0 false).
+
+
+## Logical expression
+- `&&` Logical AND
+- `||` Logical OR
+- `!` Logical NOT
+
+>Remember the operators precedence
+
+>For the example take a look to the pdf of third lesson.e
+
+# Fourth Lesson
+
+## Switch
+
+```C
+switch(variable){
+	case val1: 
+		statement1; 
+		break;
+	case val2: 
+		statement2; 
+		break;
+	default:
+		statement4;
+		break;
+}
+```
+
+Each case defines a label where execution can jump.
+After a case there could be multiple statements.
+All statement following a matching case will be executed, until the end of block or a break statement.
+
+>If there is not the break the execution continue.
+
+## Loop Control
+- `for` = we use this when we know how much time we want to repat a certain block of code.
+	- initialization `i = 0`
+	- condition `i < 5`
+	- iteration `i++`
+- `while` = we use this when we want to repeat until a variable or condition are satisfy.
+	```C
+	while(condition){
+		statement...
+	}
+	```
+
+- `do-while` = similar to while loop with one certain initial statement.
+	```c
+	do{
+		statement...
+	}while(condition)
+```
+
+```ad-note
+Into every loop we can use the `break`,it permit to jump out immediatly.
+
+`Continue` can be only used inside a loop. COntinue skip following statement and go to the end of the loop.
+```
+
+```ad-missing
+title: Import the flow scheme of loops (find in internet, is equal).
+```
+
+>Some example of type of loops.
+
+>For example, create a program that detective if a number is prime or not.
 
