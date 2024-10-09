@@ -6,8 +6,8 @@ iii) $\forall m, m' \in M, \forall \tau \in T \to Pr[ENC(k,m) = c] = Pr[ENC(k,m'
 
 ```
 
->$i$, $ii$, $iii$ are Equivalent Notions of Perfect Secrecy.
->$iii)$ Over the choose of the key, the probability is the same.
+> $i$, $ii$, $iii$ are Equivalent Notions of Perfect Secrecy.
+> $iii)$ Over the choose of the key, the probability is the same.
 
 ```ad-question
 title:  Spiegazione $ii$
@@ -46,7 +46,9 @@ Dato un sistema crittografico, il risultato della funzione di crittografia $ENC$
 	- message and the key are sequence of bits of length $n$.
 - $ENC(k,n) = \varphi = k \oplus m$ 
 	- Exclusive or.
+	- (L'operazione XOR restituisce un bit 1 se i bit in input sono diversi, altrimenti restituisce 0. Questa funzione genera un testo cifrato φ combinando il messaggio con la chiave.)
 - $DEC(k, \varphi) = \varphi \oplus k = k \oplus m \oplus k = m$
+	- remember that $k \oplus k = 0$ 
 	- apply another time the secret key into the cipertext we can obtain the original message.
 
 ```ad-abstract
@@ -84,6 +86,7 @@ Two-time:
 $$c_1 = k \oplus m_1$$
 $$c_2 = k \oplus m_2$$
 $$c_1 \oplus c_2 = m_1 \oplus m_2$$
+>I use two times the same key to create two ciphertext from different messages.
 
 ```ad-note
 title: Avoid this problem
@@ -97,9 +100,11 @@ In any perfectly Secret SKE $\Pi = (ENC, DEC)$ we have $|K| \ge |M|$
 
 ```
 
+>The number of the keys must be more than the number of messages. If the keys are less than the number of messages, can exist the risk that some messages cannot be unique into the cryptographic system.
+
 **Proof (demonstration)**:
 Take $M$ to be uniform over $M$.
-Take any cipertext $\varphi \in \varphi$ s.t. $Pr[\varphi = \varphi] > 0$.
+Take any cipertext $\varphi \in \varphi$ s.t. $Pr[\varphi = \varphi] > 0$. (è possibile ottenere il testo cifrato φ da uno dei messaggi attraverso una chiave.)
 
 **Consider**:
 $$M' = \{DEC(k, \varphi) : k \in K\}$$
@@ -108,12 +113,16 @@ $|K| < |M|$ we will show perfect secrecy does not hold.
 
 **Observe**:
 $$|M'| \le |K| < |M| \hspace{0.5cm} \text{there exists} \hspace{0.5cm} m \in M \not \in M'$$
->Exists in $M$ but not in $M'$
 
+>Exists a message $m \in M$ that is present into M  but not  into $M'$
+>Since m is not into $M'$, we have:
 $$Pr[M = m | \varphi = \varphi] = 0 \hspace{0.5cm} \text{$m$ is in $M$ but not in $M'$}$$
-$$Pr[M = m] = \frac{1}{|M|}$$
->Too different!
 
+>given the ciphertext, the probability to obtain $m$ as original message is equal to zero.
+
+
+**In a perfectly secret encryption system, the probability of each message must be uniform**:
+$$Pr[M = m] = \frac{1}{|M|} \hspace{0.4cm} \text{This is Good!}$$
 ## Perfect Authentication
 
 ```ad-abstract
@@ -124,8 +133,8 @@ We say tag has $\epsilon$-statistical securicy if $\forall m, m' \in M, \forall 
 
 >Is impossible to get $\epsilon = 0$
 
-- $\epsilon$ quantifies the level of security:
-	- A lower $\epsilon$ indicates a higher level of security
+- ==$\epsilon$ quantifies the level of security==:
+	- A lower $\epsilon$ indicates a higher level of security because define a lower probability to breach or corrupt an authentication tag.
 
 Construction based on any pairwise indipendent hash function.
 
@@ -136,4 +145,22 @@ Is pairwise indipendent if $$\forall m, m' \in M \hspace{0.3cm} \text{then} \hsp
 
 ```
 
+- $H$ set of hash function.
+- $h_k$ single hash function.
+
 >A hash function $h_k$​ is said to be **pairwise independent** if for any two distinct messages $m$ and $m′$ in $M$, the outputs of the hash function are statistically independent.
+
+```ad-abstract
+title: Concept of "Paiwise Indipendent"
+In the context of hash functions, a hash function $h$ is said to be pairwise independent if, for each distinct message pair $m$ and $m′$, the outputs of the hash function are statistically independent.
+
+```
+
+
+```ad-success
+title: Spiegazione in ITA
+- **Sicurezza nell'Autenticazione**: L'uso di funzioni hash pairwise indipendenti è cruciale per la sicurezza statistica nell'autenticazione. Assicura che la conoscenza di un tag per un messaggio non fornisca alcuna informazione utile su un altro tag per un messaggio diverso.
+    
+- **Riduzione della Probabilità di Collisione**: Le funzioni hash indipendenti riducono la probabilità che due messaggi distinti producano lo stesso tag, aumentando così la sicurezza complessiva del sistema di autenticazione.
+
+```

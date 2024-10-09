@@ -1,4 +1,4 @@
-# Introduction
+ # Introduction
 
 _main focus_: Modern cryptography
 _modern_: from art to science
@@ -44,7 +44,7 @@ $DEC: K \times C \to M$
 - $C =$ ciphertext
 
 ## Correctness
-$$\forall K \in K, \forall m \in M, DEC(k,ENC(k,n)) = n:$$
+$$\forall k \in K, \forall m \in M, DEC(k,ENC(k,n)) = m$$
 ## Security
 Note that for sure $k \in K$ must be random and secret.
 
@@ -76,7 +76,7 @@ Verify: message $\to$ Tag with key $\to$ $\tau'$ = $\tau$ ?
 ![[diagramma5.png]]
 
 Signature: $SK \times M \to φ$ 
-Verify: $PK \times M \times φ \to \{0,1\}$
+Verify: $PK \times M \times φ \to \{0,1\}$ ($0 =$ reject, $1 =$ Accept)
 $\pi = (Kgen, Sign, Verify)$ Digital Signature
 
 > In this case we have double completion.
