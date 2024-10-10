@@ -37,10 +37,11 @@ Dato un sistema crittografico, il risultato della funzione di crittografia $ENC$
 ![[Cryptography/images/2.png]]
 
 ### Apply Bayes (Reverse demonstration)
+By applying Bayes’ theorem, the above result can be turned into the first definition of perfect secrecy:
 
 ![[Cryptography/images/3.png]]
 
-## Application: One-time as perfectly secure
+# Application: One-time as perfectly secure
 
 - $M = K = \varphi = \{0,1\}^n$
 	- message and the key are sequence of bits of length $n$.
@@ -60,7 +61,7 @@ $\Pi = (ENC, DEC)$ bove as perfectly secret for the reason explained before:
 
 ```
 
-### Proof (demonstration)
+## Proof (demonstration)
 Fix any $m \in M, \varphi \in \varphi:$
 $$Pr[ENC(K,m) = \varphi]$$
 $$= Pr[k \oplus m = \varphi]$$

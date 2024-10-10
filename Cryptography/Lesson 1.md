@@ -1,5 +1,4 @@
- # Introduction
-
+# Introduction to Cryptography
 _main focus_: Modern cryptography
 _modern_: from art to science
 _today_: security on digital app
@@ -27,42 +26,43 @@ Bob = server
 
 
 # Encryption 
+The typical setting for the problem of secret communication is depicted in figure below. The parties Alice and Bob want to share data in a private fashion, thus preventing a third party Eve from eavesdropping. The objects of interest here are: 
+- The data to be shared, or message $m$; 
+- Some secret information, shared between and known only to Alice and Bob, that is used to encrypt the message: the encryption key or just key $k$; 
+- The result of encrypting a message m using the key k: the ciphertext $c$.
 
-![[Diagramma2.png]]
+![[16cry.png]]
 
-- $c$ is the ciphertext
-- $m$ is the message
-- $k$ is the secret key (is an input for ENC and DEC)
-$$X = \pi = (ENC, DEC)$$
-## Kerchaff Principle: Algorithms must be public.
-Secret key encryption $\pi = (ENC, DEC)$
-$ENC: K \times M \to C$
-$DEC: K \times C \to M$
+To complete the picture, the two parties Alice and Bob employ a cryptographic secrecy scheme, or encryption scheme to convert the message in an encrypted form, and vice versa. It has the form $\pi = (ENC, DEC)$, where:
 
-- $K$ = key
-- $M =$ message
-- $C =$ ciphertext
+- $Enc ∈ K \times M \to C$ is a machine that, given a message $m$ in $M$ and a key $k$ in $K$, returns a ciphertext $c$ in $C$, which is an _encrypted_ form of the message; 
+- $Dec ∈ K \times C \to M$ is a machine that restores the message $m$ encrypted in the given ciphertext $c$ by using the key $k$, effectively decrypting the message.
 
-## Correctness
-$$\forall k \in K, \forall m \in M, DEC(k,ENC(k,n)) = m$$
-## Security
-Note that for sure $k \in K$ must be random and secret.
+For the time being, assume that both _Enc_ and _Dec_ work as normal functions. A fundamental requirement of encryption schemes is that they always completely preserve the message after a whole round of encryption and decryption:
+$$\forall m \in M, \forall k \in K \Rightarrow Dec(k, Enc(k,m)) = m$$
 
-## Problem
-```ad-warning
-Keys must be secret and shared.
+>This is Kerchaff Principle!
+
+```ad-important
+Key must be random and secret.
+```
+```ad-attention
+title: Problem
+Key must be secret and shared.
 
 ```
 
-
-# Encryption 2
+## Encryption 2
 ![[diagramma3.png]]
 Alice, by using bob's public key, can generate the ciphertext.
 The public key is an information published on web, every user can find and use it.
 public key encryption (PKE) $\to \lambda = (K gen, Enc, Dec)$
 
-## Problem
+```ad-attention
+title: Problem
 Public keys must be authentic. We cannot check if this key is correct!
+
+```
 
 ## Authentication
 
@@ -71,7 +71,7 @@ Tag: $K \times M \to T$
 Verify: message $\to$ Tag with key $\to$ $\tau'$ = $\tau$ ?  
 
 
-# Message Authentication Code (MAC)
+## Message Authentication Code (MAC)
 
 ![[diagramma5.png]]
 
@@ -92,6 +92,8 @@ $$\forall M, \forall m \in M, \forall \tau \in T: Pr[M = m] = Pr[M=m | T = \tau]
 ```
 
 >$Pr$ is the probability.
+
+>This definition can be rephrased in different ways, bringing more details to light:
 
 ![[Diagramma6.png]]
 

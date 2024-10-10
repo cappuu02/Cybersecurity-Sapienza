@@ -4,39 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "4b32bf24992d0d77",
+        "id": "909f0a06c70f4cda",
         "type": "tabs",
         "children": [
           {
-            "id": "67a7c442d731d108",
+            "id": "e53e4165a0397c45",
             "type": "leaf",
-            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cryptography/Lesson 1.md",
+                "file": "Statistic/Lesson 2.md",
                 "mode": "source",
                 "source": false
-              },
-              "pinned": true
-            }
-          },
-          {
-            "id": "99ee8d2ffbe31bee",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 2.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true
+              }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -86,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -103,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cryptography/Lesson 2.md",
+                "file": "Statistic/Lesson 2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Cryptography/Lesson 2.md",
+                "file": "Statistic/Lesson 2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cryptography/Lesson 2.md"
+                "file": "Statistic/Lesson 2.md"
               }
             }
           }
@@ -164,10 +146,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "99ee8d2ffbe31bee",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "Statistic/Lesson 1.md",
+    "Statistic/Lesson 2.md",
+    "Statistic/images/data statistic.png",
+    "Statistic/images",
     "Cryptography/Lesson 1.md",
     "Cryptography/Lesson 2.md",
-    "Cryptography/Lesson 3.md"
+    "Cryptography/Lesson 3.md",
+    "CSAP/C programming Language (First-second Lesson).md",
+    "CSAP/Unix section.md",
+    "Cryptography/Lesson 4.md",
+    "Cryptography/images/15.png",
+    "Cryptography/images/16cry.png",
+    "Cryptography/images/6.png",
+    "Cryptography/Lesson 5.md"
   ]
 }

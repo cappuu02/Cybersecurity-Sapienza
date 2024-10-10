@@ -56,7 +56,7 @@ The biometric system is based upon what one is
 
 >This is an important discovery for the science but also for the biometric system.
 
-![[2.png]]
+![[data statistic.png]]
 
 ## Architecture of a biometric system
 
