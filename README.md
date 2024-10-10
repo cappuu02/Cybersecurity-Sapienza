@@ -1,4 +1,4 @@
-# ![Sapienza University Logo](https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Sapienza_University_logo.svg/1200px-Sapienza_University_logo.svg.png)  
+# ![Sapienza University Logo]([https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Sapienza_University_logo.svg/1200px-Sapienza_University_logo.svg.png](https://www.google.com/url?sa=i&url=https%3A%2F%2Fit.m.wikipedia.org%2Fwiki%2FFile%3AUniroma1.svg&psig=AOvVaw2wedBe1nteRXk3jKqArKCP&ust=1728669755941000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLC-leiyhIkDFQAAAAAdAAAAABAE))  
 # Cybersecurity Master's Course 2024/2025  
 ### Sapienza University of Rome
 
@@ -15,7 +15,7 @@ All course materials are written in **Markdown** using **Obsidian**, a powerful 
 
 1. **Clone the Repository**: For optimal visualization, clone this repository locally:
     ```bash
-    git clone https://github.com/your-repo.git
+    git clone [https://github.com/your-repo.git](https://github.com/cappuu02/Cybersecurity-Sapienza)
     ```
 2. **Open with Obsidian**: Open the cloned folder as a vault in **Obsidian** to view images, notes, and linked resources in an organized manner.
 3. **Install the Admonition Plugin**:  
