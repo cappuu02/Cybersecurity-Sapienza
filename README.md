@@ -32,4 +32,4 @@ Obsidian is chosen for its ability to handle interlinked Markdown files, making 
 ---
 
 Feel free to explore, study, and contribute!  
-**Forza Roma!**
+**Daje Roma!**
