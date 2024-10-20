@@ -10,17 +10,18 @@ Access network is that part of a communications network which connects subscribe
 Network can be divided in three part:
 - ==Access Network==: Is the part where end-users (human and machine) that use infrastructure. This part is connected to the core.
 - ==Core (Backbone)==: part with professor Polverini.
-- ==Edge Network==
+- ==Edge Network==: 
 
 >Have completely different technology that are used in different manners.
 
 ![[Network Infrastructures/images/10.png]]
 The access network domain plays an important role in a network by connecting communications carriers and service providers with the individuals and companies they serve. We can distinguish
-two parts as for the wired and several part for wireless.
-- Wired:
+
+Two parts as for the wired and several part for wireless.
+- ==Wired==:
 	- copper based (copper is material)
 	- fiber based (thin glass or plastic fibers to transmit data)
-- Wireless
+- ==Wireless==
 
 >Material as an impact on how the infrastructure build up.
 
@@ -123,7 +124,7 @@ Active node can have some problem. This is an intelligence element like router a
 >Remember, public spaces have a cost, every time in every where.
 
 
-Fortunately, the fiber networks has another solution. This is named ==passive optical networks==.
+Fortunately, the fiber networks has another solution. This is named ==passive optical networks==
 There not anymore the active element. There is now a splitter element (glass element) that split the traffic in different home and buildings.
 ![[Network Infrastructures/images/15.png]]
 
@@ -137,58 +138,3 @@ Today we need more and more unbalanced network able to provides more traffic in 
 ## Fiber based access network
 
 ![[17.png]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
---------------- 
-------------------
-## Wired
-
-Optical access, this domain will be he mode of choice for fixed access in the coming years. represent systems capable of delivering ultra high speed, high reliability performance. 
-
-- GE-PON
-- GPON
-- COF
-
-> For example, video streaming require a fiber connection.
-
-There are many different types of fiber connection:
-- ftth (!)
-- fttc (!)
-- fttn
-- fttp
-- fttb (!)
-- fttu
-- fttz
-- ftto
-- fttd
-
-### PON (passive optical network)
-Passive branching of fibes via optical splitters and tree-based topologies.
-It is created by combine two optical cable. The signal enter and exit in two parts.
-
-
-
-## Wireless
-Wireless access uses radio signals to connect to the network.
-Use case: WiFi, Bluetooth, Cellular.
-
-
-
-
-

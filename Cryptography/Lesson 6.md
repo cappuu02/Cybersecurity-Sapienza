@@ -1,5 +1,5 @@
 Last time PRG definition
-![[21.png]]
+![[Cryptography/images/21.png]]
 
 
 We want to show:
@@ -35,7 +35,7 @@ If $G$ is a PRG, then above $\pi$ is ONE TIME SECURE.
 ```
 
 **Proof**:
-![[19.png]]
+![[Cryptography/images/19.png]]
 Need to show: $$H(\lambda, 0) \equiv_e H(\lambda, 1)$$
 ```ad-abstract
 title: Lemma
@@ -54,7 +54,7 @@ $$\forall b \in \{0,1\}, H(\lambda, b) \equiv_e H'(\lambda, b)$$
 Fix $b=0$ and assume:
 $$\not \exists PPTA / |Pr[H(\lambda, b) = 1] - Pr[H'(\lambda, b)]| \ge \frac{1}{negl(\lambda)}$$
 $$\not \exists \hspace{0.3cm} B \hspace{0.3cm} \text{"Breaking"} \hspace{0.3cm} G$$
-![[20.png]]
+![[Cryptography/images/20.png]]
 
 $$Pr[B \hspace{0.1cm} \text{output } \hspace{0.1cm} b' =1 : z = G(s); s \leftarrow U_{\lambda}]$$
 $$ = Pr[Game^{PRG}(\lambda, 0) = 1]$$
