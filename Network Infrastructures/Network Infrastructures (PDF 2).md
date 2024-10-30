@@ -43,8 +43,8 @@ Now they extend the bandit.
 With standard ADSL, the band from 25.875 kHz to 138 kHz is used for upstream communication, while 138 kHz –1104 kHz is used for downstream communication
 ![[Network Infrastructures/images/20.png]]
 
-## ADSL  Frequency Allocation
-Interference happens when 2 or more communications happen simultaneously in time 2 in frequence. In ADSL we have separation of frequence.
+## ADSL Frequency Allocation
+Interference happens when 2 or more communications happen simultaneously in two time in frequence. In ADSL we have separation of frequence.
 
 **speedup bitrate for downstream**: to increase it, an idea is to use also the bandit of the upstream.
 
@@ -63,14 +63,14 @@ Bigger cable with multiple coppers cables.
 Wires sharing the same cable interfere one each other
 ![[22.png]]
 
-Exists tow kinds of cross-talk noise:
+Exists tow kinds of cross-talk noise (Rumore di fondo):
 - Far-end cross talk: FEXT
 - near-end cross talk: NEXT
 
 Depend on:
-- The power spectral density of the transmitted signal
-- The number of twisted pairs in the same cable
-- The overlapping of bandwidths of the useful signal and the interfering ones
+- The **power spectral density** of the transmitted signal
+- The **number of twisted pairs** in the same cable
+- The **overlapping of bandwidths** of the useful signal and the interfering ones
 
 Crosstalk typically increases with frequency $\to$ significant impairment for high speed DSL
 
@@ -90,17 +90,14 @@ than a dozen twisted pairs.
 Cross talk between a TX and a RX placed on the opposite side of the cable.
 
 Contemporary transmission can append. Same bandit (downstream).
-Can we have two downstream at the same frequency?
-
+Can we have two downstream at the same frequency? No!
 
 ```ad-success
 title: Solution
-reduce number of cables in the binder
+reduce number of cables in the binder group.
 
 ```
 
-
->dentro al binder
 ### NEXT
 ```ad-abstract
 title: Definition
@@ -108,7 +105,8 @@ NEXT is the cross-talk between a transmitter and a receiver placed on the same s
 
 ```
 Receiver's signals are softer than transmitter's one, since come from far away and thus there is a strong interference which reduces quality of useful received data.
-NEXT is one of the reason of the frequency division for upstream and downstream in ADSL
+
+>NEXT is one of the reason of the frequency division for upstream and downstream in ADSL
 
 ![[24.png]]
 Cross talk between a TX and a RX placed on the same side of cable.
@@ -123,7 +121,7 @@ Reduce the echo cancellation.
 
 ```
 ## Filtering
-To solve, it is necessary to install appropriate frequency filters at the customers premises to avoid interferences with the voice service. plitter is installed before connecting the line
+To solve, it is necessary to install appropriate frequency filters at the customers premises to avoid interferences with the voice service. Splitter is installed before connecting the line
 to phone / DSL modem.
 
 ## Echo cancelled
@@ -144,15 +142,13 @@ Divide the operational ADSL bandwidth into very small subchannles
 
 >based on FDM to support DSL. Attenuation and channel behavior is completely different.
 
-
-channel behavior: 
-
+Channel behavior: 
 Nice idea: instead of considering this bandit has unique bandit let has divide this bandit in multiple pieces. Each of this has 4 Khz. 
 - Multiple transmission contemporary TON in the same frequency.
 ![[27.png]]
 
 Independent subchannels can be manipulated individually with consideration of the line conditions
-- If a subchannel is experiencing external interference it may not be used in favor of other subchannles
+- If a subchannel is experiencing external interference it may not be used in favor of other subchannels
 - DTM can dynamically adapt the data rate to the line conditions
 
 We have:
@@ -197,7 +193,7 @@ There is a frequency or a small frequency band of 4 kHz where the attenuation is
 ![[28.png]]
 
 - We divided in pieces
-- Each piece has an attenutation
+- Each piece has an attenuation
 - Attenuation are different
 
 ```ad-info
@@ -245,7 +241,6 @@ UTP classico cavo di rame (doppino) poi uno splitter finale che separa sempre il
 ![[56.png]]
 ![[55.png]]
 ![[57.png]]
-
 for the adsl (interface between the CO and End user) we have specific protocols.
 protocols: physical part 
 
@@ -287,25 +282,22 @@ In the majority of European countries ADSL is based on the ATM protocol so PPP i
 
 ![[59.png]]
 
-the link control is performed by two functions:
+the link control layer is performed by two functions:
 -  Link control protocol
 - Network control protocol
-
-9:00, where adaptation append (layer 3)
 
 >On top there is IP 
 
 ### PPP Encapsulation
-The Protocol field identifies the datagram encapsulated in the information fiel.
+The Protocol field identifies the datagram encapsulated in the information field.
 
 ![[60.png]]
 - The **name** of this packet is frame: packet at the link layer has this flag
 - **Flag start and ending (frame)**: two bytes, used to recognized the start and ending of the frame, because the packet is supposed to have a variable length.
 -  **address**: all 1 = broadcast = packet direct to all (not important to specify because we are in PPP, so connection between two point)
 - **control**
-- **protocol**: 1 byte (Identifies the datagram encapsulated in the information fiel)
-- **info**: the content of upper layer (full ip packet) (Information filed contains the datagram and could be
-zero or more octets)
+- **protocol**: 1 byte (Identifies the datagram encapsulated in the information field)
+- **info**: the content of upper layer (full ip packet) (Information filed contains the datagram and could be zero or more octets)
 - **check**: control if packet is correct (check the integrity of the packet)
 
 >You don't have in the frame packet any information on the length of the frame. (we do not have the length)
@@ -344,7 +336,7 @@ Authentication Option uses Password Authentication Protocol (PAP) or Challenge H
 - CHAP uses a one-way hashing algorithm which is known only to the user, to respond to a challenge sent by the authenticator.
 - CHAP is more secure than PAP
 
-
+----
 ## VDSL Architecture
 Evolution of ADSL is VDSL (**Very High-speed Digital Subscriber Line**)
 very high bitrate.
@@ -352,7 +344,7 @@ VDSL mix of copper based and fiber based.
 
 ![[65.png]]
 
-ONU: is an element where the interconnection of copper with fiber is done. ONU is not in the CO, it is placed in the cabinet (part of the cabinet).
+==ONU==: is an element where the interconnection of copper with fiber is done. ONU is not in the CO, it is placed in the cabinet (part of the cabinet).
 
 ![[66.png]]
 **FTTE**: Fiber to the exchange
@@ -371,18 +363,16 @@ When we increase the bandit we can transmit at higher bitrate.
 
 ```
 
-1:02 ripasso su cross-talk communications.
+```ad-attention
+There is a problem: shorter copper cables + and higher frequency = higher FEXT
+Why?  In the ADSL we do not care about FEXT because is far and the frequency is not so high, now we are increasing the frequency and the cables are more short.
 
-shorter copper cables 
-higher frequency
-= higher FEXT
-why?  In the ADSL we do not care about FEXT because is far and the frequency is not so high, now we are increasing the frequency and the cables are more short.
-
-## VDSL Vectoring
+```
+## VDSL Vectoring (Solution)
 
 ```ad-abstract
 title: Vectoring
-VDSL Vectoring is a trasmission method that eploys the coordination of the signals for reduction of crosstalk and improvement of performance.
+VDSL Vectoring is a trasmission method that employs the coordination of the signals for reduction of crosstalk and improvement of performance.
 
 ```
 
@@ -390,14 +380,14 @@ VDSL Vectoring is a trasmission method that eploys the coordination of the signa
 
 ![[69.png]]
 
-Who measure the interference? The receiver!!!
+Who measure the interference? ==The receiver!!!==
 
 Crosstalk cancelling by injecting an “anti-signal” on each crosstalk-impaired line
 ![[71.png]]
 
 mechanism:
 1. let me know what is your amount of interference.
-2. given back to trasmitter and shape its transmission in order to recover that interference.
+2. given back to transmitter and shape its transmission in order to recover that interference.
 
 ![[70.png]]
 We sent a test signal hat is like a flat signal

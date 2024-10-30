@@ -102,9 +102,8 @@ Before Introduce CDMA we need to talk about:
 
 
 ## CDMA (Code Division Multiple Access)
-
 Unique code assigned to each user, i.e, code set partitioning
-- all useres share same frequency but each user has own "chipping" sequence to encode data
+- all users share same frequency but each user has own "chipping" sequence to encode data
 - allows multiple users to coexist and transmit simultaneously with minimal interference 
 Encoding" inner product
 Decoding: Summed inner-product: (encoded data) X (Chipping sequence)

@@ -1,10 +1,11 @@
+## Access-backhaul
 fiber very very used in access network.
 ![[72.png]]
 ==Backhole==: part of access network fundamental today (is not for end user but is for the cellular network operators, so fiber is important also for this).
-Initial Solution: BS interconnected each'other with copper lines.
+Initial Solution: BS interconnected each 'other with copper lines.
 To avoid bottleneck interconnection using fiber.
 
-## Optical Fiber Attenutation
+## Optical Fiber Attenuation
 ![[73.png]]
 
 We have a lot of possibilities of large bandit. 
@@ -29,15 +30,12 @@ Every time i split i lose a bit of signal but today this is the most used config
 
 ```
 
-
 ![[75.png]]
-**switch**: switch the signal (send  signal only in a specific direction).
+**switch**: switch the signal (send signal only in a specific direction).
 **splitter**: send signal everywhere.
-
-
 ## Fiber Installation
 ![[76.png]]
-**First Possibility**: 1 fiber cable for each home. (costo for each digging).
+**First Possibility**: 1 fiber cable for each home. (cost for each digging).
 **Second Possibility**: put single fiber from CO to curb switch(cabinet). after, transmit the signal for each user. curb switch is an active element, it need a lot of energy and space.
 **Third Possibility**: configuration obtained by using the splitters. (image up)
 
@@ -91,13 +89,12 @@ There are different distances between ONU and the passive splitter:  the farther
 The only way is to have centralized control of it. Who control the upstream is the OLT.
 OLT perform a probing of the ONU. this probing is used to be sure of the distance of ONU.
 distance is taken to have a precisely control of the scheduling transmission considering the propagation delay.
-In terms or receiving, the OLT is a fotodiodo, receive the light. The light arrives with different attenuation and different power. The idea is to say to user to transmit at power that is configured in a way that when this power arrives at OLT is equal for everybody.
+In terms or receiving, the OLT is a photodiode, receive the light. The light arrives with different attenuation and different power. The idea is to say to user to transmit at power that is configured in a way that when this power arrives at OLT is equal for everybody.
 This mechanism need a coordination, the protocol is complicated because everything is controlled by OLT. Thanks to this we are able di transmit in TDMA in two directions and all works well.
 
 All this is done in Passive optical network and this is mostly based on two main standards:
 - EPON (E: Ethernet)
 All packets carried in EPON are encapsulated in Ethernet frames.
-
 
 ## EPON Downstream Packets
 ![[85.png]]

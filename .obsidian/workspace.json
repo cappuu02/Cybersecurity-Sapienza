@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "22225934e2fe176d",
+        "id": "d7f615c7f1ab8839",
         "type": "tabs",
         "children": [
           {
-            "id": "0475ed8fc6a6a1bc",
+            "id": "9ce7cb81472f1ae9",
             "type": "leaf",
-            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cryptography/Lesson 6.md",
+                "file": "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
                 "mode": "source",
                 "source": false
               },
-              "pinned": true
+              "icon": "lucide-file",
+              "title": "Introduction to Optical Network (Polverini 1)"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -56,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -64,7 +68,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -87,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cryptography/Lesson 6.md",
+                "file": "Network Infrastructures/Network Infrastructures (PDF 2).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -95,7 +101,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Network Infrastructures (PDF 2)"
             }
           },
           {
@@ -104,10 +112,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Cryptography/Lesson 6.md",
+                "file": "Network Infrastructures/Network Infrastructures (PDF 2).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Network Infrastructures (PDF 2)"
             }
           },
           {
@@ -118,7 +128,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -127,8 +139,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cryptography/Lesson 6.md"
-              }
+                "file": "Network Infrastructures/Network Infrastructures (PDF 2).md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Network Infrastructures (PDF 2)"
             }
           }
         ]
@@ -150,26 +164,34 @@
   },
   "active": "3920457694d24424",
   "lastOpenFiles": [
-    "Cryptography/images/17.png",
+    "Network Infrastructures/images/92.png",
+    "Network Infrastructures/images/91.png",
+    "Network Infrastructures/images/90.png",
+    "Statistic/images/st 2.png",
+    "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
+    "Statistic/Lesson 4.md",
+    "Statistic/images/st 3.png",
+    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
+    "Network Infrastructures/Fiber Part (PDF 3).md",
+    "Network Infrastructures/Network Infrastructures (PDF 2).md",
+    "Network Infrastructures/Network Functional Area (PDF1).md",
+    "Network Infrastructures/images/37.png",
+    "Network Infrastructures/images/27.png",
     "Cryptography/Lesson 6.md",
+    "Cryptography/images/17.png",
     "Cryptography/images/21.png",
     "Cryptography/images/20.png",
     "Cryptography/images/19.png",
-    "Cryptography/images/18.png",
     "Cryptography/Lesson 5.md",
     "README.md",
     "Statistic/Lesson 2.md",
     "Statistic/Lesson 1.md",
-    "Statistic/images/data statistic.png",
     "Statistic/images",
     "Cryptography/Lesson 1.md",
     "Cryptography/Lesson 2.md",
     "Cryptography/Lesson 3.md",
     "CSAP/C programming Language (First-second Lesson).md",
     "CSAP/Unix section.md",
-    "Cryptography/Lesson 4.md",
-    "Cryptography/images/15.png",
-    "Cryptography/images/16cry.png",
-    "Cryptography/images/6.png"
+    "Cryptography/Lesson 4.md"
   ]
 }

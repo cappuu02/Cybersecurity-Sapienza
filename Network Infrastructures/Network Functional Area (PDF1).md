@@ -31,8 +31,8 @@ Two parts as for the wired and several part for wireless.
 
 ## Core Network (backbone)
 A core network is a backbone network:
--  usually with a mesh topology
-- provides any-to-any connections among devices on the network
+-  usually with a **mesh topology**
+- provides **any-to-any connections among devices on the network**
 - consists of multiple switches (e.g., ATM- Asynchronous Transfer Mode) or consists of IP routers
 - is constituted by an optical backbone
 - The Internet could be considered a giant core network
@@ -40,10 +40,10 @@ A core network is a backbone network:
 - Significant to core networks is "the edge," where
 networks and users exist
 
->Core part can be identified as a full optical network.
+>Core part can be identified as a ==full optical network.==
 
 ## Edge Network
-The edge may perform intelligent functions that are not performed inside the core network.
+The edge may **perform intelligent functions** that are not performed inside the core network.
 The core network then switches the packets which significantly improves performance
 The kind of technologies used are partially copper, partially fiber and partially wireless.
 
@@ -98,12 +98,12 @@ GE-PON (individual), GPON (enterprise), and COF (long-distance) represent system
 
 The infrastructure that we build up by using fiber is distinguished on the basis of where the fiber ends. We have these:
 
-- FTTH - Home
-- FTTC - Curb
+- ==FTTH== - Home
+- ==FTTC== - Fiber to the Cabinet
 - FTTN - Node or Neighborhood
 - FTTP - Premise
-- FTTB - Building or Business
-- FTTU - User
+- ==FTTB== - Building or Business
+- ==FTTU== - User
 -  FTTZ - Zone
 - FTTO - Office
 - FTTD - Desk
@@ -119,7 +119,7 @@ The infrastructure that we build up by using fiber is distinguished on the basis
 
 In this picture we have 3 different digging.
 In the contrary we have one single digging with the local exchange and after three different.
-Active node can have some problem. This is an intelligence element like router able to disaggregate traffic entering and directing part of the traffic to different home but uses a lot amount of energy. Second, it occupies a lot of space.
+**Active node** can have some problem. This is an intelligence element like router able to disaggregate traffic entering and directing part of the traffic to different home but uses a lot amount of energy. Second, it occupies a lot of space.
 
 >Remember, public spaces have a cost, every time in every where.
 
