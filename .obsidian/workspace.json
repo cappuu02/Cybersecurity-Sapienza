@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "d7f615c7f1ab8839",
+        "id": "05fb36f584d531f8",
         "type": "tabs",
         "children": [
           {
-            "id": "9ce7cb81472f1ae9",
+            "id": "e0cc3970cc00d2ac",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
+                "file": "Statistic/Lesson 5.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Introduction to Optical Network (Polverini 1)"
+              "title": "Lesson 5"
             }
           }
         ]
@@ -162,15 +162,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "e0cc3970cc00d2ac",
   "lastOpenFiles": [
+    "Pasted image 20241102161434.png",
+    "Pasted image 20241102161350.png",
+    "Statistic/Lesson 4.md",
+    "Statistic/Lesson 5.md",
+    "Statistic/images/st 2.png",
+    "Statistic/images/st 3.png",
+    "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
     "Network Infrastructures/images/92.png",
     "Network Infrastructures/images/91.png",
     "Network Infrastructures/images/90.png",
-    "Statistic/images/st 2.png",
-    "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
-    "Statistic/Lesson 4.md",
-    "Statistic/images/st 3.png",
     "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Network Infrastructures/Fiber Part (PDF 3).md",
     "Network Infrastructures/Network Infrastructures (PDF 2).md",
@@ -180,8 +183,6 @@
     "Cryptography/Lesson 6.md",
     "Cryptography/images/17.png",
     "Cryptography/images/21.png",
-    "Cryptography/images/20.png",
-    "Cryptography/images/19.png",
     "Cryptography/Lesson 5.md",
     "README.md",
     "Statistic/Lesson 2.md",

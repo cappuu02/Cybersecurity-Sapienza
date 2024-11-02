@@ -28,7 +28,7 @@ $$X \mid Y_j = y_j \hspace{1cm} Y \mid X_j = x_j$$
 ```ad-example
 Conditional distribution is like if we cut the population in the possible values that he can assume.
 
-![[Pasted image 20241030154935.png]]
+![[st 2.png|200]]
 
 ```
 
@@ -51,7 +51,7 @@ In statistic, dependence refers to a situation where two or more variables influ
 
 ```
 
-![[st 3.png]]
+![[st 3.png|500]]
 
 ----
 
