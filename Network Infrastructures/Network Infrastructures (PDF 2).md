@@ -61,7 +61,7 @@ Copper cables interfere not with every cables, only with cables sharing own bind
 Bigger cable with multiple coppers cables.
 
 Wires sharing the same cable interfere one each other
-![[22.png]]
+![[Network Infrastructures/images/22.png]]
 
 Exists tow kinds of cross-talk noise (Rumore di fondo):
 - Far-end cross talk: FEXT
@@ -86,7 +86,7 @@ FEXT Is the cross-talk between a transmitter and a receiver placed on opposite s
 Since for ADSL “short” cables are used, the signal carried on other pairs, even though coming from far away, are not strongly attenuated and create interferences that affect other pairs. To reduce this kind of noise a cable usually doesn't contain more
 than a dozen twisted pairs.
 
-![[23.png]]
+![[Network Infrastructures/images/23.png]]
 Cross talk between a TX and a RX placed on the opposite side of the cable.
 
 Contemporary transmission can append. Same bandit (downstream).
@@ -108,7 +108,7 @@ Receiver's signals are softer than transmitter's one, since come from far away a
 
 >NEXT is one of the reason of the frequency division for upstream and downstream in ADSL
 
-![[24.png]]
+![[Network Infrastructures/images/24.png]]
 Cross talk between a TX and a RX placed on the same side of cable.
 
 >dentro lo stesso binder nel cabinet
@@ -125,10 +125,10 @@ To solve, it is necessary to install appropriate frequency filters at the custom
 to phone / DSL modem.
 
 ## Echo cancelled
-![[25.png]]
+![[Network Infrastructures/images/25.png]]
 
 ## Reduce NEXT or FDD
-![[26.png]]
+![[Network Infrastructures/images/26.png]]
 
 ## ADSL Modulations
 
@@ -145,7 +145,7 @@ Divide the operational ADSL bandwidth into very small subchannles
 Channel behavior: 
 Nice idea: instead of considering this bandit has unique bandit let has divide this bandit in multiple pieces. Each of this has 4 Khz. 
 - Multiple transmission contemporary TON in the same frequency.
-![[27.png]]
+![[Network Infrastructures/images/27.png]]
 
 Independent subchannels can be manipulated individually with consideration of the line conditions
 - If a subchannel is experiencing external interference it may not be used in favor of other subchannels
@@ -190,7 +190,7 @@ Bitrate increase if we aggregate many pieces.
 There is a frequency or a small frequency band of 4 kHz where the attenuation is dramatically alterated. What we are going to do? Not use it
 ```
 
-![[28.png]]
+![[Network Infrastructures/images/28.png]]
 
 - We divided in pieces
 - Each piece has an attenuation
@@ -210,7 +210,7 @@ Larging the bandit we have an attenuation that is not flat. channel behaviour no
 - The signal power for each subcarrier is determined as the depth of the liquid in a pool
 - Knowing the discrete values of $p(f_k)$ for each subcarrier $f_k$ one may deduce the number of bit per symbol to associate to the QAM costellation used in each subchannel
 
-![[29.png]]
+![[Network Infrastructures/images/29.png]]
 
 >More water $\to$ the noise is lower.
 

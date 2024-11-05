@@ -67,7 +67,7 @@ The sum of the numbers in each row corresponds to $2^n$, where $n$ is the row nu
 
 Pascal's Triangle has many applications in combinatorics, number theory, and algebra, particularly in determining binomial coefficients.
 
-![[31.png]]
+![[Network Infrastructures/images/31.png]]
 
 
 ## Variation of relative frequency

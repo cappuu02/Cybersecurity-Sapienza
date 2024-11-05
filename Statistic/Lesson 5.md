@@ -91,7 +91,9 @@ $$a_i(x_i - \bar x) \wedge b_i(y_i - \bar y) = \sum_{ij} a_i b_j$$
 $$\sum_{ij} a_i b_j \le \sum_j a^2_j \sum_j b_j^2$$
 To find value of $r$:
 $$r = \frac{\sum_{i,j}(x_i - \bar x)(y_j - \bar y)}{\text{Max}} = \frac{\sigma_{x,y}}{\sigma_x \sigma_y} = r$$
-![[Pasted image 20241102161350.png]]
+![[st 4.png]]
 Another interpretation of $r$ is by the regression technique.
-![[Pasted image 20241102161434.png]]
+![[st 5.png]]
+
+
 

@@ -30,14 +30,14 @@ Cellular System
 >Quando i satelliti si muovo il segnale deve switchare tra uno e l'altro per far si che non venga perso il sistema. per avere questa configurazione abbiamo una costellazione di satelliti.
 
 
-![[32.png]]
+![[Network Infrastructures/images/32.png]]
 IEEE (father of wifi). wifi was born in the framework of IEEE.
 
  wifi6 combine wifi access in local area that is fully integrated into the cellular network of the first (blue part).
 
 ## Wireless Access: range of operation of different techniques
 
-![[33.png]]
+![[Network Infrastructures/images/33.png]]
 this image explain the typology of connection used outdoor and indoor.
 ## Wireless and mobile networks: context
 Two important challenges:
@@ -45,21 +45,21 @@ Two important challenges:
 - ==mobility==: handling the mobile user who changes point of attachment to network.
 
 ## Element of a wireless network:
-![[34.png]]
-![[35.png]]
+![[Network Infrastructures/images/34.png]]
+![[Network Infrastructures/images/35.png]]
 
 
 ## Characteristic of selected wireless links
-![[36.png]]
+![[Network Infrastructures/images/36.png]]
 Image that tells how far we can go if we stay indoor (a home, in the building, ecc...)
 Bluetooth is the connectin that has the lower range of connectivity..
 
 ## Network infrastructure mode
-![[37.png]]
+![[Network Infrastructures/images/37.png]]
 
 
 ## Ad-hoc mode
-![[38.png]]
+![[Network Infrastructures/images/38.png]]
 
 # Wireless Link and network characteristics
 difference from wired link
@@ -77,7 +77,7 @@ title: Missing IM4 notes
 
 ```
 
-![[39.png]]
+![[Network Infrastructures/images/39.png]]
 
 **SNR**: signal-to-noise ratio
 - larger SNR – easier to extract signal from noise (a “good thing”) 
@@ -90,7 +90,7 @@ SNR versus BER tradeoffs
 Multiple wireless sender, receivers create additional problems (beyond multiple access)
 We can defines two types of problems:
 
-![[40.png]]
+![[Network Infrastructures/images/40.png]]
 
 Before Introduce CDMA we need to talk about:
 
