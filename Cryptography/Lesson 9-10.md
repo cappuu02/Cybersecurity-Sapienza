@@ -108,3 +108,100 @@ title: Theorem
 If $F$ a PRF then CTR mode is CPA secure for VIL
 
 ```
+
+----
+
+**Proof**:We start with original CPA game.
+
+![[Cryptography/images/42.png]]
+
+$H_1(\lambda, b):$ The same as $H_0(\lambda, b)$ but use $R$ instead of $F_k$.
+$H_2(\lambda, b):$ The same as $H_1(\lambda, b)$ but $c^*$ is uniform.
+
+```ad-abstract
+title: Lemma
+$\forall b,H_0(\lambda,b) \approx_c H_1(\lambda, b)$
+
+```
+
+**Proof**: reduction to PRF security.
+![[Cryptography/images/44.png]]
+
+```ad-abstract
+title: Lemma
+$\forall b, H_1(\lambda, b) \approx_s H_2(\lambda,b)$ as long as $A$ makes $q(\lambda) = poly(\lambda)$ encryption queries.
+
+```
+
+**Proof**:
+Find Event $E$ such that when $E$ does not happened $H_1(\lambda, b) \equiv H_2(\lambda,b)$. The challenge CTX $c^*$ is computed using the sequence:
+$$R(r^*), R(r^* + 1), \cdots, R(r^* + t^* - 1)$$
+On the other hand, the other CTRs are computed missing the sequence:
+$$R(r), R(r+1), \cdots, R(r+t-1) \hspace{0.7cm} \text{different r,t for each query}$$
+The event $E$ is the event that the first sequence overlaps with the second sequence ($\forall$ queries).
+$$E: \exists j,j' \ge 0 \wedge i \ge 1$$
+$$r_i +1 = r^* + j'$$
+$$r* = r; r=4; j'=2; j=0$$
+_Observe_: Conditioning on $\bar E$, the $c^*$ will be uniform and $H_1(\lambda,b) \equiv H_2(\lambda,b)$
+We only need to bound $Pr[E]$.
+Simplify: Let $q(\lambda)$ be also the max length of any entry query. Of course $q(\lambda) = poly$
+$\Rightarrow t_i, t^* = q(\lambda) = \#queries$
+
+Consider event $E_i$, $r_i, \cdots, r_{i+q-1}$ overlaps with $r^*, \cdots, r^* + q-1$
+$$Pr[E] \le \sum_{i=1}q Pr[E_i] \le q(\lambda) \cdot negl(\lambda) = negl(\lambda)$$
+$$r^*, r^*+1, \cdots, r^* + q -1$$
+$$r_i, r_i +1, \cdots, r_i + q -1$$
+$$r^* - q + 1 \le r_i \le r* + q -1$$
+$$\Rightarrow Pr[E_i] \le \frac{(r^* + q-1)-(r^* - q + 1)+1}{2^n} = \frac{2q-1}{n} = \text{negl}(\lambda)$$
+
+```ad-abstract
+title: Lemma
+$H_2(\lambda, 0) \equiv H_2(\lambda, 1)$ because $c^*$ indipendent of $b$ in $H_2$
+
+```
+
+$$\Rightarrow H_0(\lambda,0) \approx_c H_1(\lambda,0) \approx_s H_2(\lambda, 0)$$
+$$\equiv H_2(\lambda, 1) \approx_s H_1(\lambda, 1) \approx_c H_0(\lambda, 1)$$
+## Domain Extension for MACs
+Recall: PRF $\Rightarrow$ FIL; UFCMA; MAC.
+$Tag(k,m) = F_k(m)$
+
+Some ideas that do not work:
+$e = Tag_k (\oplus_i, m_i)$ 
+$m = (m_1, m_2, \cdots)$
+UFCMA(i.e. AESk($\cdot$))
+
+$(m_1, m_2) = m \Rightarrow e$
+$(m^* = m_1 \oplus m_2, r) \hspace{0.8cm} r=F_k(m_1 \oplus m_2)$
+$m = (m_1, m_2)$, let $r = F_k(m_1 \oplus m_2) \hspace{0.4cm} m_1 \not = m_2$
+$m^* = (m_2, m_2); r^* = r$
+
+![[Cryptography/images/45.png|400]]
+
+- $r_i = TAG_k(m_i)$
+	- $r = (r_1, \cdots, r_d)$
+	- $m = (m_1, \cdots, m_d)$
+
+Permute again
+
+- $r_i = TAG_k(i \mid \mid m_i)$
+	- $r = (r_1, \cdots, r_d)$
+	- $m = (m_1, \cdots, m_d)$
+
+Idea: Design input-shinking function $h: \{0,1\}^N \to \{0,1\}^n$
+$N = n \cdot d$ ($d$ block of length $n$)
+Then, output $e = F_k(h(m))$
+The question: What security from $h$?
+
+![[Cryptography/images/46.png|400]]
+
+**Problem**:
+If we can find Collisions, $h(m) = h(m')$ but $m \not = m'$ we can forge $(m', r)$ given $(m,r)$
+Two approaches:
+- Let $h$ be _Secret_
+- Let $h$ be _Public_ (Collision-res, HASH, SHA)
+
+What does it mean?
+$$H = \{h_s : \{0,1\}^N \to \{0,1\}^n\}_{s \in \{0,1\}^{\lambda}}$$
+and $s$ is either secret or public.
+

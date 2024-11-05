@@ -116,7 +116,7 @@ Decoding: Summed inner-product: (encoded data) X (Chipping sequence)
 # Wifi: 802.11 wireless LANs
 
 ## 802.11 LAN Architecture
-![[42.png]]
+![[Network Infrastructures/images/42.png]]
 
 ## Channels Association
 spectrum divided into channels at different frequencies
@@ -130,7 +130,7 @@ Arriving host: must associate with an AP
 
 ## Passive and Active Scanning
 
-![[43.png]]
+![[Network Infrastructures/images/43.png]]
 
 ## IEEE 802.11: Multiple Access
 avoid collisions: 2+ nodes transmitting at same time
@@ -141,7 +141,7 @@ avoid collisions: 2+ nodes transmitting at same time
 - can’t sense all collisions in any case: hidden terminal, fading
 - goal: avoid collisions: CSMA/CollisionAvoidance
 
-![[44.png]]
+![[Network Infrastructures/images/44.png]]
 
 ## Protocollo CSMA/CA
 **802.11 sender**
@@ -152,7 +152,7 @@ avoid collisions: 2+ nodes transmitting at same time
 if frame received OK
 return ACK after SIFS (ACK needed due to hidden terminal problem)
 
-![[45.png]]
+![[Network Infrastructures/images/45.png]]
 
 
 ## Avoid Collisions (more)
@@ -165,7 +165,7 @@ return ACK after SIFS (ACK needed due to hidden terminal problem)
 	- other stations defer transmissions
 
 ## Collision Avoidance: RTS-CTS exchange
-![[46.png]]
+![[Network Infrastructures/images/46.png]]
 
 ## 802.11 Frame: Addressing
 ![[47.png]]
