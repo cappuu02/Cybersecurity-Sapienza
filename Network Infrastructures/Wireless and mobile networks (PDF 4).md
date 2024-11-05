@@ -168,13 +168,13 @@ return ACK after SIFS (ACK needed due to hidden terminal problem)
 ![[Network Infrastructures/images/46.png]]
 
 ## 802.11 Frame: Addressing
-![[47.png]]
-![[48.png]]
-![[49.png]]
+![[Network Infrastructures/images/47.png]]
+![[Network Infrastructures/images/48.png]]
+![[Network Infrastructures/images/49.png]]
 
 
 ## Mobility within same subnet
-![[50.png]]
+![[Network Infrastructures/images/50.png]]
 
 
 ## Advanced Capablities
@@ -193,5 +193,5 @@ Beacon frame: contains list of mobiles with AP-to-Mobile frames waiting to be se
 
 ## Bluetooth
 Less than 10m diameter, replacement for cables
-![[51.png]]
+![[Network Infrastructures/images/51.png]]
 

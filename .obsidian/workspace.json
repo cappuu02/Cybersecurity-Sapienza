@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "78fb1b63b314a5af",
+        "id": "8c7304b59bc754f2",
         "type": "tabs",
         "children": [
           {
-            "id": "9aea1cc8338886ea",
+            "id": "41b1c4014259e5f2",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -158,20 +158,21 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9aea1cc8338886ea",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "Cryptography/images/51.png",
+    "Cryptography/images/50.png",
+    "Cryptography/images/49.png",
+    "Cryptography/images/48.png",
+    "Cryptography/images/47.png",
+    "Cryptography/Lesson 11.md",
+    "Pasted image 20241105185157.png",
     "Cryptography/Lesson 9-10.md",
     "Cryptography/images/42.png",
     "Cryptography/images/46.png",
     "Cryptography/images/45.png",
     "Cryptography/images/44.png",
-    "Cryptography/images/43.png",
     "Cryptography/Lesson 10.md",
-    "Cryptography/images/41.jpeg",
-    "Cryptography/images/34.png",
-    "Cryptography/images/40.png",
-    "Cryptography/images/39.png",
-    "Cryptography/images/38.png",
     "Cryptography/Lesson 8.md",
     "Cryptography/Lesson 7.md",
     "Statistic/Lesson 5.md",
