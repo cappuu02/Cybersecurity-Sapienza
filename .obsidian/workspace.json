@@ -4,17 +4,23 @@
     "type": "split",
     "children": [
       {
-        "id": "8c7304b59bc754f2",
+        "id": "370ed8fa6393c89e",
         "type": "tabs",
         "children": [
           {
-            "id": "41b1c4014259e5f2",
+            "id": "36f95e98ebc52c2e",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Introduction to Optical Network (Polverini 1-2)"
             }
           }
         ]
@@ -73,7 +79,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 333.5
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -158,20 +164,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "36f95e98ebc52c2e",
   "lastOpenFiles": [
-    "Cryptography/images/51.png",
-    "Cryptography/images/50.png",
-    "Cryptography/images/49.png",
-    "Cryptography/images/48.png",
-    "Cryptography/images/47.png",
+    "Network Infrastructures/images/93.png",
+    "Network Infrastructures/images/104.jpeg",
+    "Network Infrastructures/images/103.png",
+    "Network Infrastructures/images/102.png",
+    "Network Infrastructures/images/101.png",
+    "Network Infrastructures/images/100.png",
+    "Network Infrastructures/images/99.png",
+    "Network Infrastructures/images/95.png",
+    "Network Infrastructures/images/94.png",
+    "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
+    "Lista Festa.md",
+    "Network Infrastructures/images/98.png",
+    "Network Infrastructures/images/97.png",
+    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
+    "Network Infrastructures/Fiber Part (PDF 3).md",
+    "Network Infrastructures/Network Infrastructures (PDF 2).md",
+    "Network Infrastructures/Network Functional Area (PDF1).md",
     "Cryptography/Lesson 11.md",
-    "Pasted image 20241105185157.png",
     "Cryptography/Lesson 9-10.md",
-    "Cryptography/images/42.png",
-    "Cryptography/images/46.png",
-    "Cryptography/images/45.png",
-    "Cryptography/images/44.png",
     "Cryptography/Lesson 10.md",
     "Cryptography/Lesson 8.md",
     "Cryptography/Lesson 7.md",
@@ -179,16 +192,10 @@
     "Statistic/Lesson 4.md",
     "Cryptography/Lesson 6.md",
     "README.md",
-    "Untitled.md",
     "THEORY HMW5.md",
     "Statistic/Homework1/script.js",
     "Statistic/Homework1/index.html",
     "Statistic/Homework1",
-    "Network Infrastructures/Introduction to Optical Network (Polverini 1).md",
-    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
-    "Network Infrastructures/Fiber Part (PDF 3).md",
-    "Network Infrastructures/Network Infrastructures (PDF 2).md",
-    "Network Infrastructures/Network Functional Area (PDF1).md",
     "Cryptography/Lesson 5.md",
     "Statistic/Lesson 2.md",
     "Statistic/Lesson 1.md",
