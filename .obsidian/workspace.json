@@ -4,23 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "370ed8fa6393c89e",
+        "id": "9c4da458adc5f273",
         "type": "tabs",
         "children": [
           {
-            "id": "36f95e98ebc52c2e",
+            "id": "0bb9f369d020a0b3",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Introduction to Optical Network (Polverini 1-2)"
+              "title": "New tab"
             }
           }
         ]
@@ -164,26 +158,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "36f95e98ebc52c2e",
+  "active": "0bb9f369d020a0b3",
   "lastOpenFiles": [
-    "Network Infrastructures/images/93.png",
-    "Network Infrastructures/images/104.jpeg",
-    "Network Infrastructures/images/103.png",
-    "Network Infrastructures/images/102.png",
-    "Network Infrastructures/images/101.png",
-    "Network Infrastructures/images/100.png",
-    "Network Infrastructures/images/99.png",
-    "Network Infrastructures/images/95.png",
-    "Network Infrastructures/images/94.png",
+    "Cryptography/Lesson 12.md",
+    "Cryptography/images/61.png",
+    "Cryptography/images/60.png",
+    "Cryptography/images/59.png",
+    "Cryptography/images/58.png",
+    "Cryptography/images/57.png",
+    "Pasted image 20241112090735.png",
+    "Cryptography/images/56.png",
+    "Cryptography/images/55.png",
+    "Cryptography/images/54.png",
+    "Cryptography/images/53.png",
+    "Cryptography/Lesson 11.md",
     "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
-    "Lista Festa.md",
-    "Network Infrastructures/images/98.png",
-    "Network Infrastructures/images/97.png",
-    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Network Infrastructures/Fiber Part (PDF 3).md",
+    "Lista Festa.md",
+    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Network Infrastructures/Network Infrastructures (PDF 2).md",
     "Network Infrastructures/Network Functional Area (PDF1).md",
-    "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 9-10.md",
     "Cryptography/Lesson 10.md",
     "Cryptography/Lesson 8.md",
@@ -204,7 +198,6 @@
     "Cryptography/Lesson 2.md",
     "Cryptography/Lesson 3.md",
     "CSAP/C programming Language (First-second Lesson).md",
-    "CSAP/Unix section.md",
-    "Cryptography/Lesson 4.md"
+    "CSAP/Unix section.md"
   ]
 }
