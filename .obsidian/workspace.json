@@ -10,14 +10,53 @@
           {
             "id": "0bb9f369d020a0b3",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 1.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Lesson 1"
+            }
+          },
+          {
+            "id": "3376525aa54929cc",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 2-3.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Lesson 2-3"
+            }
+          },
+          {
+            "id": "c3f913768f88f419",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 4-5.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Lesson 4-5"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -73,7 +112,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5
+    "width": 333.5,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -158,9 +198,63 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0bb9f369d020a0b3",
+  "floating": {
+    "id": "18cab0f6e83331b3",
+    "type": "floating",
+    "children": [
+      {
+        "id": "997a642fdea3f747",
+        "type": "window",
+        "children": [
+          {
+            "id": "749d2f59ed26cd5f",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "250612d3b15d07c3",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "Cryptography/Cryptography Notes.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "Cryptography Notes"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 982,
+        "y": 0,
+        "width": 938,
+        "height": 1032,
+        "maximize": false,
+        "zoom": 0
+      }
+    ]
+  },
+  "active": "c3f913768f88f419",
   "lastOpenFiles": [
+    "Cryptography/Lesson 2-3.md",
+    "Cryptography/Lesson 4-5.md",
+    "Cryptography/Lesson 5.md",
+    "Cryptography/Lesson 1.md",
+    "Cryptography/Cryptography Notes.pdf",
+    "Cryptography/Lesson 6.md",
+    "Cryptography/Lesson 7.md",
+    "Cryptography/Lesson 8.md",
+    "Cryptography/Lesson 9-10.md",
+    "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 12.md",
+    "Pasted image 20241120170946.png",
+    "Cryptography/Lesson 3.md",
+    "temp.md",
+    "README.md",
+    "Pasted image 20241120152639.png",
+    "Cryptography Notes.pdf",
+    "Cryptography/Untitled",
     "Cryptography/images/61.png",
     "Cryptography/images/60.png",
     "Cryptography/images/59.png",
@@ -169,35 +263,21 @@
     "Pasted image 20241112090735.png",
     "Cryptography/images/56.png",
     "Cryptography/images/55.png",
-    "Cryptography/images/54.png",
-    "Cryptography/images/53.png",
-    "Cryptography/Lesson 11.md",
     "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
     "Network Infrastructures/Fiber Part (PDF 3).md",
     "Lista Festa.md",
     "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Network Infrastructures/Network Infrastructures (PDF 2).md",
     "Network Infrastructures/Network Functional Area (PDF1).md",
-    "Cryptography/Lesson 9-10.md",
     "Cryptography/Lesson 10.md",
-    "Cryptography/Lesson 8.md",
-    "Cryptography/Lesson 7.md",
     "Statistic/Lesson 5.md",
     "Statistic/Lesson 4.md",
-    "Cryptography/Lesson 6.md",
-    "README.md",
     "THEORY HMW5.md",
     "Statistic/Homework1/script.js",
     "Statistic/Homework1/index.html",
     "Statistic/Homework1",
-    "Cryptography/Lesson 5.md",
     "Statistic/Lesson 2.md",
     "Statistic/Lesson 1.md",
-    "Statistic/images",
-    "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 2.md",
-    "Cryptography/Lesson 3.md",
-    "CSAP/C programming Language (First-second Lesson).md",
-    "CSAP/Unix section.md"
+    "Statistic/images"
   ]
 }

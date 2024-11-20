@@ -27,9 +27,9 @@ Bob = server
 
 # Encryption 
 The typical setting for the problem of secret communication is depicted in figure below. The parties Alice and Bob want to share data in a private fashion, thus preventing a third party Eve from eavesdropping. The objects of interest here are: 
-- The data to be shared, or message $m$; 
-- Some secret information, shared between and known only to Alice and Bob, that is used to encrypt the message: the encryption key or just key $k$; 
-- The result of encrypting a message m using the key k: the ciphertext $c$.
+- The ==data to be shared==, or message $m$; 
+- Some ==secret information,== shared between and known only to Alice and Bob, that is used to encrypt the message: the encryption key or just key $k$; 
+- The result of encrypting a message m using the key k: the ==ciphertext== $c$.
 
 ![[16cry.png]]
 
