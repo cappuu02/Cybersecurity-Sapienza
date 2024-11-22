@@ -4,17 +4,92 @@
     "type": "split",
     "children": [
       {
-        "id": "a8c9532f290334f0",
+        "id": "bcf336f7bada0bc9",
         "type": "tabs",
+        "dimension": 52.61194029850746,
         "children": [
           {
-            "id": "209558be42cd6b50",
+            "id": "225698be139bba01",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 2-3.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Lesson 2-3"
+            }
+          },
+          {
+            "id": "3d48123aa1f62b67",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 4-5-6-7.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Lesson 4-5-6-7"
+            }
+          },
+          {
+            "id": "7d691fdb7c8f5b50",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Untitled"
+            }
+          },
+          {
+            "id": "a50f3f76fa6493bb",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Cryptography/Lesson 8.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Lesson 8"
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "2342ab1de0831b53",
+        "type": "tabs",
+        "dimension": 47.38805970149254,
+        "children": [
+          {
+            "id": "aaeff6e51ae60ae1",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Cryptography/Cryptography Notes.pdf"
+              },
+              "pinned": true,
+              "icon": "lucide-file-text",
+              "title": "Cryptography Notes"
             }
           }
         ]
@@ -159,57 +234,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "floating": {
-    "id": "297f3e0c0fb491c6",
-    "type": "floating",
-    "children": [
-      {
-        "id": "ea37abc160b1d134",
-        "type": "window",
-        "children": [
-          {
-            "id": "0209b00f400c2179",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "aaeff6e51ae60ae1",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "Cryptography/Cryptography Notes.pdf"
-                  },
-                  "icon": "lucide-file-text",
-                  "title": "Cryptography Notes"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 0,
-        "y": 0,
-        "width": 960,
-        "height": 1041,
-        "maximize": false,
-        "zoom": 0.5
-      }
-    ]
-  },
-  "active": "209558be42cd6b50",
+  "active": "aaeff6e51ae60ae1",
   "lastOpenFiles": [
-    "Cryptography/Lesson 4-5-6.md",
-    "Cryptography/Cryptography Notes.pdf",
+    "Cryptography/Lesson 4-5-6-7.md",
+    "Untitled.md",
+    "Cryptography/Lesson 8.md",
     "Cryptography/Lesson 7.md",
+    "Cryptography/Cryptography Notes.pdf",
+    "Pasted image 20241121182330.png",
+    "Cryptography/Lesson 2-3.md",
     "Cryptography/Lesson 6.md",
     "Cryptography/Lesson 5.md",
     "Pasted image 20241121104208.png",
     "Pasted image 20241121103849.png",
     "Pasted image 20241121102449.png",
     "Pasted image 20241121101900.png",
-    "Cryptography/Lesson 2-3.md",
     "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 8.md",
     "Cryptography/Lesson 9-10.md",
     "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 12.md",
@@ -223,7 +263,6 @@
     "Cryptography/images/61.png",
     "Cryptography/images/60.png",
     "Cryptography/images/59.png",
-    "Cryptography/images/58.png",
     "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
     "Network Infrastructures/Fiber Part (PDF 3).md",
     "Lista Festa.md",
@@ -238,7 +277,6 @@
     "Statistic/Homework1/index.html",
     "Statistic/Homework1",
     "Statistic/Lesson 2.md",
-    "Statistic/Lesson 1.md",
     "Statistic/images"
   ]
 }
