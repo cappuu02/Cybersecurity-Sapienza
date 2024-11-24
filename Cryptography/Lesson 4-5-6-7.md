@@ -4,28 +4,31 @@ Move away from information theory.
 **Trade-Off**: weater security.
 - **ADV** is resource-bounded
 
-## Probabilistic polynomial-time (turing machine) and Negligible function
+## Probabilistic polynomial-time (turing machine) 
 A ==Probabilistic Polynomial-Time Turing Machine (PPT)== is a Turing machine that can use randomness, i.e., it can "flip coins" to make decisions during its computation. In other words, its transitions are not solely determined by the current state and the symbol read but also by a random tape (randomness), which is a sequence of randomly generated numbers. The probabilistic Turing machine is a computational model that reflects the concept of probability in computation.
 
 For every input $x$, and every random tape $r$, the probabilistic Turing machine terminates in a **polynomial number of steps**, both with respect to the length of the input $|x|$ and the length of the random tape $|r|$, denoted as $\lambda$. In other words, the machine does not take exponential time unless necessary, and its running time grows polynomially with the length of the input and the random tape.$$ P(\lambda) = \text{Poly}(\lambda) $$ means that the computation time grows at most as a polynomial with respect to the length of the random tape $\lambda$. The notation:
 $$ P(\lambda) = O(\lambda^\tau) $$
 indicates that the function $P(\lambda)$ is bounded above by a polynomial of degree $\tau$, where $\tau$ is a parameter that depends on the type of computation. For example, 
-$$ P(\lambda) = O(\lambda^2) $$
-means that the probabilistic Turing machine takes at most quadratic time with respect to the length of the random tape.
+$$ P(\lambda) = O(\lambda^2) \hspace{0.9cm} \text{Upper bound}$$
+means that the probabilistic Turing machine takes at most (al massimo) quadratic time with respect to the length of the random tape.
 
-When we talk about security in cryptography, **we want the attacker to have an extremely low probability of breaking the system**. This probability is expressed as a function of the key length $\lambda$, which measures the system's security.
+## Negligible function (4.1)
+When we talk about security in cryptography, **we want the attacker to have an extremely low probability of breaking the system**. This probability is expressed as a **function** of the key length $\lambda$, which measures the **system's security**.
 
-The probability that an attacker cannot compromise the system (i.e., the system is secure) must be a probability that decreases very quickly as $\lambda$ increases. In cryptography, we say that a probability $\epsilon(\lambda)$ is ==negligible== if it decreases faster than any polynomial function of $\lambda$.
+The probability that an attacker cannot compromise the system (i.e., the system is secure) must be a probability that decreases very quickly as $\lambda$ increases. In cryptography, we say that a probability $\epsilon(\lambda)$ is ==negligible== **if it decreases faster than any polynomial function of $\lambda$**.
 
 The negligible probability is formally defined as:
 $$ \epsilon(\lambda) = O\left(\frac{1}{P(\lambda)}\right) $$
 
-where $P(\lambda)$ is a polynomial function. This means that for any polynomial $P(\lambda)$, the probability of insecurity becomes so small that it is practically insignificant.
+where $P(\lambda)$ is a polynomial function. This means that for any polynomial $P(\lambda)$, the probability of insecurity becomes so small that it is practically insignificant. (diventa insignificante dato che è l'inverso)
 
-Examples: $2^{- \lambda}, 2^{- \lambda(\log \lambda)}$
+>La probabilità che un avversario rompa un sistema deve essere una funzione trascurabile in relazione alla lunghezza della chiave $\lambda$.
+
+Examples of polynomial function: $2^{- \lambda}, 2^{- \lambda(\log \lambda)}$
 
 >Introduce computationally hard problems and prove security is equivalent to breaking these problems.
-# One-Way Functions (OWF)
+# One-Way Functions (OWF 4.2) 
 From here, we start defining an object that is fundamental to everyday cryptography: the one-way function, or **owf** in short. Colloquially, a one-way function is a function that is “==easy to compute==”, while being “==hard to invert==” at the same time, the concept of hardness being borrowed by complexity theory.
 
 ```ad-example
@@ -45,7 +48,7 @@ $$\forall \text{ppt(A)} \hspace{0.1cm}, \exists \hspace{0.3cm} \text{negligent f
 La probabilità $Pr[f(x') = y]$ rappresenta la probabilità che l'algoritmo $A$ riesca a trovare un $x'$ che soddisfa $f(x') = y$, ossia inverta con successo $f$. (Questo ovviamente NON deve succedere altrimenti l'attaccante avrebbe compromesso il sistema di sicurezza, tutto dipende dalla difficoltà di invertire $f$).
 
 $Pr[f(x′)=y] \le \epsilon(λ)$
-La probabilità che $A$ riesca ad invertire $f$ è $\le$ $\epsilon(\lambda)$, una funzione neglibile. Questo significa che anche il miglior attaccante PPT ha una probabilità praticamente nulla di successo.
+La probabilità che $A$ riesca ad invertire $f$ è $\le$ $\epsilon(\lambda)$, una funzione neglibile. Questo significa che ==anche il miglior attaccante PPT ha una probabilità praticamente nulla di successo==.
 
 Una funzione $f$ è **one-way** se:
 1. È computabile in tempo polinomiale.
@@ -53,11 +56,11 @@ Una funzione $f$ è **one-way** se:
 
 ```ad-tip
 title: To clarify
-Quando diciamo che la probabilità di successo di un attacco (o di un algoritmo che cerca di invertire una funzione) è **neglibile**, intendiamo che questa probabilità diventa così piccola al crescere di un parametro $\lambda$ (di solito rappresentante la "dimensione" del problema, ad esempio la lunghezza della chiave) da essere considerata praticamente **irrilevante**.
+Quando diciamo che la probabilità di successo di un attacco (o di un algoritmo che cerca di invertire una funzione) è **neglibile**, intendiamo che questa probabilità diventa così piccola al crescere di un parametro $\lambda$ (di solito rappresentante la "dimensione" del problema, ad esempio la lunghezza della chiave) da essere considerata praticamente **irrilevante**. icordare la formula ovvero $\frac{1}{P(\lambda)}$
 
 ```
 ## Definition (context of cryptographic games)
-Una funzione viene considerata sicura se un attaccante (rappresentato dall'algoritmo PPT A) non riesce a vincere un gioco di sicurezza associato a quella funzione, ovvero non riesce a indovinare correttamente qualcosa che dovrebbe essere difficile. In questo caso, il gioco è definito come $Game^{owf}_f(\lambda)$, ed è un gioco in cui l'attaccante tenta di invertire la funzione $f$, cioè cercare di trovare l'input $x$ dato l'output $y = f(x)$. La sicurezza della funzione è espressa dalla probabilità che l'attaccante riesca a fare questo.
+Una funzione viene considerata sicura se un attaccante (rappresentato dall'algoritmo PPT A) non riesce a vincere un ==gioco di sicurezza associato a quella funzione==, ovvero non riesce a indovinare correttamente qualcosa che dovrebbe essere difficile. In questo caso, il gioco è definito come $Game^{owf}_f(\lambda)$, ed è un gioco in cui l'attaccante tenta di invertire la funzione $f$, cioè cercare di trovare l'input $x$ dato l'output $y = f(x)$. **La sicurezza della funzione è espressa dalla probabilità che l'attaccante riesca a fare questo**.
 
 $f$ is a **OWF** iff: $$\forall \hspace{0.3cm} \text{ppt(A)} \hspace{0.3cm} A: Pr[Game^{owf}_f (\lambda) = 1] \le Negl(\lambda)$$
 Significa che per ogni algoritmo PPT $A$, la probabilità che $A$ vinca il gioco di sicurezza (cioè indovini correttamente l'input $x$ dato l'output $y = f(x)$) è **neglibile** al crescere della dimensione del problema $\lambda$. 
@@ -79,35 +82,40 @@ Suppose to have Gauss, a genius child, and his professor. The professor gives to
 - **Minicrypt**: One-way functions exist but public-key cryptography is im- practical 
 - **Cryptomania**: Public-key cryptography is possible: two parties can ex- change secret messages over open channels
 
+```ad-missing
+Qua ho skippato il capitolo 4.3!!!
+
+```
+
 # Pseudo-random generators (PRG) (4.4)
 In the information-theoretic setting we can't do better than extracting $\approx k$ random bits from a source $x$ with min-entropy $\ge k$.
 
 **Pseudorandomness**: Weather security in order to produce unlimited randomness.
 
-- $G$ prende in input $\lambda$ bit casuali e genera $\lambda + l(\lambda)$ bit.
-- $l(\lambda)$ è uno stretch (bit aggiuntivi generati rispetto alla lunghezza iniziale $\lambda$)
+- $G$ takes as input $\lambda$ random bits and generates $\lambda + l(\lambda)$ bits.
+- $l(\lambda)$ is a stretch (additional bits generated over the initial length $\lambda$)
 
 > Un ADV non è in grado di distinguere tra un output $G(U_{\lambda})$ ,dove $U_{\lambda}$ è un input casuale di $\lambda$ bits, ed una stringa casuale uniforme di $\lambda + l(\lambda)$ bits
 
 ```ad-abstract
-title: Def (PRG)
+title: Definition of PRG
 A deterministic function $G: \{0,1\}^{\lambda} \to \{0,1\}^{\lambda + l(\lambda)}$ is called PRG with stretch $l(\lambda)$ iff $\forall PPT A:$
 $$Pr[Game_{G,A}^{prg}, (\lambda) = 1] \le \frac{1}{2} + negl(\lambda)$$
 
 ```
 
-- output 1 if ADV guess correctly if the string is generated by $G(U_{\lambda})$ or is completely random.
+- Output is 1 if ADV guess correctly if the string is generated by $G(U_{\lambda})$ or is completely random.
 - $G$: is deterministic; efficiently computable 
 - $l(\lambda) > 0$
 
-
 ```ad-done
 title: To clarify
-Un **Pseudo-Random Generator (PRG)** è una funzione deterministica che prende in input una stringa casuale corta $(\lambda$ bit) e produce una stringa più lunga $(\lambda + l(\lambda)$ bit) che "sembra" casuale a ogni avversario che può essere efficiente in tempo polinomiale probabilistico (PPT).
+Un **Pseudo-Random Generator (PRG)** è una funzione deterministica che prende in input una stringa casuale corta $(\lambda$ bit) e produce una stringa più lunga $(\lambda + l(\lambda)$ bit) che "sembra" casuale a ogni avversario che può essere efficiente in tempo polinomiale probabilistico (PPT). Una sequenza è pseudocasuale se appare casuale, ma è in realtà generata da un algoritmo deterministico, partendo da un valore iniziale chiamato **seed**
 
 ```
 
-Verifica della sicurezza di un generatore pseudocasuale PRG. Il gioco è un metodo per determinare se un avversario $\mathcal{A}$ può distinguere l'output di $G$ da una stringa casuale.
+**Verifica della sicurezza di un generatore pseudocasuale PRG**.
+Il gioco è un metodo per determinare se un avversario $\mathcal{A}$ può distinguere l'output di $G$ da una stringa casuale.
 
 ![[Pasted image 20241121104208.png]]
 > b is a bit that decides whether the output $z$ will be produced by the PRG or will be completely random. If $G$ is a valid PRG than every ADV have at maximum a probability of $\frac{1}{2}+ \text{negl}(\lambda)$
@@ -118,7 +126,7 @@ Verifica della sicurezza di un generatore pseudocasuale PRG. Il gioco è un meto
 
 ```ad-abstract
 title: Def (PRG)
-$G: \{0,1\}^\lambda \to \{0,1\}^{l+\lambda}$ is a PRG if: $GAME_{G,A}^{Prg}(\lambda, 0) \approx_\tau Game_{F,A}^{prg}(\lambda, 1)$
+A deterministic function $G: \{0,1\}^\lambda \to \{0,1\}^{l+\lambda}$ is a PRG iff: $$GAME_{G,A}^{Prg}(\lambda, 0) \approx_\tau Game_{F,A}^{prg}(\lambda, 1)$$
 
 ```
 
@@ -126,25 +134,35 @@ $G: \{0,1\}^\lambda \to \{0,1\}^{l+\lambda}$ is a PRG if: $GAME_{G,A}^{Prg}(\lam
 - $Game_{F,A}^{prg}(\lambda, 1)$ : rappresenta lo stesso gioco, ma con la differenza che la stringa fornita all'avversario $A$ è **veramente casuale**, cioè estratta da una distribuzione uniforme di $\lambda + l(\lambda)$ bit $\Rightarrow$ $U_{\lambda + l(\lambda)}$
 - $\approx_{\tau}$ : le due distribuzioni degli output $G(U_{\lambda})$ e $U_{\lambda + l(\lambda)}$ sono indistinguibili per l'avversario A tranne che per una probabilità trascurabile $\tau$ ($\tau$ dipende da $\lambda$)
 
->Un avversario non sà con certezza se la stringa ricevuta è stata generata da $G$ oppure è completamente casuale.
+>Un avversario non sà con certezza se la stringa ricevuta è stata generata da $G$ oppure è completamente casuale.333333333
 
 It means:
 $$\forall \hspace{0.3cm} \text{PPT} \hspace{0.3cm} A (Pr[Game_{G,A}^{prg}(\lambda, 0) = 1] - Pr[Game_{G,A}^{prg}(\lambda, 1)=1]) \le negl(\lambda)$$
 where the game output is $b' \in \{0,1\}$.
+
+```ad-bug
 **Intuitively**: If $A(z)$ can predict $s$ there is no security. Because $A$ can check if $z= G(s)$ and if so output $b' = 1$. Otherwise $b'=0$.
 
-```ad-success
-title: To clarify
+```
+
+```ad-info
+title: Riassumendo
 L'obiettivo dell'avversario $A$ è distinguere se la stringa $z$ ricevuta proviene da un'uscita pseudocasuale oppure da una stringa casuale generata uniformemente.
 Se l'avversario A è in grado di predire il seme $s$ a partire da $z$ allora il PRG non è sicuro. Questo accade perchè A potrebbe semplicemente controllare se $z=G(s)$. Un PRG è sicuro solo se $A$ non può distinguere $z$ da una stringa casuale, anche dopo aver analizzato tutte le informazioni possibili.
 
 ```
 
+
+----
+----
+---- 
+
+
 We want to show:
 1) OWF $\Rightarrow$ PRG
 2) PRG $\Rightarrow$ SKE (Beating Shannon)
 
-## 2) PRG $\Rightarrow$ SKE
+2) PRG $\Rightarrow$ SKE (SKE = Utilizzo della stessa chiave)
 Assuming $G: \{0,1\}^\lambda \to \{0,1\}^{\lambda+l}$
 Simple $\pi = (ENC, DEC)$ for $K = \{0,1\}^\lambda$, $M = \{0,1\}^{\lambda+l}$
 $$ENC(k,m) = G(k) \oplus m$$
@@ -162,8 +180,7 @@ Questo schema di cifratura sfrutta la pseudo-casualità di $G(k)$ per "mascherar
 
 
 Secure SKE against PPT A?
-
-Example: game to evaluate the security of SKE. The game is played between two parties, an Adversary and a Challenger.
+We can see a game to evaluate the security of SKE. The game is played between two parties, an Adversary and a Challenger.
 ![[17.png]]
 1. The Challenger initializes the game by choosing a random key _k_ and initializing the scheme SKE
 2. The Adversary selects two messages, _m<sub>0</sub>_ and _m<sub>1</sub>_.
@@ -188,6 +205,7 @@ $$Game^{\text{SKE}}_{\pi, a}(\lambda, 0) \equiv_{\epsilon} Game^{\text{SKE}}_{\p
 ```ad-abstract
 title: Theorem
 If $G$ is a PRG $\Rightarrow$ above $\pi$ is ONE TIME SECURE.
+**One time secure** = Si riferisce, in questo caso, allo schema di cifratura SKE (simmetric key encryption) e afferma che tale sistema di cifratura è sicuro solo quando una chiave viene usata per cifrare un messaggio. Per ogni messaggio deve esserci una chiave! Se utilizzo la stessa chiave $k$ per due messaggi $m_1$ ed $m_2$, con l'operazione di XOR l'attaccante potrebbe riuscire a dedurre informazioni sui messaggi.
 
 ```
 
@@ -221,13 +239,12 @@ $$Pr[H'(\lambda, 0) =1] = Pr[Game^{PRG}(\lambda, 1) = 1]$$
 $$\Rightarrow Pr[Game^{PRG}_{G, B}(\lambda, 0)=1] - Pr[Game^{PRG}_{G, B}(\lambda, 1) = 1] | \ge \frac{1}{negl(\lambda)} \hspace{0.8cm} \text{So A can't exist}$$
 $$H(\lambda, 0) \equiv_e H'(\lambda, 0) \equiv H'(\lambda, 1) \equiv_e H(\lambda, 1) \hspace{0.8cm} \text{(By triangle inequality)}$$
 
-
-
 ----
 ----
+----
 
-## Constructing PRGs
-This chapter/lesson is devoted in constructing PRGs. We **begin by assuming to have already a prg** ==$G \in 2^{\lambda} \to 2^{\lambda+1}$==, that extends the string length by one bit, and prove that it is possible to extend such string by an indefinite amount while preserving pseudo-randomness
+## Constructing PRGs (5.0)
+This chapter/lesson is devoted in constructing PRGs. We **begin by assuming to have already a PRG** ==$G \in 2^{\lambda} \to 2^{\lambda+1}$==, that extends the string length by one bit, and prove that it is possible to extend such string by an indefinite amount while preserving pseudo-randomness
 
 ### Stretching a PRG
 Consider this algorithm that uses $G$ to construct $G^l$, as depicted in figure below:
@@ -258,7 +275,7 @@ The above $G^l$ is a PRG for every $l(\lambda) = Poly(\lambda)$ ensuring if is a
 ```ad-done
 title: Domande e Chiarimenti
 - Come viene mantenuta la pseudocasualità mano a mano che itero G?
-	- La pseudo-casualità viene mantenuta grazie a una proprietà fondamentale dei PRG: **se l'output del PRG iniziale GGG è indistinguibile da un output casuale, allora anche l'output iterato rimane indistinguibile da un output casuale**.
+	- La pseudo-casualità viene mantenuta grazie a una proprietà fondamentale dei PRG: **se l'output del PRG iniziale $G$ è indistinguibile da un output casuale, allora anche l'output iterato rimane indistinguibile da un output casuale**.
 
 - Il processo avviene in tempo polinomiale?
 	- Sì, il tutto avviene in **tempo polinomiale**. Per un PRG sicuro, $G$ deve essere calcolabile in tempo polinomiale rispetto alla lunghezza del seed, $\lambda$. Quindi, una singola chiamata a $G$ richiede tempo polinomiale. L'algoritmo richiede $l(\lambda)$ iterazioni, dove $l(\lambda)$ è una funzione polinomiale di $\lambda$
@@ -299,7 +316,7 @@ $$\forall i \in [0, l-1] : H_{i+1}(\lambda) \approx H_i[\lambda]$$
 **Perché vale l'indistinguibilità tra $H_i$ e $H_{i+1}$​?**
 La sicurezza deriva dal fatto che:
 
-- **Il PRG di base $G$ è sicuro:** Ciò implica che un singolo bit $b_i$​ generato da GGG è indistinguibile da un bit casuale.
+- **Il PRG di base $G$ è sicuro:** Ciò implica che un singolo bit $b_i$​ generato da $G$ è indistinguibile da un bit casuale.
 - **Solo un bit cambia:** La differenza tra $H_i$​ e $H_{i+1}$ riguarda solo il bit $b_{i+1}$​. Tutti gli altri bit e il seed restante $s_i$​ rimangono inalterati. Questo garantisce che la variazione tra i due ibridi sia minima.
 
 
@@ -317,26 +334,46 @@ $$= Pr[t(z) = 1 / z \leftarrow H_i(\lambda)] $$
 $$ =Pr[B(z^*) = 1 / z^* \leftarrow U_{\lambda + 1}]$$
 $$= Pr[t(z) = 1 / z \leftarrow H_{i+1}(\lambda)]$$
 $$\Rightarrow \mid Pr[B(z^*)=1/z^* \leftarrow G(U_\lambda)] - Pr[B(z^*)=1/z^* \leftarrow U_{\lambda+1}]| \ge \frac{1}{Poly(\lambda)}$$
-## Exercise
-![[Cryptography/images/25.png]]
+
+
+Let $X, Y$ and $Z$ be three any distribution ensembles of the same length. the following is true:
+$$X \equiv_c Y \wedge Y \equiv_c Z \Rightarrow X \equiv_c Z$$
+**Proof**:
+$\forall A \in PTT$ by using the triangle inequality: 
+$$|Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Z]|$$
+$$= |Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Y] + Pr[A(u) =1 : u \leftarrow Y] - Pr[A(u) =1 : u \leftarrow Z]|$$
+$$\le |Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Y] + Pr[A(u) =1 : u \leftarrow Y] - Pr[A(u) =1 : u \leftarrow Z]|$$
+$$\le \epsilon_{1}(\lambda) + \epsilon_{2}(\lambda) \le negl(\lambda) \hspace{0.8cm} \text{By the sum of negligible funxtions the result is still negligible, proving lemma}$$
+
+>In essence, the hybrid argument proves that computational indistinguishability is a transitive relationship, which enables us to design “hybrid” games in order to bridge differences two arbitrary ones
+
+----
+-----
+-----
+
+
+
 ![[Cryptography/images/26.png]]
 
 More in details:
 - How to generate so? Randomness extractors. 
 - Theory: leftover hash lemma.
-- Practice: AES
+- Practice: AES (Advanced Encryption Standard) used as PRG
 - Which $G$? 
-	- Theory: we can get one from any OWF f or assuming hardness of Factoring, discrete log, LWE, $\cdots$.
+	- Theory: we can get one from any OWF $f$ or assuming hardness of:
+		- Factoring (RSA)
+		- discrete log (Diffie hellman)
+		- LWE
 	- Practice: AES
-- Note get the final design. Because if the natural state is compromised all the future outputs are predictable. The real world  construction keep refresh the state:
+- If the initial seed $s_i$ (the natural state) is compromised, an attacker could predict all future outputs. Continuously update the internal state with new random data using an extractor $\text{EXT}(x)$
 
 ```c
 if state is s_i, 
-	EXT(x)
-	s_i = s_i + EXT(x)
+	EXT(x) //genera un valore casuale da una sorgente x
+	s_i = s_i + EXT(x) //combina lo stato attuale con il nuovo valore casuale
 ```
 
-How to construct $G$ as a theory:
+How to **construct $G$ as a theory**:
 ```ad-summary
 title: Theorem
 If $OWF_s$ exists $\Rightarrow$ is possible to construct PRGs with $l(\lambda)=1$.
@@ -350,45 +387,52 @@ The proof has to do with the following question. What info about $x$ is hidden g
 **Non-trivial**: 
 If $f$ is OWF then so is $f'(x)=0 \mid \mid f(x)$
 - $f'(x$) is not a PRG!
+- Concatenare un "0" con $f(x)$ non è un PRG, perchè non espande la casualità e non produce output indistinguibili da una distribuzione casuale uniforme.
 
-**Prove it**
 Also: If $f$ is OWF, then so is $f'(x) = x[1] \mid \mid f(x), x[1] = 1st$ but of $x$.
+Concatenare il primo bit di $x$ ($x[1]$) con $f(x)$ preserva la difficoltà di inversione, ma non è un PRG per la stessa ragione di sopra.
 
-**Prove it**
-Hard-core bit: Is a predicate $h: x \to \{0,1\}$ such that given $f(x)$ it is hard to compute $h(x)$ (i.e. $f(x), f(x)$)  $\approx (U_l, f(x))$
+>Adding predictable or structured information (such as "0" or the first bit of xx) does not turn an OWF into a PRG, because it does not introduce randomness or unpredictable expansion.
 
-**Fact**
-Every $f$ admits an $h$
-$$G(s) \equiv f(s) \mid \mid f(s)$$
-PRG assuming $f$ is one-way permutation.
-
-
-## CPA-Security
-Want: Build SKE(ENC, DEC) such that:
-- $\mid k \mid << \mid n \mid$
-- Can encrypt more then $1$ message
-
-Recall: $ENC(k, m)=G(k) \oplus m$ this achieves $\mid k \mid << \mid m \mid$
-However, if we measure the way:
-$c_1 = G(k) \oplus m_1$
-$c_2 = G(k) \oplus m_2$
-$c_1 \oplus c_2 = m_1 + m_2$
-
-If $A$ ... a simple pair $(m_1, c_1)$ future plaintexts are exposed forever.
+## Hardcore predicates
+Now that we’ve seen how to reuse a one-bit stretch PRG in order to obtain an arbitrary length of pseudorandom bits, we turn to the problem of constructing a 1-bit stretch PRG itself by starting from OWF. Let $f$ be a OWF, and consider the following questions: 
+- Given an image $f(x)$, which bits of the input $x$ are hard to extract? 
+- Is it always true that, given $f$, the first bit of $f(x)$ is hard to compute for any choice of $x$?
 
 ```ad-abstract
-title: CPA Security Definition
-We say that (Enc, Dec) = \pi is CPA secure if:
-$$$$
+title: Definition
+**hard-core bit** is a predicate $h(x)$ such that given $f(x)$ it is hard to compute $h(x)$.
+
+- $h(x)$ è una funzione che restituisce un singolo bit $\hspace{0.8cm} h:x\to \{0,1\}$
+- $h(x)$ è computazionalemnte difficile da calcolare dato solo $f(x)$.
+
+**Formally**: an ADV taht know $f(x)$ cannot distinguish the bit $h(x)$ from a random one $U_1$.
+
 ```
 
-![[Cryptography/images/29.png]]
+> very OWF $f(x)$ has at least one hard-core bit $h(x)$
 
->The above is impossible if ENC is deterministic.
+### PRG creation from OWF
+A PRG can be constructed from a One-Way Permutation (OWP, an invertible OWF). The idea is to concatenate the result of the OWP with a hard-core bit derived from the input:
+$$G(s) \equiv f(s) \mid \mid f(s)$$
+- $f(s)$: Output della OWP.
+- $h(s)$: Hard-core bit derivato da sss.
 
 
+```ad-attention
+title: Security
+Se $f(s)$ è una $OWP$ e $h(s)$ è un hard-core bit, allora $G(s)$ è un $PRG$ sicuro:
+
+- Gli output di $G(s)$ sono indistinguibili da una sequenza casuale uniforme.
+- Possiamo usare $G(s)$ per generare bit pseudocasuali a partire da una sorgente sicura $s$.
+
+```
 
 
+>Questo è importante perché garantisce che possiamo sempre derivare un bit "casuale" da una OWF.
 
 
+```ad-missing
 
+finisce qui a pagina 35
+```
