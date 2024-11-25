@@ -8,69 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "225698be139bba01",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 2-3.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 2-3"
-            }
-          },
-          {
-            "id": "3d48123aa1f62b67",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 4-5-6-7.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 4-5-6-7"
-            }
-          },
-          {
-            "id": "21e6906ef3a7a78a",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 8-9-10.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 8-9-10"
-            }
-          },
-          {
             "id": "4a9811f469b9744f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cryptography/Lesson 8-9-10.md",
+                "file": "Cryptography/Lesson 14.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lesson 8-9-10"
+              "title": "Lesson 14"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -226,14 +177,15 @@
   },
   "active": "4a9811f469b9744f",
   "lastOpenFiles": [
+    "Cryptography/Lesson 8-9-10.md",
     "Cryptography/Lesson 4-5-6-7.md",
     "Cryptography/Lesson 2-3.md",
-    "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 8-9-10.md",
     "Cryptography/Lesson 14.md",
+    "Cryptography/Lesson 11.md",
+    "Pasted image 20241125191528.png",
+    "Cryptography/Lesson 1.md",
     "Cryptography/Lesson 13.md",
     "Cryptography/Lesson 12.md",
-    "Cryptography/Lesson 11.md",
     "Pasted image 20241125180757.png",
     "Pasted image 20241125175958.png",
     "Pasted image 20241125174645.png",
@@ -244,7 +196,6 @@
     "MAC e dimostrazioni.md",
     "Cryptography/images/62.png",
     "Cryptography/images/82.png",
-    "Cryptography/images/81.png",
     "Cryptography/Cryptography Notes.pdf",
     "Untitled 1.md",
     "Cryptography/Lesson 9-10.md",

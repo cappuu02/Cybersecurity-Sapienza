@@ -391,38 +391,85 @@ Assume $f_k$ is a PRF, then the counter-mode block cipher is CPA-secure for vari
 ```
 
 **Proof of the Theorem**
+We start with original CPA game:
 
 ![[Pasted image 20241125180757.png]]
 
 
+**How it works**: 
+1. Adversary Chooses Messages: 
+	- A starts by choosing a message m=(m1,…,mt), where each mi represents a block of plaintext. 
+	- A sends these messages to CCPA to receive its corresponding ciphertexts. 
+2. Encryption in CTR Mode: 
+	- The encryption scheme uses a Counter (CTR) mode with a starting value r chosen at random. This r serves as the initial counter value. 
+	- For each plaintext block mi, CCPA generates the ciphertext ci as follows: ci=fk(r+i−1) mi ⊕ Here: 
+		- fk is a pseudorandom function (or the block cipher function) with key k. 
+		- r+i−1 represents the counter value for each block i. 
+		- The result of fk(r+i−1) is XORed with mi to produce ci. 
+3. Challenge Phase: 
+	- A then submits two messages μ0 and μ1, which are distinct messages of equal length. CCPA will challenge A with the encryption of one of these messages, chosen based on a secret bit b. 
+	- CCPA chooses a random bit b {0,1}, deciding ∈ which message to encrypt. 
+	- CCPA encrypts μb using the CTR mode, as described before, but this time with a new random counter ρ and produces a ciphertext γb=(γ0,γ1,…,γt) using: (γb)i=fk(ρ+i−1) (μb)i. ⊕ 
+4. Adversary's Goal: 
+	- A receives the ciphertext γb and tries to guess which message was encrypted by outputting a guess b′. 
+	- A wins the game if b′=b, meaning it correctly identifies which message CCPA encrypted. 
+5. Output: 
+	- The experiment outputs 1 (indicating success) if b′=b, which means that A successfully distinguished between the two encrypted messages. 
+	- If A can consistently guess correctly (better than random chance), the encryption scheme is not IND-CPA secure. A secure scheme would mean A's success probability is close to random guessing
 
 
+$HYB^1_{CTR, A}(\lambda, b)$: A random function $R$ is chosen UAR from $R(n, n)$ at the beginning of the game, and is used in place of $F_k$ in all block encryptions;
 
+$HYB^2_{CTR, A}(\lambda, b)$: The challenger will pick random values from $2^n$ as ciphered blocks, disregarding any encryption routine. This hybrid does not use any encryption function at all. Instead, each block of ciphertext is purely random, with no relation to the plaintext or any previous ciphertexts.
 
+```ad-abstract
+title: Lemma
+$$GAME_{CTR,A}^{CPA}(\lambda, b) \equiv_c HYB_{CTR,A}(\lambda, b) \forall b \in 2$$
 
+```
 
+**Proof**
+Hint: Since the original game and the first hybrid are very similar, we can use a distinguisher which plays the cpa-game; since this is a lemma, our goal in the reduction is to break the precondition contained in the theorem statement.
 
+```ad-abstract
+title: Lemma
+$$HYB^1_{CTR,A}(\lambda,b) \equiv_c HYB^2_{CTR,A}(\lambda,b) \forall b \in 2$$
+```
 
+This lemma is part of a security proof for counter (CTR) mode encryption, specifically to show that CTR mode is secure under chosen-plaintext attack (CPA). The idea is to prove that an attacker cannot distinguish between two similar encryption processes (referred to as "hybrids"), which would mean that CTR mode encryption is indistinguishable from random and, therefore, secure.
 
+**Key concept and terms**
 
+![[Pasted image 20241125191528.png]]
 
+**Explanation of the proof**
+1. Main Intuition: 
+	- Since $m_i$ (the message) does not affect the distribution in Hybrid $1$ (due to the random function $R$), the output $R(r+i)$ mi $\oplus$ appears indistinguishable from $R(r+i)$ alone. This should make the two hybrids look the same to an attacker. 
+	- However, if the same nonce is used for different messages, the repeated use of $R$ with the same input could make patterns in Hybrid $1$, which could allow an attacker to distinguish it from Hybrid $2$.
+2. Probability of Collisions (Overlap Events):
+	- The proof calculates the probability of an overlap event (collision of counter values) and shows it is negligible
+	- For any message block sequence of length t (where all message lengths are assumed to be the same here), an overlap can occur in two cases:
+		- The sequence $\rho,…,\rho+t−1$ (for the challenge message) partially overlaps with sequence $r_i,…,r_i+t−1$ (for an encryption query).
+	- The overlap conditions are: 
+		- If $ρ+t−1=r_i$, the two sequences overlap at the last element. 
+		- If $r_i+t−1=\rho$, the sequences overlap at the last element in the other direction.
+3. Calculation of Overlap Probability
+	- The proof estimates the probability of an overlap event occurring between the challenge message and each encryption query. It shows that, given the large size of the nonce space (modulo $2^n$), the probability of these events happening is extremely low (negligible).
+	- The probability of overlap for each query is shown to be $\frac{2 \cdot t^2}{2^n}$ and for all queries combined, it remains negligible as n grows.
+4. Conclusion
+	- Since the probability of the overlap event is negligible, it means that Hybrid $1$ and Hybrid $2$ are indistinguishable in the vast majority of cases. 
+	- Therefore, the attacker cannot tell if they are dealing with Hybrid $1$ or Hybrid $2$, which implies that counter-mode encryption is CPA-secure.
 
+Final conclusion
+By proving that $Hyb1$ and $Hyb2$ are indistinguishable, the proof shows that CTR mode encryption is secure under CPA. This means that for an attacker who can choose plaintexts and see the ciphertexts, CTR mode will still look indistinguishable from random, which is the desired property for CPA security.
 
+## Domain Extension 
+A MAC is a cryptographic function that produces a tag for a message, which can be used to verify its authenticity and integrity. However, many MAC schemes (e.g., based on hash functions or block ciphers) are natively designed to work on messages of fixed size (often a single block of a certain length, such as 128 bits or 256 bits). In real-world scenarios, though, we need to authenticate messages of arbitrary lengths. Domain extension techniques allow us to extend the MAC scheme to handle variable-length messages securely, without compromising the security properties of the MAC. This process is essential for practical MAC implementations in applications where message sizes vary significantly.
 
-
-
-
---- 
----- 
----- 
----- 
-
-
-## Domain Extension for MACs
 Recall: PRF $\Rightarrow$ FIL; UFCMA; MAC.
 $Tag(k,m) = F_k(m)$
 
-Some ideas that do not work:
+### Some ideas that don't work
 $e = Tag_k (\oplus_i, m_i)$ 
 $m = (m_1, m_2, \cdots)$
 UFCMA(i.e. AESk($\cdot$))
@@ -443,6 +490,51 @@ Permute again
 - $r_i = TAG_k(i \mid \mid m_i)$
 	- $r = (r_1, \cdots, r_d)$
 	- $m = (m_1, \cdots, m_d)$
+
+
+### Universal hash functions for MACs schemes
+Universal hash functions are used to create efficient and secure hashing schemes for variable-length messages, especially when building Message Authentication Codes (MACs). Shrinking method. When creating a MAC for variable-length messages, universal hash functions are employed to map a long message to a fixed-size output before applying a pseudorandom function (PRF). This process reduces the size of the message to a fixed length that the PRF can then use to generate a secure tag.
+
+The function family H has specific properties that make it suitable for this task. The process works like this:
+1. Map the Message: Use a function from the family $H$ to "shrink" the variable-length message m to a fixed-size output $h_s(m)$. 
+2. Generate the Tag: Apply a PRF, $f_k$, to this fixed-size output, generating the final tag. The tag formula is:
+$$Tag((k,s),m) = f_k(h_s(m))$$
+Where:
+- $k$ is the key for the PRF,
+- $s$ is a parameter used to select a specific function in the family $H$.
+
+For a hash function family H to be secure in this context, it needs to make it difficult to produce collisions. A collision occurs when two different messages, m and m′, result in the same hash output: 
+$$h_s(m)=h_s(m')$$
+
+![[Cryptography/images/46.png|400]]
+
+**Collisions** are undesirable because ==if an attacker can find two messages that hash to the same output==, they could potentially forge a MAC by substituting one message for the other without altering the tag, compromising the integrity of the MAC. 
+
+The main challenge is that because H maps ==from a larger domain (many possible inputs) to a smaller codomain== (fewer possible outputs), ==collisions are inevitable== due to the pigeonhole principle: if there are more inputs than possible outputs, some inputs must map to the same output.
+
+#### Solutions to avoid collisions
+To secure the hash function despite inevitable collisions, we can rely on two strategies
+
+1. **Collision Resistance**:
+	- This approach assumes that even though collisions might exist, they are difficult to find.
+	- Even if the parameter $s$ (which selects a particular function $h_s$ from $H$) is known, finding two different messages that collide should be computationally infeasible. 
+	- In this case, $H$ is designed to be collision-resistant, meaning it’s hard to find a pair (m,m′) such that $h_s(m)=h_s(m′)$.
+2. **Secrecy of $s$**:
+	- Instead of assuming collision resistance when s is known, we make s a secret parameter. 
+	- If s is kept secret, an attacker cannot easily determine how hs works, making it much harder to find two messages that would produce the same hash. 
+	- By keeping s private, we add a layer of security that complicates any attempt to produce a collision, even if the hash function itself is not fully collision-resistant
+
+We'll go with ==secret key approach== because it's the one that is used.
+
+
+
+
+
+
+
+
+
+
 
 Idea: Design input-shinking function $h: \{0,1\}^N \to \{0,1\}^n$
 $N = n \cdot d$ ($d$ block of length $n$)
