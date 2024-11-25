@@ -56,7 +56,7 @@
             }
           },
           {
-            "id": "b2d75706f5015d3f",
+            "id": "4a9811f469b9744f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -68,37 +68,9 @@
               "icon": "lucide-file",
               "title": "Lesson 8-9-10"
             }
-          },
-          {
-            "id": "fa76e1d76fa91c50",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 13.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lesson 13"
-            }
-          },
-          {
-            "id": "4079377b1ec8b3ae",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 12.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Lesson 12"
-            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -166,7 +138,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5
+    "width": 333.5,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -251,69 +224,33 @@
       "command-palette:Open command palette": false
     }
   },
-  "floating": {
-    "id": "60d996489f11e272",
-    "type": "floating",
-    "children": [
-      {
-        "id": "c5725e22a0dc3cd6",
-        "type": "window",
-        "children": [
-          {
-            "id": "8d8466d36e4eb7e4",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "32a81e1c6ef28736",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "Cryptography/Cryptography Notes.pdf"
-                  },
-                  "icon": "lucide-file-text",
-                  "title": "Cryptography Notes"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 448,
-        "y": 140,
-        "width": 1024,
-        "height": 800,
-        "maximize": false,
-        "zoom": 0
-      }
-    ]
-  },
-  "active": "fa76e1d76fa91c50",
+  "active": "4a9811f469b9744f",
   "lastOpenFiles": [
+    "Cryptography/Lesson 4-5-6-7.md",
+    "Cryptography/Lesson 2-3.md",
+    "Cryptography/Lesson 1.md",
+    "Cryptography/Lesson 8-9-10.md",
     "Cryptography/Lesson 14.md",
     "Cryptography/Lesson 13.md",
-    "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 12.md",
-    "Untitled 1.md",
+    "Cryptography/Lesson 11.md",
+    "Pasted image 20241125180757.png",
+    "Pasted image 20241125175958.png",
+    "Pasted image 20241125174645.png",
+    "Pasted image 20241125173439.png",
+    "Pasted image 20241125173424.png",
+    "Pasted image 20241125173158.png",
+    "Pasted image 20241125163255.png",
+    "MAC e dimostrazioni.md",
+    "Cryptography/images/62.png",
+    "Cryptography/images/82.png",
+    "Cryptography/images/81.png",
     "Cryptography/Cryptography Notes.pdf",
-    "Cryptography/Lesson 8-9-10.md",
-    "Cryptography/Lesson 4-5-6-7.md",
-    "Pasted image 20241123163137.png",
-    "Pasted image 20241123163119.png",
-    "Pasted image 20241123163038.png",
-    "Pasted image 20241123163017.png",
-    "Pasted image 20241123162948.png",
-    "Pasted image 20241123162920.png",
-    "Pasted image 20241123154209.png",
-    "Pasted image 20241123154141.png",
-    "Cryptography/Lesson 1.md",
+    "Untitled 1.md",
     "Cryptography/Lesson 9-10.md",
-    "Pasted image 20241123122604.png",
-    "Pasted image 20241123122142.png",
     "Cryptography/Lesson 8 da prendere.md",
     "Untitled.md",
     "Cryptography/Lesson 7.md",
-    "Cryptography/Lesson 2-3.md",
     "Cryptography/Lesson 6.md",
     "Cryptography/Lesson 5.md",
     "Cryptography/Lesson 3.md",
@@ -327,8 +264,6 @@
     "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Network Infrastructures/Network Infrastructures (PDF 2).md",
     "Network Infrastructures/Network Functional Area (PDF1).md",
-    "Cryptography/Lesson 10.md",
-    "Statistic/Lesson 5.md",
     "Statistic/Homework1/script.js",
     "Statistic/Homework1/index.html",
     "Statistic/Homework1",

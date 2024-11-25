@@ -135,7 +135,7 @@ The most common scenario exposing the problem of authentication is depicted in f
 - Some additional secret information, shared by the two parties, that is used to sign the message: the authentication key or just key $k$; 
 - The result of signing a message m using the key $k$: the signature or tag $t$.
 
-![[Pasted image 20241120152639.png]]
+![[Cryptography/images/62.png]]
 The mechanism employed by both parties to enforce authentication is called a ==cryptographic authentication scheme==, typically taking the form $\Phi = (Tag, Ver)$, where:
 
 - $Tag ∈ K × M → T$ is the machine that, given a message $m$ in $M$ and a key $k$ in $K$ generates the signature $t$ 
@@ -268,7 +268,7 @@ $$Pr[B = 0] = p \le \frac{1}{2}$$
 How to craft a fair coin out of it? $\to$ How to extract uniform randomness?
 In his time, _Von Neumann_ devised a simple algorithm, which is now known as the **Von Neumann extractor**.
 
-![[Pasted image 20241120170946.png|600]]
+![[Cryptography/images/63.png|600]]
 >This algoritmi guarantee that zero and one has the same probability to be extracted
 
 So: $$Pr[\text{Ext outputs} \hspace{0.2cm}  0] = Pr[\text{Ext outputs} \hspace{0.2cm}  1] = P(1-p)$$$$Pr[\text{No output after k trials}] \hspace{0.5cm} \text{trial is small} \hspace{0.5cm} $$

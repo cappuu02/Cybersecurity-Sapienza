@@ -1,12 +1,12 @@
 ## Access-backhaul
 fiber very very used in access network.
-![[72.png]]
+![[Network Infrastructures/images/72.png]]
 ==Backhole==: part of access network fundamental today (is not for end user but is for the cellular network operators, so fiber is important also for this).
 Initial Solution: BS interconnected each 'other with copper lines.
 To avoid bottleneck interconnection using fiber.
 
 ## Optical Fiber Attenuation
-![[73.png]]
+![[Network Infrastructures/images/73.png]]
 
 We have a lot of possibilities of large bandit. 
 ## Chromatic Dispersion 
@@ -14,7 +14,7 @@ We have a lot of possibilities of large bandit.
 **Fiber multimodal** = transmit multi color
 By reflecting on the glass. Thanks to the glass reflection allow signal to propagate in to the fiber. 
 
-![[74.png]]
+![[Network Infrastructures/images/74.png]]
 smaller diameter: more fast is the signal.
 All this is done by putting the light into the fiber by using a laser.
 who is the transmitter of a fiber optic? (laser).
@@ -30,11 +30,11 @@ Every time i split i lose a bit of signal but today this is the most used config
 
 ```
 
-![[75.png]]
+![[Network Infrastructures/images/75.png]]
 **switch**: switch the signal (send signal only in a specific direction).
 **splitter**: send signal everywhere.
 ## Fiber Installation
-![[76.png]]
+![[Network Infrastructures/images/76.png]]
 **First Possibility**: 1 fiber cable for each home. (cost for each digging).
 **Second Possibility**: put single fiber from CO to curb switch(cabinet). after, transmit the signal for each user. curb switch is an active element, it need a lot of energy and space.
 **Third Possibility**: configuration obtained by using the splitters. (image up)
@@ -48,12 +48,12 @@ With fiber optics, reducing the number of fiber cables is preferable, making pas
 ## GbE based: Fastweb
 We have a ring with network elements. from this elements starts another smaller rings.
 
-![[77.png]]
+![[Network Infrastructures/images/77.png]]
 
 >With fiber we use a lot the ring topology
 
 ## FTTx
-![[78.png]]
+![[Network Infrastructures/images/78.png]]
 
 ## Basic PON Operations
 >Name of this infrastructures is: passive optical network.
@@ -61,15 +61,15 @@ We have a ring with network elements. from this elements starts another smaller 
 Two windows where the light travels in a good way.
 One window is used for downstream and the other for the upstream.
 
-![[79.png]]
+![[Network Infrastructures/images/79.png]]
 OLT trasmitter of this infrastructures
 ONT the receiver of this infrastructures
 
 In broadcast communication there is the problem to identify only the information to specific receiver. We need to use multiple access protocol to grantee this like TDMA or WDMA.
-![[80.png]]
+![[Network Infrastructures/images/80.png]]
 
 ## Downstream Traffic Scheduling
-![[81.png]]
+![[Network Infrastructures/images/81.png]]
 OLT organize the data in time slot
 TDMA separate in time
 The splitter send the same signal to everybody. They way to distinct users by time.
@@ -77,7 +77,7 @@ Mac Address: To recognize something in shared media
 
 >Problems arrives in the upstream.
 ## Upstream Traffic
-![[82.png]]
+![[Network Infrastructures/images/82.png]]
 
 ![[83.png]]**The units have to be well synchronized**.
 **Fully aware of distance, there is the propagation delay.**

@@ -253,7 +253,7 @@ The layer of the ADSL are these figurate in this picture.
 ==AAL5==: 
 ==PPP==: (point to point protocol) 
 
-![[64.png]]
+![[Network Infrastructures/images/64.png]]
 in our home the protocol respect to ADSL are completely different.
 ## Point to Point Protocol
 
@@ -319,7 +319,7 @@ Link establishment phase uses the Link control protocol. Link Configuration Opti
 - Link quality monitoring
 
 #### Link Establishment Process
-![[62.png]]
+![[Network Infrastructures/images/62.png]]
 
 1. Configure request message is sent to request a link establishment and it contains various option
 2. This request is responded with:
@@ -327,7 +327,7 @@ Link establishment phase uses the Link control protocol. Link Configuration Opti
 	2. Configure-Nak: If the negotiation is not acceptable and it suggest an acceptable negotiation
 
 ### Authentication
-![[63.png]]
+![[Network Infrastructures/images/63.png]]
 
 >Still talk about authentication of ADSL.
 
@@ -342,20 +342,20 @@ Evolution of ADSL is VDSL (**Very High-speed Digital Subscriber Line**)
 very high bitrate.
 VDSL mix of copper based and fiber based.
 
-![[65.png]]
+![[Network Infrastructures/images/65.png]]
 
 ==ONU==: is an element where the interconnection of copper with fiber is done. ONU is not in the CO, it is placed in the cabinet (part of the cabinet).
 
-![[66.png]]
+![[Network Infrastructures/images/66.png]]
 **FTTE**: Fiber to the exchange
 **FTTC**: Fiber to the cabinet (ONU in the cabinet) fiber from OLT to ONU and the home termination connection is made up with copper cable.
 
-![[67.png]]
+![[Network Infrastructures/images/67.png]]
 To grow the bitrate also the communication in copper cable appends at higher frequency.
 FDD: downstream and upstream to difference frequency and larger bandit.
 TDD: downstream and upstream in the same bandit with time suddivision. (can append an overlapping = interference). Solution: Upstream and downstream does not communicate contemporary but they alternate in time. Thanks to this i can have both at high frequency.
 
-![[68.png]]
+![[Network Infrastructures/images/68.png]]
 
 ```ad-info
 title: Remember
@@ -378,18 +378,18 @@ VDSL Vectoring is a trasmission method that employs the coordination of the sign
 
 >Technology help to cover problem related to cross talk. 
 
-![[69.png]]
+![[Network Infrastructures/images/69.png]]
 
 Who measure the interference? ==The receiver!!!==
 
 Crosstalk cancelling by injecting an “anti-signal” on each crosstalk-impaired line
-![[71.png]]
+![[Network Infrastructures/images/71.png]]
 
 mechanism:
 1. let me know what is your amount of interference.
 2. given back to transmitter and shape its transmission in order to recover that interference.
 
-![[70.png]]
+![[Network Infrastructures/images/70.png]]
 We sent a test signal hat is like a flat signal
 receiver, has the signal with frequency (change during transmission)
 trasmitter receive back the information about the amount of interference
