@@ -4,7 +4,7 @@ Transport Networks (TNs) are public infrastructures operated by service provider
 - interconnect Internet Service Providers
 - provide bulk bandwidth to other carriers
 
-![[90.png]]
+![[Network Infrastructures/images/90.png]]
 
 The network can be broken up into:
 - metro network: is the part of the network that lies within a large city or a region
@@ -23,7 +23,7 @@ Core devices work according to one of the following switching paradigm:
 - ==circuit switching==: static multiplexing
 - ==packet switching==: statistical multiplexing
 
-![[91.png]]
+![[Network Infrastructures/images/91.png]]
 
 ## Optical Networks
 **Optical Networks (ONs)** can deliver bandwidth in a flexible manner where and when needed. It offers much higher bandwidth than copper cables and is less susceptible to various kinds of electromagnetic interference and other undesirable effects. 
@@ -43,7 +43,7 @@ We know two main ways of increasing the transmission capacity on a fiber:
 	- increase the bit rate (requires higher-speed electronics) 
 	- many lower-speed data streams are multiplexed into a higher-speed stream
 
-![[94.png]]
+![[Network Infrastructures/images/94.png]]
 
 ```ad-failure
 title: Problem with TDM
@@ -67,7 +67,7 @@ These are optical connections that:
 At intermediate nodes the lightpaths are switched from one link to another link.
 Lightpaths may be converted from one wavelength to another wavelength.
 
-![[92.png]]
+![[Network Infrastructures/images/92.png]]
 
 - different shades (triangle, square, ecc...) are modelling different devices.
 	- square = **OXC** (same function of router: swicthing + routing), is multi port device and has large number of ports OXC is re-configurable, we can change how it works. it has many different ports. (mesh topology)
@@ -119,7 +119,7 @@ Use a device which is able to deal with this type of situation but in a cost-eff
 >We don't need to demultiplex and multiplex but te optical passthrough.
 >I drop and add locally a lambda and the other lambdas passthrough.
 
-![[99.png]]
+![[Network Infrastructures/images/99.png]]
 **transponder**: receive in input an electrical signal and send in output a laser signal.
 
 ### OADM Architectures 

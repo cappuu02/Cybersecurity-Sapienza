@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "bcf336f7bada0bc9",
+        "id": "7dc0627a8023b849",
         "type": "tabs",
         "children": [
           {
-            "id": "4a9811f469b9744f",
+            "id": "aa2ac094b2b9b936",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cryptography/Lesson 14.md",
+                "file": "Cryptography/Lesson 18 (Last).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Lesson 14"
+              "title": "Lesson 18 (Last)"
             }
           }
         ]
@@ -89,8 +89,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5,
-    "collapsed": true
+    "width": 333.5
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -175,46 +174,47 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4a9811f469b9744f",
+  "active": "aa2ac094b2b9b936",
   "lastOpenFiles": [
+    "Cryptography/Lesson 17 NULL.md",
+    "Cryptography/Lesson 16 NULL.md",
+    "Cryptography/Lesson 15 NULL.md",
     "Cryptography/Lesson 8-9-10.md",
-    "Cryptography/Lesson 4-5-6-7.md",
-    "Cryptography/Lesson 2-3.md",
+    "MAC e dimostrazioni.md",
+    "Cryptography/Lesson 12.md",
+    "Cryptography/Lesson 13.md",
+    "Cryptography/images/83.png",
+    "Cryptography/images/91.png",
+    "Cryptography/images/86.png",
+    "Cryptography/images/85.png",
+    "Statistic/Ultima Lezione (28 novembre).md",
+    "Statistic/Lesson 14 novembre.md",
+    "Statistic/Lesson 5.md",
+    "Statistic/images/st6.jpeg",
+    "Statistic/images/st7.jpeg",
+    "Statistic/images/st13.jpeg",
+    "Statistic/images/st8.jpeg",
+    "Cryptography/images/95.png",
+    "Cryptography/images/94.png",
+    "Untitled 3.md",
+    "Statistic/Lesson 3.md",
+    "Statistic/Lesson 4.md",
+    "Statistic/Lesson 1.md",
+    "Statistic/Lesson 2.md",
+    "Cryptography/Lesson 18 (Last).md",
+    "Untitled 2.md",
     "Cryptography/Lesson 14.md",
     "Cryptography/Lesson 11.md",
-    "Pasted image 20241125191528.png",
-    "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 13.md",
-    "Cryptography/Lesson 12.md",
-    "Pasted image 20241125180757.png",
-    "Pasted image 20241125175958.png",
-    "Pasted image 20241125174645.png",
-    "Pasted image 20241125173439.png",
-    "Pasted image 20241125173424.png",
-    "Pasted image 20241125173158.png",
-    "Pasted image 20241125163255.png",
-    "MAC e dimostrazioni.md",
-    "Cryptography/images/62.png",
-    "Cryptography/images/82.png",
     "Cryptography/Cryptography Notes.pdf",
+    "Cryptography/Lesson 4-5-6-7.md",
+    "Cryptography/Lesson 2-3.md",
+    "Cryptography/Lesson 1.md",
     "Untitled 1.md",
     "Cryptography/Lesson 9-10.md",
     "Cryptography/Lesson 8 da prendere.md",
     "Untitled.md",
-    "Cryptography/Lesson 7.md",
-    "Cryptography/Lesson 6.md",
-    "Cryptography/Lesson 5.md",
-    "Cryptography/Lesson 3.md",
-    "temp.md",
-    "README.md",
     "Cryptography Notes.pdf",
     "Cryptography/Untitled",
-    "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
-    "Network Infrastructures/Fiber Part (PDF 3).md",
-    "Lista Festa.md",
-    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
-    "Network Infrastructures/Network Infrastructures (PDF 2).md",
-    "Network Infrastructures/Network Functional Area (PDF1).md",
     "Statistic/Homework1/script.js",
     "Statistic/Homework1/index.html",
     "Statistic/Homework1",

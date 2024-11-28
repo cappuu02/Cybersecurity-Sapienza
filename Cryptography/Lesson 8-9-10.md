@@ -261,7 +261,7 @@ $$\forall \hspace{0.2cm} \text{PPT} \hspace{0.2cm} A: \mid Pr[G(\lambda)=1] - Pr
 ```
 
 **Demonstration by reduction**:
-![[Pasted image 20241125163255.png]]
+![[Cryptography/images/83.png]]
 
 By inspection:
 - $Pr[Real(\lambda)=1] = Pr[G(\lambda)=1]$
@@ -296,7 +296,7 @@ Up until now, encryption has been dealt with messages of fixed size around a pol
 ### CBC (Cypher Black Chaining) 
 #### Description
 The diagram illustrates the Cipher Block Chaining (CBC) mode of encryption, which is commonly used in block ciphers to securely encrypt messages of arbitrary length. In CBC mode, each block of plaintext mi is encrypted in a way that depends on the encryption of the previous block. This chaining process ensures that identical plaintext blocks produce different ciphertext blocks, provided the previous ciphertext differs (due to either different messages or an initial random value).
-![[Pasted image 20241125173439.png]]
+![[Cryptography/images/86.png]]
 
 #### Initial Block and Random Initialization Vector
 - The process starts with a random value r, also known as the initialization vector (IV). This IV is crucial for security because it ensures that even if the same message is encrypted multiple times, it will produce different ciphertexts each time. 
@@ -329,7 +329,7 @@ This allows the original plaintext blocks to be reconstructed one by one.
 
 #### Description
 CTR mode (short for Counter mode) is a method for encrypting messages where each block of plaintext is combined with a unique, sequential counter value rather than using a traditional chaining structure.
-![[Pasted image 20241125174645.png]]
+![[Cryptography/images/87.png]]
 
 #### How CTR Mode Works
 1. A starting value $r$ is chosen for the encryption. This nonce is unique for each message but can be reused across different blocks of the same message. 
@@ -363,7 +363,7 @@ If $F$ a PRF then CTR mode is CPA secure for VIL
 ```
 
 ### OFB (Output feedback)
-![[Pasted image 20241125175958.png]]
+![[Cryptography/images/90.png]]
 How it works: 
 - The initialization vector (IV) is encrypted using the block cipher with the secret key, producing the first "feedback" block. 
 - This feedback block is then XORed with the plaintext (or the subsequent plaintext block) to produce the ciphertext. 
@@ -393,7 +393,7 @@ Assume $f_k$ is a PRF, then the counter-mode block cipher is CPA-secure for vari
 **Proof of the Theorem**
 We start with original CPA game:
 
-![[Pasted image 20241125180757.png]]
+![[Cryptography/images/89.png]]
 
 
 **How it works**: 
@@ -440,7 +440,7 @@ This lemma is part of a security proof for counter (CTR) mode encryption, specif
 
 **Key concept and terms**
 
-![[Pasted image 20241125191528.png]]
+![[Cryptography/images/91.png]]
 
 **Explanation of the proof**
 1. Main Intuition: 

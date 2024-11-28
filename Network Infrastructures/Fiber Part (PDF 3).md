@@ -79,13 +79,13 @@ Mac Address: To recognize something in shared media
 ## Upstream Traffic
 ![[Network Infrastructures/images/82.png]]
 
-![[83.png]]**The units have to be well synchronized**.
+![[Network Infrastructures/images/83.png]]**The units have to be well synchronized**.
 **Fully aware of distance, there is the propagation delay.**
 The only way is to have a centralized control in the OLT, that control the upstream.
 There are different distances between ONU and the passive splitter:  the farther away the more there must be high transmitter power.
 
 
-![[84.png]]
+![[Network Infrastructures/images/84.png]]
 The only way is to have centralized control of it. Who control the upstream is the OLT.
 OLT perform a probing of the ONU. this probing is used to be sure of the distance of ONU.
 distance is taken to have a precisely control of the scheduling transmission considering the propagation delay.
@@ -97,15 +97,15 @@ All this is done in Passive optical network and this is mostly based on two main
 All packets carried in EPON are encapsulated in Ethernet frames.
 
 ## EPON Downstream Packets
-![[85.png]]
+![[Network Infrastructures/images/85.png]]
 >Packets are broadcasted by the OLT and detected by desidered ONU.
 
 ##  EPON Upstream Traffic
-![[86.png]]
+![[Network Infrastructures/images/86.png]]
 1. First we need to combine several packets in a unique packet.
 
 ## EPON Configuration
-![[87.png]]
+![[Network Infrastructures/images/87.png]]
 1. Tree topology
 2. Ring topology
 3. Tree with redundant trunk
@@ -122,4 +122,4 @@ share multiple wavelength in the same fiber (multimodal fiber). we dedicate each
 **AWG** Act like an optical filter, routing the optical signals of different wavelengths to the corresponding users ONU. It separates the incoming wavelengths and directs them to the appropriate ONU .......Each ONU is associated with a specific wavelength.
 
 ## Elements of PON
-![[89.png]]
+![[Network Infrastructures/images/89.png]]
