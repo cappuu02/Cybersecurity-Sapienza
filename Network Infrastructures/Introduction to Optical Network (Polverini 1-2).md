@@ -98,15 +98,15 @@ Optical network is transparent to who is serving. Is important for business reas
 ## Optical add/drop multiplexers (OADM)
 Optical add/drop multiplexers (OADMs) provide a cost-effective means for handling passthrough traffic in both metro and long-haul networks.
 
-![[96.png]]
+![[Network Infrastructures/images/96.png]]
 Represent a possible physical network which once more is composed 
 of three elements $a$, $b$ and $c$.
 In the image ($a$), node $A$ is an OLT whit multiple inputs and a multiplexer.
 Node $C$ is also an OLT with four output (means that we have four different $\lambda$).
 They are multiplexed together over the optical link which has a capacity of four wavelengths in this case ($A$ to $B$) and after will be de-multiplexed.
 
-![[98.png]]
-![[97.png]]
+![[Network Infrastructures/images/98.png]]
+![[Network Infrastructures/images/97.png]]
 
 ```ad-missing
 title: Problem

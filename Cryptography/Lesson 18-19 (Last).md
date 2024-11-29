@@ -201,3 +201,80 @@ $$A_{x, x'}: \text{Output}_{x, x'}$$
 	Or even $\{0,1\}^{\lambda+1} \to \{0,1\}^{\lambda}$
 - Then amplify this domain $\{0,1\}$
 	Real world constructions faithfully follow step 2, but heuristically implement step 1
+
+Let's start with step 2. It comes from a result by Merkle and Dongard around 1980.
+
+==MD==
+![[Cryptography/images/97.png]]
+
+==Merkle Tree==
+![[Cryptography/images/98.png]]
+
+```ad-abstract
+title: Theorem
+The MD construction givesa a CRH $H$ from $l^1(\lambda)$ into $n(\lambda)$ assuming $H'$ is a CRH from $l(\lambda)=n+1$ into $n(\lambda)$ bits.
+
+```
+
+**Proof**
+We assume FIL $l'(\lambda)$ for now. Say $\exists$ PPT $A$' finding a collisione:
+$$x = (b_1, \cdots, b_{l'}) \not = (b'_1, \cdots, b'_{l'}) = x' \hspace{0.5cm} \text{such that} \hspace{0.5cm} h'_s(x) = h'_s(x') \hspace{0.5cm} \text{where $h'_s(\cdot)$ is the MD costruction using $h_s(\cdot)$}$$
+
+![[Cryptography/images/99.png]]
+
+```ad-info
+Abbiamo trovato una collisione tra queste due hash function. Come possiamo fare? 
+Idea! Torniamo indietro e cerchiamo di vedere dove si è verificata tale collisione.
+
+```
+
+==Running backwords ==
+Let $j$ be the largest index such that:
+$$(b_j, y_{j-1})(b'_j, y'_{j-1})$$
+Because this is the largest $j$, it must be the case that:
+$$h_s(b_j, y_{j-1})=h_s(b'_j, y'_{j-1}) \Rightarrow b_j\mid \mid y_{j-1}, b'_j \mid \mid y'_{j-1} \hspace{0.5cm} \text{are a collision for} \hspace{0.5cm} h_s(\cdot)$$This observation immediatly implies a PPT reduction $A$ breaking $H$.
+
+>Cause violated CRH rules.
+
+
+Why FIL? Because the above construction is a actually not secure for VIL. In fact, consider $H$ with the property that $h_s(0^{n+1})=0^n$ for every $s$. For every $x = h'_s(0^n \mid \mid x) = h'_s(x)$ 
+
+>Banale concatenazione di $0$ con $x$
+
+![[Cryptography/images/96.png]]
+
+The Fix: Make it happen that no "legal" input is a suffix of another "legal input".
+- "Legal": Encode it like this.
+- Assume for simplicity $h_s = \{0,1\}^2n \to \{0,1\}^n$
+- Then if $x = (x_1, \cdots, x_{l'})$ encode $x$ to $x_1, \cdots, x_{l'}, <l'>$
+	- $<l'>$ binary encoding of $l'$ using $n$ bits.
+
+```ad-abstract
+title: Theorem
+The above stringthening of MD is a CRH for VIL.
+
+```
+
+**Proof**: Let's be $A$ ppt adversary finding a collision $x \not = x'$ such that $h'_s(x)=h'_s(x')$ consider $2$ cases:
+
+1) $\mid x \mid = \mid x' \mid$ The proof is as before.
+2) $\mid x \mid \not = \mid x' \mid$ Say $x$ is mode of $l_1$ blocks and $x'$ is mode of $l_2$ blocks.
+
+Then $<l_1> \not = <l_2>$ and we have found a collision in $h_s(\cdot)$. (END OF THE PROOF)
+
+It remains to instaurate $h_s(\cdot)$. Two main approaches:
+1) Practice: Use AES: $H(s,x) = AES(x) \oplus x$, $2n \to n$ compression
+	This can be proven secure assuming "AES" is an ideal cipher (Random permutation for every choice of the key)
+2) Theory instantiate $h_s(\cdot)$ from your favorite hard problem (factoring, DL, ...). Let $(G, g, q)$ be a cycling group where DL is hard, but $q$ needs to be prime.
+	Say $g_1 = g$ and $g_2=g^x$
+	$h_{g_1, g_2}(x_1, x_2) = g_{1}^{x_1}, g_2^{x_2}$
+	$Z_q^z \to G (\equiv \lambda$ bits of compression)
+
+Why is this collision resistant? Assume not:
+$$\exists \hspace{0.5cm} PPT A \hspace{0.3cm} \text{that output}(x_1, x_2) \hspace{0.3cm} \text{and} (x'_1, x'_2) \mid (x_1, x_2) \not = (x_1', x'_2)$$
+$$g_1^{x_1}, g_2^{x_2} =  g_1^{x'_1}, g_2^{x'_2} \Rightarrow g_2^{x_2 - x_2'} = g_1^{x_1 - x_1'}$$
+WLog assume $x_2 \not = x'_2$, otherwise $x_1 = x'_1$
+$$\Rightarrow g_2 = g_1^{(x'_1 - x_1)(x_2-x'_2)^{-1}} \hspace{0.9cm} x_2 \not = x_2'$$
+And the inverse exists as $q$ is prime!
+$$\Rightarrow (x'_1 - x_1)(x_2 - x_2')^{-1} \hspace{0.4cm} \text{is the DL of $g_2$}$$
+This gives a reduction to DL.
