@@ -291,7 +291,7 @@ Let's start with the first for SKE. These are the so-called "**Modes of operatio
 
 
 ## Modes of Operation
-Up until now, encryption has been dealt with messages of fixed size around a polynomial function to $\lambda$. How to deal with messages with arbitrary size? Setting a maximum bound to message length seems impractical, both for waste reasons when messages are too short, and for practicality when messages eventually get too long. The solution takes the form of a “block-cipher”, where a message of a given size is split into equally-sized blocks, and then encrypted using a fixed-size encryption scheme. Various instances of this technique, called modes, have been devised.
+Up until now, encryption has been dealt with messages of fixed size around a polynomial function to $\lambda$. How to deal with messages with arbitrary size? Setting a maximum bound to message length seems impractical, both for waste reasons when messages are too short, and for practicality when messages eventually get too long. The solution takes the form of a “block-cipher”, where a message of a given size is split into equally-sized blocks, and then encrypted using a fixed-size encryption scheme. Various instances of this technique, called modes, have been devised.
 
 ### CBC (Cypher Black Chaining) 
 #### Description
@@ -492,63 +492,38 @@ Permute again
 	- $m = (m_1, \cdots, m_d)$
 
 
-### Universal hash functions for MACs schemes
+### Universal hash functions for MACs schemes (Pag. 55)
 Universal hash functions are used to create efficient and secure hashing schemes for variable-length messages, especially when building Message Authentication Codes (MACs). Shrinking method. When creating a MAC for variable-length messages, universal hash functions are employed to map a long message to a fixed-size output before applying a pseudorandom function (PRF). This process reduces the size of the message to a fixed length that the PRF can then use to generate a secure tag.
 
-The function family H has specific properties that make it suitable for this task. The process works like this:
-1. Map the Message: Use a function from the family $H$ to "shrink" the variable-length message m to a fixed-size output $h_s(m)$. 
-2. Generate the Tag: Apply a PRF, $f_k$, to this fixed-size output, generating the final tag. The tag formula is:
+The function family $H$ has specific properties that make it suitable for this task. The process works like this:
+1. **Map the Message**: Use a function from the family $H$ to "shrink" the variable-length message m to a fixed-size output $h_s(m)$. 
+2. **Generate the Tag**: Apply a PRF, $f_k$, to this fixed-size output, generating the final tag. The tag formula is:
 $$Tag((k,s),m) = f_k(h_s(m))$$
 Where:
 - $k$ is the key for the PRF,
 - $s$ is a parameter used to select a specific function in the family $H$.
 
-For a hash function family H to be secure in this context, it needs to make it difficult to produce collisions. A collision occurs when two different messages, m and m′, result in the same hash output: 
+For a hash function family $H$ to be secure in this context, it needs to make it difficult to produce collisions. ==A collision== occurs when two different messages, $m$ and $m′$, result in the same hash output: 
 $$h_s(m)=h_s(m')$$
 
 ![[Cryptography/images/46.png|400]]
 
 **Collisions** are undesirable because ==if an attacker can find two messages that hash to the same output==, they could potentially forge a MAC by substituting one message for the other without altering the tag, compromising the integrity of the MAC. 
 
-The main challenge is that because H maps ==from a larger domain (many possible inputs) to a smaller codomain== (fewer possible outputs), ==collisions are inevitable== due to the pigeonhole principle: if there are more inputs than possible outputs, some inputs must map to the same output.
+**Problem with the collision**
+The main challenge is that because $H$ maps ==from a larger domain (many possible inputs) to a smaller co-domain== (fewer possible outputs), ==collisions are inevitable== due to the pigeonhole principle: if there are more inputs than possible outputs, some inputs must map to the same output.
 
 #### Solutions to avoid collisions
-To secure the hash function despite inevitable collisions, we can rely on two strategies
+To secure the hash function despite inevitable collisions, we can rely on two strategies:
 
 1. **Collision Resistance**:
 	- This approach assumes that even though collisions might exist, they are difficult to find.
 	- Even if the parameter $s$ (which selects a particular function $h_s$ from $H$) is known, finding two different messages that collide should be computationally infeasible. 
-	- In this case, $H$ is designed to be collision-resistant, meaning it’s hard to find a pair (m,m′) such that $h_s(m)=h_s(m′)$.
+	- In this case, $H$ is designed to be collision-resistant, meaning it’s hard to find a pair $(m,m′)$ such that $h_s(m)=h_s(m′)$.
 2. **Secrecy of $s$**:
-	- Instead of assuming collision resistance when s is known, we make s a secret parameter. 
-	- If s is kept secret, an attacker cannot easily determine how hs works, making it much harder to find two messages that would produce the same hash. 
-	- By keeping s private, we add a layer of security that complicates any attempt to produce a collision, even if the hash function itself is not fully collision-resistant
+	- Instead of assuming collision resistance when $s$ is known, we make $s$ a secret parameter. 
+	- If $s$ is kept secret, an attacker cannot easily determine how $h_s$ works, making it much harder to find two messages that would produce the same hash. 
+	- By keeping $s$ private, we add a layer of security that complicates any attempt to produce a collision, even if the hash function itself is not fully collision-resistant
 
 We'll go with ==secret key approach== because it's the one that is used.
 
-
-
-
-
-
-
-
-
-
-
-Idea: Design input-shinking function $h: \{0,1\}^N \to \{0,1\}^n$
-$N = n \cdot d$ ($d$ block of length $n$)
-Then, output $e = F_k(h(m))$
-The question: What security from $h$?
-
-![[Cryptography/images/46.png|400]]
-
-**Problem**:
-If we can find Collisions, $h(m) = h(m')$ but $m \not = m'$ we can forge $(m', r)$ given $(m,r)$
-Two approaches:
-- Let $h$ be _Secret_
-- Let $h$ be _Public_ (Collision-res, HASH, SHA)
-
-What does it mean?
-$$H = \{h_s : \{0,1\}^N \to \{0,1\}^n\}_{s \in \{0,1\}^{\lambda}}$$
-and $s$ is either secret or public.

@@ -1,8 +1,8 @@
-We'll go with secret-key approach (as this is what's used in practice).
+We'll go with **secret-key approach** (as this is what's used in practice).
 
 ```ad-abstract
 title: Definition (Almost Universal)
-Family $H$ is $\epsilon-Au$ if: $\forall x, x' \in \{0,1\}^N$ such that $x \not = x'$ $Pr[h_s(x)=h_s(x')] \le \epsilon$
+ A family of hash functions $H$ is deemed $\epsilon- \text{universal}$ if: $$\forall x, x' \in \{0,1\}^N \hspace{0.3cm} \text{such that} \hspace{0.3cm} x \not = x' \Rightarrow Pr[h_s(x)=h_s(x')] \le \epsilon$$
 
 ```
 
@@ -15,18 +15,33 @@ $$F(H)=\{F_k(h_s(-))\} \hspace{0.9cm} \text{is a PRF Family}$$
 
 ```
 
+>Combinare una funziona has quasi universale con una PRF preserva le proprietà pseudocasuali, creando una nuova famiglia PRF.
+
 ```ad-tldr
 title: Corollario
-Every PRF is a MAC.
+Every PRF is a MAC. _(Ogni PRF [funzione pseudocasuale] è anche un MAC [message autentication code])_
 But in general: PRF musch stronger tham MAC.
 $F(H)$ is also UF-CMA, MAC for FIL messages of length $N >> n$.
 
 ```
 
+
+```ad-abstract
+title: Theorem
+Assuming $F = \{F_k: \{0,1\}^N \to \{0,1\}^n \}_k$ is a PRF, and $H$ is $\epsilon-$AU for $\epsilon = negl(\lambda)$, then:
+$$F(H)=\{F_k(h_s(-))\} \hspace{0.9cm} \text{is a PRF Family}$$
+
+```
+
 **Proof of theorem**:
 We need to show that $F_k(h_s(\cdot))$ is $\approx_c$ from $R! : \{0,1\}^N \to \{0,1\}^N$ (random table)
+>Bisogna provare che la funzione $F_k(h_s(\cdot))$ è computazionalmente indistinguibile da una tabella random $R$.
 
-![[Cryptography/images/47.png|500]]
+Ricordare:
+- $R$ è una tabella casuale che mappa stringhe di lunghezza $N$ in stringhe di lunghezza $N$.
+- $F_k(h_s(\cdot))$ è una funzione costruita applicando a $h_s$ un hash $\epsilon-$AU ad un input e poi utilizzando $F_K$ una PRF.
+
+![[Pasted image 20241201150949.png]]
 
 ```ad-summary
 title: Lemma
