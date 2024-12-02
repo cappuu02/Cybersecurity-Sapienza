@@ -139,114 +139,138 @@ Assuming $\pi=(ENC, DEC)$ satisfies both CPA and AUTH, then $\pi$ is CCA-Secure
 
 ```
 
-Proof of this lemma:
-Main idea: Make a reduction from CPA to CCA.
+**Proof of the lemma**:
+The ==main idea== is to make a reduction from CPA security to CCA security. In other words, we assume that the system is secure against CPA and authentic (AUTH) attacks, and we want to show that it is also secure against CCA attacks.
 
-Intuition: A CPA needs to answer decryption queries explaining truth property.
-Auth means no $A$ can make valid $\tilde c$ so just answer Dec query with ?????
-Upon decryption query $c'$:
-- If $c' \in \{c\}$ returned in a previous encryption query $m$, return $m$.
-- Else, answer $\bot$
+**Intuition**: 
+- La ==sicurezza CPA== garantisce che, dato un messaggio scelto dal nemico, il sistema cifra il messaggio in modo tale che l'attaccante non possa distinguerlo da un altro messaggio.
+- ==L'autenticità (AUTH)== significa che l'attaccante non può generare un ciphertext valido senza conoscere la chiave segreta.
 
-Bad Event: $A_{cca}$ makes $\tilde c$ dec query such that $\tilde c \not \in \{c\}$ and $Dec(k, \tilde c) \not = ????$
-By AUTH: $Pr[BAD] \le negl(\epsilon)$
+How it work:
+1. When the attacker sends a decryption query, the response depends on whether the ciphertext $c'$ has already been encrypted in a previous encryption query. If $c'$ is one of the previous ciphertexts, we return the corresponding decrypted message.
+2. Se $c'$ non è stato mai visto prima (non è uno dei ciphertext precedentemente cifrati), rispondiamo con $\bot$ (indica che il ciphertext non è valido o che l'attaccante ha tentato di manipolare il ciphertext).
+
+A ==bad event== occurs when the attacker $A_{cca}$ succeeds in generating a ciphertext $\tilde{c}$ that has not been previously encrypted, but when it decrypts it, it does not get $\bot$. This means that the attacker has managed to manipulate the ciphertext so that the system does not reject its decryption query, thus violating security.
+
+La **probabilità** che l'attaccante $A_{cca}$​ generi un ciphertext valido nonostante non conosca la chiave è limitata dalla proprietà di autenticità (AUTH). Poiché non è possibile per l'attaccante creare un ciphertext valido senza la chiave, la probabilità dell'evento "cattivo" è molto bassa, precisamente:
+
+$$Pr[BAD] \le \text{negl}(\epsilon)$$
 
 ```ad-abstract
 title: Lemma
-Approeac 3) satisfies both CPA and Auth
+Approach 3 satisfies both CPA and AUTHENTICATION.
 
 ```
-
-
-```ad-check
-title: CHATGPT Risposta
-### **Sicurezza CCA (Continua)**
-
-#### **Lemma**
-
-Il seguente lemma riguarda la sicurezza CCA di un sistema crittografico π=(ENC,DEC)\pi = (ENC, DEC)π=(ENC,DEC):
-
-Se π=(ENC,DEC) soddisfa sia CPA che AUTH, allora π eˋ CCA-Secure.\text{Se } \pi = (ENC, DEC) \text{ soddisfa sia CPA che AUTH, allora } \pi \text{ è CCA-Secure}.Se π=(ENC,DEC) soddisfa sia CPA che AUTH, allora π eˋ CCA-Secure.
-
-#### **Dimostrazione del Lemma**
-
-L'idea principale è fare una **riduzione** dalla sicurezza CPA alla sicurezza CCA. In altre parole, supponiamo che il sistema sia sicuro contro gli attacchi CPA e autentico (AUTH), e vogliamo dimostrare che è anche sicuro contro gli attacchi CCA.
-
-**Intuizione**:
-
-- La sicurezza CPA garantisce che, dato un messaggio scelto dal nemico, il sistema cifra il messaggio in modo tale che l'attaccante non possa distinguerlo da un altro messaggio.
-- L'autenticità (AUTH) significa che l'attaccante non può generare un ciphertext valido senza conoscere la chiave segreta.
-
-### **Funzionamento della riduzione**
-
-1. **Iniziare con una query di decrittazione**: Quando l'attaccante invia una query di decrittazione, la risposta dipende da se il ciphertext c′c'c′ è stato già cifrato in una precedente query di cifratura. Se c′c'c′ è uno dei ciphertext precedenti, restituiamo il messaggio decifrato corrispondente.
-    
-2. **Cosa fare se c′c'c′ è nuovo**: Se c′c'c′ non è stato mai visto prima (non è uno dei ciphertext precedentemente cifrati), rispondiamo con ⊥\bot⊥ (indica che il ciphertext non è valido o che l'attaccante ha tentato di manipolare il ciphertext).
-    
-3. **Evento "cattivo" (Bad Event)**: L'evento "cattivo" si verifica quando l'attaccante AccaA_{cca}Acca​ riesce a generare un ciphertext c~\tilde{c}c~ che non è stato precedentemente cifrato, ma quando lo decripta, non ottiene ⊥\bot⊥. Questo significa che l'attaccante è riuscito a manipolare il ciphertext in modo che il sistema non rifiuti la sua query di decrittazione, violando quindi la sicurezza.
-    
-4. **Probabilità dell'evento "cattivo"**: La probabilità che l'attaccante AccaA_{cca}Acca​ generi un ciphertext valido nonostante non conosca la chiave è limitata dalla proprietà di autenticità (AUTH). Poiché non è possibile per l'attaccante creare un ciphertext valido senza la chiave, la probabilità dell'evento "cattivo" è molto bassa, precisamente:
-    
-    Pr⁡[BAD]≤negl(ϵ)\Pr[BAD] \le \text{negl}(\epsilon)Pr[BAD]≤negl(ϵ)
-    
-    dove negl(ϵ)\text{negl}(\epsilon)negl(ϵ) è una funzione trascurabile (ossia che diminuisce rapidamente con l'aumentare della sicurezza).
-
-```
-
-
-
-
-
 
 **Proof of this lemma**
 Approach 3):
 $$c' = Enc((k_1, k_2), m) = (c,r)$$
 $$c \Leftarrow Enc(k_1, m); \hspace{0.8cm} r = Tag(k_2, c)$$
+
+The idea is to show that if the basic cipher $(ENC, DEC)$ is CPA-secure, then the combined system also remains CPA-secure. The tag $r = Tag(k_2, c)$ reveals nothing new about the message information $m$, since:
+- $Tag(k_2, c)$ è calcolato sul ciphertext ccc, che è già CPA-secure.
+- La chiave $k_2$​ è separata e non influisce sul processo di cifratura.
+
 Let's start with CPA. By reduction to CPA ???? of $(ENC, DEC) = \pi_1$ 
 
+![[WhatsApp Image 2024-12-02 at 14.19.05.jpeg|500]]
 
+```ad-info
+![[Pasted image 20241202143149.png]]
 
+```
 
 
 It remains to show AUTH. Reduction to? UF-MA of Tag.
 
+![[Pasted image 20241202142008.png|500]]
 
 When does $A_{\text{auth}}$ win? If:
 1) $Tag(k_2, c^{*}) = r^*$
 2) $(c^*, r^*)$ fresh: $\not = \{(c,r)\}$
 
 When does $A_2$ win? If:
-1) Tag(k_2, c^*) = r^*
+1) $Tag(k_2, c^*) = r^*$
 2) $c^*$ fresh: $\not = \{c\}$
 
-What is one bad scheme:
-$\tilde{\text{Tag}}(k,n) = 0 \mid \mid Tag(k,m)$
-Bob: Discard first bit and check $r$
+>La connessione tra $A_{\text{auth}}$​ consiste nel fatto che, se $A_{\text{auth}}$ può generare un $(c^*, r^*)$ valido e fresco, allora $A_2$ può fare lo stesso, violando la proprietà UF-CMA di $Tag$.
 
-Still UF-CMA, because you can forge tag only in messages for which you already queried the callenger.
+Problematic Scheme: 
+$$\tilde{\text{Tag}}(k,n) = 0 \mid \mid Tag(k,m)$$
+The tag is constructed by concatenating an initial zero to the original tag $Tag(k, m)$.
+Although Bob discards the first bit and verifies the tag $r$, the pattern remains UF-CMA only in a limited way. It is possible to forge the tag only for messages that the attacker has already requested from the system.
 
-Away out: Assume each message has a unique tag alternatively, do not assume that but assume that they?? satisfies: STRONG UF-CMA.
-
+==Solutions==:
+- **Assume that each message has a unique tag**: This simplifies the problem by ensuring that each rrr tag is distinct, avoiding ambiguity.
+- **Require a stronger MAC property (Strong UF-CMA):** A strengthened version of the UF-CMA property, where no valid tags can be generated for any message, regardless of the number of queries made to the system.
 
 ## Blockciphers
-In practice: AES, DES, 3DES
-In theory: Pseudorandom permutation (PRP)
 
-PRP are efficiently invertible: 
+```ad-abstract
+title: Definition
+==Block ciphers== are cryptographic algorithms that operate on fixed-size blocks of data. They are used in modes of operation to encrypt larger datasets. 
+
+```
+
+>**Obiettivo principale:** trasformare un blocco di testo in chiaro in un blocco cifrato, mantenendo sicurezza e riservatezza.
+
+The **practical** examples provided are:
+- AES
+- DES
+- 3DES
+
+In **theory**, these are modeled as **Pseudorandom Permutations (PRPs)**, which are efficiently invertible (Knowing the key you can retrieve the original message).
+
+>Un PRP può essere visto come un PRF con la proprietà aggiuntiva di essere invertibile.
+
+![[WhatsApp Image 2024-12-02 at 14.42.57.jpeg]]
+
+A PRP ensures that for any input and key, the output is indistinguishable from random, but the function is efficiently invertible with the key. Formally:
 $$\exists \hspace{0,1cm} PPT F^{-1} \hspace{0,3cm} \text{such that} \hspace{0,3cm} F^{-1}_k(F_k(x)) = x \hspace{0.5cm} \forall x$$
-e.g. - some modes of equation require this. How to build a PRP? Two approaches:
-- Proverbially secure ??: Assume hardness of number theoretic problems (Factoring, discrete log, $\cdots$) or in fact any OWF.
-	$$OWF \Rightarrow PRG \Rightarrow PRF \Rightarrow PRP$$
-- Heuristic. Heuristically build a PRF and then make it a PRP (e.g. DES) as the theoretical would do (almost).
-	The so-called Feistel Network.
-	LET $F: \{0,1\}^n \Rightarrow \{0,1\}^n$ be a function (maybe a PRF). How to make it invertible?
 
-	$$\xi_f(X,Y) = (Y, X \oplus F(y)) = (x', y')$$
-	Not a PRP! $\exists$ PPT A that breaks it w.p. $1-2^{-n}$. But we can stack it.
+**Building PRPs**
+- **Provably secure approach:** Relies on hard problems like factoring or discrete logarithms to construct cryptographic primitives.$$OWF \Rightarrow PRG \Rightarrow PRF \Rightarrow PRP$$
+- **Heuristic approach:** Starts by heuristically building a PRF and then converting it into a PRP. An example can be the so-called Feistel Network.
 
-	Still invertible! But not a PRP!
-	Note: $\xi_{F, F'}(x,y) \oplus \xi_{F, F'}(x', y) = (x \oplus x', .....)$ 
-	Okay, do it another ti
+
+
+### Feistel Networks
+A Feistel Network transforms a function $F$ into an invertible construction. 
+Let $F: \{0,1\}^n \Rightarrow \{0,1\}^n$ be a function (maybe a PRF). How to make it invertible?
+$$\xi_f(X,Y) = (Y, X \oplus F(y)) = (x', y')$$
+Here:
+- $X$ and $Y$ are halves of the input.
+- $\oplus$ denotes XOR.
+- $F$ is any function, potentially a PRF.
+
+```ad-warning
+A single round of a Feistel Network is not secure as a PRP because there exists a probabilistic polynomial-time (PPT) adversary that can distinguish it with high probability.
+
+```
+
+```ad-success
+title: Solution
+By adding more rounds and ensuring $F, F', F''$ are PRFs, the construction becomes a PRP.
+
+```
+
+
+#### One Round Feistel Network
+This diagram represents a **one-round Feistel network**, which is not yet a secure pseudorandom permutation (PRP).
+![[WhatsApp Image 2024-12-02 at 14.43.04.jpeg]]
+Is not a PRP because While $\xi_F$​ is **invertible** (you can recover $X$ from $X'$ using $X = X' \oplus F(Y)$, it is **not indistinguishable from a random permutation**. A probabilistic polynomial-time (PPT) adversary can exploit this structure to "break" its security with probability close to $1$, specifically $1 - 2^{-n}$, where $n$ is the block size in bits.
+
+Remember:
+- $X$ = The left half of the input.
+- $Y$ = The right half of the input.
+
+#### Two round Feistel Network 
+This diagram represents a **two-round Feistel network**, an improvement over the first game.
+![[WhatsApp Image 2024-12-02 at 14.43.13.jpeg]]
+It's still not a PRP: 
+Although adding a second round improves the diffusion (mixing of input bits), this structure is **still not a secure pseudorandom permutation**. A determined adversary might still find patterns or correlations in the output that betray its deterministic nature. Increasing the number of rounds further (e.g., 16 rounds in DES) typically results in a structure that can heuristically achieve PRP-like security.
+
+>Both games are invertible, meaning you can recover the original input $(X,Y)$ from the output by reversing the steps.
 
 ```ad-abstract
 title: Theorem
@@ -257,16 +281,40 @@ $$k_1, k_2, k_3 \leftarrow U_{\lambda}$$
 
 ```
 
-DES: $r=18$ rounds! $F$ is heuristic (confusion + diffusion); $k_1, k_@, k_3, \cdots, k_18$
-Derived from some $K$ (using heuristic PRG)
-Intuition for The proof:
+>Questo teorema afferma che se $F'F,F′$ sono buone funzioni pseudocasuali (PRF), allora una rete di Feistel con tre round diventa una permutazione pseudocasuale sicura (PRP).
 
-```ad-missing
-Fare i quattro disegni mancanti
+```ad-success
+Spiegazione esaustiva:
+L'intuizione alla base di questo risultato si basa sulle proprietà delle PRF e sulla struttura della rete di Feistel:
+
+1. **Proprietà delle PRF:**
+    
+    - Ogni FkF_kFk​ si comporta come una funzione casuale per una chiave casuale kkk. Questa casualità garantisce che ogni round della rete di Feistel mescoli efficacemente l'input.
+2. **Indipendenza delle chiavi:**
+    
+    - Le chiavi k1,k2,k3k_1, k_2, k_3k1​,k2​,k3​ sono scelte indipendentemente. Questo impedisce correlazioni tra i risultati dei diversi round, che potrebbero essere sfruttate da un avversario.
+3. **Struttura della rete di Feistel:**
+    
+    - La struttura di Feistel garantisce che la rete sia invertibile, anche se le funzioni F,F′,F′′F, F', F''F,F′,F′′ non lo sono. Questo è cruciale per costruire una PRP.
+4. **Confusione e diffusione:**
+    
+    - La rete di Feistel assicura **confusione** (mescolamento dei bit dell'input) e **diffusione** (distribuzione delle dipendenze dell'input nei bit dell'output). Dopo diversi round, l'output risulta indistinguibile da un comportamento casuale.
+5. **Più round = maggiore sicurezza:**
+    
+    - Un singolo round non è sicuro, ma ogni round aggiuntivo rende più difficile per un avversario distinguere il risultato da una permutazione casuale.
+    - Tre round sono sufficienti per garantire sicurezza teorica, secondo certe tecniche di dimostrazione.
 
 ```
 
 
+
+![[WhatsApp Image 2024-12-02 at 14.44.13.jpeg]]
+
+![[WhatsApp Image 2024-12-02 at 14.44.20.jpeg]]
+
+![[WhatsApp Image 2024-12-02 at 14.44.33.jpeg]]
+
+![[WhatsApp Image 2024-12-02 at 14.44.27.jpeg]]
 
 
 
