@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "1b3672383820f1f0",
+        "id": "2fa5c81b0857370d",
         "type": "tabs",
         "children": [
           {
-            "id": "118a8f91757df8b3",
+            "id": "b1cf9214c4e5e5cd",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 16.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Lesson 16"
+              "title": "New tab"
             }
           }
         ]
@@ -212,27 +208,27 @@
       }
     ]
   },
-  "active": "118a8f91757df8b3",
+  "active": "b1cf9214c4e5e5cd",
   "lastOpenFiles": [
-    "Cryptography/Lesson 17 NULL.md",
-    "Cryptography/Lesson 16.md",
-    "Cryptography/Lesson 15.md",
-    "Blockciphers.md",
     "Cryptography/Lesson 18-19 (Last).md",
+    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
+    "WhatsApp Image 2024-12-02 at 19.29.21.jpeg",
+    "WhatsApp Image 2024-12-02 at 19.28.43 1.jpeg",
+    "WhatsApp Image 2024-12-02 at 19.28.43.jpeg",
+    "WhatsApp Image 2024-12-02 at 19.27.49.jpeg",
+    "WhatsApp Image 2024-12-02 at 19.27.31.jpeg",
+    "Cryptography/Lesson 15-16.md",
+    "WhatsApp Image 2024-12-02 at 18.10.09.jpeg",
+    "WhatsApp Image 2024-12-02 at 18.09.59.jpeg",
+    "WhatsApp Image 2024-12-02 at 18.09.51.jpeg",
+    "Pasted image 20241202180021.png",
+    "Pasted image 20241202170207.png",
+    "Cryptography/Lesson 16.md",
+    "Blockciphers.md",
     "Cryptography/Lesson 13.md",
     "Cryptography/Lesson 14.md",
     "Cryptography/Lesson 12-14.md",
-    "WhatsApp Image 2024-12-02 at 14.44.27.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.44.33.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.44.20.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.44.13.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.43.13.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.43.04.jpeg",
-    "WhatsApp Image 2024-12-02 at 14.42.57.jpeg",
     "Cryptography/Cryptography Notes.pdf",
-    "Pasted image 20241202143149.png",
-    "Pasted image 20241202142008.png",
-    "WhatsApp Image 2024-12-02 at 14.19.05.jpeg",
     "Untitled 1.md",
     "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 8-9-10.md",

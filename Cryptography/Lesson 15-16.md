@@ -126,3 +126,153 @@ $$Pr[x \hspace{0.3cm} \text{prime}: x \in[2^{\lambda}-1]] \ge \frac{\frac{2^{\la
 $$Pr[\text{Fail after $t$ steps}] \le (1 - \frac{1}{3 \lambda})^t \hspace{0.5cm} \text{probabilità di fallire dopo $t$ tentativi}$$
 - $\lambda$ numero di bit del numero
 
+
+
+
+```ad-abstract
+title: Conjecture
+The factoring problem is a OWF:
+$$f(p,q) = p \cdot q = n \hspace{0.5cm} p,q \hspace{0.3cm} \text{primes such that } \hspace{0.3cm} p(\approx (q) \approx \lambda)$$
+
+```
+
+A few more facts about modular arithmetic.
+
+```ad-abstract
+title: Theorem
+If $H$ is a subgroup of $G$, then $| \mid h \mid | \mid G \mid|$
+
+![[Pasted image 20241202170207.png|300]]
+
+```
+
+```ad-abstract
+title: Corollario
+For all $a \in Z_n^*$, then:
+- $a^{\varphi(n)} \equiv 1 \mod n$ (Euler's Theorem)
+- $a^b \equiv a^{b \mod \varphi(n)}$
+- If $n=p (prime)$, $a^{p-1} \equiv 1 \mod p$ (Fermat little theorem)
+```
+
+Order of a group: For $a \in Z_n$ the order is the minimum i such that $a^i \equiv \mod n \hspace{0.4cm}$ $(Z_n, \cdot)$
+
+**Proof**
+If $n=p$ (prime) then $\varphi(n) = p-1$
+For every $b, a^b \equiv a^{q \cdot \varphi(n) + b \mod \varphi(n)} \equiv (a^{\varphi(n)})^q \cdot a^{b \mod \varphi(n)} \equiv 1$
+
+The first thing follows by Lagrange $(Z_n^*, \cdot)$ is a group with $\varphi(n)$ elements. take the subgroup $\{a^0 \equiv 1, a, a^2, \cdots, a^{d-1}\}$ has multiplicative order $d$ such that $\varphi(n) = d \cdot k$ (==END OF PROOF==)
+
+We will also focus on n = p (prime). Now $(Z_p^*, +, \cdot)$ is a filed. This is special as $(Z_p^*, \cdot)$ is a cyclic group:
+$$\exists g \in Z_p^* \hspace{0.3cm} \text{such that} \hspace{0.3cm} Z_p^* = \{g^0, g^1, g^2, \cdots, g^{p-2}\}$$
+
+```ad-example
+$Z_p^*$, the $g=3$ is a generator
+$$Z_7^* = \{3^0, 3^1, 3^2, \cdots, 3^5\}$$
+But $2$ is not a generator because: $2^3 \equiv 1 \mod n$
+
+```
+
+Good News: We can sample random $p$ along with generator $g$ of $Z_p^*$. How? Basically we quick random $g \in Z_p^*$ and test if $g$ is a generator. What's the hard problem $in Z_p^*$? The discrete log problem: $f_g(x) = g^x \mod p$ is a OWP (conjecture)
+- $f_g(x) \to y; x = \log_g y$
+
+Back to 1976: Diffy-Helman introduced public-key crypto. 
+![[WhatsApp Image 2024-12-02 at 18.09.51.jpeg]]
+
+What is the security? If Eva can break DL then she can compute $k$!
+
+```ad-abstract
+title: Definition (CDH)
+The computational DH assumption holds in $Z_p^*$ if:
+
+![[WhatsApp Image 2024-12-02 at 18.09.59.jpeg]]
+
+```
+
+
+
+$CDH \Rightarrow DL$, but $DL \Rightarrow CDH$ ?
+Much better security: Eva (passive) can't distinguish key from uniform.
+
+```ad-abstract
+title: Definition
+The decisional DH assumption holds in $(Z_p^*, g, p-1)$ if:
+$$(g^x, g^y, g^{xy})\approx_c(g^x, g^y, g^z)$$
+for $x,y,z \leftarrow Z_{p-1}$.
+
+```
+
+==Bad news==: DDH false in $Z_p^*$
+The reason are the so called quadratic residues $\mod p$:
+$$Q_{R_p} = \{y: y = x^2 \mod p\} = \{y : y = g^z \hspace{0.4cm} \text{for ever} \hspace{0.4cm} z\}$$
+Test: Check if $y \in Q_{R_p}$ by checking $y^{(p-1)/2} \equiv 1 \mod p$ 
+Why? If $y = g^{2z'}$ Then $y^{p-1}/2 \equiv g^{z'(p-1)} \equiv 1 \mod p$
+If $y = g^{2z'+1}$ then $y^{p-1}/2 \equiv g^{z'(p-1)} \cdot g^{(p-1)/2} \not = 1 \mod p$
+
+The distinguisher: Given $(X,Y,Z)$ check if $z$ is a square and output $b'=1$ iff it is a square. Now:
+- If $Z = g^z$ (Uniform), it is a square w.p. 1/2
+- If $Z = g^{xy}$, then $z$ is a square if either of $g^x$ or $g^y$ is a square. So it's a square w.p. $3/4$
+
+==Good News==:
+DDH believed to hold in other groups $G$. In general, we'll write $(G, g, q) \leftarrow$ Group gen($\lambda$)
+- $q$ is the order
+- DDH $\Rightarrow$ CDH $\Rightarrow$ DL
+- DL, CDH $\Rightarrow$ DDH???
+
+```ad-example
+- $G = Q\mid R_p$ but with $q = \frac{p-1}{2}$ a prime. It is also cyclic $c$ of order $q$.
+$Q\mid R_p = \{g^0, g^1, g^2, \cdots, g^{q-1}\}$
+
+- Elliptic curves. Basically this is some curve $y^2 = ax^3 + bx^2 + cx + d \mod p$ where $p$ a prime.
+
+```
+
+Discrete log: Pick random $x \in Z_q$ and output $Q = x \cdot P$. Compute $x$?
+Bottom line: DH key exchange is passively secure assuming DDH is hard. What about Active security?
+
+![[WhatsApp Image 2024-12-02 at 18.10.09.jpeg]]
+
+How to fix it? We need authenticated channels. Alice and Bob should be able to use MACs or Digital Signatures.
+
+
+Plan for next lectures: Build $PKE$ and $DS$ from factoring, DL , CDH , DDH , ...
+First , note that these assumptions early imply all the crypto we dad so far.
+
+```ad-example
+PRGs from factoring: $n = p \cdot q$
+$$s_{i+1} \equiv s^2_i \mod n \hspace{0.5cm} \text{start from} \hspace{0.5cm} s_0 = s$$
+output LSB each time. In other words this is Hard-core bit.
+```
+
+```ad-example
+PRGs from DDH. $(G, p, q)$
+$G_g, q(x,y) = (g^x, g^y, g^{xy}) \approx (g^x, g^y, g^z)$
+$Z_q^2 \to G^3$ it streches! 
+$(Z_q \times Z_q \to G \times G \times G)$
+```
+
+I can improve the stretch:
+$$G_{g,q}(x, y-1, \cdots, y_l) = (g^x, g^y_1, g^{xy_1}, g^{y_2}, g^{xy_2}, \cdots, g^{y_l}, g^{xy_l})$$
+$$Z_q^{l+1} \to G^{2l+1}$$
+![[Pasted image 20241202180021.png]]
+
+
+$$Z_q^{l+1} \to G^{2l +1 }$$
+_Exercise_: Prove this is secure from DDH.
+PRFs. There is a simple construction of PRFs From DDH.
+
+$$F_{NR} = \{f_{q, g, a^{-1}} \to : \{0,1\}^n \to G\}_{\vec a + Z_q^{n+1}}$$
+$$\vec a = (a_0, a_1, \cdots, a_n)$$
+$$F_{q,g,a^{-q}}(x_1, \cdots, x_n) = (g^{a_0})^{\prod_{i=1}^n a_i^{x_i}}$$
+
+The security follows the same ideas of the proof PRGs $\Rightarrow$ PRFs (GGM).
+
+```ad-abstract
+title: Theorem
+If $G$ is a PRG $\Rightarrow$ GGM gives a PRF
+
+```
+
+We can interpretate the NR PRF as GGM with the following PRG:
+$$G_{q,g,a}(g^b) = G_0(g^b) \mid \mid G_1(g^b) = (g^b, g^{ab})$$
+
+
