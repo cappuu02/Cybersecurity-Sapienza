@@ -11,10 +11,14 @@
             "id": "b1cf9214c4e5e5cd",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Lesson 20.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Lesson 20"
             }
           }
         ]
@@ -176,15 +180,15 @@
     "type": "floating",
     "children": [
       {
-        "id": "01ca7242d15c656f",
+        "id": "c6e34814523abc01",
         "type": "window",
         "children": [
           {
-            "id": "81dddb4aede43a8d",
+            "id": "a944e66d0ef26551",
             "type": "tabs",
             "children": [
               {
-                "id": "2412fa6d3e0a6385",
+                "id": "616839ce0650ceae",
                 "type": "leaf",
                 "state": {
                   "type": "pdf",
@@ -210,25 +214,27 @@
   },
   "active": "b1cf9214c4e5e5cd",
   "lastOpenFiles": [
+    "WhatsApp Image 2024-12-03 at 12.40.53.jpeg",
+    "WhatsApp Image 2024-12-03 at 12.36.22.jpeg",
+    "Cryptography/Cryptography Notes.pdf",
+    "Lesson 20.md",
+    "Pasted image 20241203120745.png",
+    "Pasted image 20241203120738.png",
+    "Pasted image 20241203120018.png",
+    "Pasted image 20241203115052.png",
+    "WhatsApp Image 2024-12-03 at 11.47.50.jpeg",
     "Cryptography/Lesson 18-19 (Last).md",
     "Cryptography/Lesson 17 (Asymmetric Scheme).md",
     "WhatsApp Image 2024-12-02 at 19.29.21.jpeg",
     "WhatsApp Image 2024-12-02 at 19.28.43 1.jpeg",
     "WhatsApp Image 2024-12-02 at 19.28.43.jpeg",
     "WhatsApp Image 2024-12-02 at 19.27.49.jpeg",
-    "WhatsApp Image 2024-12-02 at 19.27.31.jpeg",
     "Cryptography/Lesson 15-16.md",
-    "WhatsApp Image 2024-12-02 at 18.10.09.jpeg",
-    "WhatsApp Image 2024-12-02 at 18.09.59.jpeg",
-    "WhatsApp Image 2024-12-02 at 18.09.51.jpeg",
-    "Pasted image 20241202180021.png",
-    "Pasted image 20241202170207.png",
     "Cryptography/Lesson 16.md",
     "Blockciphers.md",
     "Cryptography/Lesson 13.md",
     "Cryptography/Lesson 14.md",
     "Cryptography/Lesson 12-14.md",
-    "Cryptography/Cryptography Notes.pdf",
     "Untitled 1.md",
     "Cryptography/Lesson 11.md",
     "Cryptography/Lesson 8-9-10.md",
@@ -245,7 +251,6 @@
     "Untitled 2.md",
     "Cryptography/Lesson 4-5-6-7.md",
     "Cryptography/Lesson 2-3.md",
-    "Cryptography/Lesson 1.md",
     "Cryptography Notes.pdf",
     "Cryptography/Untitled",
     "Statistic/Homework1/script.js",
