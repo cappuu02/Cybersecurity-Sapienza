@@ -8,17 +8,51 @@
         "type": "tabs",
         "children": [
           {
-            "id": "d70d6732484afe18",
+            "id": "8a24aa9715327069",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cryptography/Lesson 18-19 (Last).md",
+                "file": "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
                 "mode": "source",
                 "source": false
               },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "Lesson 18-19 (Last)"
+              "title": "Introduction to Optical Network (Polverini 1-2)"
+            }
+          },
+          {
+            "id": "0c69b143e5b06b2c",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Lesson 25 novembre e 2 dicembre 2024 (MPLS).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Lesson 25 novembre e 2 dicembre 2024 (MPLS)"
+            }
+          },
+          {
+            "id": "2092620168152a07",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Inter Domain Routing and  Border Gateway Protocol.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Inter Domain Routing and  Border Gateway Protocol"
             }
           }
         ]
@@ -89,7 +123,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 333.5
+    "width": 408.5,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -174,10 +209,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d70d6732484afe18",
+  "active": "8a24aa9715327069",
   "lastOpenFiles": [
-    "Cryptography/Lesson 20.md",
+    "WhatsApp Image 2024-12-09 at 17.16.53.jpeg",
+    "Pasted image 20241209171557.png",
+    "Pasted image 20241209171147.png",
+    "Pasted image 20241209170953.png",
+    "Pasted image 20241209170944.png",
+    "Pasted image 20241209170800.png",
+    "WhatsApp Image 2024-12-09 at 17.04.48.jpeg",
+    "Pasted image 20241209170318.png",
+    "WhatsApp Image 2024-12-09 at 16.57.03.jpeg",
+    "Pasted image 20241209163428.png",
+    "Pasted image 20241209163412.png",
+    "Network Infrastructures/Lesson 25 novembre e 2 dicembre 2024 (MPLS).md",
+    "Network Infrastructures/Inter Domain Routing and  Border Gateway Protocol.md",
+    "Network Infrastructures/Introduction to Optical Network (Polverini 1-2).md",
+    "Network Infrastructures/Network Functional Area (PDF1).md",
+    "Network Infrastructures/Wireless and mobile networks (PDF 4).md",
     "Statistic/Lesson 8 , 5 Dicembre (Ultimissima Lezione).md",
+    "Cryptography/Lesson 20.md",
     "[.md",
     "Statistic/Lesson 7 (28 novembre).md",
     "Statistic/Lesson 6 (14 novembre).md",
@@ -186,17 +237,7 @@
     "Statistic/Lesson 3.md",
     "Statistic/Lesson 2.md",
     "Statistic/Lesson 1.md",
-    "Pasted image 20241207124254.png",
-    "Pasted image 20241207124238.png",
-    "Pasted image 20241207113048.png",
-    "Pasted image 20241207112236.png",
-    "WhatsApp Image 2024-12-03 at 12.40.53.jpeg",
-    "WhatsApp Image 2024-12-03 at 12.36.22.jpeg",
     "Cryptography/Cryptography Notes.pdf",
-    "Pasted image 20241203120745.png",
-    "Pasted image 20241203120738.png",
-    "Pasted image 20241203120018.png",
-    "Pasted image 20241203115052.png",
     "Cryptography/Lesson 18-19 (Last).md",
     "Cryptography/Lesson 17 (Asymmetric Scheme).md",
     "Cryptography/Lesson 15-16.md",
@@ -207,11 +248,6 @@
     "Cryptography/Lesson 12-14.md",
     "Untitled 1.md",
     "Cryptography/Lesson 11.md",
-    "Cryptography/Lesson 8-9-10.md",
-    "MAC e dimostrazioni.md",
-    "Untitled 3.md",
-    "Cryptography/Lesson 18 (Last).md",
-    "Untitled 2.md",
     "Cryptography Notes.pdf",
     "Cryptography/Untitled",
     "Statistic/Homework1/script.js",
