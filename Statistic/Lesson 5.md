@@ -1,10 +1,4 @@
-In statistics exists different types of variables:
-- **Quantitative Variables**: These are numerical variables that represent measurable quantities.
-	- **Continuous Variables**: These can take any value within a given range and can be measured to any degree of precision.
-	- **Discrete Variables**: These can only take specific values, typically whole numbers (e.g., the number of students in a class).
-- **Qualitative Variables**: Also known as categorical variables, these represent categories or groups rather than numerical values.
-	- **Nominal Variables**: These represent categories without any intrinsic ordering (e.g., gender, colors, types of fruit).
-	- **Ordinal Variables**: These represent categories with a meaningful order or ranking, but the intervals between categories are not necessarily uniform (e.g., satisfaction ratings, education levels).
+
 
 Remember, from the last lecture about independence, this:
 ![[st 3.png|500]]

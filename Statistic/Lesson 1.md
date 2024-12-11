@@ -1,17 +1,3 @@
-# Introduction
-
-- Theory
-- Pratical
-
-_Blog_ = simple static we page made like a blog or word press site.
-
-_Excel sheet with_:
-- homework 1 = each student put here the link of his homework
-
-Thesis will be given at the end of the course at the end we have:
-- thesis
-- blog with all the homework
-
 # Theory
 - Presentation and representation of situation
 - Reporting
@@ -23,8 +9,8 @@ Thesis will be given at the end of the course at the end we have:
 
 >Statistic is almost everywhere
 
-everything's starts to notion of population. Population is set of statistical unit.
-if we are population and i-m interesting to observe something like an activity, in this case i will asking wich is your hobby. That phenomenal is called the character or variable. 
+everything's starts to notion of population. ==Population== is set of statistical unit.
+if we are population and i'm interesting to observe something like an activity, in this case i will asking wich is your hobby. That phenomenal is called the character or variable. 
 
 $(x_1, \cdots, x_n)$ this are called the characters (variables)
 - ==character== is more general more astract (weight is an example)
@@ -50,7 +36,7 @@ title: Missing: image on the paper
 ```
 
 _Looking at a pratical case_:
-When we have a DB we have a table wit various column. Each row of the table represent a record. each row will be a statistical unit $V_i$  $(x_1^{(i)}, \cdots, x_k^{(i)})$.
+When we have a DB we have a table with various column. Each row of the table represent a record. each row will be a statistical unit $V_i$  $(x_1^{(i)}, \cdots, x_k^{(i)})$.
 
 ==Population== = set of statistical unit. population does not to be something that exists but ca be something that is dream. Population is not static, he can change during the time (is a dynamic flow). Can be a stream of data.
 I have to recognize the statistical unit and the variables.
@@ -74,7 +60,7 @@ title: Missing notes in the paper even to Recap
 
 ```ad-abstract
 title: Meaning of Average (Arithmetically)
-the arithmetical average is ...
+The arithmetical average is ...
 Defining property of average: i set a cut and the number of distance at the left must be the same of the number of distance at the right.
 
 ```

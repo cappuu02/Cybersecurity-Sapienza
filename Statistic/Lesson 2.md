@@ -30,7 +30,7 @@ If we have this:
 How much this mean is closed to the data? We need to integrate a measure that are called variance.
 
 In Univaried Statistic we have two fundamental concept:
-- Location: Summary of our data (synthesis).
+- ==Location==: Summary of our data (synthesis).
 - Dispersion: Measure of the distance of the $\mu$ from the observe. (mean of distances $d(x_i, \mu)$)
 
 $$\overline{x} = \frac{\sum x_i}{n}$$
@@ -47,17 +47,16 @@ The second is the Euclidean distance but we don't use it because with this we ca
 ```
 
 **Theoretical Population**
-A theoretical population is something that we want to study but we can observe a little number of individual. We've a sample that we study respect to a big population.
+A ==theoretical population== is one that we wish to study but cannot observe completely. In other words, it is an ideal or abstract, often **very large population** that we cannot examine in its entirety. Instead, we observe a **limited number of individuals (a sample)** from this theoretical population. Thus, the sample we study is **representative of a larger theoretical population**.
 
-
-```ad-missing
-Image Theoretical population with sample.
-```
 
 Now, we can talk about the two main branches of statistics:
-
 - ==Inference Statistic==: Actions to deduct something from the particular to the general. Sample and theoretical population now are the same concept. One is involved in the other.
 
+>ll campione è usato per fare inferenze su una popolazione teorica più grande e non completamente osservabile. Partiamo da un campione per fare delle inferenze o delle conclusioni sulla popolazione teorica da cui quel campione è stato tratto.
+
 - ==Descriptive Statistic==: The population that i study. In this case there is no real difference between population and sample. If we want to consider this difference we using:
-	- $\overline{x}$ for sample
-	- $\mu$ for population
+	- $\overline{x}$ mean for sample
+	- $\mu$ mean for population
+
+>Mentre nella statistica inferenziale il campione è usato per fare delle stime sulla popolazione teorica, nella statistica descrittiva ci concentriamo sulla popolazione o sul campione che stiamo effettivamente osservando.

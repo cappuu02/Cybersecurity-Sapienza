@@ -339,3 +339,99 @@ Client layers can specify to the optical layer the following services during lig
 
 ----
 ## Lezione 18 Novembre
+
+## Multi-Layered Network
+The optical network consists of a multi-layered infrastructure designed to handle various
+challenges such as bit-error checking, recovery, routing, and transmission. It includes the
+following layers:
+
+![[Pasted image 20241211170703.png]]
+
+1. Client Layer: This abstract layer provides the logical connection between clients. Although clients transmit packets, these are always encapsulated before being sent to lower layers. Encapsulation adds overhead to ensure the packets function in subsequent layers.
+2. Electrical Domain: 
+	- **ODU Layer**: This layer features two OLTs at either end of the connection, represented as a single, straightforward light path. Packets, encapsulated with additional overhead, become Optical Data Units (ODUs). This layer primarily interacts with the client layer.
+	- **OTU Layer**: Moving deeper, we gain a clearer understanding of system transmission. What appears to be a simple light path often traverses multiple optical sub-networks. At the edges of each sub-network, OLTs play a crucial role, particularly their transponder components, which enable wavelength conversion. Wavelength uniformity is maintained within each sub-network, making wavelength conversion frequent at sub-network boundaries.
+3. Optical Domain:
+	- **Optical Channel (Och)**: This layer represents the portion of a light path between two transponders. The complete light path consists of concatenated optical channels. Transponders and other devices at this layer interact with the OTU Layer to perform their functions, including tracking the number of sub-networks a signal traverses (involving transitions back to the electrical domain).
+	- **Optical Multiplexing Section (OMS)**: This layer delves into optical sub-networks, identifying elements like OLTs and Optical Add-Drop Multiplexers (OADMs).
+	- **Optical Transmission Section (OTS)**: This is the most granular layer, detailing individual fiber sections between devices, regardless of multiplexing. It reflects the actual physical topology of the optical network.
+
+![[Pasted image 20241209161238.png]]
+## Performance and Fault Management
+To provide guaranteed quality of service to end users, constant monitoring of both performance and fault management is essential. This process involves the following:
+
+### Performance Management
+1. monitoring performance parameters for all connections
+2. Taking necessary actions to ensure desired performance goals are met
+
+### Fault Management
+1. Detecting problems in the network.
+2. Alerting management systems appropriately through alarms.
+3. Attempting to recover lost services in case of a fault.
+
+## Bit Error Rate (BER) and Optical Trace
+
+### BER
+- The Bit Error Rate (BER) is a critical performance metric for lightpaths.
+- BER detection is only possible when the signal is in the electrical domain, typically at regenerator or transponder locations.
+- Overhead inserted in OTN (Optical Transport Network) frames, consisting of parity check bytes, enables BER computation.
+
+### Optical Trace
+Lightpaths traverse multiple nodes and multiple cards within the equipment at each node.
+A unique identifier, called the optical path trace, is associated with each lightpath.
+This trace helps the management system identify, verify, and manage lightpath
+connectivity.
+The trace contains at least the following four values:
+1. ID of the client sender.
+2. ID of the client receiver.
+3. ID of the transponder on the left side.
+4. ID of the transponder on the right side.
+
+## Alarm Management
+In optical networks, a single failure event can generate multiple alarms. For example, in a
+network with 32 lightpaths on a given link, each traversing two intermediate nodes, the failure of a single link could trigger a total of 129 alarms.
+
+### Alarm Suppression
+![[Pasted image 20241211171323.png]]
+- Alarm management identifies the root cause of the failure and suppresses redundant alarms.
+- This is accomplished using special signals:
+	- Forward Defect Indicator (FDI): Sent downstream to the next node to notify them of the failure and suppress alarms further downstream.
+	- Backward Defect Indicator (BDI): Sent upstream to notify the previous node of the failure.
+
+### Operation
+![[Pasted image 20241211171445.png]]
+- FDI and BDI signals are sent at different sub-layers of the optical layer.
+- A node receiving an FDI or BDI stops sending alarms. This ensures that only one node, closest to the fault location, continuously raises alarms.
+- Devices sensing network issues continue to raise alarms until they receive an FDI or BDI.
+- FDI and BDI are transmitted multiple times across different layers to ensure all devices are informed of the fault's location and nature.
+
+## OSC and Pilot Tone
+Protocols and functions in the optical network, such as BER, path trace, and defect indicators require special overhead. Two methods are used to achieve this:
+
+![[Pasted image 20241211171644.png]]
+### Pilot Tone
+- Any wavelength is centered at a certain frequency, with gaps between signals for distinction.
+- The Pilot Tone is placed in one of these gaps, utilizing low power and data rate.
+- Messages, encoded in binary, are modulated and converted into optical signals sent via the Pilot Tone band.
+- The Pilot Tone is added as overhead to the Optical Channel Layer (OCh) by the transponder and is terminated at the end of the OCh.
+- It reflects faults or errors in the associated client signal.
+
+## Optical Supervisory Channel (OSC)
+- The OSC uses a reserved wavelength for control-monitoring purposes, independent of client signals.
+- It has a single-fiber lifespan and monitors fiber health.
+- Unlike the Pilot Tone, the OSC is not client-signal-specific and can be applied anywhere in the network.
+
+### Application of OSC and Pilot Tone
+![[Pasted image 20241211171825.png]]
+
+1. Trace:
+	- The OSC can trace multiple client signals within the OTS (Optical Transmission Section).
+	- Since an OTS section may carry signals from different clients with individual traces in the Optical Channel, the OSC wavelength can provide additional trace overhead.
+2. Defect Indicators:
+	- The OSC covers defect indicators across all optical layers (OTS, OMS, OCh).
+	- Devices without a transponder for generating a Pilot Tone rely on the OSC for fault communication.
+3. Performance Monitoring:
+	- In the optical domain, the Pilot Tone monitors the optical power of client signals. If the Pilot Tone experiences attenuation, the client signal is likely affected similarly.
+	- In the electrical domain, BER techniques evaluate signal degradation.
+4. Rate-Preserving Overhead:
+	- Overhead carried in Optical Network headers without reducing client data rate is referred to as Rate-Preserving Overhead.
