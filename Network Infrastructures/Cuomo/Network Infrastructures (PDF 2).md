@@ -223,8 +223,8 @@ There are two types of modulation, CAP and DMT standards for ADSL.
 - DMT has the speed advantage over CAP.
 - DSP advances will enable the technologies to converge in cost and function
 ## ADSL reference model (Architecture Model)
-![[53.png]]
-![[54.png]]
+![[Network Infrastructures/images/53.png]]
+![[Network Infrastructures/images/54.png]]
 ==Router ISP==: fornisce l'accesso ad internet tramite una WAN. Un modem analogico viene utilizzato per connettersi alla rete pubblica.
 
 Central Office
@@ -236,11 +236,11 @@ UTP classico cavo di rame (doppino) poi uno splitter finale che separa sempre il
 
 ## Details on an End-to-End Design
 
-![[52.png]]
+![[Network Infrastructures/images/52.png]]
 ## ADSL Architecture Protocol- Network Side
-![[56.png]]
-![[55.png]]
-![[57.png]]
+![[Network Infrastructures/images/56.png]]
+![[Network Infrastructures/images/55.png]]
+![[Network Infrastructures/images/57.png]]
 for the adsl (interface between the CO and End user) we have specific protocols.
 protocols: physical part 
 
@@ -278,9 +278,9 @@ It is used together with ADSL for its ability to directly connect the user to th
 
 In the majority of European countries ADSL is based on the ATM protocol so PPP is encapsulated inside ATM cells (PPPoA). Nonetheless ADSL can stand on top of Ethernet and be incapsulated in Ethernet Frames (PPPoE).
 
-![[58.png]]
+![[Network Infrastructures/images/58.png]]
 
-![[59.png]]
+![[Network Infrastructures/images/59.png]]
 
 the link control layer is performed by two functions:
 -  Link control protocol
@@ -291,7 +291,7 @@ the link control layer is performed by two functions:
 ### PPP Encapsulation
 The Protocol field identifies the datagram encapsulated in the information field.
 
-![[60.png]]
+![[Network Infrastructures/images/60.png]]
 - The **name** of this packet is frame: packet at the link layer has this flag
 - **Flag start and ending (frame)**: two bytes, used to recognized the start and ending of the frame, because the packet is supposed to have a variable length.
 -  **address**: all 1 = broadcast = packet direct to all (not important to specify because we are in PPP, so connection between two point)
@@ -309,7 +309,7 @@ to remind again:
 - IP (layer 3)
 
 ### PPP Link Operation
-![[61.png]]
+![[Network Infrastructures/images/61.png]]
 
 ### Link Establishment
 Link establishment phase uses the Link control protocol. Link Configuration Options:

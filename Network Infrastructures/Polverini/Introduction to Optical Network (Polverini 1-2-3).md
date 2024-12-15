@@ -1,5 +1,5 @@
 ## Telecommunications Network Architecture
-Transport Networks (TNs) are public infrastructures operated by service providers named carriers. Carriers provide a variety of services:
+==Transport Networks (TNs)== are public infrastructures operated by service providers named **carriers**. Carriers provide a variety of services:
 - telephone and leased line services
 - interconnect Internet Service Providers
 - provide bulk bandwidth to other carriers
@@ -9,10 +9,10 @@ Transport Networks (TNs) are public infrastructures operated by service provider
 >The goal of a Transport Network is to provide connectivity to clients that ask for a connection.
 
 The network can be broken up into:
-- metro network: is the part of the network that lies within a large city or a region
-	- metro access network: extends from a central office out to individual businesses or homes
-	- interoffice network: connects groups of central offices within a city or region
-- Long haul refers to the core network and interconnects cities or different regions
+- **metro network**: is the part of the network that lies within a large city or a region
+	- **metro access network**: extends from a central office out to individual businesses or homes
+	- **interoffice network**: connects groups of central offices within a city or region
+- **Long haul** refers to the core network and interconnects cities or different regions
 
 Different parts of the network may be owned and operated by different carriers. The nodes in the network are central offices, sometimes also called points of presence (POPs). Links between the nodes consist of fiber pairs and, in many cases, multiple fiber pairs. 
 Two topologies are used: ==ring== and ==mesh==
@@ -61,10 +61,10 @@ We know two main ways of increasing the transmission capacity on a fiber:
 	- virtual fibers
 
 
-![[102.png|500]]
-![[104.jpeg|500]]
+![[102.png|700]]
+![[104.jpeg|700]]
 ## Second-Generation Optical Networks
-Also known as wavelength routed networks, where the main idea is to incorporate some of the switching and routing functions into the optical part of the network. The network provides lightpaths to its users.  These are optical connections that:
+Also known as **wavelength routed networks**, where the main idea is to incorporate some of the switching and routing functions into the optical part of the network. The network provides lightpaths to its users.  These are optical connections that:
 - Carried end to end from a source node to a destination node 
 - over a wavelength on each intermediate link 
 At intermediate nodes the ==lightpaths are switched from one link to another link==.
@@ -105,8 +105,7 @@ Optical network is transparent to who is serving. Is important for business reas
 ==Optical add/drop multiplexers (OADMs)== provide a cost-effective means for handling passthrough traffic in both metro and long-haul networks.
 
 ![[Network Infrastructures/images/96.png]]
-Represent a possible physical network which once more is composed of three elements $a$, $b$ and $c$.
-In the image ($a$), node $A$ is an OLT whit multiple inputs and a multiplexer.
+Represent a possible physical network which once more is composed of three elements $a$, $b$ and $c$. In the image ($a$), node $A$ is an OLT whit multiple inputs and a multiplexer.
 Node $C$ is also an OLT with four output (means that we have four different $\lambda$).
 They are multiplexed together over the optical link which has a capacity of four wavelengths in this case ($A$ to $B$) and after will be de-multiplexed.
 
@@ -137,12 +136,12 @@ OADM has four port:
 
 ![[100.png]]
 ## OLT (Optical Line Terminal)
-==OLTs== are used at either end of a point-to-point link to multiplex and demultiplex wavelengths . It is composed by three functional elements: 
+==OLTs== are used at either end of a point-to-point link to multiplex and demultiplex wavelength. It is composed by three functional elements: 
 - Transponders 
 - Wavelength multiplexers 
 - Optical amplifiers (gives power to the signal)
 
-**Transponder (O-E-O)**, adapts the signal coming in from a client of the optical network, and vice versa, converts the signal into a wavelength that is suited for use inside the optical network 
+**Transponder (O-E-O)**: A transponder adapts the signal received from a client device in an optical network. It converts the signal from its original wavelength or format into one that is optimized for transmission within the optical network. This process involves converting the incoming optical signal into an electrical signal (Optical-to-Electrical), processing it, and then converting it back into an optical signal (Electrical-to-Optical) at the appropriate wavelength for the network.
 - adds OTN overhead (OPU, ODU, OTU, FEC, etc.) 
 - monitors the bit error rate of the signal at the ingress and egress points in the network 
 - OLT also terminates an optical supervisory channel (OSC)
@@ -173,21 +172,20 @@ Client 1 send a connection request to the optical network and, the optical netwo
 
 Once we have the lightpath we can think that the logical connection has been established, and finally, the clients can send their own signals into the client layer. But actually, they will be using the lightpath to communicate.
 
-we want to keep the communication as much as possible in the so-called optical domain, meaning that the nature of the signals that we send is optical light rays (no electronic). the main difficulty when we deal with optical signals is that they are analog signals, we don't have the same representation as a binary string information for the signal that we are sending. So it means that if we have to do switching function. We need to introduce the OADM, a device which basically has 4 ports. There is an input and output fiber plus 2 local port that connect OADM into the ring topology (backbone) and then there are two other ports: one for dropping traffic and inject port. A main problem is that this device cost so much.
+we want to keep the communication as much as possible in the so-called optical domain, meaning that the nature of the signals that we send is optical light rays (no electronic). the main difficulty when we deal with optical signals is that they are analog signals, we don't have the same representation as a binary string information for the signal that we are sending. So it means that if we have to do switching function. We need to introduce the **OADM**, a device which basically has 4 ports. There is an input and output fiber plus 2 local port that connect OADM into the ring topology (backbone) and then there are two other ports: one for dropping traffic and inject port. A main problem is that this device cost so much.
 
->Classi OADM is static, not dynamic!
+>OADM is static, not dynamic!
 
 ## OLT = is in the optical network
-One of the 2 endpoints of a point to point optical link
-takes as input electrical signal and convert it into the optical signal.
+One of the 2 endpoints of a point to point optical link takes as input electrical signal and convert it into the optical signal.
 
 ![[Pasted image 20241209170318.png]]
 
 
 The main components of OLT are:
-- Transponder: converter from optical to electrical and viceversa and for this reason is generally called O/E/O.
-- Multiplexer/Demultiplexer:
-- Optical amplifier
+- **Transponder**: converter from optical to electrical and viceversa and for this reason is generally called O/E/O.
+- **Multiplexer/Demultiplexer**:
+- **Optical amplifier**
 
 ![[WhatsApp Image 2024-12-09 at 17.04.48.jpeg]]
 
@@ -207,11 +205,11 @@ The client is sending injecting into the optical network a lambda which is not c
 
 After that, multiplexer in the image generate a unique output light ray that will go inside the optical network (core part). After the core part, need to do the inverse so, demultiplex the unique light ray in multiple rays, eventually we need to convert it into a suitable lambda for the clients and we deliver the signal to the client.
 
-The laser/receiver device in the figure, is a dedicated transponder to monitor purposes of network. We dedicate  We dedicate a single transponder for monitoring purposes, for instance, analyze the health status of the network. This is keep with a laser that sends optical signal to a specific wavelength that cannot be used for carrying client signals, but it is only used for monitoring purposes, and this specific channel is called optical supervisory channel.
+The laser/receiver device in the figure, is a dedicated transponder to monitor purposes of network. We dedicate a single transponder for monitoring purposes, for instance, analyze the health status of the network. This is keep with a laser that sends optical signal to a specific wavelength that cannot be used for carrying client signals, but it is only used for monitoring purposes, and this specific channel is called optical supervisory channel.
 ```
 
 ## Optical Crossconnects
-For each port we have an incoming fiber.
+The OXC (Optical Cross-Connect) is a device with multiple ports, each capable of transmitting optical signals. For each port we have an incoming fiber.
 Element $1$ must be able to recover this signal here so the multiplex send it from port one to port six. We must define a switching matrix.
 
 ![[WhatsApp Image 2024-12-08 at 17.23.53.jpeg]]
@@ -220,10 +218,10 @@ Element $1$ must be able to recover this signal here so the multiplex send it fr
 >At time $t_1$ i do switching $1-6$
 >At time $t_2$ i do switching $1-5$
 
-These type of connections can't be realized through interconnection of the ports with fibers because it would be fixed. We must have a physical structure that is able to adapt is behaviour depending on our goal.
+These type of connections can't be realized through interconnection of the ports with fibers because it would be fixed. We must have a physical structure that is able to adapt is behavior depending on our goal.
 
 ```ad-example
-magine that there is a light ray like the the red one that is going straight because it's you know it's guided from the fiber. It enters the device, and it would like to proceed ahead because it goes straight.But, as you see, we must force it to turn to turn toward the port number 6. So how would you change the journey of a light ray, and to force it to go in a different direction with respect to the one it is currently going?
+Imagine that there is a light ray like the the red one that is going straight because it's you know it's guided from the fiber. It enters the device, and it would like to proceed ahead because it goes straight.But, as you see, we must force it to turn toward the port number 6. So how would you change the journey of a light ray, and to force it to go in a different direction with respect to the one it is currently going?
 
 ```
 
@@ -246,7 +244,7 @@ Network architectures can be organized by means of the ISO/OSI model. A more rea
 ![[Pasted image 20241208174638.png]]
 
 ## Transparency and All-Optical Networks
-Using a single infrastructure our aim is to server as many clients as possible, not only in the numbers but also in the type. It would be good to be able to serve  more than a single client like, for istance telephone network or internet!
+Using a single infrastructure, our aim is to server as many clients as possible, not only in the numbers but also in the type. It would be good to be able to serve more than a single client like, for instance telephone network or internet!
 
 Lightpaths are service transparent: once the lightpath is set up, it can accommodate different types of services (The telephone network had this property, a channel can be used to transfer voice, data, fax, etc.) 
 - **Advantages**: data is carried from its source to its destination in optical form. No optical-to-electrical conversions along the way 
@@ -256,7 +254,7 @@ Lightpaths are service transparent: once the lightpath is set up, it can accommo
 
 The best option is to **stay interiorly in the optical domain**. Why? Because once i have converted the client signal from electrical to optical i don't see any difference anymore among the two.
 
-Electronics plays a crucial role in performing the intelligent control and management functions. Electronic is required at:
+**Electronics plays a crucial role in performing the intelligent control and management functions**. Electronic is required at:
 - the edge of the network to adapt the signals entering the optical domain 
 - in the core of the network for regeneration and wavelength conversion
 
@@ -271,6 +269,7 @@ What are the points where we need the electronic functions? There are essentiall
 
 >Electronic is used for regeneration purposes
 
+### Signal Regeneration Types
 Electronic regenerators reduce the transparency of the network. Three types of electronic regeneration techniques for digital data:
 - 1R: Regeneration (Can be seen as an Optical Amplifier)
 - 2R: Regeneration with reshaping
@@ -291,19 +290,19 @@ As we move from top to down, you have to imagine that the time are passing and t
 **Image b**: Change the source of the light become a laser instead of lead (there is a difference in the power spectrum). He is able to generate a multi mode colors. The lambda that we were using was centered at 1.3 micrometers (is almost flat, so it guarantee good performance and does a good attenuation level but it's not the best one, the best is 1.55).
 In this new structure we use single-mode fiber:
 
-![[WhatsApp Image 2024-12-08 at 18.48.09.jpeg]]
+![[WhatsApp Image 2024-12-08 at 18.48.09.jpeg|400]]
 
 >We can use single mode fiber that has a very thin core, this way there are still multiple rays that enter the core but since the core is thin the paths of the rays are almost the same
 
 ![[Pasted image 20241209170953.png]]
-**Image c**: Source of light which is laser (single mode lasers). We are able to send single lambda and we move in a different window for the wavelength which now is centered around 1.5 5 micrometers, where the attenuation is much lower. There is another advantage of passing from multimode laser and single mode laser, which is about another degrading phenomenon that, let's say, affects the optical fibers.
+**Image c**: Source of light which is laser (single mode lasers). We are able to send single lambda and we move in a different window for the wavelength which now is centered around 1.5 micrometers, where the attenuation is much lower. There is another advantage of passing from multimode laser and single mode laser, which is about another degrading phenomenon that, let's say, affects the optical fibers.
 
 ==Problem==: our source of lights was still generating different wavelengths. So you have to think that the same client signal was sent over the fiber carried through different light rays of different colors (depends on the lambda. The speed at which the light ray propagates is different. ). So it means that one light rate is faster than others.
 
 >The speed of electromagnetic wave at which it propagates depends on the lambda on the wavelength.
 
 So if they go over the same distance, but a different speed, they arrive at different time intervals, different times. This caused another type of dispersion called "==chromatic dispersion==" that can be attenuated by:
-1. creating a source of lights. Transmitter which is equipped which more precise laser which is able to concentrate all the power that we give to the signal on a smaller window of wavelengths (we are sending single color out).
+1. Creating a source of lights. Transmitter which is equipped which more precise laser which is able to concentrate all the power that we give to the signal on a smaller window of wavelengths (we are sending single color out).
 2. We can engineer fibers which that have a smaller, a thinner core for contrasting the multimode dispersion, plus the the density of the core made in such a way most of the different wavelength propagate at the same speed in general.
 
 ```ad-info
@@ -317,7 +316,7 @@ From image A to image C we have seen three different models of 1st generation op
  **Image d**: A 2nd generation WDM system with optical amplifiers instead of regenerators. Different lasers share the same p2p link through a multiplexer that sends a single light ray containing all the several colors (lambdas). The degradation is so small that amplification can be performed directly in the optical domain. This is the most transparent of the systems.
 ## Control and Management
 
-_Control_: we refer to control plane (routing). In this case it will be let's say that function that is in charge of establishing the connections. Find the light path and find the suitable wavelength to carry a a client signal.
+_Control_: we refer to control plane (routing). In this case it will be that function that is in charge of establishing the connections. Find the light path and find the suitable wavelength to carry a a client signal.
 
 _Management_: Part of the network that we use to make configuration. (assign ip to interface, configure routing protocols, all the things that we do in khatara)
 
@@ -325,7 +324,7 @@ all these functionalities, either routing and configuration they can be performe
 
 ![[WhatsApp Image 2024-12-09 at 17.16.53.jpeg]]
 
-that allows the central element to communicate with the different elements of the optical network, to make control and management. In this type of centralized architecture, when we say there is a client that make a connection request to the optical network, the connection request is actually performed through  toward the management element control and management element. So this is a connection request. When the client does the connection request it can specifies different. You know, parameters different performance that he wants to get. (the list of services that he wants to buy from the from the provider).
+That allows the central element to communicate with the different elements of the optical network, to make control and management. In this type of centralized architecture, when we say there is a client that make a connection request to the optical network, the connection request is actually performed through  toward the management element control and management element. So this is a connection request. When the client does the connection request it can specifies different parameters, different performance that he wants to get. (the list of services that he wants to buy from the from the provider).
 
 Client layers can specify to the optical layer the following services during lightpath setup: 
 - the endpoints to interconnect 
@@ -347,7 +346,7 @@ following layers:
 
 ![[Pasted image 20241211170703.png]]
 
-1. Client Layer: This abstract layer provides the logical connection between clients. Although clients transmit packets, these are always encapsulated before being sent to lower layers. Encapsulation adds overhead to ensure the packets function in subsequent layers.
+1. **Client Layer**: This abstract layer provides the logical connection between clients. Although clients transmit packets, these are always encapsulated before being sent to lower layers. Encapsulation adds overhead to ensure the packets function in subsequent layers.
 2. Electrical Domain: 
 	- **ODU Layer**: This layer features two OLTs at either end of the connection, represented as a single, straightforward light path. Packets, encapsulated with additional overhead, become Optical Data Units (ODUs). This layer primarily interacts with the client layer.
 	- **OTU Layer**: Moving deeper, we gain a clearer understanding of system transmission. What appears to be a simple light path often traverses multiple optical sub-networks. At the edges of each sub-network, OLTs play a crucial role, particularly their transponder components, which enable wavelength conversion. Wavelength uniformity is maintained within each sub-network, making wavelength conversion frequent at sub-network boundaries.
@@ -375,7 +374,6 @@ To provide guaranteed quality of service to end users, constant monitoring of bo
 - The Bit Error Rate (BER) is a critical performance metric for lightpaths.
 - BER detection is only possible when the signal is in the electrical domain, typically at regenerator or transponder locations.
 - Overhead inserted in OTN (Optical Transport Network) frames, consisting of parity check bytes, enables BER computation.
-
 ### Optical Trace
 Lightpaths traverse multiple nodes and multiple cards within the equipment at each node.
 A unique identifier, called the optical path trace, is associated with each lightpath.
@@ -395,8 +393,8 @@ network with 32 lightpaths on a given link, each traversing two intermediate nod
 ![[Pasted image 20241211171323.png]]
 - Alarm management identifies the root cause of the failure and suppresses redundant alarms.
 - This is accomplished using special signals:
-	- Forward Defect Indicator (FDI): Sent downstream to the next node to notify them of the failure and suppress alarms further downstream.
-	- Backward Defect Indicator (BDI): Sent upstream to notify the previous node of the failure.
+	- **Forward Defect Indicator** (FDI): Sent downstream to the next node to notify them of the failure and suppress alarms further downstream.
+	- **Backward Defect Indicator** (BDI): Sent upstream to notify the previous node of the failure.
 
 ### Operation
 ![[Pasted image 20241211171445.png]]
@@ -413,7 +411,7 @@ Protocols and functions in the optical network, such as BER, path trace, and def
 - Any wavelength is centered at a certain frequency, with gaps between signals for distinction.
 - The Pilot Tone is placed in one of these gaps, utilizing low power and data rate.
 - Messages, encoded in binary, are modulated and converted into optical signals sent via the Pilot Tone band.
-- The Pilot Tone is added as overhead to the Optical Channel Layer (OCh) by the transponder and is terminated at the end of the OCh.
+- The Pilot Tone is added as overhead to the Optical Channel Layer (OCH) by the transponder and is terminated at the end of the OCH.
 - It reflects faults or errors in the associated client signal.
 
 ## Optical Supervisory Channel (OSC)
@@ -435,3 +433,47 @@ Protocols and functions in the optical network, such as BER, path trace, and def
 	- In the electrical domain, BER techniques evaluate signal degradation.
 4. Rate-Preserving Overhead:
 	- Overhead carried in Optical Network headers without reducing client data rate is referred to as Rate-Preserving Overhead.
+
+
+# Domande e risposte Wooclap
+
+![[Pasted image 20241212125729.png]]
+
+
+6) The source node ask to the network the creation of a new circuit
+8) The network compute a path from the source to the destination node
+5) The network check if, in each link of the path, there is an available sub-channel
+3) The clients are notified that the circuit is up 
+2) New rules are inserted in the switching table of the network nodes
+1) the communication happens
+4) The network monitors the circuit
+7) The network tears down the circuit 
+
+
+![[Pasted image 20241213162918.png]]
+
+
+
+
+![[Pasted image 20241213163159.png]]
+![[Pasted image 20241213163229.png]]
+
+
+
+
+![[Pasted image 20241213163455.png]]
+
+
+
+
+
+![[Pasted image 20241213163552.png]]
+
+
+
+
+
+
+
+![[Pasted image 20241213163701.png]]
+ 

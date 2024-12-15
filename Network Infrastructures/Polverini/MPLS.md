@@ -3,13 +3,11 @@ we have the client layer and server layer.
 
 ![[WhatsApp Image 2024-12-07 at 22.03.45.jpeg]]
 
-we know that optical network work according to the circuit switching parading, idea: this logical connection is realized though the establishment of light path here. client layer has to ask to the server layer (optical network) "create me this light path, this is the clients to connect".
+We know that optical network work according to the circuit switching parading, idea: this logical connection is realized though the establishment of light path here. client layer has to ask to the server layer (optical network) "create me this light path, this is the clients to connect".
 
 **MCE** = This have an optimization algorithm. It take as input the logical network topology, the list of all the lambda for all link (status) and Qos and it take in output a lightpath, the blue one that we can see in the image.
 
-control plain = routing
-
-
+>Control plain = routing
 
 ![[WhatsApp Image 2024-12-07 at 22.43.07.jpeg]]
 
@@ -21,7 +19,7 @@ $R1$ need to know the topology of network and it must have a method to create a 
 >This conclude the journey in the optical world.
 
 ---- 
-we move in the client layer now with the Multiple protocol label switching argument
+we move in the client layer now with the Multiple protocol label switching argument.
 ## Client Layer (electrical domain)
 **Electric domain**: now we have full access on binary version of information
 
@@ -43,10 +41,6 @@ Service that customer want to buy from service provider
 
 Another service that the customer want to buy from service provider is the "==restoration service==" (against failures).
 
-```ad-missing
-
-IMMAGINE
-```
 
 
 Image that this link fails $\Rightarrow$ Losing packets
@@ -55,7 +49,7 @@ Image that this link fails $\Rightarrow$ Losing packets
 >In the **pure IP layer** we cannot create the concept of backup path.
 
 3 services that customer want to buy from service provider.
-The Service provider is realized through the IP tech the services they are less efficient (have limitations). For these reasons in 199* the MPLS was founded.
+The Service provider is realized through the IP tech the services they are less efficient (have limitations). For these reasons in 199* the **MPLS** was founded.
 
 ## The needs of a TLC provider of data services
  Offer services to its customers
@@ -77,14 +71,14 @@ Situation in the 199X for the stack of transport network:
 ## Connection-Oriented Packet Network
 ![[Pasted image 20241207232121.png]]
 Network domain with MPLS.
-It's connection oriented parading. why? Because, before selling traffic we must create entries inside this table, we need to insert a new row into each of these tables.
+It's **connection oriented parading**. why? Because, before selling traffic we must create entries inside this table, we need to insert a new row into each of these tables.
 
 Create connection means go inside every single switching elements (router) and insert a line inside the switching table in order to handle the communications. for each row we find two number. How is realized this table? Two parts:
 - **input**: (1)-> input interface. (25)-> label, is carried on top of packets
 	- if this router receive something from port 1 with label 25 it will send out on port 4 with label 43. 
 - **output**: (4)-> output interface. (43)-> label
 
-if i receive somethings from interface 1, this rule is applied.
+If i receive somethings from interface 1, this rule is applied.
 Packet has a special header added to IP packet where the label is inserted. (20 bit long number).
 
 ```ad-example
@@ -95,7 +89,7 @@ Packet with label 26, when arrive into the first circle (router) go into the sec
 ![[WhatsApp Image 2024-12-08 at 00.12.03.jpeg]]
 
 Client is out the provider network. The scheme is an MPLS domain but client is outside.
-Client can adopt different technologies. Who is encapsulating the packet (who perform the tunneling? Performed by edge   
+Client can adopt different technologies. Who is encapsulating the packet (who perform the tunneling? Performed by edge router
 
 ![[WhatsApp Image 2024-12-08 at 00.11.53.jpeg]]
 
@@ -132,7 +126,6 @@ MPLS is connection oriented paradigm, turn a connectionless environment as IP ne
 
 MPLS is cost full in term of overhead. For this reason we are moving into the ...
 
-
 ## MPLS Network Node
 
 ![[Pasted image 20241208125242.png]]
@@ -145,7 +138,6 @@ Every node that support IP support also MPLS. A layer 3 node is divided in two p
 The Control Component and the Forwarding component are integrated within an IP Router that becomes “IP/MPLS router. The MPLS Forwarding Component is an extension of IP forwarding capability.
 
 ## Label Encoding
-
 Structure of MPLS Header. The MPLS label is carried in a MPLS header (also known as “shim header”). It is inserted between Layer 2 and Layer 3 header
 
 
@@ -158,11 +150,9 @@ Structure of MPLS Header. The MPLS label is carried in a MPLS header (also known
 - **TTL**: decrement by 1 when packet is sent.
 
 ## Terminology for MPLS Network
+![[Pasted image 20241212152759.png]]
 
-IMMAGINE
-
-the first edge node need to understand what is the proper header to use. This node perform a function called "classification". LER has to classify packet based on the header fields of the packet.
-These information's are called FEC (Forwarding equivalent class).
+The first edge node need to understand what is the proper header to use. This node perform a function called "**classification**". LER has to classify packet based on the header fields of the packet. These information's are called FEC (Forwarding equivalent class).
 $$11.0.1.0/25 \hspace{0.2cm} \wedge \hspace{0.2cm} 10.0.1.0/25 \hspace{0.9cm} \text{Form a FEC}$$
 this is a set of packets that must be processed in the same way in the MPLS domain. Have to follow the same path, and so long so for.
 All the traffic generated from network $A$ with destination to network $B$, since it is classifier at the same FEC, is deliver with the orange tunnel. **FEC** is negotiated between client and provider when customer is buying the transport service.
@@ -175,8 +165,6 @@ Remember, control plane is divided into:
 - **Distributed**: 
 
  ![[WhatsApp Image 2024-12-08 at 13.33.38.jpeg]]
- 
-
 ## Structure of a Label Switched Router
 
 ![[Pasted image 20241208133542.png]]
@@ -190,7 +178,7 @@ This device has two different table, because it's an IP/MPLS Device.
 
 ![[Pasted image 20241208133926.png|500]]
 - Yellow part is the IP header and the green one is MPLS label
-- packets with 45 go inside an tunnel. In the image I'm performing the swap function.  '
+- packets with label 45 go inside an tunnel. In the image I'm performing the swap function. 
 
 ## Connectionless Forwarding along the IP path
 We are exploiting the connectionless IP environment. Apply the $0000$ label and it follows the shortest path. Look that, in the image, the green path is the shortest with $4$ nodes instead of $5$.
@@ -200,16 +188,19 @@ We are exploiting the connectionless IP environment. Apply the $0000$ label and 
 ## Connection oriented forwarding along a LSP
 
 ![[Pasted image 20241208134454.png]]
-- A implement the push operation and F the pop operation.
+$A$ implement the push operation and F the pop operation.
 
+## Create LSP (Label Swicthed Path)
 
-**LSP Control Plane distributed procedure used when we want to setup  an LSP.**
+![[Pasted image 20241212155008.png]]
+
+**LSP Control Plane distributed procedure used when we want to setup an LSP.**
 - The procedure start by the node $A$  which sends message that is called "path message".
 	- This packet has to explore the path from the ingress to the exit point.
 - **Option 1**: Insert the path message inside of IP packet where destination address is D. With this, the packet follow the shortest path!
-- **Option2**: We specify every single hop in the path and for this reason, message, will have as destination address the next middle point that we want to visit. At the node $B$ the destination  address will change with the next one and so long so for.
+- **Option 2**: We specify every single hop in the path and for this reason, message, will have as destination address the next middle point that we want to visit. At the node $B$ the destination  address will change with the next one and so long so for.
 	- explicit routing information will be contained inside the path message.
-- When a node receive a path message it creates into his memory (internally) the "socks state". Store temporally some information's like id packet message and the previous node that sent to us the path message. After send the message to the next node.
+- When a node receive a path message it creates into his memory (internally) the "sock state". Store temporally some information's like id packet message and the previous node that sent to us the path message, after send the message to the next node.
 -  So, every node that receive the path message create the socks state and store into it the predecessor node. after that send the message to the next node. 
 
 No label as been assigned so far. The label binding is created on way back (down stream direction) with new type of message called RESV allows node $D$ to specify to the predecessor node what label he want the packets is delivered, for example node D can said "for the label packets i want the label 100!". The $RESV$ message is deliver to the previous node by creating an IP packet which will have the RESV in the payload and as the destination address he will use the node $C$. 
@@ -223,19 +214,21 @@ When we return to the node $A$ the tunnel has successfully setup and from this m
 When the node $C$ receive the RESV message he does the same! And so long so for.
 This is the way to create the Label binding process that allows us to create an LSP. 
 
+
 ## Label stack
 
-IMMAGINE
+![[Pasted image 20241212155022.png]]
 
 How can we create something like this? By the concept of **Label stack** 
 ![[Pasted image 20241208143227.png]]
 We have two different FECS the blu and the green one. 
 The blue one is associated with label 25 to the top link and the green is associated with label 35 to the bottom link. this two packets are MPLS packets. There is an internal node that perform the second push operation, we are adding one more label which in this case is label 42 (this label is used for both the packets). With a single line in the MPLS table we can switch those packets from input to output. 
 
+
 ## VPN, Traffic Engineering and Fast Re-Route
 Service that we can implement with MPLS domain.
 
-Let us consider a company that needs to run an IP Intranet. A Virtual Private Network (VPN) offers a separated (private) network over a shared transport infrastructure  How can we use an IP based network as transport infrastructure? The two main features of a VPN services are:
+Let us consider a company that needs to run an IP Intranet. A Virtual Private Network (VPN) offers a separated (private) network over a shared transport infrastructure.  How can we use an IP based network as transport infrastructure? The two main features of a VPN services are:
 - security/privacy
 - support of private IP addressing
 
@@ -247,29 +240,29 @@ Transport network which interconnects two different clients.
 Customer1 have one network in Milan and the other in Roma. (Create VPN1)
 Customer2 have one network in Torin and the other in Roma. (Create VPN2)
 One network of customer1 use the same private addresses scheme ($10.0.0.0/24$)
-Yellow one is an MPLS domain.
+>Yellow one is an MPLS domain.
+
 The grey node are label switched router and the blue nodes are edge nodes in two different sense.
 - LER 3,2,1 between MPLS network and non-MPLS network
 - LER 3,2,1 are also the edge between two infrastructures that are owned by different operators one belongs to the carrier (transport network provider) and the other one belong to the customer.
 
-We also have AS (autonomous system) number 100. 
+>We also have AS (autonomous system) number 100. 
 
-**Goal**: let two customers sides to communicate over the transport network over the transport network. Customer 2 will be communicate directly with the address of customer2.
+**Goal**: let two customers sides to communicate over the transport network. Customer 2 will be communicate directly with the address of customer2.
 
 Three main steps to create a VPN:
 1) Achieve any-to-any IP connectivity among PEs (provider equipment).
 2) Define a signaling mechanism to distribute customer prefix among prex.
 3) Define an encapsulation mechanism to transport packets from one PE to another across the network. (Use MPLS)
 
-## Move 1 **Any-to-any IP connectivity among PEs**
+### Move 1 **Any-to-any IP connectivity among PEs**
 
 Assign a loopback address to each PE router and use an IGP (e.g. OSPF or IS-IS) to announce these addresses as /32 prefixes in order to ensure any-to-any connectivity among them. So we want to assign an ID to every single PE (at the border!). We use a loopback interface and assign to it an IP. Why do we identify the router like that, with a loopback interface? The reason is that physical interfaces can be up or down, due to failures or other reasons. On the other hand, logical interfaces such as loopback interfaces are always up, they are stable over time. So we use it as an ID.
 
 >We must be sure then that every router knows how to reach the others. For doing so we use a routing algorithm that lets reachability information travel: the OSPF protocol.
 ![[Pasted image 20241209140832.png]]
 >In the system 100 will be a OSPF daemon running which provides any to any connectivity
-## Move 2 **Use BGP to distribute customer prefixes**
-
+### Move 2 **Use BGP to distribute customer prefixes**
 Multi-Protocol BGP (MP-BGP) used as signaling protocol to distribute reachability information about customer prefixes. BGP treats VPNs as a separate address family.
 **PE routers establish a full-mesh of iBGP peerings**: a PE announces to all the other PEs the customer prefixes that it can reach via the CE router it is connected to.
 ![[Pasted image 20241209141233.png|400]]
@@ -281,12 +274,10 @@ Multi-Protocol BGP (MP-BGP) used as signaling protocol to distribute reachabilit
 AS stands for Autonomous system. After the BGP updates $R2$ knows that $AS1$ has $p_1, p_2, …, p_k$ prefixes and so it knows that these nodes are reachable through $R1$. So we want to have BGP sessions between all the PEs in the provider network. But there is a problem: there is no problem in having $2$ different routers that both say “hey through me you reach node $x$”. But here Rome PoP says “you can reach $10.0.0.0$ through me” and idem Turin Pop, but they are two different private nets with the same IP $10.0.0.0$. For solving this we use BGP modified: notify a list of entities (L3VPN identifier) not addresses, so there is no ambiguity.
 ```
 
-## Move 3**Use MPLS encapsulation among PEs**
+### Move 3 **Use MPLS encapsulation among PEs**
 
 ![[Pasted image 20241209151554.png]]
 Until now, with the first 2 moves, the packet still carries private addresses. Now it’s time to create a label switched path. If we use labels no matter what address is there, even private, the router will not read them; it will just read the labels. There is a problem: let’s assume we have this situation:
-
-IMMAGINE
 
 The node does the POP operation and it’s left with a bare IP packet, so it has to use only the IP address to deliver it. The problem is, there is ambiguity, the ending network has the same IP address, to solve e that let’s create a trunk, with the internal label that tells us which of the two it’s our destination (the label addressed with “this label” in the picture).
 
@@ -306,10 +297,9 @@ We can change the scheme like this but this will make the net converge in anothe
 ![[Pasted image 20241209143241.png]]
 We would like to have a technology that supports traffic engineering: a function that allows a net operator to balance the load. MPLS can state, for instance, that red flow is the only one that can pass through this link. So we are actually creating a LSP. The picture below, represent the best scenario:
 ![[Pasted image 20241209143413.png]]
-How can I find a router configuration like that? There are other uni subjects that explain this problem:
-
+How can I find a router configuration like that? There are other uni subjects that explain this problem.
 ## Fast Recovery after Failure Service
-how does the IP net react to the failures? The net will find a new path but it takes time. So the provider can provide fast restoration, in the order of milliseconds, thanks to MPLS. Let’s consider this example:
+How does the IP net react to the failures? The net will find a new path but it takes time. So the provider can provide fast restoration, in the order of milliseconds, thanks to MPLS. Let’s consider this example:
 
 ![[Pasted image 20241209143608.png]]
 And then, we obtain this: 
@@ -319,10 +309,9 @@ And then, we obtain this:
 
 ### Implementation
 Two different ways:
-
 #### Link Bypass (FAST RE-ROUTING)
 ![[Pasted image 20241209143945.png]]
-For doing so we use LSP trunk: we have to push a label that make the packet follow the alternative path (gray arrow).
+For doing this, we use LSP trunk: we have to push a label that make the packet follow the alternative path (gray arrow).
 
 ![[Pasted image 20241209144142.png]]
 we can assume that in the R1 label switching table there is the command written in the image. It’s a trunk because the incoming traffic is already labeled.
@@ -334,8 +323,26 @@ This mechanism is faster than logical control place because:
 >Il percorso lo setto prima!
 >In questo caso creo la connessione logica nuova a partire dal nodo dove ha inizio il failuire.
 
-## Backup LSP
+#### Backup LSP
 Instead of creating a bypass for every single link of the net, create a path ingress-egress (BACKUP LSP). In this case the node has to be notified since the link is not contiguous but remote.
 ![[Pasted image 20241209144229.png]]
 
 >La differenza rispetto a prima è che vado a settare in anticipo un cammino di backup invece di andare a creare un bypass link per ogni link della rete.
+
+
+
+
+---- 
+
+
+![[Pasted image 20241213163934.png]]![[Pasted image 20241213164026.png]]
+corretta: 4
+
+
+
+
+----
+
+
+![[Pasted image 20241213164139.png]]![[Pasted image 20241213164151.png]]
+Corretto: pop swap push

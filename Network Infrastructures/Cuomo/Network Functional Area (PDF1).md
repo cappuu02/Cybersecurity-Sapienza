@@ -137,4 +137,4 @@ Today we need more and more unbalanced network able to provides more traffic in 
 
 ## Fiber based access network
 
-![[17.png]]
+![[Network Infrastructures/images/17.png]]
