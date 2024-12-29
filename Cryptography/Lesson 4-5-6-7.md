@@ -56,7 +56,7 @@ Una funzione $f$ è **one-way** se:
 
 ```ad-tip
 title: To clarify
-Quando diciamo che la probabilità di successo di un attacco (o di un algoritmo che cerca di invertire una funzione) è **neglibile**, intendiamo che questa probabilità diventa così piccola al crescere di un parametro $\lambda$ (di solito rappresentante la "dimensione" del problema, ad esempio la lunghezza della chiave) da essere considerata praticamente **irrilevante**. icordare la formula ovvero $\frac{1}{P(\lambda)}$
+Quando diciamo che la probabilità di successo di un attacco (o di un algoritmo che cerca di invertire una funzione) è **neglibile**, intendiamo che questa probabilità diventa così piccola al crescere di un parametro $\lambda$ (di solito rappresentante la "dimensione" del problema, ad esempio la lunghezza della chiave) da essere considerata praticamente **irrilevante**. Ricordare la formula ovvero $\frac{1}{P(\lambda)}$
 
 ```
 ## Definition (context of cryptographic games)
@@ -75,18 +75,12 @@ Is the existance of OWF's the same as $P \not = NP$? We don't know $OWF \to (P \
 ```
 
 **Impagliazzo’s Worlds** 
-Suppose to have Gauss, a genius child, and his professor. The professor gives to Gauss some mathematical problems, and Gauss wants to solve them all. Imagine now that, if using one-way functions, the problem is f (x), and its solution is x. According to Impagliazzo, we live in one of these possible worlds: 
-- **Algorithmica**: P = NP, meaning all efficiently verifiable problems are also efficiently solvable. The professor can try as hard as possible to create a hard scheme, but he won’t succeed because Gauss will always be able to efficiently break it using the verification procedure to compute the solution 
+Suppose to have Gauss, a genius child, and his professor. The professor gives to Gauss some mathematical problems, and Gauss wants to solve them all. Imagine now that, if using one-way functions, the problem is $f (x)$, and its solution is $x$. According to Impagliazzo, we live in one of these possible worlds: 
+- **Algorithmica**: $P = NP$, meaning all efficiently verifiable problems are also efficiently solvable. The professor can try as hard as possible to create a hard scheme, but he won’t succeed because Gauss will always be able to efficiently break it using the verification procedure to compute the solution 
 - **Heuristica**: NP problems are hard to solve in the worst case but easy on average. The professor, with some effort, can create a game difficult enough, but Gauss will solve it anyway; here there are some problems that the professor cannot find a solution to 
 - **Pessiland** : NP problems are hard on average but no one-way functions exist 
-- **Minicrypt**: One-way functions exist but public-key cryptography is im- practical 
-- **Cryptomania**: Public-key cryptography is possible: two parties can ex- change secret messages over open channels
-
-```ad-missing
-Qua ho skippato il capitolo 4.3!!!
-
-```
-
+- **Minicrypt**: One-way functions exist but public-key cryptography is impractical 
+- **Cryptomania**: Public-key cryptography is possible: two parties can exchange secret messages over open channels
 # Pseudo-random generators (PRG) (4.4)
 In the information-theoretic setting we can't do better than extracting $\approx k$ random bits from a source $x$ with min-entropy $\ge k$.
 
@@ -134,7 +128,7 @@ A deterministic function $G: \{0,1\}^\lambda \to \{0,1\}^{l+\lambda}$ is a PRG i
 - $Game_{F,A}^{prg}(\lambda, 1)$ : rappresenta lo stesso gioco, ma con la differenza che la stringa fornita all'avversario $A$ è **veramente casuale**, cioè estratta da una distribuzione uniforme di $\lambda + l(\lambda)$ bit $\Rightarrow$ $U_{\lambda + l(\lambda)}$
 - $\approx_{\tau}$ : le due distribuzioni degli output $G(U_{\lambda})$ e $U_{\lambda + l(\lambda)}$ sono indistinguibili per l'avversario A tranne che per una probabilità trascurabile $\tau$ ($\tau$ dipende da $\lambda$)
 
->Un avversario non sà con certezza se la stringa ricevuta è stata generata da $G$ oppure è completamente casuale.333333333
+>Un avversario non sà con certezza se la stringa ricevuta è stata generata da $G$ oppure è completamente casuale.
 
 It means:
 $$\forall \hspace{0.3cm} \text{PPT} \hspace{0.3cm} A (Pr[Game_{G,A}^{prg}(\lambda, 0) = 1] - Pr[Game_{G,A}^{prg}(\lambda, 1)=1]) \le negl(\lambda)$$
@@ -227,7 +221,7 @@ $$\forall b \in \{0,1\}, H(\lambda, b) \equiv_e H'(\lambda, b)$$
 
 **Proof by reduction**:
 Fix $b=0$ and assume:
-$$\not \exists PPTA / |Pr[H(\lambda, b) = 1] - Pr[H'(\lambda, b)]| \ge \frac{1}{negl(\lambda)}$$
+$$\not \exists PPTA : |Pr[H(\lambda, b) = 1] - Pr[H'(\lambda, b)]| \ge \frac{1}{negl(\lambda)}$$
 $$\not \exists \hspace{0.3cm} B \hspace{0.3cm} \text{"Breaking"} \hspace{0.3cm} G$$
 ![[Cryptography/images/20.png]]
 
@@ -308,10 +302,9 @@ Il cuore della dimostrazione sta nel dimostrare che ogni coppia di distribuzioni
 
 ```ad-abstract
 title: Lemma
-$$\forall i \in [0, l-1] : H_{i+1}(\lambda) \approx H_i[\lambda]$$
+$$\forall i \in [0, l-1] : H_{i+1}(\lambda) \approx H_i(\lambda)$$
 
 ```
-
 
 **Perché vale l'indistinguibilità tra $H_i$ e $H_{i+1}$​?**
 La sicurezza deriva dal fatto che:
@@ -328,30 +321,39 @@ I claim that the distribution of $z$ is such that:
 - If $z^* \equiv G(U_{\lambda})$, $z \leftarrow H_i(\lambda)$ 
 - If $z^* \equiv U_{l+1}$, $z \leftarrow H_{i+1}(\lambda)$ 
 
-Now:
-$$Pr[B(z^*) = 1 / z^* \leftarrow G(U_{\lambda})] =$$
-$$= Pr[t(z) = 1 / z \leftarrow H_i(\lambda)] $$
-$$ =Pr[B(z^*) = 1 / z^* \leftarrow U_{\lambda + 1}]$$
-$$= Pr[t(z) = 1 / z \leftarrow H_{i+1}(\lambda)]$$
-$$\Rightarrow \mid Pr[B(z^*)=1/z^* \leftarrow G(U_\lambda)] - Pr[B(z^*)=1/z^* \leftarrow U_{\lambda+1}]| \ge \frac{1}{Poly(\lambda)}$$
+### Relazione tra probabilità e distribuzioni
+Data una funzione $B$ che tenta di distinguere tra diverse distribuzioni, vale la seguente relazione:
+
+$Pr[B(z^*) = 1 \mid z^* \leftarrow G(U_{\lambda})] = Pr[t(z) = 1 \mid z \leftarrow H_i(\lambda)]$
+
+$= Pr[B(z^*) = 1 \mid z^* \leftarrow U_{\lambda + 1}] = Pr[t(z) = 1 \mid z \leftarrow H_{i+1}(\lambda)]$
+
+Da cui segue che:
+
+$\Rightarrow \mid Pr[B(z^*)=1/z^* \leftarrow G(U_\lambda)] - Pr[B(z^*)=1/z^* \leftarrow U_{\lambda+1}]| \ge \frac{1}{Poly(\lambda)}$
+
+In altre parole, esiste una differenza non trascurabile (almeno inversamente proporzionale a un polinomio di $\lambda$) tra la probabilità che $B$ distingua tra $G(U_\lambda)$ e $U_{\lambda+1}$.
 
 
-Let $X, Y$ and $Z$ be three any distribution ensembles of the same length. the following is true:
-$$X \equiv_c Y \wedge Y \equiv_c Z \Rightarrow X \equiv_c Z$$
-**Proof**:
-$\forall A \in PTT$ by using the triangle inequality: 
-$$|Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Z]|$$
-$$= |Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Y] + Pr[A(u) =1 : u \leftarrow Y] - Pr[A(u) =1 : u \leftarrow Z]|$$
-$$\le |Pr[A(u) =1 : u \leftarrow X] - Pr[A(u) =1 : u \leftarrow Y] + Pr[A(u) =1 : u \leftarrow Y] - Pr[A(u) =1 : u \leftarrow Z]|$$
-$$\le \epsilon_{1}(\lambda) + \epsilon_{2}(\lambda) \le negl(\lambda) \hspace{0.8cm} \text{By the sum of negligible funxtions the result is still negligible, proving lemma}$$
+### Transitività dell'indistinguibilità computazionale
+Siano $X$, $Y$ e $Z$ tre insiemi di distribuzioni di uguale lunghezza. Vale la seguente proprietà:
 
->In essence, the hybrid argument proves that computational indistinguishability is a transitive relationship, which enables us to design “hybrid” games in order to bridge differences two arbitrary ones
+$X \equiv_c Y \wedge Y \equiv_c Z \Rightarrow X \equiv_c Z$
+
+**Dimostrazione:**
+Per ogni algoritmo $A$ in tempo polinomiale ($A \in PTT$), usando la disuguaglianza triangolare, possiamo calcolare:
+
+$\mid Pr[A(u) = 1 \mid u \leftarrow X] - Pr[A(u) = 1 \mid u \leftarrow Z] \mid$
+
+$= \mid Pr[A(u) = 1 \mid u \leftarrow X] - Pr[A(u) = 1 \mid u \leftarrow Y] + Pr[A(u) = 1 \mid u \leftarrow Y] - Pr[A(u) = 1 \mid u \leftarrow Z] \mid$
+
+$\leq \mid Pr[A(u) = 1 \mid u \leftarrow X] - Pr[A(u) = 1 \mid u \leftarrow Y] \mid + \mid Pr[A(u) = 1 \mid u \leftarrow Y] - Pr[A(u) = 1 \mid u \leftarrow Z] \mid$
+
+$\leq \epsilon_1(\lambda) + \epsilon_2(\lambda) \leq negl(\lambda)$
+
+La somma di funzioni trascurabili (negligible functions) è ancora una funzione trascurabile, dimostrando così la validità del lemma.
 
 ----
------
------
-
-
 
 ![[Cryptography/images/26.png]]
 
@@ -392,7 +394,11 @@ If $f$ is OWF then so is $f'(x)=0 \mid \mid f(x)$
 Also: If $f$ is OWF, then so is $f'(x) = x[1] \mid \mid f(x), x[1] = 1st$ but of $x$.
 Concatenare il primo bit di $x$ ($x[1]$) con $f(x)$ preserva la difficoltà di inversione, ma non è un PRG per la stessa ragione di sopra.
 
->Adding predictable or structured information (such as "0" or the first bit of xx) does not turn an OWF into a PRG, because it does not introduce randomness or unpredictable expansion.
+```ad-abstract
+title: Important!
+
+Adding predictable or structured information (such as "0" or the first bit of xx) does not turn an OWF into a PRG, because it does not introduce randomness or unpredictable expansion.
+```
 
 ## Hardcore predicates
 Now that we’ve seen how to reuse a one-bit stretch PRG in order to obtain an arbitrary length of pseudorandom bits, we turn to the problem of constructing a 1-bit stretch PRG itself by starting from OWF. Let $f$ be a OWF, and consider the following questions: 
@@ -406,17 +412,17 @@ title: Definition
 - $h(x)$ è una funzione che restituisce un singolo bit $\hspace{0.8cm} h:x\to \{0,1\}$
 - $h(x)$ è computazionalemnte difficile da calcolare dato solo $f(x)$.
 
-**Formally**: an ADV taht know $f(x)$ cannot distinguish the bit $h(x)$ from a random one $U_1$.
+**Formally**: an ADV that know $f(x)$ cannot distinguish the bit $h(x)$ from a random one $U_1$.
 
 ```
 
-> very OWF $f(x)$ has at least one hard-core bit $h(x)$
+> Every OWF $f(x)$ has at least one hard-core bit $h(x)$
 
 ### PRG creation from OWF
 A PRG can be constructed from a One-Way Permutation (OWP, an invertible OWF). The idea is to concatenate the result of the OWP with a hard-core bit derived from the input:
-$$G(s) \equiv f(s) \mid \mid f(s)$$
+$$G(s) \equiv f(s) \mid \mid h(s)$$
 - $f(s)$: Output della OWP.
-- $h(s)$: Hard-core bit derivato da sss.
+- $h(s)$: Hard-core bit derivato da $s$.
 
 
 ```ad-attention
@@ -431,8 +437,3 @@ Se $f(s)$ è una $OWP$ e $h(s)$ è un hard-core bit, allora $G(s)$ è un $PRG$ s
 
 >Questo è importante perché garantisce che possiamo sempre derivare un bit "casuale" da una OWF.
 
-
-```ad-missing
-
-finisce qui a pagina 35
-```

@@ -146,7 +146,7 @@ OADM has four port:
 - monitors the bit error rate of the signal at the ingress and egress points in the network 
 - OLT also terminates an optical supervisory channel (OSC)
 
-Transponders typically  constitute the bulk of the cost, footprint, and power consumption in an OLT.  Therefore, reducing the number of transponders, helps minimize both the cost and the size of the equipment deployed.
+Transponders typically constitute the **bulk of the cost, footprint, and power consumption in an OLT**.  Therefore, reducing the number of transponders, helps minimize both the cost and the size of the equipment deployed.
 
 ![[101.png]]
 
@@ -225,11 +225,17 @@ Imagine that there is a light ray like the the red one that is going straight be
 
 ```
 
-The answer to this question is: thanks to the "==reflection phenomenon=="
+The answer to this question is: thanks to the "==Reflection phenomenon=="
 
 >For **reconfigurable** we means that we must be able to change the positions of this mirrors depending on the interconnection between input and output port that we want to realize
 
 There are other functions that OXC does: **Grooming**: multiplexing and grooming capabilities to switch traffic internally at much finer granularities. This time division multiplexing has to be done in the electrical domain.
+
+>L'**OXC** (Optical Cross-Connect) ha altre funzioni, tra cui il **Grooming**.
+
+Il **Grooming** si riferisce alla capacità di **multiplexare** e **groomare** (ovvero, ottimizzare e organizzare) il traffico all'interno di una rete ottica. In pratica, permette di **combinare più flussi di traffico** su una singola connessione ottica, migliorando l'efficienza e la gestione della rete.
+
+Nel caso dell'OXC, il grooming viene fatto con una **granularità molto fine**, ovvero gestendo il traffico a livelli molto dettagliati. Questo permette di **ottimizzare il flusso dei dati** attraverso la rete, indirizzando e commutando il traffico in modo più efficiente
 
 ![[WhatsApp Image 2024-12-08 at 17.31.28.jpeg]]
 
@@ -356,10 +362,27 @@ following layers:
 	- **Optical Transmission Section (OTS)**: This is the most granular layer, detailing individual fiber sections between devices, regardless of multiplexing. It reflects the actual physical topology of the optical network.
 
 ![[Pasted image 20241209161238.png]]
-## Performance and Fault Management
-To provide guaranteed quality of service to end users, constant monitoring of both performance and fault management is essential. This process involves the following:
 
-### Performance Management
+```ad-info
+title: Spiegazione in ITA
+- **Layer Client**: Questo livello astratto fornisce la connessione logica tra i client. Sebbene i client trasmettano pacchetti, questi vengono sempre incapsulati prima di essere inviati ai livelli inferiori. L'incapsulamento aggiunge un sovraccarico per garantire che i pacchetti possano funzionare correttamente nei livelli successivi.
+    
+- **Dominio Elettrico**:
+    
+    - **Layer ODU**: Questo livello presenta due OLT (Optical Line Terminals) alle estremità della connessione, rappresentate come un singolo e semplice percorso luminoso. I pacchetti, incapsulati con un sovraccarico aggiuntivo, diventano le Optical Data Units (ODU). Questo livello interagisce principalmente con il livello client. L'ODU è la rappresentazione dei dati nel dominio ottico, ma è gestito a livello elettrico dal client.
+    - **Layer OTU**: Scendendo a un livello più profondo, otteniamo una comprensione più chiara della trasmissione del sistema. Quello che sembra un semplice percorso luminoso attraversa spesso più sottoreti ottiche. Alle estremità di ciascuna sottorete, gli OLT svolgono un ruolo cruciale, in particolare i loro componenti transponder, che consentono la conversione delle lunghezze d'onda. La uniformità delle lunghezze d'onda è mantenuta all'interno di ciascuna sottorete, il che rende frequente la conversione delle lunghezze d'onda ai confini delle sottoreti.
+- **Dominio Ottico**:
+    
+    - **Canale Ottico (Och)**: Questo livello rappresenta la porzione di un percorso luminoso tra due transponder. Il percorso luminoso completo è costituito da canali ottici concatenati. I transponder e gli altri dispositivi in questo livello interagiscono con il layer OTU per eseguire le loro funzioni, inclusa la registrazione del numero di sottoreti attraversate da un segnale (che implica transizioni nel dominio elettrico).
+    - **Sezione di Multiplexing Ottico (OMS)**: Questo livello esplora le sottoreti ottiche, identificando elementi come gli OLT e gli Optical Add-Drop Multiplexers (OADM). Gli OADM sono dispositivi che permettono di aggiungere o rimuovere segnali da un percorso ottico senza dover interrompere il flusso principale.
+    - **Sezione di Trasmissione Ottica (OTS)**: Questo è il livello più dettagliato, che descrive le singole sezioni di fibra ottica tra i dispositivi, indipendentemente dal multiplexing. Rappresenta la topologia fisica effettiva della rete ottica, mostrando come i cavi e i dispositivi sono fisicamente collegati.
+
+```
+
+## Performance and Fault Management
+To provide guaranteed **quality of service to end-users**, **constant monitoring of both performance** and **fault management** is essential. This process involves the following:
+
+### Performance Monitoring
 1. monitoring performance parameters for all connections
 2. Taking necessary actions to ensure desired performance goals are met
 
@@ -371,7 +394,7 @@ To provide guaranteed quality of service to end users, constant monitoring of bo
 ## Bit Error Rate (BER) and Optical Trace
 
 ### BER
-- The Bit Error Rate (BER) is a critical performance metric for lightpaths.
+- The ==Bit Error Rate (BER)== is a critical performance metric for lightpaths.
 - BER detection is only possible when the signal is in the electrical domain, typically at regenerator or transponder locations.
 - Overhead inserted in OTN (Optical Transport Network) frames, consisting of parity check bytes, enables BER computation.
 ### Optical Trace
@@ -408,37 +431,55 @@ Protocols and functions in the optical network, such as BER, path trace, and def
 
 ![[Pasted image 20241211171644.png]]
 ### Pilot Tone
-- Any wavelength is centered at a certain frequency, with gaps between signals for distinction.
-- The Pilot Tone is placed in one of these gaps, utilizing low power and data rate.
-- Messages, encoded in binary, are modulated and converted into optical signals sent via the Pilot Tone band.
-- The Pilot Tone is added as overhead to the Optical Channel Layer (OCH) by the transponder and is terminated at the end of the OCH.
-- It reflects faults or errors in the associated client signal.
+Il **Pilot Tone** è un segnale utilizzato nelle reti ottiche per il monitoraggio e la gestione dei guasti. Ecco come funziona, spiegato in parole semplici:
+
+1. **Posizionamento nel "gap" tra i segnali**: Ogni lunghezza d'onda, cioè ogni canale di comunicazione, è centrata su una certa frequenza. Tra questi segnali ci sono degli spazi vuoti, chiamati **gap**. Il Pilot Tone viene posizionato in uno di questi spazi vuoti, in modo che non interferisca con i segnali di comunicazione principali.
+    
+2. **Bassa potenza e bassa velocità**: Il Pilot Tone viene trasmesso con una potenza molto bassa e una bassa velocità di trasmissione dati. Questo è sufficiente per svolgere la sua funzione di monitoraggio senza sovraccaricare la rete.
+    
+3. **Codifica dei messaggi**: I messaggi di controllo e monitoraggio vengono codificati in **binario** (0 e 1), poi vengono modulati e trasformati in segnali ottici che vengono inviati attraverso la banda del Pilot Tone.
+    
+4. **Monitoraggio dei guasti**: Il Pilot Tone viene aggiunto come un "sovraccarico" (overhead) al **Canale Ottico** (OCH) dal transponder, e viene interrotto alla fine del percorso. Il suo scopo principale è quello di monitorare la qualità del segnale e rilevare eventuali guasti o errori nel segnale del client (ad esempio, nel traffico di dati).
 
 ## Optical Supervisory Channel (OSC)
-- The OSC uses a reserved wavelength for control-monitoring purposes, independent of client signals.
-- It has a single-fiber lifespan and monitors fiber health.
-- Unlike the Pilot Tone, the OSC is not client-signal-specific and can be applied anywhere in the network.
+L'**Optical Supervisory Channel (OSC)** è un canale dedicato all'**monitoraggio e al controllo** delle reti ottiche, utilizzato per garantire la salute e l'affidabilità della fibra ottica. Ecco come funziona, spiegato in modo semplice:
 
+1. **Lunghezza d'onda riservata**: L'OSC utilizza una **lunghezza d'onda riservata**, cioè una frequenza specifica nella banda ottica, che non è utilizzata per il traffico dati del cliente. Questo gli permette di funzionare indipendentemente dai segnali principali di comunicazione.
+    
+2. **Monitoraggio della fibra**: La principale funzione dell'OSC è quella di **monitorare la salute della fibra ottica**. In pratica, può rilevare problemi fisici nella fibra stessa, come guasti, degrado del segnale o altre anomalie che potrebbero influire sulla qualità della comunicazione.
+
+
+> OSC ha un canale dedicato separato, utilizzato per il monitoraggio e la gestione della rete ottica nel suo complesso.
 ### Application of OSC and Pilot Tone
 ![[Pasted image 20241211171825.png]]
 
-1. Trace:
-	- The OSC can trace multiple client signals within the OTS (Optical Transmission Section).
-	- Since an OTS section may carry signals from different clients with individual traces in the Optical Channel, the OSC wavelength can provide additional trace overhead.
-2. Defect Indicators:
-	- The OSC covers defect indicators across all optical layers (OTS, OMS, OCh).
-	- Devices without a transponder for generating a Pilot Tone rely on the OSC for fault communication.
-3. Performance Monitoring:
-	- In the optical domain, the Pilot Tone monitors the optical power of client signals. If the Pilot Tone experiences attenuation, the client signal is likely affected similarly.
-	- In the electrical domain, BER techniques evaluate signal degradation.
-4. Rate-Preserving Overhead:
-	- Overhead carried in Optical Network headers without reducing client data rate is referred to as Rate-Preserving Overhead.
+- **Traccia:**
+    - L'OSC può tracciare più segnali dei clienti all'interno della **Sezione di Trasmissione Ottica (OTS)**.
+    - Poiché una sezione OTS può trasportare segnali provenienti da clienti diversi, ognuno con una traccia individuale nel **Canale Ottico (OCh)**, la lunghezza d'onda dell'OSC può fornire un'ulteriore sovraccarico di tracciamento.
+- **Indicatori di Difetto:**
+    - L'OSC copre gli indicatori di difetto su tutti i livelli ottici (OTS, OMS, OCh).
+    - I dispositivi senza un trasponder per generare un **Pilot Tone** fanno affidamento sull'OSC per la comunicazione dei guasti.
+- **Monitoraggio delle Prestazioni:**
+    
+    - Nel dominio ottico, il **Pilot Tone** monitora la potenza ottica dei segnali dei clienti. Se il Pilot Tone subisce un'attenuazione, è probabile che anche il segnale del cliente venga influenzato in modo simile.
+    - Nel dominio elettrico, le tecniche di **BER (Bit Error Rate)** valutano il degrado del segnale.
+- **Sovraccarico che preserva il tasso (Rate-Preserving Overhead):**
+    
+    - Il sovraccarico trasportato nelle intestazioni della rete ottica senza ridurre il tasso di dati del cliente è chiamato **Sovraccarico che preserva il tasso**.
+
+
+----
+
+
+
+
+
+
 
 
 # Domande e risposte Wooclap
 
 ![[Pasted image 20241212125729.png]]
-
 
 6) The source node ask to the network the creation of a new circuit
 8) The network compute a path from the source to the destination node
@@ -461,19 +502,12 @@ Protocols and functions in the optical network, such as BER, path trace, and def
 
 
 
-![[Pasted image 20241213163455.png]]
-
-
-
-
-
+![[Pasted image 20241213163455.png|900]]
 ![[Pasted image 20241213163552.png]]
 
-
-
-
-
-
+----
 
 ![[Pasted image 20241213163701.png]]
- 
+ 1-C
+ 2-B
+ 3-A

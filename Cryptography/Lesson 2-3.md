@@ -1,14 +1,13 @@
 ```ad-summary
 title: Thm Equivalent notion of perfect secrecy
 i) The above definition (Shannon)
-ii) $M$ and $C$ are indipendent 
+ii) $M$ and $C$ are independent 
 iii) $\forall m, m' \in M, \forall \tau \in T \to Pr[ENC(k,m) = c] = Pr[ENC(k,m') = c]$
 
 ```
 
 > $i$, $ii$, $iii$ are Equivalent Notions of Perfect Secrecy.
 > $iii)$ Over the choose of the key, the probability is the same.
-
 
 
 ```ad-question
@@ -28,7 +27,7 @@ Dato un sistema crittografico, il risultato della funzione di crittografia $ENC$
 
 ```
 ## Chain demonstration
-The proof is structured as a cyclic implication between the three pro- posed definitions
+The proof is structured as a cyclic implication between the three proposed definitions.
 ### $i \to ii$
 
 ![[4.jpeg]]
@@ -48,9 +47,9 @@ By applying Bayes’ theorem, the above result can be turned into the first defi
 
 - $M = K = T = \{0,1\}^n$
 	- message and the key are sequence of bits of length $n$.
-- $ENC(k,n) = \varphi = k \oplus m$ 
+- $ENC(k,n) = c = k \oplus m$ 
 	- Exclusive or.
-	- (L'operazione XOR restituisce un bit 1 se i bit in input sono diversi, altrimenti restituisce 0. Questa funzione genera un testo cifrato φ combinando il messaggio con la chiave.)
+	- (L'operazione XOR restituisce bit 1 se i bit in input sono diversi, altrimenti restituisce 0. Questa funzione genera un testo cifrato $c$ combinando il messaggio con la chiave.)
 - $DEC(k, c) = c \oplus k = k \oplus m \oplus k = m$
 	- remember that $k \oplus k = 0$ 
 	- apply another time the secret key into the cipertext we can obtain the original message.
@@ -129,7 +128,6 @@ $$Pr[M = m | \varphi = \varphi] = 0 \hspace{0.5cm} \text{$m$ is in $M$ but not i
 **In a perfectly secret encryption system, the probability of each message must be uniform**:
 $$Pr[M = m] = \frac{1}{|M|} \hspace{0.4cm} \text{This is Good!}$$
 ## Authentic communication
-
 The most common scenario exposing the problem of authentication is depicted in figure 2.2. This time, the parties Alice and Bob want to ensure that they are effectively communicating to each other; in other words, nobody else is impersonating either party. The objects used here are: 
 - The data to be shared, or message $m$; 
 - Some additional secret information, shared by the two parties, that is used to sign the message: the authentication key or just key $k$; 
@@ -139,7 +137,7 @@ The most common scenario exposing the problem of authentication is depicted in f
 The mechanism employed by both parties to enforce authentication is called a ==cryptographic authentication scheme==, typically taking the form $\Phi = (Tag, Ver)$, where:
 
 - $Tag ∈ K × M → T$ is the machine that, given a message $m$ in $M$ and a key $k$ in $K$ generates the signature $t$ 
-- $Ver ∈ K × M × T → 2$ is the machine that decides whether t is the correct signature for the message $m$ using the key $k$
+- $Ver ∈ K × M × T → 2$ is the machine that decides whether $t$ is the correct signature for the message $m$ using the key $k$
 
 
 Uno schema di autenticazione è corretto se, per ogni messaggio $m \in M$ e per ogni chiave$k \in K$:
@@ -152,7 +150,7 @@ A rigorous definition of uncountability is the ==$ε$-statistical one-time unfor
 
 ```ad-abstract
 title: $\epsilon$-statistical one-time unforgeability
-let $\Phi$ be an authentication scheme, and let $m_1$ and $m_2$ be two distinct messages, and $t_1 = Tag(K, m1_)$ be the signature of $m_1$ under $\Phi$, with the key $K$ picked uniformly at random. $\Phi$ is deemed $\epsilon$-statistical one-time unforgeability iff knowing $m_1$ and $t_1$ does not give any advantage in finding a signature $t_2$ that is actually the signature of $m_2$ under the same scheme and the same key of $m_1$, without knowing such key:
+let $\Phi$ be an authentication scheme, and let $m_1$ and $m_2$ be two distinct messages, and $t_1 = Tag(K, m_1)$ be the signature of $m_1$ under $\Phi$, with the key $K$ picked uniformly at random. $\Phi$ is deemed $\epsilon$-statistical one-time unforgeability iff knowing $m_1$ and $t_1$ does not give any advantage in finding a signature $t_2$ that is actually the signature of $m_2$ under the same scheme and the same key of $m_1$, without knowing such key:
 
 $$\forall m_1 = m_2 \in M, \forall t_1, t_2 \in T Pr[Tag(K, m_2) = t_2 \mid Tag(K, m_1) = t_1] \le \epsilon$$
 
@@ -172,11 +170,15 @@ title: Definition
  family of hash functions $H$ is defined as a function family that is mapped $1$-to-$1$ by an indexing set $S$, where the indices are called seeds:
  $$H \in S \to (M \to T ) : s \to h_s \hspace{0.9cm} \text{where $s$ is public and know}$$
 
+1. La famiglia $H$ associa ogni seme $s \in S$ a una funzione hash specifica $h_s$
+2. Ogni funzione hash $h_s$ è definita come una mappatura da $M$ (dominio, i dati da hashare) a $T$ (il codominio, ovvero il risultato della funzione di hash, tipicamente un valore fisso come una stringa di lunghezza definita)
+
 ```
 
 The seed $S$ is crucial to ensure that the hash functions chosen by $H$ are uniformly distributed and respect the pairwise independence property.
 Furthermore, given a uniformly random seed $S$, the family as a whole distributes the tags uniformly: (tag for one single message $m_1$)
 $$\forall m \in M,  \forall t ∈ T, Pr[h_S (m) = t] = \frac{1}{T}$$
+>La probabilità che una funzione di hash $h_s$ mappi il messaggio $m$ al valore $t$ è uniformemente distribuita cioè pari a $\frac{1}{T}$ ove $|T|$ è il numero totale di possibili valori in $T$.
 
 Having formalized what a hash function family is, the notion of unforgeability can be modeled by the property of pairwise-independency:
 
@@ -261,7 +263,7 @@ In cryptography, **randomness** means generating numbers that cannot be predicte
 In an ideal context, the sequence of bits we use in cryptography must satisfy two main characteristics:
 - **Uniformity**: Each value (bit) has the same probability of being chosen.
 - **Impredictability**: Another key feature of randomness is that successive values must not be predictable (otherwise I compromise security).
-Natural sources of randomness are physical phenomena that generate random data However, these natural sources are not perfect. The randomness we get from these phenomena is imperfect since there may be correlations in the data that are generated or the numbers may be unbalanced, i.e., they may not have a uniform distribution. **Randomness Extraction** is used to “purify” the non-perfect sources of randomness, which could come from physical devices or other natural sources, and ensure that the final random numbers possess the properties necessary to be used in cryptography. 
+Natural sources of randomness are physical phenomena that generate random data. However, these natural sources are not perfect. The randomness we get from these phenomena is imperfect since there may be correlations in the data that are generated or the numbers may be unbalanced, i.e., they may not have a uniform distribution. **Randomness Extraction** is used to “purify” the non-perfect sources of randomness, which could come from physical devices or other natural sources, and ensure that the final random numbers possess the properties necessary to be used in cryptography. 
 ## Randomness extraction
 How to extract uniform randomness as imperfect random source.  The goal is to design some function "**EXT**" (Extraction) that tells some $x$ (not uniform) and outputs something **uniform**. Suppose you have a **biased coin** (_moneta con due facce_):
 $$Pr[B = 0] = p \le \frac{1}{2}$$
@@ -269,7 +271,7 @@ How to craft a fair coin out of it? $\to$ How to extract uniform randomness?
 In his time, _Von Neumann_ devised a simple algorithm, which is now known as the **Von Neumann extractor**.
 
 ![[Cryptography/images/63.png|600]]
->This algoritmi guarantee that zero and one has the same probability to be extracted
+>This algoritm guarantee that zero and one has the same probability to be extracted
 
 So: $$Pr[\text{Ext outputs} \hspace{0.2cm}  0] = Pr[\text{Ext outputs} \hspace{0.2cm}  1] = P(1-p)$$$$Pr[\text{No output after k trials}] \hspace{0.5cm} \text{trial is small} \hspace{0.5cm} $$
 
@@ -287,7 +289,7 @@ In general can we design a "good" EXT for any $x$? No, because:
 title: Def. Min-Entropy
 The ==Min-Entropy== represent tha **max probability to predict an $x$ value by an attacker**. The higher the Min-Entropy, the more difficult it is for the attacker to correctly predict the value.
 
-The Min-Entropy of $x$ is: $$H_{\infty}(x) = - \log_x \text{max} \hspace{0.1cm} Pr[X = x]$$
+The Min-Entropy of $x$ is: $$H_{\infty}(x) = - \log_2 \text{max} \hspace{0.1cm} Pr[X = x]$$
 
 - $\text{max} \hspace{0.1cm} Pr[X = x] \Rightarrow$ highest probability with which an attacker could correctly guess the value of  𝑋
 - $\log_2 x \Rightarrow$ the use of the logarithm allows the Min-Entropy to be expressed in terms of bits.
@@ -316,7 +318,7 @@ $$H_\infty \ge K \hspace{0.3cm} (k < x)$$
 >represents the minimum amount of uncertainty we can get from a source $X$. No matter how imperfect or predictable a source is, the amount of uncertainty can never be less than $K$.
 
 **THE NEW GOAL** 
-The new objective is to design an **EXT extraction function** that extracts ==uniform randomness from a source $X$ ==such that the Min-Entropy of $X$ is greater than or equal to $k$.
+The new objective is to design an **EXT extraction function** that extracts ==uniform randomness from a source $X$==such that the Min-Entropy of $X$ is greater than or equal to $k$.
 $$\text{Design EXT that extracts from any x such that} \hspace{0.9cm} H_\infty(X) \ge k$$
 
 ```ad-abstract
@@ -372,7 +374,7 @@ title: Spiegazione
 
 ```
 
-The statistical distance between two distributions $X$ and $Y$ measures how “different” or distinguishable these two distributions are.
+The **statistical distance** between two distributions $X$ and $Y$ measures how “different” or distinguishable these two distributions are.
 
 $$SD(X;Y) = \frac{1}{2} \sum_z | Pr[X=z] - Pr[y=z] \hspace{0.5cm} \text{SD = Statistical Distance}$$
 _Equivalent:_ An unbound ADV can-t distinguish a sample $z \leftarrow x$ from $z \leftarrow y$ with $f$ better than  $\epsilon$
@@ -384,7 +386,7 @@ La formula della distanza statistica si calcola sommando la differenza assoluta 
 ```
 
 ## Hash functions has extractors
-Se abbiamo una famiglia di funzioni hash **pairwise indipendenti**, possiamo usarle come estrattori di casualità in combinazione con un seme pubblico. La condizione per il successo dell'estrazione è legata alla **Min-Entropia** della sorgente $x$ (quanto è imprevedibile).
+Se abbiamo una famiglia di funzioni hash **pairwise indipendent**, possiamo usarle come estrattori di casualità in combinazione con un seme pubblico. La condizione per il successo dell'estrazione è legata alla **Min-Entropia** della sorgente $x$ (quanto è imprevedibile).
 - $H_{\infty}(x)$ è la Min-Entropia di $x$, che misura quanto è imprevedibile la sorgente.
 - $k$ è la Min-Entropia minima richiesta per garantire che l'estrattore produca una buona casualità.
 - $\epsilon$ è la probabilità di errore (cioè la probabilità che l'output dell'estrattore non sia veramente uniforme).
@@ -395,11 +397,10 @@ Let $H = \{h_{\epsilon}: \{0,1\}^k \to \{0,1\}^l\}$ where $s \in \{0,1\}^d$ be a
 ```
 
 Il teorema dice che per avere un buon estrattore, la Min-Entropia $(k)$ della sorgente $x$ deve essere **sufficientemente alta** rispetto alla lunghezza dell'output dell'estrattore $(l)$ e alla probabilità di errore $\epsilon$. La formula data è:
-
+$$k \ge l + 2 \log(\frac{1}{\epsilon}) - 2$$
 Dove:
-
 - $k$ è la Min-Entropia della sorgente $x$.
-- $l$ è la lunghezza dell'output desiderato.
+	- $l$ è la lunghezza dell'output desiderato.
 - $\epsilon$ è la probabilità che l'output dell'estrattore non sembri casuale.
 
 >Per garantire che l'estrattore funzioni correttamente, $k$ deve essere abbastanza grande rispetto a $l$ e $\epsilon$.
@@ -418,7 +419,7 @@ La formula finale $SD(Y; U) \leq \epsilon$ indica che la **distanza statistica**
 - Se la probabilità di errore $\epsilon$ è **piccola**, l'output dell'estrattore è molto **simile** a una distribuzione uniforme (cioè molto simile a una sequenza di bit completamente casuali).
 - Se $\epsilon$ è grande, l'output dell'estrattore sarà meno simile a una distribuzione uniforme, e quindi meno casuale.
 
-In pratica, questo significa che **la qualità dell'estrazione della casualità** dipende da quanto **piccola** è la probabilità di errore $\epsilon$. Se $\epsilon$ è molto piccolo, possiamo essere sicuri che l'output dell'estrattore sarà **praticamente casuale** e non distinguibile da una sequenza di bit estratti da una vera distribuzione uniforme.
+In pratica, questo significa che **la qualità dell'estrazione della casualità** dipende da quanto **piccola** è la probabilità di errore $\epsilon$. Se $\epsilon$ è molto piccolo (attaccante ha poca probabilità di indovinare), possiamo essere sicuri che l'output dell'estrattore sarà **praticamente casuale** e non distinguibile da una sequenza di bit estratti da una vera distribuzione uniforme.
 
 
 Example: 

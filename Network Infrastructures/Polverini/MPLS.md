@@ -342,7 +342,5 @@ corretta: 4
 
 
 ----
-
-
 ![[Pasted image 20241213164139.png]]![[Pasted image 20241213164151.png]]
 Corretto: pop swap push

@@ -58,7 +58,6 @@ If $f$ is a PRF then $\pi_f$ is CPA-Secure.
 
 ```
 
-da  51  ^^^^^ non trovo nulla in poi
 ### PRFs for CPA-Secure
 We will see PRFs are enough for doing ==CPA-Secure== SKE, but also ==MACs==.
 How to build a PRF:
@@ -94,7 +93,7 @@ $$\text{REAL}_{A,F}(\lambda) / \text{RAND}_{A, R}(\lambda)$$
 Equivalent: $\forall$  ppt $A$ 
 $$\mid Pr[Real_{A,F}(\lambda)=1] - Pr[RAND_{A,R} (\lambda)=1] \le negl(\lambda) \mid$$
 The challenger is unbounded in rand. This is simpler think of, but no needed as we can do lazy sampling:
-- Upon $x \in \{0,1\}$, output $y \leftarrow \{0,1\}^n$ as long as $x$ not asked before (in which case, output previous $y$)
+- Upon $x \in \{0,1\}^n$, output $y \leftarrow \{0,1\}^n$ as long as $x$ not asked before (in which case, output previous $y$)
 ### Construct a PRFs
 - **In practice**: ==AES== (intuition and experience). Designed in early 2000, still unbroken. No provable security, back then.
 - **In theory**: ==OWF $\to$ PRF==. Alternatively, you can use factoring, or DL, LWE.
@@ -109,11 +108,7 @@ title: Theorem 1
 Assuming $F$ is a PRF, the above is CPA-Secure $SKE$ for $FIL$.
 
 ```
-
-
-#### Application 2: $PRF \Rightarrow MAC$
-
-## Message Authentication Codes and Unforgeability
+## Application 2: Message Authentication Codes and Unforgeability
 Recall that a ==MAC== scheme is a couple **(Tag, Verify)**, with the purpose of authenticating the message’s source.  The desirable property that a MAC scheme should hold is to **prevent any attacker from generating a valid couple $(m^∗, r^∗)$, even after querying a tagging oracle polynomially many times**. The act of generating a valid couple from scratch is called ==forging==. In formal terms:
 
 ![[Cryptography/images/72.png]]
@@ -132,8 +127,8 @@ Se l'avversario riesce a vincere con probabilità maggiore di $\text{negl}$ (dov
 
 ```ad-abstract
 title: Definition (UFCMA)
-Tag is UFCMA if $\forall$ ptt $A$: 
-$$\forall \hspace{0.2cm} r \hspace{0.2cm} Pr[Game_{A, Tag}(\lambda \mid = 1)] \le negl(\lambda)$$
+Tag is UFCMA iff $\forall$ ptt $A$: 
+$$\forall \hspace{0.2cm} r \hspace{0.2cm} Pr[Game_{A, Tag}(\lambda)]=1 \le negl(\lambda)$$
 
 ```
 
@@ -160,7 +155,7 @@ For every $b\in \{0,1\}, H(\lambda, b) \approx_c G(\lambda, b)$
 
 Dobbiamo dimostrare che un avversario $A$ non può distinguere tra:
 - $G(\lambda, b)$: utilizza la PRF $F_k$
-- H(\lambda, b): Utilizza una funzione casuale $R$
+- $H(\lambda, b)$: Utilizza una funzione casuale $R$
 
 **Demonstration of the lemma**:
 ```ad-info
@@ -171,7 +166,7 @@ In questa dimostrazione per assurdo, si assume che $A$ sia capace di distinguere
 In questo caso, $B$ **non cerca di rendere i mondi indistinguibili per $A$**, ma invece **usa $A$ per dimostrare che, se $A$ riesce a distinguere, allora si rompe la sicurezza della PRF**.
 ```
 
-By reduction to security of PRF. Fix $b$ and assume: $\not \exists$ ppt $A$ such that $$\mid Pr[G(\lambda, b)=1] - Pr[H(\lambda, b)=1]\mid \ge \frac{1}{negl(\lambda)}$$
+By reduction to security of PRF. Fix $b$ and assume: $\exists$ ppt $A$ such that $$\mid Pr[G(\lambda, b)=1] - Pr[H(\lambda, b)=1]\mid \ge \frac{1}{negl(\lambda)}$$
 
 Build ppt $B$ against $F$:
 ![[Cryptography/images/76.png]]
@@ -212,13 +207,14 @@ $$SD(A;B) \le Pr[E]$$
 
 > If the probability of the bad event $E$ is very small, the statistical distance will also be small, which means that the distributions $A$ and $B$ are ==indistinguishable==.
 
-**The bad event (collision of the values $r_i$)**:  We want that all the $r's$ are distinct; if they are distinct, then $(c_1, c_2)$ in $H(\lambda, b)$ is uniform and also $(c_1^*, c_2^*)$ in $H'(\lambda, b)$ is uniform as well. $E$ is the even that they collide:
+**The bad event (collision of the values $r_i$)**:  We want that all the $r's$ are distinct; if they are distinct, then $(c_1, c_2)$ in $H(\lambda, b)$ is uniform and also $(c_1^*, c_2^*)$ in $H'(\lambda, b)$ is uniform as well. $E$ is the even that they collid:
 $$Pr[ \hspace{0.2cm} \exists \hspace{0.2cm} i, j / r_i = r_j; r_i, r_j \in \{0,1\}^n] \le \sum_{i,j}Pr[r_i = r_j] \hspace{0.5cm} \text{union bound}$$
 $$Col(U_n)=r^{-n} \hspace{0.9cm} \text{probability of collision for a uniform distribution}$$
 $$= \binom{q}{2} \cdot 2^{-n} \le q^r \cdot r^{-h} = negl(\lambda)$$
 where $q$ is the $A$ of CTXS. ($q = poly(\lambda)$)
-$$\Rightarrow G(\lambda, 0) \approx_c H(\lambda, 0) \approx_s H'(\lambda, 0) \equiv H'(\lambda, 1) \approx_s H(\lambda, 1) \approx_s G(\lambda, 1)$$
+$$\Rightarrow G(\lambda, 0) \approx_c H(\lambda, 0) \approx_s H'(\lambda, 0) \equiv H'(\lambda, 1) \approx_s H(\lambda, 1) \approx_c G(\lambda, 1)$$
 
+>Possiamo dunque dire che: $G(\lambda, 0) \approx_c G(\lambda, 1)$
 
 ```ad-abstract
 title: Spiegazione
@@ -234,7 +230,6 @@ Dove:
 Questa probabilità è chiamata **trascurabile** in $\lambda$ $\text{negl}(\lambda)$ perché, man mano che $n$ cresce, la probabilità diventa piccolissima.
 
 ```
-
 
 
 ```ad-abstract
@@ -256,7 +251,7 @@ Let $H(\lambda)$ be same as $G(\lambda)$ but with random table $R: \{0,1\}^n \to
 
 ```ad-abstract
 title: Lemma
-$$\forall \hspace{0.2cm} \text{PPT} \hspace{0.2cm} A: \mid Pr[G(\lambda)=1] - Pr[H(\lambda)=1]\mid \le negl(\lambda)$$
+$$\forall \hspace{0.2cm} \text{PPT} \hspace{0.2cm} A : \mid Pr[G(\lambda)=1] - Pr[H(\lambda)=1]\mid \le negl(\lambda)$$
 
 ```
 
@@ -266,6 +261,9 @@ $$\forall \hspace{0.2cm} \text{PPT} \hspace{0.2cm} A: \mid Pr[G(\lambda)=1] - Pr
 By inspection:
 - $Pr[Real(\lambda)=1] = Pr[G(\lambda)=1]$
 - $Pr[Rand(\lambda)=1] = Pr[H(\lambda)=1]$
+
+- La probabilità nel mondo reale (in cui ci sta un po di incertezza) è uguale alla probabilità della funzione PRG.
+- La probabilità nel mondo random (totale  randomicità) è uguale alla probabilità della funzione random $H$.
 
 ==(Demonstration end)==
 
@@ -288,18 +286,16 @@ Next step:
 2) How to combine both encryption and authentication?
 
 Let's start with the first for SKE. These are the so-called "**Modes of operation**".
-
-
 ## Modes of Operation
 Up until now, encryption has been dealt with messages of fixed size around a polynomial function to $\lambda$. How to deal with messages with arbitrary size? Setting a maximum bound to message length seems impractical, both for waste reasons when messages are too short, and for practicality when messages eventually get too long. The solution takes the form of a “block-cipher”, where a message of a given size is split into equally-sized blocks, and then encrypted using a fixed-size encryption scheme. Various instances of this technique, called modes, have been devised.
 
-### CBC (Cypher Black Chaining) 
+### CBC (Cypher Block Chaining) 
 #### Description
-The diagram illustrates the Cipher Block Chaining (CBC) mode of encryption, which is commonly used in block ciphers to securely encrypt messages of arbitrary length. In CBC mode, each block of plaintext mi is encrypted in a way that depends on the encryption of the previous block. This chaining process ensures that identical plaintext blocks produce different ciphertext blocks, provided the previous ciphertext differs (due to either different messages or an initial random value).
+The diagram illustrates the Cipher Block Chaining (CBC) mode of encryption, which is commonly used in block ciphers to securely encrypt messages of arbitrary length. In CBC mode, each block of plaintext $m_i$ is encrypted in a way that depends on the encryption of the previous block. This chaining process ensures that identical plaintext blocks produce different ciphertext blocks, provided the previous ciphertext differs (due to either different messages or an initial random value).
 ![[Cryptography/images/86.png]]
 
 #### Initial Block and Random Initialization Vector
-- The process starts with a random value r, also known as the initialization vector (IV). This IV is crucial for security because it ensures that even if the same message is encrypted multiple times, it will produce different ciphertexts each time. 
+- The process starts with a random value $r$, also known as the initialization vector (IV). This IV is crucial for security because it ensures that even if the same message is encrypted multiple times, it will produce different ciphertexts each time. 
 - The first ciphertext block c0 is computed by combining (via XOR) the IV r with the first plaintext block m1.
 
 #### Encrypting Each Block
@@ -312,11 +308,11 @@ For each block $m_i$ (where $i=1,2,\cdots,t$):
 	- $\oplus$ denotes the XOR operation. 
 	- $P_k$ is the encryption function with key $k$.
 
-This chaining process is repeated for each block, so each ciphertext block ci depends on the encryption of the previous block, making it unique even if identical plaintext blocks appear in different parts of the message.
+This chaining process is repeated for each block, so each ciphertext block $c_i$ depends on the encryption of the previous block, making it unique even if identical plaintext blocks appear in different parts of the message.
 
 #### Decryption in CBC Mode
 The decryption process is essentially the reverse of encryption
-For each ciphertext block ci, the decryption function $P_k^{-1}$ is applied to remove the encryption, yielding the XOR ed result of the current plaintext block and the previous ciphertext block. Mathematically: 
+For each ciphertext block $c_i$, the decryption function $P_k^{-1}$ is applied to remove the encryption, yielding the XOR ed result of the current plaintext block and the previous ciphertext block. Mathematically: 
 $$P_k^{-1} \cdot c_i \oplus c_{i-1}$$
 where: 
 - $P_{k−1}$ is the decryption function for the block cipher. 
@@ -333,8 +329,8 @@ CTR mode (short for Counter mode) is a method for encrypting messages where each
 
 #### How CTR Mode Works
 1. A starting value $r$ is chosen for the encryption. This nonce is unique for each message but can be reused across different blocks of the same message. 
-2. For each block of plaintext $m_i$, a counter value is generated. This counter starts at r for the first block and increments by 1 for each subsequent block. 
-3. Each r is then encrypted with the function $f_k$ (a pseudorandom function or PRF), using the secret key $k$. 
+2. For each block of plaintext $m_i$, a counter value is generated. This counter starts at $r$ for the first block and increments by $1$ for each subsequent block. 
+3. Each $r$ is then encrypted with the function $f_k$ (a pseudorandom function or PRF), using the secret key $k$. 
 4. The output of $f_k$ for each counter value is then XORed with the plaintext block $m_i$ to produce the ciphertext block $c_i$.
 
 Mathematically: 
@@ -345,7 +341,7 @@ Where:
 - $m_i$ is the plaintext block, 
 - $\oplus$ is the XOR operation.
 
-**CPA Security**: Counter mode achieves Chosen Plaintext Attack (CPA) security, which means that it can withstand attacks where an attacker chooses plaintext messages to be encrypted and tries to learn information about the key or other plaintexts. This is achieved by using a unique counter value for each block, ensuring that even identical plaintext blocks result in different ciphertexts if the nonce or counter is different.
+**CPA Security**: ==Counter mode achieves Chosen Plaintext Attack (CPA) security==, which means that it can resist attacks where an attacker chooses plaintext messages to be encrypted and tries to learn information about the key or other plaintexts. This is achieved by using a unique counter value for each block, ensuring that even identical plaintext blocks result in different ciphertexts if the nonce or counter is different.
 
 #### Decryption in CTR Mode
 - The receiver generates the same sequence of counter values as the sender, starting with the same nonce $r$.
@@ -380,9 +376,7 @@ How it works:
 - The feedback block is then XORed with the next plaintext block to produce the next ciphertext block. 
 - Unlike OFB, the feedback block in CFB is derived from the previous ciphertext, not the output of the encryption itself.
 
-
-
-
+---- 
 
 ```ad-abstract
 title: Theorem
@@ -438,11 +432,9 @@ $$HYB^1_{CTR,A}(\lambda,b) \equiv_c HYB^2_{CTR,A}(\lambda,b) \forall b \in 2$$
 
 This lemma is part of a security proof for counter (CTR) mode encryption, specifically to show that CTR mode is secure under chosen-plaintext attack (CPA). The idea is to prove that an attacker cannot distinguish between two similar encryption processes (referred to as "hybrids"), which would mean that CTR mode encryption is indistinguishable from random and, therefore, secure.
 
-**Key concept and terms**
 
-![[Cryptography/images/91.png]]
 
-**Explanation of the proof**
+**Explanation of the proof CPA for VIL**
 1. Main Intuition: 
 	- Since $m_i$ (the message) does not affect the distribution in Hybrid $1$ (due to the random function $R$), the output $R(r+i)$ mi $\oplus$ appears indistinguishable from $R(r+i)$ alone. This should make the two hybrids look the same to an attacker. 
 	- However, if the same nonce is used for different messages, the repeated use of $R$ with the same input could make patterns in Hybrid $1$, which could allow an attacker to distinguish it from Hybrid $2$.
@@ -516,7 +508,7 @@ The main challenge is that because $H$ maps ==from a larger domain (many possibl
 #### Solutions to avoid collisions
 To secure the hash function despite inevitable collisions, we can rely on two strategies:
 
-1. **Collision Resistance**:
+1. **Collision Resistance** (Supposizione):
 	- This approach assumes that even though collisions might exist, they are difficult to find.
 	- Even if the parameter $s$ (which selects a particular function $h_s$ from $H$) is known, finding two different messages that collide should be computationally infeasible. 
 	- In this case, $H$ is designed to be collision-resistant, meaning it’s hard to find a pair $(m,m′)$ such that $h_s(m)=h_s(m′)$.

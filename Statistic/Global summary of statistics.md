@@ -13,9 +13,9 @@ title: Population
 Is a set of statistical unit. Population does not to be something that exists but can be something that is not tangible. Population is not static, he can change during the time (is a dynamic flow) and so, it can be a stream of data.
 ```
 
-**Statistical Unit**: A statistical unit is the basic observational element from which data are collected in a statistical study. $(x_1, \cdots, x_n)$. For each statistical Unit we observer the realization of these characteristics $\to (x_1^{(i)}, \cdots, x_n^{(i)})$
+**Statistical Unit**: A statistical unit is the basic observational element from which data are collected in a statistical study. $(x_1, \cdots, x_n)$. For each statistical unit we observer the realization of these characteristics $\to (x_1^{(i)}, \cdots, x_n^{(i)})$
 
-When i want to observer or studitng something like an activity i want to measure characters and variables:
+When i want to observer or studing something like an activity i want to measure characters and variables:
 
 $(x_1, \cdots, x_n)$ this are called the characters.
 - ==character== is more general more astract (weight, height, age, ...)
@@ -59,7 +59,7 @@ In statistics, the arithmetic mean (or simple average) is a central measure of t
 
 ```
 
->La media è il punto di equilibrio e dunque la media aritmetica ha la proprietà di **equilibrare i dati**, in quanto il totale delle distanze dai dati alla media sulla sinistra è lo stesso delle distanze sulla destra..
+>La media è il punto di equilibrio e dunque la media aritmetica ha la proprietà di **equilibrare i dati**, in quanto il totale delle distanze dai dati alla media sulla sinistra è lo stesso delle distanze sulla destra.
 
 $$\text{Arithmetic Average =} \hspace{0.5cm} \frac{\sum x_i}{n}$$
 
@@ -67,14 +67,17 @@ If we have this:
 ![[data statistic.png]]
 How much this mean is closed to the data? We need to integrate a measure that are called variance.
 
-In ==Univaried Statistic== we have two fundamental concept:
+In ==Univariate Statistic== we have two fundamental concept:
 - **Location**: Summary of our data (synthesis).
 - **Dispersion**: Measure of the distance of the $\mu$ from the observe. (mean of distances $d(x_i, \mu)$)
 
 $$\overline{x} = \frac{\sum x_i}{n}$$
 $$\sigma^2 = \frac{\sum (x_i - \overline{x})^2}{n}$$
+
+>Numeratore = devianza
+
 For statistical we can also use this: 
-$$\sigma = \sqrt{\frac{\sum (x_i - \mu)^2}{n}}$$
+$$\sigma = \sqrt{\frac{\sum (x_i - \mu)^2}{n}} \hspace{0.9cm} \text{$\sigma$ deviazione standard}$$
 ```ad-info
 To formalized the variance we use the distance.
 $$\sum d(\mu, x_i) \Rightarrow (x_i - \mu)^2 \hspace{0.3cm} \text{or} \hspace{0.3cm} |x_i - \mu|$$
@@ -90,7 +93,7 @@ A theoretical population is something that we want to study but we can observe a
 
 Now, we can talk about the two main branches of statistics:
 
-- ==Inference Statistic==: Actions to deduct something from the particular to the general. Sample and theoretical population now are the same concept. One is involved in the other.
+- ==Inference Statistics==: Actions to deduct something from the particular to the general. Sample and theoretical population now are the same concept. One is involved in the other.
 
 >There is some unknown population (abstract one) and we want to describe it.
 
@@ -151,7 +154,7 @@ All condition distribution $(X \mid Y = y)$ are equal, in the sense of relative 
 
 ```ad-abstract
 title: Definition of statistical independence
-In statistic, independence refers to a situation where two or more variables influence each other $\to$ coditional distributions are equal!
+In statistic, independence refers to a situation where two or more variables doesn't influence each other $\to$ conditional distributions are equal!
 
 ```
 	
@@ -167,7 +170,7 @@ Table used to represent the joint distribution of two categorical variables, $X$
 | $x_1$   | $n_{11}$ | $n_{1j}$ | $n_{1n}$ | $n_1.$   |
 | $x_i$   | $n_{i1}$ | $n_{ij}$ | $n_{in}$ | $n_i.$   |
 | $x_n$   | $n_{n1}$ | $n_{nj}$ | $n_{nn}$ | $n_n.$   |
-| _total_ | $n_.1$   | $n_.j$   | $n_.n$   | $n_{nn}$ |
+| _total_ | $n_.1$   | $n_.j$   | $n_{.m}$ | $n_{nm}$ |
 - $i$ row
 - $j$ column
 - $n_{ij}$ joint frequency of $X = x_i \wedge Y=y_i$
@@ -184,7 +187,7 @@ where:
 $$f(x = x_i) \cdot f(y = y_j) = f(x = x_i, y = y_j)$$
 
 We say that the relative frequency of $x_i$ and $y_j$ are equal to this $f(x = x_i, y = y_j)$. 
-This relationship indicates that the likelihood of observing both $x_i$​ and $y_j$​ simultaneously can be captured through this joint **probability expression**. In the context of probability theory, this relationship can also be articulated as:
+This relationship indicates that the likehood of observing both $x_i$​ and $y_j$​ simultaneously can be captured through this joint **probability expression**. In the context of probability theory, this relationship can also be articulated as:
 $$P(X \hspace{0.2cm} \text{and} \hspace{0.2cm} Y) = P(X) \cdot P(Y)$$$$P(X \mid Y) = P(X)$$
 
 >La probabilità congiunta è semplicemente il prodotto delle probabilità marginali di ciascuna variabile. Se $X$ e $Y$ sono indipendenti, allora la probabilità congiunta può essere scritta come il prodotto delle probabilità marginali di $X$ e $Y$.
@@ -219,7 +222,7 @@ $\Rightarrow f_{X \mid Y} = f_X \hspace{0.2cm} \text{or} \hspace{0.2cm} f_{Y \mi
 >La distribuzione condizionale di $X$ dato $Y$ è uguale alla distribuzione marginale di $X$.
 
 This states that the joint probability distribution $f_{XY}$ of $X$ and $Y$ is equal to the product of their individual (marginal) distributions, $f_X$ and $f_Y$.  
-This implies that knowing the value of Y does not provide useful information about the value of X and vice versa. This is the concept of **independence** between two random variables.
+This implies that knowing the value of $Y$ does not provide useful information about the value of X and vice versa. This is the concept of **independence** between two random variables.
 
 ==Frequenza Condizionale==
 
@@ -252,7 +255,7 @@ where:
 ## In-Correlation and relation between independence
 **Variance**: is the measure of dispersion
 $$\sigma^2 = \frac{\sum (x_i - \bar x)^2}{n}$$
-**Deviance**: The numerator of variance is called "==deviance==" (remember wellford). It measure how far are the observation respect to the mean value.
+**Deviance**: The numerator of variance is called "==deviance==" (remember Wellford). It measure how far are the observation respect to the mean value.
 
 But, when we talk about Bivariate distribution, we obtain the Co-deviance:
 $$\sum_{i,j} (x_i - \bar x) \cdot (y_j - \bar y) \hspace{0.9cm} \text{Co-Deviance}$$
@@ -261,10 +264,9 @@ We call like this because, now, we have two variables that can be positive or ne
 ```ad-faq
 title: Univariate Co-deviance vs Bivariate Co-deviance
 - **Devianza univariata**: Misura la dispersione di una singola variabile rispetto alla sua media.
-- **Co-devianza bivariata**: Misura come due variabili si variano insieme, ovvero come $X$ e $Y$ siano correlati tra loro.
+- **Co-devianza bivariata**: Misura come due variabili siano correlati tra loro.
 
 ```
-
 
 ```ad-important
 - Univariate Deviance / Variance Dispersion
@@ -289,8 +291,8 @@ The **correlation** ($r$) is a measure of the strength and direction of the line
 **Incorrelazione non implica indipendenza**: Se due variabili sono **incorrelate**, non significa necessariamente che siano indipendenti. Le variabili potrebbero essere incorrelate (cioè avere una covarianza nulla) ma avere una relazione non lineare.
 
 ```
-$$\text{Co-Deviance} = r \wedge r = \frac{\text{Co-dev}}{\text{Max}} = \{-1, 1\}$$
-Max is the sum of the squares of the standard deviations of the two variables.
+$$\text{Co-Deviance} = r \hspace{0.9cm} r = \frac{\text{Co-dev}}{\text{Max}} = \{-1, 1\}$$
+**Max is the sum of the squares of the standard deviations of the two variable**s.
 $$\text{Max} = \sum_j a^2_j \sum_j b_j^2$$
 remember that:
 $$a_i(x_i - \bar x) \wedge b_i(y_i - \bar y) = \sum_{ij} a_i b_j$$
@@ -300,7 +302,7 @@ $$r = \frac{\sum_{i,j}(x_i - \bar x)(y_j - \bar y)}{\text{Max}} = \frac{\sigma_{
 ![[st 4.png]]
 Another interpretation of $r$ is by the ==regression technique==.
 
-La regressione lineare cerca di trovare la miglior retta che descrive la relazione tra $X$ e $Y$, ossia la retta che minimizza la somma dei quadrati delle differenze tra i valori osservati e i valori predetti dalla retta. Questa retta è descritta dalla formula:
+La regressione lineare cerca di trovare la miglior retta che descrive la relazione tra $X$ e $Y$, ossia la retta che **minimizza la somma dei quadrati delle differenze tra i valori osservati e i valori predetti dalla retta**. Questa retta è descritta dalla formula:
 $$Y = \beta_0 + \beta_1 X$$
 
 Dove:
@@ -312,7 +314,6 @@ La correlazione **$r$** è legata alla pendenza della retta di regressione **$\b
 ![[Pasted image 20241211161817.png]]
 
 ## Introduction to probability in statistics
-
 **Probability** depends on the concept
 
 Immagina di avere un dado a sei facce. La probabilità che esca una determinata faccia del dado risulta essere $P(X=x) = \frac{1}{6}$, ovvero ci sono sei casi equamente probabili. Questo è un caso di probabilità classica in cui tutti gli eventi hanno la stessa probabilità. 
@@ -324,7 +325,7 @@ Probability is a branch of mathematics and is based on some fundamental properti
 ```
 
 
-Assiomi della probabilità (secondo Kolmogorov)
+Assiomi della probabilità (secondo **Kolmogorov**)
 1. **Assioma di certezza**: $P(\Omega) = 1$
 2. **Additività**: Se due eventi $A$ e $B$ sono disgiunti $A \cap B = 0$ la probabilità della loro unione è la somma delle probabilità individuali: $P(A \cup B) = P(A) + P(B) \Leftarrow A \cap B = 0$
 
@@ -353,9 +354,9 @@ Questi requisiti assicurano che le operazioni sugli eventi siano ben definite e 
 ## Inferential Statistics 
 In this kind of statistics we have a theoretical distribution represented by unknown population. We only have a sample that is a part of the unknown population.
 
-In a sample, so for theoretical distribution, we don't have the frequency but we use the concept of probability. **Probability is an abstract measure that is used in inferential statistics to describe uncertain events**
+In a sample, so for theoretical distribution, we don't have the **frequency** but we use the concept of probability. **Probability is an abstract measure that is used in inferential statistics to describe uncertain events**
 
->Probability is the abstraction concept of the probability. 
+>Probability is the abstraction concept of the frequency. 
 >Probability $\to$ Inferential statistics
 
 Probability is a measure, a set-function.
@@ -367,7 +368,7 @@ $$\frac{\text{Measurable space}}{\text{Probability Space}}$$
 **Probability Space** = $(\Omega, F, P)$ where:
 - $\Omega$ is the space of outcomes
 - $F$ is the probability of a given event happening (subset of outcomes and i assign a certain probability). This is called **Sigma Algebra**.
-- $P$ is a set function number associated with each event. (P is a function of any set in R, $P: F \to R$)
+- $P$ is a set function number associated with each event. ($P$ is a function of any set in $R$, $P: F \to R$)
 
 **Sigma Algebra** (close respect to union, intersection, complement)
 Is a subset of outcomes such that: 
@@ -375,7 +376,7 @@ Is a subset of outcomes such that:
 - Empty space is in that algebra
 - Union of int of complement of this set stay in this algebra
 
->What could be a minimal subset of outcomes? The Empty set
+>What could be a minimal subset of outcomes? The Empty set!
 
 We can also analyze the phrase: "Sigma Algebra"
 - **Algebra**: Set that is closed respect union, intersect and complement
@@ -387,12 +388,12 @@ $(\Omega, F, P)$
 1. Non negatività (Nessun evento può avere una probabilità negativa). Se l'evento è impossibile la sua probabilità è pari a $0$.
 $$P(\sigma) \hspace{0,3cm} P \ge 0$$
 2. Additività Finitaria: Se due eventi non si sovrappongono (disgiunti), allora la probabilità che si verifichi uno o l'altro è la somma delle loro probabilità individuali.
-$$P(A_1 \cup A_2) = P() + P()$$
+$$P(A_1 \cup A_2) = P(A_1) + P(A_2)$$
 3. Subadditività: Anche se gli eventi si sovrappongono, la probabilità totale della loro unione non può eccedere la somma delle probabilità dei singoli eventi.
 $$\Leftarrow A_1 \cap A_2 = 0$$
 
 If we consider an arbitrary union, if we sum $P$ of more events:
-$$P(\cup A) \le \sum P(\cup A) \hspace{0.5cm} \text{Union bound subadditivity}$$
+$$P(\bigcup_i A_i) \le \sum P(A_i) \hspace{0.5cm} \text{Union bound subadditivity}$$
 
 ### Lesbegue Integral for mean and variance in probability
 New kind of integral used in probability and statistical inference
@@ -408,7 +409,7 @@ $$S = \sum_{i=1}^n f(x^*_i)\triangle x_i$$
 where:
 
 - $[a, b]$ is divided into $n$ subintervals $[x_{i-1}, x_i]$
-- $\Delta x_i = x_i - x_{i-1}$​ is the width of the iii-th subinterval,
+- $\Delta x_i = x_i - x_{i-1}$​ is the width of the $i$-th subinterval,
 - $x^*_i \in [x_{i-1}, x_i]$ is a sample point in the $i$-th subinterval
 - $f(x^*_i)\triangle x_i$ represents the area f a rectangle with height $f(x^*_i)$ and width $\triangle x_i$
 
@@ -432,9 +433,9 @@ Invece di suddividere il dominio della funzione (come fa l'integrale di Riemann)
 Lebesgue è definito per una classe molto più ampia di funzioni, incluse quelle discontinue su insiemi complessi, può gestire funzioni non limitate e definite su intervalli infiniti, purché la loro misura complessiva sia finita. 
 
 Formula Uniformata:
-$$\int xd \cdot F(x)$$
+$$\int x \hspace {5px}d F(x)$$
 where:
-- $d \cdot F(x)$ is the function's jump
+- $dF(x)$ is the function's jump
 
 
 ![[Pasted image 20241207113048.png|500]]
@@ -472,7 +473,7 @@ $X = x_1, x_2, \cdots, x_n \to$ is a set of random variable called ==Random samp
 
 Random Sample (set of aleatory variable)
 $$(X_1, X_2, \cdots, X_n)$$
-Empirical Sample (all the x_i are mesuration value)
+Empirical Sample (all the $x_i$ are mesuration value)
 $$x_1, x_2, \cdots, x_n$$
 
 
@@ -496,14 +497,22 @@ allora $x_1, x_2, \cdots, x_{10}$ costituiscono l'empirical sample, cioè i valo
 $$\text{Mean} = \sum_{i=1}^n x_i \cdot P_i \hspace{0.5cm }\text{Discrete}$$
 $$\text{Mean} = \int x f(x) dx \hspace{0.5cm }\text{Continue}$$
 The formula of mean in probability is written in two ways, one for continues function and the other for discrete function. If we use Lebesgue we can use only one for both:
-$$\text{Mean} = \int x d \cdot F(x)$$
+$$\text{Mean} = \int x \cdot dF(x)$$
 
 The **variance** indicates the mean of the deviations from the mean.
-$$\text{Variance in Probability} = \int (x - \mu)^2 d \cdot F(x) = \sigma^2$$
+$$\text{Variance in Probability} = \int (x - \mu)^2 \cdot dF(x) = \sigma^2$$
 
 Also we can define the Expected value $E(\bar x) = \mu$
 When i write: $E(x)$ i mean $E(X) = \int x d \cdot F(X)$ (Media del valore atteso)
 
+```ad-info
+l **valore atteso** (indicato con $E(X)$) rappresenta la media teorica di una variabile casuale $X$. È il valore "medio" che ci si aspetta osservando molteplici realizzazioni della variabile casuale.
+
+Per una variabile casuale continua $X$, il valore atteso è calcolato come:
+
+$$E(X) = \int x \cdot dF(x)$$
+
+```
 
 
 

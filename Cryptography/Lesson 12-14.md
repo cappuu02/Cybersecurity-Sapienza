@@ -1,5 +1,5 @@
-## CCA Security
-Going back to the encryption realm, a new definition of attack to a ske scheme will be introduced. Now the adversary can query a decryption oracle, along with the CPA-related encryption oracle, for polynomially many queries. This attack is called the Chosen Ciphertext Attack, and schemes that are proven to be CCA-secure are also defined as non-malleable, on the reasoning that an attacker cannot craft fresh valid ciphertexts from other valid ones. So, How to get both security and also authenticity?
+## CCA Security (Chosen Ciphertext Attack)
+Going back to the encryption realm, a new definition of attack to a ske scheme will be introduced. Now the adversary can query a decryption oracle, along with the CPA-related encryption oracle, for polynomially many queries. ==This attack is called the Chosen Ciphertext Attack, and schemes that are proven to be CCA-secure are also defined as non-malleable, on the reasoning that an attacker cannot craft fresh valid ciphertexts from other valid ones==. So, How to get both security and also authenticity?
 **CCA**: Chosen-ciphertext attacks.
 
 ![[Pasted image 20241201152241.png]]
@@ -13,8 +13,6 @@ Going back to the encryption realm, a new definition of attack to a ske scheme w
     - L'avversario continua a interagire con l'oracolo di decifratura, ma **non può richiedere la decifratura di $c^*$**.
     - Alla fine, l'avversario restituisce un valore $\hat{b}$, che è la sua supposizione del valore di $b$.
 
-
-
 ```ad-abstract
 title: Definition CCA Security
 $\pi = (ENC,DEC)$ is CCA-secure if:
@@ -22,38 +20,57 @@ $$GAME^{cca}_{\lambda, A} (\lambda, 0) \approx_c GAME^{cca}_{\lambda, A} (\lambd
 
 IL sistema è ((CCA-Secure)) se l'avversario non riesce a distinguere tra i due scenari.
 ```
-
->==Malleability==: ability to take some $c^*$ containing unknown $m^*$, and mail it into $\widetilde c \not = c^*$ such that you don't know the corresponding in $\widetilde m$, but you know $\widetilde m$ is related to $m^*$ (e.g. $m[1] = m^*[1]$)
+ 
+==**Malleabilità**== in crittografia indica la proprietà di un sistema crittografico (come uno schema di cifratura o di firma) in cui un avversario può prendere un oggetto crittografico valido, ad esempio un ciphertext $c^*$, e modificarlo per ottenere un nuovo ciphertext $\widetilde{c}$ che risulta ancora valido. Questo avviene senza che l’avversario conosca il contenuto originale $m^*$ del messaggio cifrato, ma sapendo che il nuovo messaggio $\widetilde{m}$ (corrispondente a $\widetilde{c}$) è in qualche modo correlato a $m^*$.
 
 Think of encrypted actions:
-
 ![[Cryptography/images/52.png]]
 ![[Cryptography/images/53.png]]
 
-> **Observation**: CCA $\Rightarrow$ non-malleability! Questo significa che un attaccante non può manipolare un ciphertext per influenzare prevedibilmente il messaggio cifrato.
+> **Observation**: CCA-secure $\Rightarrow$ non-malleability! Questo significa che un attaccante non può manipolare un ciphertext per influenzare prevedibilmente il messaggio cifrato.
 
 About the SKE scheme that we have already studied (CBC, OFB, CFB, CTR) are not CCA-Secure, this implies that are not malleable.
 
-For instance: $c (r, F_k(r) \oplus m)$
-Not CCA secure: $(r + U_n \text{is the randomness})$
-What happens if we do: 
-$c = (r,s)$
-$\widetilde c = (r, s \oplus 10^{n-1})$ where
-	$s = F_k (r) \oplus (m \oplus 10^{n-1})$
-	Flipping first but of $s$
+```ad-faq
+title: Proof
 
-- L'attaccante "flippa" (cambia) il primo bit di $s$, il risultato della funzione pseudo-casuale applicata al messaggio.
+Operazione di cifratura è definita così: $c=(r,F_k​(r) \oplus m)$
+
+**Attacco di manipolazione**: L'attaccante modifica il cypertext in questo modo:
+- Parte dal ciphertext originale: $c = (r, s)$ dove $s = F_k(r) \oplus m$
+- Crea un nuovo ciphertext $\widetilde{c}$ manipolato: $\widetilde c = (r, s \oplus 10^{n-1})$
+
+ **Effetti della Manipolazione**: Quando il sistema decifra il ciphertext $\widetilde{c}$, avviene il seguente processo:
+La seconda componente del ciphertext manipolato è:
+$$
+\widetilde{s} = s \oplus 10^{n-1}
+$$
+Il messaggio decifrato $\widetilde{m}$ è calcolato come:
+$$
+\widetilde{m} = F_k(r) \oplus \widetilde{s}
+$$
+Sostituendo $\widetilde{s}$ con il valore manipolato:
+$$
+\widetilde{m} = F_k(r) \oplus (s \oplus 10^{n-1})
+$$
+Poiché $s = F_k(r) \oplus m$, sostituendolo si ottiene:
+$$
+\widetilde{m} = m \oplus 10^{n-1}
+$$
+
+- L'attaccante "flippa" (cambia) il primo bit di $m$, il risultato della funzione pseudo-casuale applicata al messaggio.
 - Anche se non conosce il contenuto di $m$, l'attaccante sa che il messaggio risultante $\widetilde{m}$ avrà un primo bit modificato rispetto a $m$.
 
 Questo dimostra che il sistema **non è sicuro sotto CCA**, poiché è malleabile.
+```
 
 
 Make it on attack!
 ![[Cryptography/images/55.png]]
 ![[Cryptography/images/56.png]]
 
-How do we get CCA security? An idea is to continue CPA security with UFCMA MAC.
-Make sure CTX contains a tag of SMT. Then :
+How do we get CCA security? An idea is to continue CPA security with UF-CMA MAC.
+Make sure CTX contains a tag of SMT. Then:
 - The ciphertext (CTX) generated during encryption will include a **tag** generated by a secure MAC. This ensures that any tampering with the ciphertext can be detected during decryption.
 	- If the tag is valid, the ciphertext is considered valid and is decrypted.
 	- If the tag is invalid, the decryption outputs a special symbol like "$\bot$" (indicating an invalid ciphertext), ensuring security.
@@ -67,7 +84,7 @@ A tag $r$ is generated by authenticating the message $m$ with a key $k_2$:
 $$c = TAG(k_2, m) \hspace{0.2cm} \text{[UFCMA]} \hspace{0.2cm}$$
 The result is the complete ciphertext: 
 $$c' = (c, r)$$
-This construction is also ==not CPA-secure==, because $r$ might reveal information about the message $m$. 
+This construction is also ==not CPA-secure==, because $r$ might reveal information about the message $m$
 
 ```ad-example
 If the tag is computed as $\widetilde{Tag}(k_2, m) = b \mid r$, where:
@@ -84,7 +101,7 @@ We digit the message concatenated to the tag: $c' \leftarrow Enc(k_1, m \mid \mi
 >This is used in TLS (Transport Layer Security)
 
 This construction is also not CCA-secure because:
-If the encryption algorithm is CPA-secure and the MAC is UF-CMA, it does not automatically guarantee CCA security. It is possible for an adversary to manipulate the ciphertext anyway.
+==If the encryption algorithm is CPA-secure and the MAC is UF-CMA, it does not automatically guarantee CCA security==. It is possible for an adversary to manipulate the ciphertext anyway.
 
 $Enc = CPA \hspace{0.9cm} Tag=UF-CMA$
 $c=(R,S) \hspace{0.9cm} s = F_{k_1}(r) \oplus (m \mid \mid r)$
@@ -104,7 +121,6 @@ $b \leftarrow \{0,1\}$
 $Enc = CPA$
 $\widetilde Dec(k_1, b \mid \mid c): \hspace{0.5cm} \text{Discard} \hspace{0.5cm} b \hspace{0.5cm} \text{Derypt} \hspace{0.5cm} c$
 $\widetilde Enc \equiv CPA!$
-
 
 ### Attempt 3:  Separate the cipher text and the tag
 You generate the ciphertext by encrypting the message with a $k_1$ key:
@@ -147,7 +163,7 @@ The ==main idea== is to make a reduction from CPA security to CCA security. In o
 - ==L'autenticità (AUTH)== significa che l'attaccante non può generare un ciphertext valido senza conoscere la chiave segreta.
 
 How it work:
-1. When the attacker sends a decryption query, the response depends on whether the ciphertext $c'$ has already been encrypted in a previous encryption query. If $c'$ is one of the previous ciphertexts, we return the corresponding decrypted message.
+1. Quando l'attaccante invia una richiesta di decifrazione, la risposta dipende dal fatto che il testo cifrato $c'$ sia già stato cifrato in una precedente richiesta di cifratura. Se $c'$ è uno dei testi cifrati precedenti, viene restituito il messaggio decifrato corrispondente.
 2. Se $c'$ non è stato mai visto prima (non è uno dei ciphertext precedentemente cifrati), rispondiamo con $\bot$ (indica che il ciphertext non è valido o che l'attaccante ha tentato di manipolare il ciphertext).
 
 A ==bad event== occurs when the attacker $A_{cca}$ succeeds in generating a ciphertext $\tilde{c}$ that has not been previously encrypted, but when it decrypts it, it does not get $\bot$. This means that the attacker has managed to manipulate the ciphertext so that the system does not reject its decryption query, thus violating security.
@@ -168,10 +184,10 @@ $$c' = Enc((k_1, k_2), m) = (c,r)$$
 $$c \Leftarrow Enc(k_1, m); \hspace{0.8cm} r = Tag(k_2, c)$$
 
 The idea is to show that if the basic cipher $(ENC, DEC)$ is CPA-secure, then the combined system also remains CPA-secure. The tag $r = Tag(k_2, c)$ reveals nothing new about the message information $m$, since:
-- $Tag(k_2, c)$ è calcolato sul ciphertext ccc, che è già CPA-secure.
+- $Tag(k_2, c)$ è calcolato sul ciphertext $c$, che è già CPA-secure.
 - La chiave $k_2$​ è separata e non influisce sul processo di cifratura.
 
-Let's start with CPA. By reduction to CPA ???? of $(ENC, DEC) = \pi_1$ 
+Let's start with CPA. By reduction to CPA security of $(ENC, DEC) = \pi_1$ 
 
 ![[WhatsApp Image 2024-12-02 at 14.19.05.jpeg|500]]
 
@@ -181,7 +197,7 @@ Let's start with CPA. By reduction to CPA ???? of $(ENC, DEC) = \pi_1$
 ```
 
 
-It remains to show AUTH. Reduction to? UF-MA of Tag.
+It remains to show AUTH. Reduction to? UF-CMA of Tag.
 
 ![[Pasted image 20241202142008.png|500]]
 
@@ -189,19 +205,16 @@ When does $A_{\text{auth}}$ win? If:
 1) $Tag(k_2, c^{*}) = r^*$
 2) $(c^*, r^*)$ fresh: $\not = \{(c,r)\}$
 
-When does $A_2$ win? If:
-1) $Tag(k_2, c^*) = r^*$
-2) $c^*$ fresh: $\not = \{c\}$
 
 >La connessione tra $A_{\text{auth}}$​ consiste nel fatto che, se $A_{\text{auth}}$ può generare un $(c^*, r^*)$ valido e fresco, allora $A_2$ può fare lo stesso, violando la proprietà UF-CMA di $Tag$.
 
-Problematic Scheme: 
-$$\tilde{\text{Tag}}(k,n) = 0 \mid \mid Tag(k,m)$$
+Here is one **Bad scheme**:
+$$\tilde{\text{Tag}}(k,m) = 0 \mid \mid Tag(k,m)$$
 The tag is constructed by concatenating an initial zero to the original tag $Tag(k, m)$.
 Although Bob discards the first bit and verifies the tag $r$, the pattern remains UF-CMA only in a limited way. It is possible to forge the tag only for messages that the attacker has already requested from the system.
 
 ==Solutions==:
-- **Assume that each message has a unique tag**: This simplifies the problem by ensuring that each rrr tag is distinct, avoiding ambiguity.
+- **Assume that each message has a unique tag**: This simplifies the problem by ensuring that each $r$ tag is distinct, avoiding ambiguity.
 - **Require a stronger MAC property (Strong UF-CMA):** A strengthened version of the UF-CMA property, where no valid tags can be generated for any message, regardless of the number of queries made to the system.
 
 ## Blockciphers
@@ -231,8 +244,6 @@ $$\exists \hspace{0,1cm} PPT F^{-1} \hspace{0,3cm} \text{such that} \hspace{0,3c
 **Building PRPs**
 - **Provably secure approach:** Relies on hard problems like factoring or discrete logarithms to construct cryptographic primitives.$$OWF \Rightarrow PRG \Rightarrow PRF \Rightarrow PRP$$
 - **Heuristic approach:** Starts by heuristically building a PRF and then converting it into a PRP. An example can be the so-called Feistel Network.
-
-
 
 ### Feistel Networks
 A Feistel Network transforms a function $F$ into an invertible construction. 
@@ -267,35 +278,23 @@ Remember:
 #### Two round Feistel Network 
 This diagram represents a **two-round Feistel network**, an improvement over the first game.
 ![[WhatsApp Image 2024-12-02 at 14.43.13.jpeg]]
-It's still not a PRP: 
+**It's still not a PRP**: 
 Although adding a second round improves the diffusion (mixing of input bits), this structure is **still not a secure pseudorandom permutation**. A determined adversary might still find patterns or correlations in the output that betray its deterministic nature. Increasing the number of rounds further (e.g., 16 rounds in DES) typically results in a structure that can heuristically achieve PRP-like security.
 
 >Both games are invertible, meaning you can recover the original input $(X,Y)$ from the output by reversing the steps.
 
 ```ad-abstract
 title: Theorem
-$\xi_{F, F', F''}$ IS A prp assuming $F, F', F''$ are PRFs.
+$\xi_{F, F', F''}$ is a PRP assuming $F, F', F''$ are PRFs.
 $$F=\{F_k : \{0,1\}^n \to \{0,1\}^n\}$$
 $$F \equiv F_{k_1} ; F' \equiv F_{k_2}; F'' \equiv F_{k_3}$$
 $$k_1, k_2, k_3 \leftarrow U_{\lambda}$$
 
 ```
 
->Questo teorema afferma che se $F'F,F′$ sono buone funzioni pseudocasuali (PRF), allora una rete di Feistel con tre round diventa una permutazione pseudocasuale sicura (PRP).
+>Questo teorema afferma che se $F,F',F''$ sono buone funzioni pseudocasuali (PRF), allora una rete di Feistel con tre round diventa una permutazione pseudocasuale sicura (PRP).
 
 ```ad-success
-Spiegazione esaustiva:
-L'intuizione alla base di questo risultato si basa sulle proprietà delle PRF e sulla struttura della rete di Feistel:
-
-1. **Proprietà delle PRF:**
-    
-    - Ogni FkF_kFk​ si comporta come una funzione casuale per una chiave casuale kkk. Questa casualità garantisce che ogni round della rete di Feistel mescoli efficacemente l'input.
-2. **Indipendenza delle chiavi:**
-    
-    - Le chiavi k1,k2,k3k_1, k_2, k_3k1​,k2​,k3​ sono scelte indipendentemente. Questo impedisce correlazioni tra i risultati dei diversi round, che potrebbero essere sfruttate da un avversario.
-3. **Struttura della rete di Feistel:**
-    
-    - La struttura di Feistel garantisce che la rete sia invertibile, anche se le funzioni F,F′,F′′F, F', F''F,F′,F′′ non lo sono. Questo è cruciale per costruire una PRP.
 4. **Confusione e diffusione:**
     
     - La rete di Feistel assicura **confusione** (mescolamento dei bit dell'input) e **diffusione** (distribuzione delle dipendenze dell'input nei bit dell'output). Dopo diversi round, l'output risulta indistinguibile da un comportamento casuale.
@@ -316,9 +315,53 @@ L'intuizione alla base di questo risultato si basa sulle proprietà delle PRF e 
 
 ![[WhatsApp Image 2024-12-02 at 14.44.27.jpeg]]
 
+```ad-question
+title: Spiegazione immagini
 
+# Spiegazione dei diagrammi
 
+Questa immagine rappresenta diversi schemi crittografici o matematici utilizzati in un contesto teorico (forse legati a funzioni hash, trasformazioni crittografiche o funzioni randomiche). Ci sono quattro sezioni principali etichettate come **T**, **S**, **R** e **P**, con una descrizione matematica associata a ciascuna.
 
+---
 
+## **Sezione T**
+- **Schema**: Mostra una trasformazione basata su tre funzioni \( F_{K_1} \), \( F_{K_2} \), \( F_{K_3} \), tutte applicate in serie al valore \( x \).
+- **Formula**: 
+  $$
+  y = \mathcal{F}(F_{K_1}, F_{K_2}, F_{K_3})(x)
+  $$
+- **Significato**: Probabilmente rappresenta una combinazione di trasformazioni applicate a \( x \) utilizzando tre chiavi (\( K_1, K_2, K_3 \)), come in un cifrario a blocchi o una funzione hash iterativa.
 
+---
 
+## **Sezione S**
+- **Schema**: Implica una trasformazione con l'uso di una funzione \( F \) e la sua inversa \( F^{-1} \).
+- **Formula**: 
+  $$
+  y = \mathcal{F}(F, F^{-1}, F^{-1})(x)
+  $$
+- **Significato**: Questa sezione potrebbe rappresentare un sistema che utilizza una funzione crittografica con la sua inversa, suggerendo un processo di cifratura e decifratura, come nei cifrari simmetrici.
+
+---
+
+## **Sezione R**
+- **Schema**: Utilizza una funzione casuale \( R \).
+- **Formula**: 
+  $$
+  y = R(x)
+  $$
+  Dove \( R \) è definita come una "funzione randomica".
+- **Significato**: Probabilmente si riferisce a una funzione di tipo oracolo casuale o una trasformazione pseudocasuale applicata al dato \( x \).
+
+---
+
+## **Sezione P**
+- **Schema**: Usa una permutazione casuale \( P \).
+- **Formula**: 
+  $$
+  y = P(x)
+  $$
+  Dove \( P \) è una "permutazione randomica".
+- **Significato**: Si riferisce a una permutazione casuale applicata a \( x \), utilizzata spesso in crittografia per costruire sistemi resistenti a certi tipi di attacco.
+
+```
