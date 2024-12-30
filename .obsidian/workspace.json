@@ -166,9 +166,21 @@
               "icon": "lucide-file",
               "title": "Lesson 20-21-22-23"
             }
+          },
+          {
+            "id": "6fc1cf69d4358048",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Cryptography/PDF/Esercizi Risolti.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Esercizi Risolti"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -321,18 +333,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cefa9383a2e62c71",
+  "active": "ff8f8d79e7556622",
   "lastOpenFiles": [
-    "Cryptography/Lesson 15-16.md",
-    "Cryptography/Lesson 12-14.md",
     "Cryptography/Lesson 11.md",
+    "Cryptography/Lesson 12-14.md",
+    "Cryptography/Lesson 15-16.md",
+    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
+    "Cryptography/Lesson 18-19.md",
+    "Cryptography/Lesson 20-21-22-23.md",
     "Cryptography/Lesson 8-9-10.md",
     "Cryptography/Lesson 4-5-6-7.md",
     "Cryptography/Lesson 2-3.md",
-    "Cryptography/Lesson 20-21-22-23.md",
-    "Cryptography/Lesson 18-19.md",
+    "Cryptography/PDF/Esercizi Risolti.pdf",
+    "Cryptography/PDF/Esercizi Critto Simo.pdf",
     "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
+    "Cryptography/ex.md",
+    "Cryptography/Cryptography Notes.pdf",
     "Pasted image 20241227164639.png",
     "Immagine WhatsApp 2024-12-27 ore 16.45.14_5cf42cd7.jpg",
     "Pasted image 20241227163330.png",
@@ -344,7 +360,6 @@
     "Immagine WhatsApp 2024-12-27 ore 15.55.15_a71e52ea.jpg",
     "Pasted image 20241227153937.png",
     "Cryptography/Notes.md",
-    "Cryptography/ex.md",
     "Untitled.md",
     "Cryptography/Lesson 13.md",
     "Cryptography.zip",
@@ -362,11 +377,8 @@
     "Network Infrastructures/Cuomo",
     "Network Infrastructures/Polverini",
     "Statistic/Lesson 7 (28 novembre).md",
-    "Cryptography/Cryptography Notes.pdf",
     "Cryptography Notes.pdf",
     "Cryptography/Untitled",
-    "Statistic/Homework1/script.js",
-    "Statistic/Homework1/index.html",
-    "Statistic/Homework1"
+    "Statistic/Homework1/script.js"
   ]
 }

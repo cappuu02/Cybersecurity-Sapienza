@@ -16,7 +16,7 @@ Going back to the encryption realm, a new definition of attack to a ske scheme w
 ```ad-abstract
 title: Definition CCA Security
 $\pi = (ENC,DEC)$ is CCA-secure if:
-$$GAME^{cca}_{\lambda, A} (\lambda, 0) \approx_c GAME^{cca}_{\lambda, A} (\lambda, 1)$$
+$$GAME^{cca}_{\pi, A} (\lambda, 0) \approx_c GAME^{cca}_{\pi, A} (\lambda, 1)$$
 
 IL sistema è ((CCA-Secure)) se l'avversario non riesce a distinguere tra i due scenari.
 ```
@@ -191,12 +191,6 @@ Let's start with CPA. By reduction to CPA security of $(ENC, DEC) = \pi_1$
 
 ![[WhatsApp Image 2024-12-02 at 14.19.05.jpeg|500]]
 
-```ad-info
-![[Pasted image 20241202143149.png]]
-
-```
-
-
 It remains to show AUTH. Reduction to? UF-CMA of Tag.
 
 ![[Pasted image 20241202142008.png|500]]
@@ -243,7 +237,7 @@ $$\exists \hspace{0,1cm} PPT F^{-1} \hspace{0,3cm} \text{such that} \hspace{0,3c
 
 **Building PRPs**
 - **Provably secure approach:** Relies on hard problems like factoring or discrete logarithms to construct cryptographic primitives.$$OWF \Rightarrow PRG \Rightarrow PRF \Rightarrow PRP$$
-- **Heuristic approach:** Starts by heuristically building a PRF and then converting it into a PRP. An example can be the so-called Feistel Network.
+- **Heuristic approach:** Starts by fheuristically building a PRF and then converting it into a PRP. An example can be the so-called Feistel Network.
 
 ### Feistel Networks
 A Feistel Network transforms a function $F$ into an invertible construction. 

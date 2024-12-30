@@ -69,23 +69,23 @@ What is a PRF?
 title: PRF Definition
 A **PRF** it's a deterministic function: 
 $$F_k : \{0,1\}^n \to \{0,1\}^n$$
-$$k \in \{0,1\}, n=256,512,\cdots$$
+$$k \in \{0,1\}^{\lambda}, n=256,512,\cdots$$
 
 A **PRF** is a deterministic function that takes an input (typically a secret key and a message) and produces an output that appears random. The special feature of a PRF is that there is no efficient way (by an attacker) to distinguish its output from an output of a truly random function. (PRF function that generates a pseudo-random string).
 
 ```
 
 
-Security? Basically the output of the function should be  ??? . From the output of Truly Random Truth Table.
+Security? Basically the output of the function should be undistinguishable from the output of Truly Random Truth Table.
 
 ![[Cryptography/images/73.png]]
 
-For random choice of $k \in \{0,1\}$, then $F_k(\cdot)$ is completely independent from random table.
+For random choice of $k \in \{0,1\}^{\lambda}$, then $F_k(\cdot)$ is completely independent from random table.
 
 ```ad-abstract
 title: Definition of PRF
 We say that $F: \{0,1\}^{\lambda} \times \{0,1\}^n \to \{0,1\}^n$ is a PRF if:
-$$\text{REAL}_{A,F}(\lambda) / \text{RAND}_{A, R}(\lambda)$$
+$$\text{REAL}_{A,F}(\lambda) \approx_c \text{RAND}_{A, R}(\lambda)$$
 ```
 
 ![[Cryptography/images/74.png]]
@@ -388,28 +388,6 @@ Assume $f_k$ is a PRF, then the counter-mode block cipher is CPA-secure for vari
 We start with original CPA game:
 
 ![[Cryptography/images/89.png]]
-
-
-**How it works**: 
-1. Adversary Chooses Messages: 
-	- A starts by choosing a message m=(m1,…,mt), where each mi represents a block of plaintext. 
-	- A sends these messages to CCPA to receive its corresponding ciphertexts. 
-2. Encryption in CTR Mode: 
-	- The encryption scheme uses a Counter (CTR) mode with a starting value r chosen at random. This r serves as the initial counter value. 
-	- For each plaintext block mi, CCPA generates the ciphertext ci as follows: ci=fk(r+i−1) mi ⊕ Here: 
-		- fk is a pseudorandom function (or the block cipher function) with key k. 
-		- r+i−1 represents the counter value for each block i. 
-		- The result of fk(r+i−1) is XORed with mi to produce ci. 
-3. Challenge Phase: 
-	- A then submits two messages μ0 and μ1, which are distinct messages of equal length. CCPA will challenge A with the encryption of one of these messages, chosen based on a secret bit b. 
-	- CCPA chooses a random bit b {0,1}, deciding ∈ which message to encrypt. 
-	- CCPA encrypts μb using the CTR mode, as described before, but this time with a new random counter ρ and produces a ciphertext γb=(γ0,γ1,…,γt) using: (γb)i=fk(ρ+i−1) (μb)i. ⊕ 
-4. Adversary's Goal: 
-	- A receives the ciphertext γb and tries to guess which message was encrypted by outputting a guess b′. 
-	- A wins the game if b′=b, meaning it correctly identifies which message CCPA encrypted. 
-5. Output: 
-	- The experiment outputs 1 (indicating success) if b′=b, which means that A successfully distinguished between the two encrypted messages. 
-	- If A can consistently guess correctly (better than random chance), the encryption scheme is not IND-CPA secure. A secure scheme would mean A's success probability is close to random guessing
 
 
 $HYB^1_{CTR, A}(\lambda, b)$: A random function $R$ is chosen UAR from $R(n, n)$ at the beginning of the game, and is used in place of $F_k$ in all block encryptions;

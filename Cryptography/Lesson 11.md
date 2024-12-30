@@ -109,7 +109,7 @@ The output generate a tag authentication for the message $m$
 
 ```
 
-Actually this construction only gives a MAC and not a PRF, this construction provides only a MAC (Message Authentication Code), not a PRF (Pseudo-Random Function). This means that it protects integrity, but does not guarantee completely indistinguishable behavior.
+Actually this construction provides only a MAC (Message Authentication Code), not a PRF (Pseudo-Random Function). This means that it protects integrity, but does not guarantee completely indistinguishable behavior.
 
 **Question**: What function $h$ is AXU (Almost XOR Universal)? 
 Una funzione $h_s$ è detta AXU se, per ogni valore  $a \in \{0, 1\}^n$, vale

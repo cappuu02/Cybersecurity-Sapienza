@@ -220,8 +220,8 @@ $$\forall b \in \{0,1\}, H(\lambda, b) \equiv_e H'(\lambda, b)$$
 ```
 
 **Proof by reduction**:
-Fix $b=0$ and assume:
-$$\not \exists PPTA : |Pr[H(\lambda, b) = 1] - Pr[H'(\lambda, b)]| \ge \frac{1}{negl(\lambda)}$$
+Fix $b=0$ and assume not:
+$$\exists PPTA : |Pr[H(\lambda, b) = 1] - Pr[H'(\lambda, b)=1]| \ge \frac{1}{negl(\lambda)}$$
 $$\not \exists \hspace{0.3cm} B \hspace{0.3cm} \text{"Breaking"} \hspace{0.3cm} G$$
 ![[Cryptography/images/20.png]]
 
