@@ -1,4 +1,4 @@
-# RSA
+ # RSA
 The first Public Key Encryption (PKE) scheme was introduced in 1978. It allows secure communication without prior key exchange.
 $$
 \begin{aligned}
@@ -116,7 +116,7 @@ Factoring $\Rightarrow$ RSA?? Yes!
 **Question**: Can we do CPA PKE from factoring for long messages? As efficient as RSA?
 Answer: yes, but some of these schemes is a real standard so we won't take it.
 ## CCA Security
-In the real world, a CCA attack was carried out against PKCS H1.5 based on a partial decryption oracle', which provides a response indicating whether a given ciphertext $\tilde c$ is correctly padded. This is why PKCS $\#2.0$ was introduced, using a more complex padding scheme that can be proven CCA secure for $\lambda$-bit messages, but under strong assumptions (RSA).
+Nel mondo reale, è stato effettuato un attacco CCA contro il PKCS H1.5 basato su un “oracolo di decrittazione parziale”, che fornisce una risposta che indica se un dato testo cifrato $\tilde c$ è correttamente imbottito. Per questo motivo è stato introdotto il PKCS #2.0, che utilizza uno schema di imbottitura più complesso che può essere dimostrato sicuro dal punto di vista CCA per i messaggi a $\lambda$ bit, ma sotto forti assunzioni (RSA).
 
 DAEP (Deterministic Authenticated Encryption with Pseudorandom Functions) is a cryptographic scheme that use pseudorandom functions and random oracles to improve the  encryption security:
 $$m \in \{0,1\}^l \hspace{0.5cm} m' = m \mid \mid 0^{\lambda_1}$$
@@ -128,7 +128,6 @@ $$c = (s \mid \mid t)^2 \mod n$$
 
 **In practice**: $\lambda_1, \lambda_0$ are constants and $l$ can be around $236$ bits
 RSA assumptions + something about $G, H$
-$G,H$ are called random oracles
 - indistinguishing from random table,
 - we know how to construct,
 - impossible to get and guess the expected output except if I possess the $s$ seed.
@@ -162,7 +161,7 @@ If we fix hash function (only one) $\Rightarrow$ there are still collisions. We 
 $$A_{x, x'}: \text{Output}_{x, x'}$$
 ### Plural paradigm for constructing hash functions
 - Design comparison function say:
-	$h_s : \{0,1\}^{2 \lambda} \to \{0,1\}$
+	$h_s : \{0,1\}^{2 \lambda} \to \{0,1\}^{\lambda}$
 	Or even $\{0,1\}^{\lambda+1} \to \{0,1\}^{\lambda}$
 - Then amplify this domain $\{0,1\}$
 	Real world constructions faithfully follow step 2, but heuristically implement step 1
@@ -176,7 +175,7 @@ Let's start with step 2. It comes from a result by Merkle and Dongard around 198
 title: Funzionamento
 1. Il messaggio di input viene diviso in blocchi di uguale lunghezza 
 2. Ogni blocco viene processato sequenzialmente attraverso una funzione di compressione
-3. il risultato di ogni passaggio $(y_1, \cdots, y_n)$ diventa l'output per il passaggio successivo
+3. il risultato di ogni passaggio $(y_1, \cdots, y_n)$ diventa l'input per il passaggio successivo
 
 **Processo di Compressione**
 1. La funzione prende due input: il blocco del messaggio corrente e il risultato del passaggio precedente
@@ -227,7 +226,7 @@ Idea! Torniamo indietro e cerchiamo di vedere dove si è verificata tale collisi
 ```
 
 ==Running backwords ==
-Prendiamo j come l'indice più grande dove troviamo una differenza tra le due sequenze, ovvero dove abbiamo:
+Prendiamo $j$ come l'indice più grande dove troviamo una differenza tra le due sequenze, ovvero dove abbiamo:
 $$(b_j, y_{j-1})(b'_j, y'_{j-1})$$
 Because this is the largest $j$, it must be the case that:
 $$h_s(b_j, y_{j-1})=h_s(b'_j, y'_{j-1}) \Rightarrow b_j\mid \mid y_{j-1}, b'_j \mid \mid y'_{j-1} \hspace{0.5cm} \text{are a collision for} \hspace{0.5cm} h_s(\cdot)$$
@@ -247,7 +246,7 @@ In fact, consider $H$ with the property that $h_s(0^{n+1})=0^n$ for every $s$. F
 ![[Cryptography/images/96.png]]
 
 The Fix: Make it happen that no "legal" input is a suffix of another "legal input".
-- "Legal": Encode it like this.
+	- "Legal": Encode it like this.
 - Assume for simplicity $h_s = \{0,1\}^{2n} \to \{0,1\}^n$
 - Then if $x = (x_1, \cdots, x_{l'})$ encode $x$ to $x_1, \cdots, x_{l'}, <l'>$
 	- $<l'>$ binary encoding of $l'$ using $n$ bits.
@@ -263,8 +262,10 @@ In un sistema di hashing senza alcuna protezione, se $y$ è semplicemente una ve
 
 Ad esempio, se la funzione di hash non prende in considerazione la lunghezza dell'input, $y$ potrebbe essere interpretato come una semplice estensione di $x$, e quindi il risultato dell'hash potrebbe essere lo stesso, causando una **collisione**.
 
-```
+==Soluzione==
+![[Pasted image 20250109170616.png]]
 
+```
 
 ```ad-abstract
 title: Theorem
@@ -307,3 +308,5 @@ Se un avversario riesce a trovare una collisione nella funzione di hash $h_{g_1,
 In altre parole, la sicurezza della funzione di hash è garantita dalla difficoltà di risolvere il problema del logaritmo discreto, il che implica che la funzione di hash non dovrebbe avere collisioni in un tempo polinomiale, a meno che non sia possibile risolvere il problema del logaritmo discreto in tempo polinomiale, cosa che è considerata computazionalmente difficile.
 
 ```
+
+

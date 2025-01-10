@@ -166,18 +166,6 @@
               "icon": "lucide-file",
               "title": "Lesson 20-21-22-23"
             }
-          },
-          {
-            "id": "6fc1cf69d4358048",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Cryptography/PDF/Esercizi Risolti.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Esercizi Risolti"
-            }
           }
         ],
         "currentTab": 5
@@ -248,7 +236,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 304.51103591918945,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -264,7 +253,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Network Infrastructures/Network Infrastructures (PDF 2).md",
+                "file": "Cryptography/Lesson 20-21-22-23.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -274,7 +263,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Network Infrastructures (PDF 2)"
+              "title": "Backlinks for Lesson 20-21-22-23"
             }
           },
           {
@@ -335,18 +324,22 @@
   },
   "active": "ff8f8d79e7556622",
   "lastOpenFiles": [
-    "Cryptography/Lesson 11.md",
-    "Cryptography/Lesson 12-14.md",
     "Cryptography/Lesson 15-16.md",
     "Cryptography/Lesson 17 (Asymmetric Scheme).md",
     "Cryptography/Lesson 18-19.md",
-    "Cryptography/Lesson 20-21-22-23.md",
-    "Cryptography/Lesson 8-9-10.md",
-    "Cryptography/Lesson 4-5-6-7.md",
     "Cryptography/Lesson 2-3.md",
+    "Cryptography/Lesson 8-9-10.md",
+    "Cryptography/Lesson 1.md",
+    "Cryptography/Lesson 11.md",
+    "Cryptography/Lesson 4-5-6-7.md",
+    "Cryptography/Lesson 12-14.md",
+    "Cryptography/Lesson 20-21-22-23.md",
+    "Pasted image 20250109170616.png",
+    "Immagine WhatsApp 2025-01-04 ore 20.06.58_284236ce.jpg",
+    "Immagine WhatsApp 2025-01-04 ore 19.53.34_2e627e40.jpg",
+    "Pasted image 20250103093549.png",
     "Cryptography/PDF/Esercizi Risolti.pdf",
     "Cryptography/PDF/Esercizi Critto Simo.pdf",
-    "Cryptography/Lesson 1.md",
     "Cryptography/ex.md",
     "Cryptography/Cryptography Notes.pdf",
     "Pasted image 20241227164639.png",
@@ -355,10 +348,6 @@
     "Immagine WhatsApp 2024-12-27 ore 16.01.14_dd9424b8.jpg",
     "Immagine WhatsApp 2024-12-27 ore 16.00.12_2a8cfabd.jpg",
     "Immagine WhatsApp 2024-12-27 ore 15.58.34_4fcaa598.jpg",
-    "Immagine WhatsApp 2024-12-27 ore 15.57.58_0234ae33.jpg",
-    "Immagine WhatsApp 2024-12-27 ore 15.55.57_d7f93302.jpg",
-    "Immagine WhatsApp 2024-12-27 ore 15.55.15_a71e52ea.jpg",
-    "Pasted image 20241227153937.png",
     "Cryptography/Notes.md",
     "Untitled.md",
     "Cryptography/Lesson 13.md",

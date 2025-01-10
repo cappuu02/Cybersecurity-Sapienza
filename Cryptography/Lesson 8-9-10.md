@@ -91,7 +91,7 @@ $$\text{REAL}_{A,F}(\lambda) \approx_c \text{RAND}_{A, R}(\lambda)$$
 ![[Cryptography/images/74.png]]
 
 Equivalent: $\forall$  ppt $A$ 
-$$\mid Pr[Real_{A,F}(\lambda)=1] - Pr[RAND_{A,R} (\lambda)=1] \le negl(\lambda) \mid$$
+$$\mid Pr[Real_{A,F}(\lambda)=1] - Pr[RAND_{A,R} (\lambda)=1] \mid \le negl(\lambda) $$
 The challenger is unbounded in rand. This is simpler think of, but no needed as we can do lazy sampling:
 - Upon $x \in \{0,1\}^n$, output $y \leftarrow \{0,1\}^n$ as long as $x$ not asked before (in which case, output previous $y$)
 ### Construct a PRFs
@@ -138,8 +138,6 @@ Assuming $F$ a PRF, $Tag(k,m)=F(k,m)$ is UFCMA for FIL
 
 ```
 
-
-
 **Proof THM1 Application 1**
 ![[41.jpeg]]
 
@@ -166,7 +164,7 @@ In questa dimostrazione per assurdo, si assume che $A$ sia capace di distinguere
 In questo caso, $B$ **non cerca di rendere i mondi indistinguibili per $A$**, ma invece **usa $A$ per dimostrare che, se $A$ riesce a distinguere, allora si rompe la sicurezza della PRF**.
 ```
 
-By reduction to security of PRF. Fix $b$ and assume: $\exists$ ppt $A$ such that $$\mid Pr[G(\lambda, b)=1] - Pr[H(\lambda, b)=1]\mid \ge \frac{1}{negl(\lambda)}$$
+By reduction to security of PRF. Fix $b$ and assume not: $\exists$ ppt $A$ such that $$\mid Pr[G(\lambda, b)=1] - Pr[H(\lambda, b)=1]\mid \ge \frac{1}{negl(\lambda)}$$
 
 Build ppt $B$ against $F$:
 ![[Cryptography/images/76.png]]
@@ -215,21 +213,6 @@ where $q$ is the $A$ of CTXS. ($q = poly(\lambda)$)
 $$\Rightarrow G(\lambda, 0) \approx_c H(\lambda, 0) \approx_s H'(\lambda, 0) \equiv H'(\lambda, 1) \approx_s H(\lambda, 1) \approx_c G(\lambda, 1)$$
 
 >Possiamo dunque dire che: $G(\lambda, 0) \approx_c G(\lambda, 1)$
-
-```ad-abstract
-title: Spiegazione
-**Union Bound**:  tecnica che dice che la probabilità dell'unione di più eventi è al massimo la somma delle probabilità dei singoli eventi. In questo caso, vogliamo calcolare la probabilità che **esista almeno una collisione** tra tutte le possibili coppie di $r_i$​ e $r_j$, quindi sommiamo le probabilità di collisione per ogni coppia possibile.
-Il numero di coppie possibili è dato dal numero di modi in cui possiamo scegliere due indici distinti $i$ e $j$ tra le $q$ query fatte dall'avversario. Questo numero è $\binom{q}{2}$, cioè il numero di coppie possibili tra $q$ elementi. Poiché ogni coppia ha probabilità $2^{-n}$ di collidere, la probabilità totale di collisione è la somma delle probabilità di collisione per tutte le possibili coppie: $\binom{q}{2} \cdot 2^{-n}$
-La probabilità di collisione è quindi:
-$$\binom{q}{2} \cdot 2^{-n} \le q^r \cdot r^{-h}$$
-
-Dove:
-- $q$ è il numero di query fatte dall'avversario, ed è un polinomio in $\lambda$, quindi $q = \text{poly}(\lambda)$.
-- $n$ è la lunghezza dei valori casuali $r_i$​, quindi la probabilità di collisione decresce esponenzialmente con $n$.
-
-Questa probabilità è chiamata **trascurabile** in $\lambda$ $\text{negl}(\lambda)$ perché, man mano che $n$ cresce, la probabilità diventa piccolissima.
-
-```
 
 
 ```ad-abstract
@@ -287,8 +270,7 @@ Next step:
 
 Let's start with the first for SKE. These are the so-called "**Modes of operation**".
 ## Modes of Operation
-Up until now, encryption has been dealt with messages of fixed size around a polynomial function to $\lambda$. How to deal with messages with arbitrary size? Setting a maximum bound to message length seems impractical, both for waste reasons when messages are too short, and for practicality when messages eventually get too long. The solution takes the form of a “block-cipher”, where a message of a given size is split into equally-sized blocks, and then encrypted using a fixed-size encryption scheme. Various instances of this technique, called modes, have been devised.
-
+Finora, la crittografia è stata trattata con messaggi di dimensioni fisse attorno a una funzione polinomiale di $\lambda$. Come gestire messaggi di dimensioni arbitrarie? Fissare un limite massimo alla lunghezza dei messaggi sembra poco pratico, sia per motivi di spreco quando i messaggi sono troppo corti, sia per motivi di praticità quando i messaggi diventano troppo lunghi. La soluzione consiste in un “cifratore a blocchi”, in cui un messaggio di una determinata dimensione viene suddiviso in blocchi di uguale dimensione e quindi cifrato utilizzando uno schema di cifratura a dimensione fissa. Sono state ideate diverse istanze di questa tecnica, chiamate modalità.
 ### CBC (Cypher Block Chaining) 
 #### Description
 The diagram illustrates the Cipher Block Chaining (CBC) mode of encryption, which is commonly used in block ciphers to securely encrypt messages of arbitrary length. In CBC mode, each block of plaintext $m_i$ is encrypted in a way that depends on the encryption of the previous block. This chaining process ensures that identical plaintext blocks produce different ciphertext blocks, provided the previous ciphertext differs (due to either different messages or an initial random value).
@@ -380,90 +362,101 @@ How it works:
 
 ```ad-abstract
 title: Theorem
-Assume $f_k$ is a PRF, then the counter-mode block cipher is CPA-secure for variable input length (VIL.
+Assume $f_k$ is a PRF, then the counter-mode block cipher is CPA-secure for variable input length (VIL).
 
 ```
 
 **Proof of the Theorem**
 We start with original CPA game:
-
-![[Cryptography/images/89.png]]
-
-
-$HYB^1_{CTR, A}(\lambda, b)$: A random function $R$ is chosen UAR from $R(n, n)$ at the beginning of the game, and is used in place of $F_k$ in all block encryptions;
-
-$HYB^2_{CTR, A}(\lambda, b)$: The challenger will pick random values from $2^n$ as ciphered blocks, disregarding any encryption routine. This hybrid does not use any encryption function at all. Instead, each block of ciphertext is purely random, with no relation to the plaintext or any previous ciphertexts.
+![[Immagine WhatsApp 2025-01-04 ore 19.53.34_2e627e40.jpg]]
 
 ```ad-abstract
 title: Lemma
-$$GAME_{CTR,A}^{CPA}(\lambda, b) \equiv_c HYB_{CTR,A}(\lambda, b) \forall b \in 2$$
+$$\forall b, H_0(\lambda, b) \approx_c H_1(\lambda, b)$$
 
 ```
 
-**Proof**
-Hint: Since the original game and the first hybrid are very similar, we can use a distinguisher which plays the cpa-game; since this is a lemma, our goal in the reduction is to break the precondition contained in the theorem statement.
+**Proof by Reduction to PRF security**
+![[Immagine WhatsApp 2025-01-04 ore 20.06.58_284236ce.jpg]]
 
 ```ad-abstract
 title: Lemma
-$$HYB^1_{CTR,A}(\lambda,b) \equiv_c HYB^2_{CTR,A}(\lambda,b) \forall b \in 2$$
+$$\forall b, H_1(\lambda, b) \approx_c H_2(\lambda, b) \hspace{0.7cm} \text{As long as $A$ makes $q(\lambda) = poly(\lambda)$ encryption queries.}$$
+
+```
+Trova l'evento $E$ tale che, quando $E$ non si verifica, si ha $H_1(\lambda, b) \equiv H_2(\lambda, b)$.
+Il ciphertext della sfida $c^*$ viene calcolato utilizzando la sequenza:  
+$$R(r^*), R(r^*+1), \cdots, R(r^* + t^* -1)$$
+
+D'altra parte, gli altri ciphertexts (CTXs) vengono calcolati utilizzando la sequenza:  
+$$R(r_i), R(r_i +1), \cdots, R(r_i + t_i -1)$$
+L'evento $E$ è l'evento in cui la prima sequenza si sovrappone alla seconda sequenza (per tutte le richieste di crittografia):  
+$$E: \exists j, j' \ge 0; i \ge 1$$
+$$r_{i+1} = r^* + j'$$
+$$r^* = r; r = 4; j' = 2; j = 0$$
+
+Osservazione: condizionando su $\bar E$, $c^*$ sarà uniforme e $H_1(\lambda, b) \equiv H_2(\lambda, b)$. È necessario solo calcolare un limite superiore per $Pr[E]$.
+
+Semplificando: sia $q(\lambda)$ anche la lunghezza massima di qualsiasi richiesta di crittografia. Ovviamente, se $q(\lambda) = poly$, allora $t_i, t^* = q(\lambda)$ (numero di richieste). Consideriamo l'evento $E_i$:  
+$$r_i, \cdots, r_{i+q-1}$$ 
+si sovrappone a  
+$$r^*, \cdots, r^* + q - 1$$
+
+Si ha:  
+$$Pr[E] \le \sum_{i=1}^q Pr[E_i] \le q(\lambda) \cdot \text{negl}(\lambda) = \text{negl}(\lambda)$$
+
+Per calcolare $Pr[E_i]$, consideriamo:  
+$$r^*, r^* + 1, \cdots, r^* + q - 1$$  
+$$r^*, r^* + 1, \cdots, r_i + q - 1$$  
+$$r^* - q + 1 \le r_i \le r^* + q - 1$$
+
+Pertanto:  
+$$Pr[E_i] \le \frac{(r^* + q - 1) - (r^* - q + 1)}{2^n} = \frac{2q - 1}{2^n} = \text{negl}(\lambda)$$
+
+```ad-abstract
+title: Lemma
+$$H_2(\lambda, 0) \equiv H_2(\lambda, 1)$$
+Because $c^*$ independent of $b$ in $H_2$
+
 ```
 
-This lemma is part of a security proof for counter (CTR) mode encryption, specifically to show that CTR mode is secure under chosen-plaintext attack (CPA). The idea is to prove that an attacker cannot distinguish between two similar encryption processes (referred to as "hybrids"), which would mean that CTR mode encryption is indistinguishable from random and, therefore, secure.
+So,
+$$H_0(\lambda, 0) \approx_c H_1(\lambda, 0) \approx_s H_2{\lambda, 0}\equiv H_2(\lambda, 1) \approx_s H_1(\lambda, 1) \approx_c H_0(\lambda, 1)$$
 
 
 
-**Explanation of the proof CPA for VIL**
-1. Main Intuition: 
-	- Since $m_i$ (the message) does not affect the distribution in Hybrid $1$ (due to the random function $R$), the output $R(r+i)$ mi $\oplus$ appears indistinguishable from $R(r+i)$ alone. This should make the two hybrids look the same to an attacker. 
-	- However, if the same nonce is used for different messages, the repeated use of $R$ with the same input could make patterns in Hybrid $1$, which could allow an attacker to distinguish it from Hybrid $2$.
-2. Probability of Collisions (Overlap Events):
-	- The proof calculates the probability of an overlap event (collision of counter values) and shows it is negligible
-	- For any message block sequence of length t (where all message lengths are assumed to be the same here), an overlap can occur in two cases:
-		- The sequence $\rho,…,\rho+t−1$ (for the challenge message) partially overlaps with sequence $r_i,…,r_i+t−1$ (for an encryption query).
-	- The overlap conditions are: 
-		- If $ρ+t−1=r_i$, the two sequences overlap at the last element. 
-		- If $r_i+t−1=\rho$, the sequences overlap at the last element in the other direction.
-3. Calculation of Overlap Probability
-	- The proof estimates the probability of an overlap event occurring between the challenge message and each encryption query. It shows that, given the large size of the nonce space (modulo $2^n$), the probability of these events happening is extremely low (negligible).
-	- The probability of overlap for each query is shown to be $\frac{2 \cdot t^2}{2^n}$ and for all queries combined, it remains negligible as n grows.
-4. Conclusion
-	- Since the probability of the overlap event is negligible, it means that Hybrid $1$ and Hybrid $2$ are indistinguishable in the vast majority of cases. 
-	- Therefore, the attacker cannot tell if they are dealing with Hybrid $1$ or Hybrid $2$, which implies that counter-mode encryption is CPA-secure.
-
-Final conclusion
-By proving that $Hyb1$ and $Hyb2$ are indistinguishable, the proof shows that CTR mode encryption is secure under CPA. This means that for an attacker who can choose plaintexts and see the ciphertexts, CTR mode will still look indistinguishable from random, which is the desired property for CPA security.
 
 ## Domain Extension 
-A MAC is a cryptographic function that produces a tag for a message, which can be used to verify its authenticity and integrity. However, many MAC schemes (e.g., based on hash functions or block ciphers) are natively designed to work on messages of fixed size (often a single block of a certain length, such as 128 bits or 256 bits). In real-world scenarios, though, we need to authenticate messages of arbitrary lengths. Domain extension techniques allow us to extend the MAC scheme to handle variable-length messages securely, without compromising the security properties of the MAC. This process is essential for practical MAC implementations in applications where message sizes vary significantly.
+Un MAC è una funzione crittografica che produce un tag per un messaggio, che può essere utilizzato per verificarne l'autenticità e l'integrità. Tuttavia, molti schemi MAC (ad esempio, basati su funzioni hash o cifrari a blocchi) sono progettati per funzionare su messaggi di dimensioni fisse (spesso un singolo blocco di una certa lunghezza, come 128 bit o 256 bit). Negli scenari reali, tuttavia, è necessario autenticare messaggi di lunghezza arbitraria. 
+
+```ad-abstract
+title: Domain Extension
+
+Le **tecniche di estensione del dominio** ci permettono di estendere lo schema MAC per gestire in modo sicuro messaggi di lunghezza variabile, senza compromettere le proprietà di sicurezza del MAC. Questo processo è essenziale per le implementazioni pratiche del MAC in applicazioni in cui le dimensioni dei messaggi variano in modo significativo.
+```
 
 Recall: PRF $\Rightarrow$ FIL; UFCMA; MAC.
 $Tag(k,m) = F_k(m)$
 
 ### Some ideas that don't work
-$e = Tag_k (\oplus_i, m_i)$ 
-$m = (m_1, m_2, \cdots)$
-UFCMA(i.e. AESk($\cdot$))
+1. Concatenazione dei Tag
+	$e=Tagk​(m1​)⊕Tagk​(m2​)⊕…$
 
-$(m_1, m_2) = m \Rightarrow e$
-$(m^* = m_1 \oplus m_2, r) \hspace{0.8cm} r=F_k(m_1 \oplus m_2)$
-$m = (m_1, m_2)$, let $r = F_k(m_1 \oplus m_2) \hspace{0.4cm} m_1 \not = m_2$
-$m^* = (m_2, m_2); r^* = r$
+2. Combinazione lineare dei blocchi
+	$r = F_k(m_1 \oplus m_2)$
+	Un avversario potrebbe manipolare i blocchi $m_1$​ e $m_2$​ per ottenere un nuovo messaggio $m^*$ che produca lo stesso tag $r$.
 
-![[Cryptography/images/45.png|400]]
-
-- $r_i = TAG_k(m_i)$
-	- $r = (r_1, \cdots, r_d)$
-	- $m = (m_1, \cdots, m_d)$
-
-Permute again
-
-- $r_i = TAG_k(i \mid \mid m_i)$
-	- $r = (r_1, \cdots, r_d)$
-	- $m = (m_1, \cdots, m_d)$
-
+Un’**idea migliore** è aggiungere un identificatore di blocco (indice $i$) e concatenarlo con il contenuto del blocco $m_i$ ​:   $r_i = Tag_k(i \mid\mid m_i)$
+Questa tecnica garantisce che il MAC dipenda non solo dai dati ma anche dalla loro posizione, prevenendo attacchi di permutazione.
 
 ### Universal hash functions for MACs schemes (Pag. 55)
-Universal hash functions are used to create efficient and secure hashing schemes for variable-length messages, especially when building Message Authentication Codes (MACs). Shrinking method. When creating a MAC for variable-length messages, universal hash functions are employed to map a long message to a fixed-size output before applying a pseudorandom function (PRF). This process reduces the size of the message to a fixed length that the PRF can then use to generate a secure tag.
+Le **Universal hash Function** sono utilizzate per creare schemi di hashing efficienti e sicuri per messaggi di lunghezza variabile, in particolare per la creazione di codici di autenticazione dei messaggi (MAC). Metodo di restringimento. 
+
+```ad-tip
+
+Quando si crea un MAC per messaggi di lunghezza variabile, si utilizzano funzioni hash universali per mappare un messaggio lungo in un output di dimensioni fisse prima di applicare una funzione pseudorandom (PRF). Questo processo riduce le dimensioni del messaggio a una lunghezza fissa che la PRF può utilizzare per generare un tag sicuro.
+```
+
 
 The function family $H$ has specific properties that make it suitable for this task. The process works like this:
 1. **Map the Message**: Use a function from the family $H$ to "shrink" the variable-length message m to a fixed-size output $h_s(m)$. 
@@ -497,3 +490,6 @@ To secure the hash function despite inevitable collisions, we can rely on two st
 
 We'll go with ==secret key approach== because it's the one that is used.
 
+
+
+>La relazione tra **Domain Extension** e **Universal Hash per schemi MAC** è profonda, poiché entrambe le tecniche affrontano il problema di autenticare messaggi di lunghezza arbitraria, garantendo sicurezza ed efficienza.

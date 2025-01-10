@@ -279,7 +279,8 @@ title: Domande e Chiarimenti
 ```
 
 **Proof**
-To prove that this construct is a valid PRG, we will make use of a known technique for proving many other results, which relies heavily on reductions like the one employed back in the OWF topic, and is commonly called the “**hybrid argument**”.  We need  to show $G^l(U_\lambda) \equiv U_{l + \lambda}$. We can do this by defining hybrid distributions like $H_0(\lambda), H_1(\lambda), \cdots, H_l(\lambda)$ such that:
+To prove that this construct is a valid PRG, we will make use of a known technique for proving many other results, which relies heavily on reductions like the one employed back in the OWF topic, and is commonly called the “**hybrid argument**”.  
+We need  to show $G^l(U_\lambda) \equiv U_{l + \lambda}$. We can do this by defining hybrid distributions like $H_0(\lambda), H_1(\lambda), \cdots, H_l(\lambda)$ such that:
 - $H_0(\lambda) \equiv G^l(U_{\lambda}); H_l(\lambda) \equiv U_{\lambda + l}$
 - $H_0(\lambda) \equiv H_1(\lambda) \equiv H_2(\lambda), \cdots, H_l(\lambda)$
 
@@ -401,9 +402,9 @@ Adding predictable or structured information (such as "0" or the first bit of xx
 ```
 
 ## Hardcore predicates
-Now that we’ve seen how to reuse a one-bit stretch PRG in order to obtain an arbitrary length of pseudorandom bits, we turn to the problem of constructing a 1-bit stretch PRG itself by starting from OWF. Let $f$ be a OWF, and consider the following questions: 
-- Given an image $f(x)$, which bits of the input $x$ are hard to extract? 
-- Is it always true that, given $f$, the first bit of $f(x)$ is hard to compute for any choice of $x$?
+Ora che abbiamo visto come riutilizzare un PRG stretch a un bit per ottenere una lunghezza arbitraria di bit pseudorandom, passiamo al problema di **costruire un PRG stretch a un bit partendo da OWF**. Sia $f$ un OWF e si considerino le seguenti domande: 
+- Data un'immagine $f(x)$, quali bit dell'input $x$ sono difficili da estrarre? 
+- È sempre vero che, data $f$, il primo bit di $f(x)$ è difficile da calcolare per qualsiasi scelta di $x$?
 
 ```ad-abstract
 title: Definition
@@ -433,7 +434,6 @@ Se $f(s)$ è una $OWP$ e $h(s)$ è un hard-core bit, allora $G(s)$ è un $PRG$ s
 - Possiamo usare $G(s)$ per generare bit pseudocasuali a partire da una sorgente sicura $s$.
 
 ```
-
 
 >Questo è importante perché garantisce che possiamo sempre derivare un bit "casuale" da una OWF.
 

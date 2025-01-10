@@ -1,7 +1,7 @@
 We will cover the  construction used in practice: RSA, signatures, .....
 Hardness:
 - Number theory (Factoring, discrete log, elliptic curves, ...)
-- Lottixes (LWE, SIS)
+- Lottixes (LWE, SIS)  
 
 ## Concepts of discrete matematics
 Modular Arithmetic over $Z_n = \{0,1, \cdots, n-1\}$
@@ -172,7 +172,8 @@ Good News: We can sample random $p$ along with generator $g$ of $Z_p^*$. How? Ba
 The discrete log problem: $f_g(x) = g^x \mod p$ is a OWP (conjecture)
 - $f_g(x) \to y; x = \log_g y$
 
-Back to 1976: Diffy-Helman introduced public-key crypto. 
+
+**Back to 1976: Diffy-Helman introduced public-key crypto. **
 ![[WhatsApp Image 2024-12-02 at 18.09.51.jpeg]]
 
 What is the security? If Eva can break DH then she can compute $k$!
@@ -186,7 +187,7 @@ The computational DH assumption holds in $Z_p^*$ if:
 ```
 
 $CDH \Rightarrow DL$, but $DL \Rightarrow CDH$ ?
-Much better security: Eva (passive) can't distinguish key from uniform.
+Much better security: Eva (passive) can't distinguish key from uniform (random).
 
 ```ad-abstract
 title: Definition
@@ -272,10 +273,7 @@ $(Z_q \times Z_q \to G \times G \times G)$
 I can improve the stretch:
 $$G_{g,q}(x, y-1, \cdots, y_l) = (g^x, g^y_1, g^{xy_1}, g^{y_2}, g^{xy_2}, \cdots, g^{y_l}, g^{xy_l})$$
 $$Z_q^{l+1} \to G^{2l+1}$$
-![[Pasted image 20241202180021.png]]
 
-
-$$Z_q^{l+1} \to G^{2l +1 }$$
 _Exercise_: Prove this is secure from DDH.
 PRFs. There is a simple construction of PRFs From DDH.
 

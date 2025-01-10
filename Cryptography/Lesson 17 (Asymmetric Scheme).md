@@ -27,7 +27,7 @@ $(G,g,q) \leftarrow$ Group Gen$(1^{\lambda}) \hspace{0.4cm}$ where:
 	1. Output $c_2 / c_1^x$
 
 Why doesn't work:
-$$c_2 / c_1^x = \frac{h^x \cdot m}{(g^r)^x} = \frac{h^r \cdot n}{(g^x)^r} = m$$
+$$c_2 / c_1^x = \frac{h^r \cdot m}{(g^r)^x} = \frac{h^r \cdot m}{(g^x)^r} = m$$
 ```ad-abstract
 title: Theorem
 ElGamal PKE is CPA Secure under the DDH Assumption in $F$.

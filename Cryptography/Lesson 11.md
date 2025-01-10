@@ -1,10 +1,12 @@
 We'll go with **secret-key approach** (as this is what's used in practice).
 
 ```ad-abstract
-title: Definition (Almost Universal)
+title: Definition (AU)
  A family of hash functions $H$ is deemed $\epsilon- \text{universal}$ if: $$\forall x, x' \in \{0,1\}^N \hspace{0.3cm} \text{such that} \hspace{0.3cm} x \not = x' \Rightarrow Pr[h_s(x)=h_s(x')] \le \epsilon$$
 
 ```
+
+>**AU (Almost Universal)**: la probabilità che due messaggi distinti $x \neq x'$ producano lo stesso hash output è molto bassa.
 
 >This is strong: It implies no $t$ can find a collision.
 
@@ -58,6 +60,7 @@ $$\Rightarrow SD(H_1(\lambda); H_2(\lambda)) \le Pr[E]$$
 We'd like to say:
 $$Pr[E] = Pr_s [\exists i,j : i \not = j \hspace{0.3cm}  \text{and} \hspace{0.3cm} h_s(x_i)=h_s(x_j)]$$
 $$\le \sum_{i,j} Pr[h_s(x_i)=h_s(x_i)] \le \binom{q}{2} \cdot 2 \le negl(\lambda) \hspace{0.4cm} (i \not = j)$$
+
 **Issue**: $AU$ requires $x_i$ to be independent of $x_j$. Not clear if is for our $E$. Equivalent definition of $E$
 
 ![[Cryptography/images/49.png]]
@@ -82,8 +85,7 @@ Computational AU: $\forall$ PPT $A$
 
 Use some other PRF invocation $F_s(\cdot)$ to construct $h_s(-)$
 $$F_k(h_s(\cdot))$$
-==Optimization trick==
-Instead of using $k,s$ use just $k$ (or $s$) and do:
+==Optimization trick==, Instead of using $k,s$ use just $k$ (or $s$) and do:
 $$F_k(0 \mid \mid \cdot) \hspace{0.2cm} \text{for} \hspace{0.2cm} F_k(\cdot)$$
 $$F_k(1 \mid\mid \cdot) \hspace{0.2cm} \text{for} \hspace{0.2cm} F_s(\cdot)$$
 
@@ -93,7 +95,7 @@ $h_s(m_1, \cdots, m_d) = F_s(m_d \oplus F_s(m_{d-1} \oplus \cdots \oplus F_s(m_2
 
 ```ad-abstract
 title: Theorem
-If $F$ a PRF then above $h_s(-)$ is computational AU $\Rightarrow$ "Encrypted" CBC-MAC: $F_k(h_s(m))$
+"If $F$ is a Pseudorandom Function (PRF), then the function $h_s(-)$ is computationally Authenticating Unforgeable (AU) $\Rightarrow$ the 'Encrypted' CBC-MAC is given by $F_k(h_s(m))$."
 
 ```
 

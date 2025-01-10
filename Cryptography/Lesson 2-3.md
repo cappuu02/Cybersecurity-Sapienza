@@ -143,7 +143,7 @@ The mechanism employed by both parties to enforce authentication is called a ==c
 Uno schema di autenticazione è corretto se, per ogni messaggio $m \in M$ e per ogni chiave$k \in K$:
 $$\text{Ver}(k, m, \text{Tag}(k, m)) = 1$$
 
-Thus, a security problem arises when someone, having a signed message $(m1, t1)$ whose k-key used for labeling is unknown, is able to efficiently sign a different message $(m2, t2)$ so that verification with the same key yields a positive result. This meaning is called forgery; and looking at the original setting in the figure above, if Eve is indeed able to forge authentic signatures, she can effectively impersonate Alice or Bob at will. The desired property of an authentication scheme then becomes that of being resistant, if not immune, to such attacks; in a word, the scheme is imperfect.
+Thus, a security problem arises when someone, having a signed message $(m1, t1)$ whose k-key used for labeling is unknown, is able to efficiently sign a different message $(m2, t2)$ so that verification with the same key yields a positive result. This meaning is called forgery; and looking at the original setting in the figure above, if Eve is indeed able to forge authentic signatures, she can effectively impersonate Alice  or Bob at will. The desired property of an authentication scheme then becomes that of being resistant, if not immune, to such attacks; in a word, the scheme is imperfect.
 
 A rigorous definition of uncountability is the ==$ε$-statistical one-time unforgeability==.
 
