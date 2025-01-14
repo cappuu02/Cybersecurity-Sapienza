@@ -4,171 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "596c3f4056e5978c",
+        "id": "08d8b7d162fe24a4",
         "type": "tabs",
         "children": [
           {
-            "id": "1feb06f3a6c7ddc8",
+            "id": "a49242d4dba525c1",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Cryptography/Lesson 1.md",
-                "mode": "preview",
-                "source": false
+                "file": "Cryptography/images/Immagine WhatsApp 2024-12-26 ore 22.12.44_4e2b97d8.jpg"
               },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 1"
-            }
-          },
-          {
-            "id": "06fc77de1315e799",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 2-3.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 2-3"
-            }
-          },
-          {
-            "id": "c364e5ec96026544",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 4-5-6-7.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 4-5-6-7"
-            }
-          },
-          {
-            "id": "b0d243efffb94f2e",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 8-9-10.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 8-9-10"
-            }
-          },
-          {
-            "id": "c3e5497c3fbd0f10",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 11.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 11"
-            }
-          },
-          {
-            "id": "ff8f8d79e7556622",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 12-14.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 12-14"
-            }
-          },
-          {
-            "id": "85e68200f8543c7f",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 15-16.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 15-16"
-            }
-          },
-          {
-            "id": "cefa9383a2e62c71",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 17 (Asymmetric Scheme).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 17 (Asymmetric Scheme)"
-            }
-          },
-          {
-            "id": "cdfac6c5e74eb99b",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 18-19.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 18-19"
-            }
-          },
-          {
-            "id": "ddfe8c198a1234cd",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Cryptography/Lesson 20-21-22-23.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Lesson 20-21-22-23"
+              "icon": "lucide-image",
+              "title": "Immagine WhatsApp 2024-12-26 ore 22.12.44_4e2b97d8"
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "vertical"
@@ -236,8 +87,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 304.51103591918945,
-    "collapsed": true
+    "width": 376.51103591918945
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -322,34 +172,35 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "ff8f8d79e7556622",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
-    "Cryptography/Lesson 15-16.md",
-    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
-    "Cryptography/Lesson 18-19.md",
-    "Cryptography/Lesson 2-3.md",
-    "Cryptography/Lesson 8-9-10.md",
-    "Cryptography/Lesson 1.md",
-    "Cryptography/Lesson 11.md",
-    "Cryptography/Lesson 4-5-6-7.md",
-    "Cryptography/Lesson 12-14.md",
+    "Cryptography/Lattices.md",
     "Cryptography/Lesson 20-21-22-23.md",
-    "Pasted image 20250109170616.png",
-    "Immagine WhatsApp 2025-01-04 ore 20.06.58_284236ce.jpg",
-    "Immagine WhatsApp 2025-01-04 ore 19.53.34_2e627e40.jpg",
-    "Pasted image 20250103093549.png",
+    "Cryptography/Lesson 18-19.md",
+    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
+    "Cryptography/Lesson 15-16.md",
+    "Cryptography/Lesson 12-14.md",
+    "Cryptography/Lesson 11.md",
+    "Cryptography/Lesson 8-9-10.md",
+    "Cryptography/Lesson 4-5-6-7.md",
+    "Cryptography/Lesson 2-3.md",
+    "Cryptography/Lesson 1.md",
+    "Cryptography/images/Pasted image 20250111184929.png",
+    "Cryptography/images/Pasted image 20250111184915.png",
+    "Cryptography/images/Pasted image 20250109170616.png",
+    "Cryptography/images/Immagine WhatsApp 2025-01-04 ore 20.06.58_284236ce.jpg",
+    "Cryptography/images/Immagine WhatsApp 2025-01-04 ore 19.53.34_2e627e40.jpg",
+    "Cryptography/images/Pasted image 20250103093549.png",
     "Cryptography/PDF/Esercizi Risolti.pdf",
     "Cryptography/PDF/Esercizi Critto Simo.pdf",
     "Cryptography/ex.md",
     "Cryptography/Cryptography Notes.pdf",
-    "Pasted image 20241227164639.png",
-    "Immagine WhatsApp 2024-12-27 ore 16.45.14_5cf42cd7.jpg",
-    "Pasted image 20241227163330.png",
-    "Immagine WhatsApp 2024-12-27 ore 16.01.14_dd9424b8.jpg",
-    "Immagine WhatsApp 2024-12-27 ore 16.00.12_2a8cfabd.jpg",
-    "Immagine WhatsApp 2024-12-27 ore 15.58.34_4fcaa598.jpg",
+    "Cryptography/images/Pasted image 20241227164639.png",
+    "Cryptography/images/Immagine WhatsApp 2024-12-27 ore 16.45.14_5cf42cd7.jpg",
+    "Cryptography/images/Pasted image 20241227163330.png",
+    "Cryptography/images/Immagine WhatsApp 2024-12-27 ore 16.01.14_dd9424b8.jpg",
     "Cryptography/Notes.md",
-    "Untitled.md",
+    "Cryptography/images/Untitled.md",
     "Cryptography/Lesson 13.md",
     "Cryptography.zip",
     "Network Infrastructures/Polverini/Kathara commands.md",
@@ -365,7 +216,6 @@
     "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
     "Network Infrastructures/Cuomo",
     "Network Infrastructures/Polverini",
-    "Statistic/Lesson 7 (28 novembre).md",
     "Cryptography Notes.pdf",
     "Cryptography/Untitled",
     "Statistic/Homework1/script.js"

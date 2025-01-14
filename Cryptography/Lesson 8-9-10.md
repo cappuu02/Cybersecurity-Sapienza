@@ -489,7 +489,3 @@ To secure the hash function despite inevitable collisions, we can rely on two st
 	- By keeping $s$ private, we add a layer of security that complicates any attempt to produce a collision, even if the hash function itself is not fully collision-resistant
 
 We'll go with ==secret key approach== because it's the one that is used.
-
-
-
->La relazione tra **Domain Extension** e **Universal Hash per schemi MAC** è profonda, poiché entrambe le tecniche affrontano il problema di autenticare messaggi di lunghezza arbitraria, garantendo sicurezza ed efficienza.

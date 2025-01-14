@@ -131,7 +131,7 @@ A deterministic function $G: \{0,1\}^\lambda \to \{0,1\}^{l+\lambda}$ is a PRG i
 >Un avversario non sà con certezza se la stringa ricevuta è stata generata da $G$ oppure è completamente casuale.
 
 It means:
-$$\forall \hspace{0.3cm} \text{PPT} \hspace{0.3cm} A (Pr[Game_{G,A}^{prg}(\lambda, 0) = 1] - Pr[Game_{G,A}^{prg}(\lambda, 1)=1]) \le negl(\lambda)$$
+$$\forall \hspace{0.3cm} \text{PPT} \hspace{0.3cm} A (Pr[Game_{G,A}^{prg}(\lambda, 0) = 1] - Pr[Game_{F,A}^{prg}(\lambda, 1)=1]) \le negl(\lambda)$$
 where the game output is $b' \in \{0,1\}$.
 
 ```ad-bug
@@ -232,10 +232,6 @@ $$Pr[H(\lambda, 0) = 1]$$
 $$Pr[H'(\lambda, 0) =1] = Pr[Game^{PRG}(\lambda, 1) = 1]$$
 $$\Rightarrow Pr[Game^{PRG}_{G, B}(\lambda, 0)=1] - Pr[Game^{PRG}_{G, B}(\lambda, 1) = 1] | \ge \frac{1}{negl(\lambda)} \hspace{0.8cm} \text{So A can't exist}$$
 $$H(\lambda, 0) \equiv_e H'(\lambda, 0) \equiv H'(\lambda, 1) \equiv_e H(\lambda, 1) \hspace{0.8cm} \text{(By triangle inequality)}$$
-
-----
-----
-----
 
 ## Constructing PRGs (5.0)
 This chapter/lesson is devoted in constructing PRGs. We **begin by assuming to have already a PRG** ==$G \in 2^{\lambda} \to 2^{\lambda+1}$==, that extends the string length by one bit, and prove that it is possible to extend such string by an indefinite amount while preserving pseudo-randomness
@@ -398,7 +394,7 @@ Concatenare il primo bit di $x$ ($x[1]$) con $f(x)$ preserva la difficoltà di i
 ```ad-abstract
 title: Important!
 
-Adding predictable or structured information (such as "0" or the first bit of xx) does not turn an OWF into a PRG, because it does not introduce randomness or unpredictable expansion.
+Adding predictable or structured information (such as "0" or the first bit of x) does not turn an OWF into a PRG, because it does not introduce randomness or unpredictable expansion.
 ```
 
 ## Hardcore predicates

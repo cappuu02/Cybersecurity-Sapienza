@@ -143,16 +143,15 @@ The mechanism employed by both parties to enforce authentication is called a ==c
 Uno schema di autenticazione è corretto se, per ogni messaggio $m \in M$ e per ogni chiave$k \in K$:
 $$\text{Ver}(k, m, \text{Tag}(k, m)) = 1$$
 
-Thus, a security problem arises when someone, having a signed message $(m1, t1)$ whose k-key used for labeling is unknown, is able to efficiently sign a different message $(m2, t2)$ so that verification with the same key yields a positive result. This meaning is called forgery; and looking at the original setting in the figure above, if Eve is indeed able to forge authentic signatures, she can effectively impersonate Alice  or Bob at will. The desired property of an authentication scheme then becomes that of being resistant, if not immune, to such attacks; in a word, the scheme is imperfect.
+Thus, a security problem arises when someone, having a signed message $(m1, t1)$ whose k-key used for labeling is unknown, is able to efficiently sign a different message $(m2, t2)$ so that verification with the same key yields a positive result. This meaning is called **forgery**; and looking at the original setting in the figure above, if Eve is indeed able to forge authentic signatures, she can effectively impersonate Alice  or Bob at will. The desired property of an authentication scheme then becomes that of being resistant, if not immune, to such attacks; in a word, the scheme is imperfect.
 
 A rigorous definition of uncountability is the ==$ε$-statistical one-time unforgeability==.
-
 
 ```ad-abstract
 title: $\epsilon$-statistical one-time unforgeability
 let $\Phi$ be an authentication scheme, and let $m_1$ and $m_2$ be two distinct messages, and $t_1 = Tag(K, m_1)$ be the signature of $m_1$ under $\Phi$, with the key $K$ picked uniformly at random. $\Phi$ is deemed $\epsilon$-statistical one-time unforgeability iff knowing $m_1$ and $t_1$ does not give any advantage in finding a signature $t_2$ that is actually the signature of $m_2$ under the same scheme and the same key of $m_1$, without knowing such key:
 
-$$\forall m_1 = m_2 \in M, \forall t_1, t_2 \in T Pr[Tag(K, m_2) = t_2 \mid Tag(K, m_1) = t_1] \le \epsilon$$
+$$\forall m_1 \not = m_2 \in M, \forall t_1, t_2 \in T Pr[Tag(K, m_2) = t_2 \mid Tag(K, m_1) = t_1] \le \epsilon$$
 
 ```
 

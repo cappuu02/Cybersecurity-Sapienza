@@ -1,4 +1,4 @@
- # RSA
+# RSA
 The first Public Key Encryption (PKE) scheme was introduced in 1978. It allows secure communication without prior key exchange.
 $$
 \begin{aligned}

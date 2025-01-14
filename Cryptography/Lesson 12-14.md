@@ -23,10 +23,6 @@ IL sistema è ((CCA-Secure)) se l'avversario non riesce a distinguere tra i due 
  
 ==**Malleabilità**== in crittografia indica la proprietà di un sistema crittografico (come uno schema di cifratura o di firma) in cui un avversario può prendere un oggetto crittografico valido, ad esempio un ciphertext $c^*$, e modificarlo per ottenere un nuovo ciphertext $\widetilde{c}$ che risulta ancora valido. Questo avviene senza che l’avversario conosca il contenuto originale $m^*$ del messaggio cifrato, ma sapendo che il nuovo messaggio $\widetilde{m}$ (corrispondente a $\widetilde{c}$) è in qualche modo correlato a $m^*$.
 
-Think of encrypted actions:
-![[Cryptography/images/52.png]]
-![[Cryptography/images/53.png]]
-
 > **Observation**: CCA-secure $\Rightarrow$ non-malleability! Questo significa che un attaccante non può manipolare un ciphertext per influenzare prevedibilmente il messaggio cifrato.
 
 About the SKE scheme that we have already studied (CBC, OFB, CFB, CTR) are not CCA-Secure, this implies that are not malleable.
