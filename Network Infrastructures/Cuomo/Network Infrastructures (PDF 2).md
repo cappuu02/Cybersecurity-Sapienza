@@ -1,4 +1,3 @@
-
 ## XDSL (digital subscriber line)
 
 ```ad-abstract
@@ -23,12 +22,14 @@ $$C = B \cdot \log_2(1+SNR)$$
 - B: Bandwidth (length in Hz is used)
 - SNR: ratio power signal (power y noise)
 
+>Valori di SNR più alti (noise < power) indica una qualità migliore del segnale ma con incrementi piccoli della Capacità
+
+>Valori di SNR più bassi (noise > power) indica una qualità peggiore del segnale e con incrementi piccoli della Capacità
+
+>Larghezza di banda $B$: Ha un effetto lineare sulla capacità $C$. Più banda disponibile, maggiore capacità
 ## Asymmetric ADSL
 Original market driver: distribution of video on demand (VoD) (failed for this target)
-- An ADSL local loop is for the exclusive use of he subscriber, with no contention for bandwidth on that local loop
-- ADSL provides for passive transmission of analog voice service
-- The distinguishing characteristic of ADSL over other forms of DSL is that the volume of data flow is greater in one direction than the other
-- Providers usually market ADSL as a service for consumers to connect to the Internet in a relatively passive mode
+An ADSL local loop is for the exclusive use of the subscriber and provides for passive transmission of analog voice service. The distinguishing characteristic of ADSL over other forms of DSL is that the volume of data flow is greater in one direction than the other
 
 >Higher bandwidth
 >Use two separate frequency bands (upstream and downstream bands) 
@@ -44,13 +45,13 @@ With standard ADSL, the band from 25.875 kHz to 138 kHz is used for upstream com
 ![[Network Infrastructures/images/20.png]]
 
 ## ADSL Frequency Allocation
-Interference happens when 2 or more communications happen simultaneously in two time in frequence. In ADSL we have separation of frequence.
+Interference occurs when two or more communications overlap simultaneously in time or frequency, disrupting the clarity or quality of the transmitted signals.In ADSL we have separation of frequence.
 
 **speedup bitrate for downstream**: to increase it, an idea is to use also the bandit of the upstream.
 
 ```ad-info
 title: Remember
-If we are going to transmit and in the same frequency two or more users this one interfere one with the other.
+If two or more users transmit on the same frequency simultaneously, their signals will interfere with each other, leading to potential disruption and loss of communication quality.
 
 ```
 
@@ -63,7 +64,7 @@ Bigger cable with multiple coppers cables.
 Wires sharing the same cable interfere one each other
 ![[Network Infrastructures/images/22.png]]
 
-Exists tow kinds of cross-talk noise (Rumore di fondo):
+Exists two kinds of cross-talk noise (Rumore di fondo):
 - Far-end cross talk: FEXT
 - near-end cross talk: NEXT
 
@@ -87,17 +88,17 @@ Since for ADSL “short” cables are used, the signal carried on other pairs, e
 than a dozen twisted pairs.
 
 ![[Network Infrastructures/images/23.png]]
-Cross talk between a TX and a RX placed on the opposite side of the cable.
+È un'interferenza (crosstalk) che si verifica tra un trasmettitore (TX) e un ricevitore (RX) posizionati su lati opposti del cavo. Il segnale FEXT viaggia per l'intera lunghezza del canale. Si manifesta quando il segnale di un trasmettitore interferisce con il ricevitore di un'altra coppia di cavi nella stessa direzione.
 
-Contemporary transmission can append. Same bandit (downstream).
-Can we have two downstream at the same frequency? No!
+1. Contemporary transmission can append.
+2. Same bandit (downstream).
+3. Can we have two downstream at the same frequency? No!
 
 ```ad-success
 title: Solution
-reduce number of cables in the binder group.
+Reduce number of cables in the binder group.
 
 ```
-
 ### NEXT
 ```ad-abstract
 title: Definition
@@ -121,7 +122,7 @@ Reduce the echo cancellation.
 
 ```
 ## Filtering
-To solve, it is necessary to install appropriate frequency filters at the customers premises to avoid interferences with the voice service. Splitter is installed before connecting the line
+To solve, it is necessary to install appropriate **frequency filters** at the customers premises to avoid interferences with the voice service. Splitter is installed before connecting the line
 to phone / DSL modem.
 
 ## Echo cancelled
@@ -134,7 +135,6 @@ to phone / DSL modem.
 
 ### DMT (discrete multi-tone)
 A mandatory requirement for transmission is that the attenuation is flat.
-The right term to indicate this, instead of  attenuation: the channel is has effect behavior in frequency.
 
 Divide the operational ADSL bandwidth into very small subchannles
 - Discrete carriers (or tones) are used in the center of each data subchannel
@@ -149,7 +149,7 @@ Nice idea: instead of considering this bandit has unique bandit let has divide t
 
 Independent subchannels can be manipulated individually with consideration of the line conditions
 - If a subchannel is experiencing external interference it may not be used in favor of other subchannels
-- DTM can dynamically adapt the data rate to the line conditions
+- DMT can dynamically adapt the data rate to the line conditions
 
 We have:
 - 25 channel upstream
@@ -163,22 +163,19 @@ Theoretical maximum downstream bandwidth:
 $$249 \hspace{0.3cm} \text{channel} \times 15 \hspace{0.2cm} \text{bits/Hz/channel} \times 4 \hspace{0.2cm} \text{kHz} 1.5 \hspace{0.3cm} \text{Mbit/s}$$
 
 ```ad-success
-title: To cbe clear
-when the CO (Central Office) has to transmit the signal, the signal is not transmitted in a unique path but is splitted into 249 pieces. Is a stream of bits to be transmitted in downstream and this is divided into 249 pieces.
+title: To be clear
+Quando la Central Office (CO) trasmette un segnale, questo non viene inviato su un unico percorso, ma viene suddiviso in 249 canali separati. Questo processo consiste nel prendere il flusso di bit destinato alla trasmissione in downstream e dividerlo in 249 parti, ciascuna assegnata a un canale specifico. Questa suddivisione consente una trasmissione parallela, migliorando l'efficienza e la resistenza ai disturbi o alle interferenze.
 
 ```
-
 
 ```ad-question
 If i have a more larger channel, the bitrate will be increase.
 
 ```
 
-
 In downstream, the splitting is not uniform, not equally distributed, the attenuation is flat but the value of attenuation is different. The balancing depends on the single channel.
 We can have:
 - Strong attenuation: signal is dramatic attenuated.
-- Lower and upper attenuation.
 
 >the balancing depends on the attenuation i have in a specific channel.
 
@@ -196,13 +193,7 @@ There is a frequency or a small frequency band of 4 kHz where the attenuation is
 - Each piece has an attenuation
 - Attenuation are different
 
-```ad-info
-title: Recap
-Larging the bandit we have an attenuation that is not flat. channel behaviour not flat. So the the trick to use that channel is to divide it in pieces. Split your signal in some pieces, and transmit in each piece  as it is a bandwidth that is alone.
-
-```
-
->The bitrate in each piece is lower or higher in the bitrate of full bandit? is lower!
+>The bitrate in each piece is lower or higher in the bitrate of full bandit? Is lower!
 >Bitrate depends on the length of the piece.
 
 ### Water Filling
@@ -211,7 +202,7 @@ Larging the bandit we have an attenuation that is not flat. channel behaviour no
 - Knowing the discrete values of $p(f_k)$ for each subcarrier $f_k$ one may deduce the number of bit per symbol to associate to the QAM costellation used in each subchannel
 
 ![[Network Infrastructures/images/29.png]]
-
+![[105.png]]
 >More water $\to$ the noise is lower.
 
 $(\frac{S}{N})^{-1}$ Is the noise to the power signal
@@ -263,7 +254,7 @@ Protocol at the link layer specifically used in the configuration of ADSL where 
 
 ```
 
-- PPP **encapsulation** provides for multiplexing of different network-layer protocols simultaneously over the same link
+- PPP permette di trasportare più protocolli di rete (ad esempio, IP e IPv6) sullo stesso cavo o collegamento fisico, ma non crea collegamenti fisici separati.
 - PPP provides a **Link Control Protocol** (LCP) which negotiates the establishment and termination of a PPP link.
 	- at layer 2 we don't need any kind of multiple access protocols.
 	- Link is something "secret"
@@ -310,14 +301,6 @@ to remind again:
 
 ### PPP Link Operation
 ![[Network Infrastructures/images/61.png]]
-
-### Link Establishment
-Link establishment phase uses the Link control protocol. Link Configuration Options:
-- The Maximum Receive Unit size. (1500 octets)
-- Authentication and protocol to be used for authentication
-- Protocol Field Compression
-- Link quality monitoring
-
 #### Link Establishment Process
 ![[Network Infrastructures/images/62.png]]
 
@@ -325,18 +308,16 @@ Link establishment phase uses the Link control protocol. Link Configuration Opti
 2. This request is responded with:
 	1. Configure-Ack: if the negotiation is accepted
 	2. Configure-Nak: If the negotiation is not acceptable and it suggest an acceptable negotiation
-
 ### Authentication
 ![[Network Infrastructures/images/63.png]]
 
 >Still talk about authentication of ADSL.
 
-Authentication Option uses Password Authentication Protocol (PAP) or Challenge Handshake Authentication Protocol (CHAP).
+Authentication Option uses **Password Authentication Protocol (PAP)** or **Challenge Handshake Authentication Protocol (CHAP**).
 - The protocol used depends on negotiation.
 - CHAP uses a one-way hashing algorithm which is known only to the user, to respond to a challenge sent by the authenticator.
 - CHAP is more secure than PAP
 
-----
 ## VDSL Architecture
 Evolution of ADSL is VDSL (**Very High-speed Digital Subscriber Line**)
 very high bitrate.

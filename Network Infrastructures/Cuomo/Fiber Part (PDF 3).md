@@ -1,17 +1,27 @@
 ## Access-backhaul
 fiber very very used in access network.
 ![[Network Infrastructures/images/72.png]]
-==Backhole==: part of access network fundamental today (is not for end user but is for the cellular network operators, so fiber is important also for this).
+==Backhaule==: part of access network fundamental today (is not for end user but is for the cellular network operators, so fiber is important also for this).
 Initial Solution: BS interconnected each 'other with copper lines.
 To avoid bottleneck interconnection using fiber.
 
 ## Optical Fiber Attenuation
 ![[Network Infrastructures/images/73.png]]
 
-We have a lot of possibilities of large bandit. 
+Questa immagine mostra l'**attenuazione della fibra ottica** in funzione della lunghezza d'onda della luce (espressa in nanometri, nm). L'attenuazione rappresenta la perdita di potenza del segnale ottico per chilometro (dB/km), che varia a seconda della lunghezza d'onda utilizzata.
+1. **Assi del grafico:**
+    - L'asse **X** rappresenta la lunghezza d'onda (in nanometri, nm).
+    - L'asse **Y** rappresenta l'attenuazione (in decibel per chilometro, dB/km).
+2. **Curve presenti:**
+    - **Linea continua (STD SMF):** Indica l'attenuazione tipica delle fibre monomodali standard.
+    - **Linea tratteggiata (ZWP SMF):** Rappresenta una fibra monomodale ottimizzata (Zero Water Peak, ZWP), che ha un'attenuazione ridotta in corrispondenza di alcune lunghezze d'onda.
+
+>Le tree aree mostrano le lunghezze d'onda ottimali per la trasmissione di dati!
+
+>Attenuazione bassa $\to$ minor perdita di segnale
 ## Chromatic Dispersion 
-**Fiber monomodal** = transmit a single color
-**Fiber multimodal** = transmit multi color
+**Fiber monomodal** = transmit a single-color
+**Fiber multimodal** = transmit multi-color
 By reflecting on the glass. Thanks to the glass reflection allow signal to propagate in to the fiber. 
 
 ![[Network Infrastructures/images/74.png]]
@@ -88,9 +98,9 @@ There are different distances between ONU and the passive splitter:  the farther
 ![[Network Infrastructures/images/84.png]]
 The only way is to have centralized control of it. Who control the upstream is the OLT.
 OLT perform a probing of the ONU. this probing is used to be sure of the distance of ONU.
-distance is taken to have a precisely control of the scheduling transmission considering the propagation delay.
-In terms or receiving, the OLT is a photodiode, receive the light. The light arrives with different attenuation and different power. The idea is to say to user to transmit at power that is configured in a way that when this power arrives at OLT is equal for everybody.
-This mechanism need a coordination, the protocol is complicated because everything is controlled by OLT. Thanks to this we are able di transmit in TDMA in two directions and all works well.
+**distance** is taken to have a precisely control of the scheduling transmission considering the propagation delay.
+In terms or receiving, the OLT is a photodiode, receive the light. The light arrives with different attenuation and different **power**. The idea is to say to user to transmit at power that is configured in a way that when this power arrives at OLT is equal for everybody.
+This mechanism need a coordination, the protocol is complicated because everything is controlled by OLT. Thanks to this we are able to transmit in TDMA in two directions and all works well.
 
 All this is done in Passive optical network and this is mostly based on two main standards:
 - EPON (E: Ethernet)
@@ -102,7 +112,7 @@ All packets carried in EPON are encapsulated in Ethernet frames.
 
 ##  EPON Upstream Traffic
 ![[Network Infrastructures/images/86.png]]
-1. First we need to combine several packets in a unique packet.
+
 
 ## EPON Configuration
 ![[Network Infrastructures/images/87.png]]

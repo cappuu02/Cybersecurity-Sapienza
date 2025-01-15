@@ -10,7 +10,7 @@ Access network is that part of a communications network which connects subscribe
 Network can be divided in three part:
 - ==Access Network==: Is the part where end-users (human and machine) that use infrastructure. This part is connected to the core.
 - ==Core (Backbone)==: part with professor Polverini.
-- ==Edge Network==: 
+- ==Edge Network==: Part of the network between the Access Part and core one. The edge may perform intelligent functions that are not performed inside the core network. The kind of technologies used are partially copper, partially fiber and partially wireless. (Start, point-point)
 
 >Have completely different technology that are used in different manners.
 
@@ -37,8 +37,7 @@ A core network is a backbone network:
 - is constituted by an optical backbone
 - The Internet could be considered a giant core network
 - it really consists of many service providers that run their own core networks, and those core networks are interconnected 
-- Significant to core networks is "the edge," where
-networks and users exist
+- Significant to core networks is "the edge," where networks and users exist
 
 >Core part can be identified as a ==full optical network.==
 
@@ -87,13 +86,11 @@ Core network is composed by router that are interconnected each other with fiber
 Before we have a big unique spaces: **central offices**.
 Lot of branches around a city-area and in this branches there are cabinets and dispensers to propagate copper cable (splitting to the end user).
 This central office are buildings located in the city where network elements are present.
-
-
 ## Optical Access
 > New kind of wired connection: fiber
 >Fiber allow to transmit data with faster connection.
 
-This domain will be the mode of choice for fixed access in the coming years.
+
 GE-PON (individual), GPON (enterprise), and COF (long-distance) represent systems capable of delivering ultra-high-speed, high-reliability performance.
 
 The infrastructure that we build up by using fiber is distinguished on the basis of where the fiber ends. We have these:
@@ -111,7 +108,6 @@ The infrastructure that we build up by using fiber is distinguished on the basis
 ## FTTx: reference architectures
 
 ![[Network Infrastructures/images/14.png]]
-
 >Important
 
 - fiber has the loop
@@ -122,7 +118,6 @@ In the contrary we have one single digging with the local exchange and after thr
 **Active node** can have some problem. This is an intelligence element like router able to disaggregate traffic entering and directing part of the traffic to different home but uses a lot amount of energy. Second, it occupies a lot of space.
 
 >Remember, public spaces have a cost, every time in every where.
-
 
 Fortunately, the fiber networks has another solution. This is named ==passive optical networks==
 There not anymore the active element. There is now a splitter element (glass element) that split the traffic in different home and buildings.

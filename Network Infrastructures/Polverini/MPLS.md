@@ -225,6 +225,8 @@ We have two different FECS the blu and the green one.
 The blue one is associated with label 25 to the top link and the green is associated with label 35 to the bottom link. this two packets are MPLS packets. There is an internal node that perform the second push operation, we are adding one more label which in this case is label 42 (this label is used for both the packets). With a single line in the MPLS table we can switch those packets from input to output. 
 
 
+
+
 ## VPN, Traffic Engineering and Fast Re-Route
 Service that we can implement with MPLS domain.
 

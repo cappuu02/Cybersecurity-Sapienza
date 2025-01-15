@@ -2,13 +2,6 @@
 
 >Computer networking a top-down approach
 
-
-```ad-missing
-
-
-```
-
-
 Handover: passing signal from two different base station
 
 Tv system 
@@ -69,14 +62,6 @@ difference from wired link
 
 >...make communications across wireless link much more difficult.
 
-
-
-```ad-missing
-title: Missing IM4 notes
-
-
-```
-
 ![[Network Infrastructures/images/39.png]]
 
 **SNR**: signal-to-noise ratio
@@ -100,7 +85,6 @@ Before Introduce CDMA we need to talk about:
 ## FDMA (Frequence division Multiple Access)
 
 
-
 ## CDMA (Code Division Multiple Access)
 Unique code assigned to each user, i.e, code set partitioning
 - all users share same frequency but each user has own "chipping" sequence to encode data
@@ -119,14 +103,14 @@ Decoding: Summed inner-product: (encoded data) X (Chipping sequence)
 ![[Network Infrastructures/images/42.png]]
 
 ## Channels Association
-spectrum divided into channels at different frequencies
-- AP admin chooses frequency for AP
-- interference possible: channel can be same as that chosen by neighboring AP!
-Arriving host: must associate with an AP
-- scans channels, listening for beacon frames containing AP’s name (SSID) and MAC address
-- selects AP to associate with
-- then may perform authentication 
-- then typically run DHCP to get IP address in AP’s subnet
+spettro diviso in canali a diverse frequenze
+- L'amministratore dell'AP sceglie la frequenza per l'AP
+- possibili interferenze: il canale può essere lo stesso scelto dall'AP vicino!
+Host in arrivo: deve associarsi a un AP
+- scansiona i canali, ascoltando i beacon frame contenenti il nome dell'AP (SSID) e l'indirizzo MAC
+- seleziona l'AP con cui associarsi
+- può eseguire l'autenticazione 
+- poi in genere esegue il DHCP per ottenere l'indirizzo IP nella subnet dell'AP
 
 ## Passive and Active Scanning
 
@@ -179,19 +163,180 @@ return ACK after SIFS (ACK needed due to hidden terminal problem)
 
 ## Advanced Capablities
 
-**Rate Adaptation**
-Base station, mobile dynamically change transmission rate as mobile moves, SNR varies.
-1. SNR decrease, BER increase as node moves away from base station.
-2. When BER becomes too high, switch to lower transmission rate but wit h lower Ber
+****Adattamento della velocità**  
+La velocità di trasmissione viene regolata dinamicamente in base alle variazioni dell'SNR (rapporto segnale-rumore) dovute agli spostamenti del cellulare:
 
-**Power management**
-Node-to-AP " i am going to sleep until next beacon frame"
-- AP knows not to transmit frames to this node
-- node wakes up before next beacon frame
-Beacon frame: contains list of mobiles with AP-to-Mobile frames waiting to be sent.
-	-Node will stay awake if AP-to-mobile frames to be sent, otherwise sleep again until next beacon frame
+1. **SNR basso** → **BER alto** (aumento degli errori di trasmissione).
+2. Se il BER diventa eccessivo, si riduce la velocità di trasmissione per migliorare l'affidabilità.
+
+**Gestione della potenza**  
+I nodi entrano in modalità "sleep" per risparmiare energia:
+
+- Il nodo si addormenta fino al prossimo **frame di beacon**.
+- L'AP (Access Point) sospende l'invio di dati al nodo durante questo periodo.
+- Il nodo si risveglia prima del beacon frame per verificare la presenza di dati in attesa.
+- Resta attivo solo se ci sono frame **AP-to-mobile** da ricevere.
 
 ## Bluetooth
 Less than 10m diameter, replacement for cables
 ![[Network Infrastructures/images/51.png]]
 
+## Cellular Network (4G and 5G)
+the solution for wide-area mobile Internet.
+
+**similarities to wired Internet**
+- widespread use of protocols HTTP, DNS, TCP, UDP, IP, NAT, separation of data/control planes...
+- Interconnesso con Internet cablata.
+- Rete cellulare globale: una rete di reti.
+**differences from wired internet**
+- Diverso livello di collegamento wireless.
+- Mobilità come servizio di prima classe.
+- "Identità" dell'utente (tramite SIM card).
+
+## Elements of 4G LTE Architecture
+
+![[106.png]]
+**Mobile Device (UE)**
+Smartphone, tablet, laptop with 4G LTE radio
+Identità internazionale dell'abbonato mobile (IMSI) a 64 bit, memorizzata sulla scheda SIM (Subscriber  Identity Module) della scheda SIM
+
+**Base Station**
+Posizionata ai margini della rete dell'operatore.
+Gestisce le risorse radio wireless e i dispositivi mobili nella sua area di copertura ("cella").
+Coordina l'autenticazione dei dispositivi con altri elementi della rete.
+Svolge un ruolo attivo nella mobilità dell'utente, collaborando con le stazioni base vicine per ottimizzare l'uso delle risorse radio.
+
+**Home Subscriber Service (HSS)**
+Memorizza l'**IMSI**, ovvero la SIM e conserva informazioni sul piano tariffario dell-abbonato. Fornisce le credenziali e i chiavi crittografiche necessarie per autenticare il dispositivo mobile.
+
+
+Collabora con l'MME (Mobility Management Entity) per l'autenticazione dei dispositivi.
+
+**Mobility Management Entity (MME)**
+Coordina l'autenticazione dei dispositivi con l'HSS della rete domestica.
+- Gestisce i dispositivi mobili:
+    - Passaggio tra celle (handover).
+    - Monitoraggio e localizzazione dei dispositivi (tracking/paging).
+Configura i percorsi (tunneling) dal dispositivo mobile al gateway P-GW.
+
+**Serving Gateway (S-GW) and PDN Gateway (P-GW)**
+Situati lungo il percorso dei dati da/verso i dispositivi mobili e Internet.
+Il P-GW funge da gateway per la rete cellulare, fornendo il servizio di NAT (Network Address Translation).
+
+## LTE: data plane control plane separation
+![[107.png]]
+**Control plane**: gestisce e controlla il comportamento della rete.
+- prende decisioni sul routing, gestisce autenticazione ed autorizzazione e stabilisce/termina connessioni (OSPF, BGP)
+- P-GW: connessione con l'esterno.
+**Data Plane**
+- Instradare i pacchetti di dati basandosi sulle decisioni prese dal Control Plane.
+- gestire il forwarding dei pacchetti dai dispositivi sorgente ai dispositivi di destinazione.
+- Utilizza protocolli IP, TCP, UDP.
+
+```ad-hint
+Il **Control Plane** definisce come i dati debbano essere instradati, mentre il **Data Plane** esegue le istruzioni instradando i pacchetti in base alle regole definite. Entrambi sono fondamentali per il funzionamento delle reti moderne.
+
+```
+
+### First Hop
+![[108.png]]
+
+![[109.png]]
+- **Downstream channel**: Trasmissione dai ripetitori (base station) verso il dispositivo. Utilizza tecniche come il Frequency Division Multiplexing (FDM) e il Time Division Multiplexing (TDM) all'interno di canali.
+- **Upstream**: Trasmissione dal dispositivo verso la base station. Simile a OFDM per ottimizzare l'uso delle frequenze.
+
+### Packet Core
+**Tunneling**: mobile datagram encapsulated using _GPRS Tunneling Protocol (GTP)_, sent inside _UDP datagram_ to _S-GW_. S-GW re-tunnels datagrams to P-GW.
+
+>Supporting mobility: only tunneling endpoints change when mobile user moves
+
+### LTE data plane: associating with a BS
+![[110.png]]
+1. La BS trasmette il segnale di sincronizzazione primario ogni 5 ms su tutte le frequenze. 
+	- Le BS di più vettori possono trasmettere segnali di sincronizzazione. 
+2. il cellulare trova un segnale di sincronizzazione primario, quindi individua il secondo segnale di sincronizzazione su questa frequenza. 
+	- il cellulare trova quindi le informazioni trasmesse dalla BS: larghezza di banda del canale, configurazioni; informazioni sul vettore cellulare della BS 
+	- il cellulare può ricevere informazioni da più stazioni base
+3. il cellulare sceglie con quale BS associarsi (ad esempio, preferisce il vettore di origine) 
+4. sono necessari altri passaggi per l'autenticazione, la creazione dello stato e la configurazione del piano dati. 
+
+### LTE mobiles Sleep Modes
+![[111.png]]
+As in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve battery:
+- Light Sleep: After 100's msec of inactivity
+	- wake up periodically (100’s msec) to check for downstream transmissions
+- Deep Sleep: After 5-10 secs of inactivity
+	- mobile may change cells while deep sleeping (nee to re-establish association)
+
+## Global cellular network: a network of IP networks
+
+![[112.png]]
+
+## 5G Part
+
+>**Goal**: 10x increase in peak bitrate, 10x decrease in latency, 100x increase in traffic capacity over 4G
+
+La nuova radio 5G: abbiamo due bande di frequenza FR1 e FR2, frequenze a onde millimetriche.
+- Non è retrocompatibile con il 4G
+- MIMO: antenne direzionali multiple
+Frequenze a onde millimetriche: velocità di trasmissione dati molto più elevate, ma su distanze più brevi
+- Celle Pico: diametro delle celle di 10-100 m
+- È necessaria una distribuzione massiccia di nuove stazioni base
+## Wireless Mobility
+We are interested in connections where the devices moves amoung APs in the same provider network and among multiple provider networks.
+
+The approach to solve the mobility problem are 
+- **indirect routing**: Communication from correspondent to mobile goes through home network gateway
+- **direct routing**: the correspondent gets foreign address of mobile, and send directly.
+It's important to specificy the difference between Home network and visited network
+
+**home network** is the network of the isp you have a service plan with (paid service eg. vodafone, tim)
+
+**visited network** are any other network. Nowadays providers have agreements to provide internet connections even if you are not in your home network.
+
+>The notion of global home network is specific for mobile network.
+
+![[113.png|500]]
+When your mobile phone enter another country for example, usually it receives a message for roaming from your home network operator. The one device that informs your home network is the mobility manager.
+
+## Indirect routing
+The data you receive with your phone during roaming does this:
+
+- other host uses home address as datagram
+- home gateway receives datagram, forwards to remote gateway
+- visited remote gateway router forwads to mobile
+- visitede gateway router forwards reply from the mobile to the home network or directly to the other host
+
+
+so this strategy is called indirect routing, it may be inefficient if the two devices are in the same network but solves the problem to maintain a connection (eg. TCP) when moving from home network to a visited one.
+
+>This is transparent to the correspondent.
+## Direct routing
+Data flow is this:
+
+- correspondent contacts home network of the mobile and gets the visited network where the mobile is.
+- sends data directly to the visited network address
+- visited network gateway forwards them to the the mobile
+- replies from the mobile pass only through the visited network gateway
+
+>Not inefficient unlike indirect routing
+   Not transparent to the correspondent since he must gets the foreign address.
+
+## Mobility in 4G networks
+![[114.png]]
+## Configuring LTE control-plane elements
+![[115.png|500]]
+Mobile communicates with local MME via BS control-plane channel.
+MME uses mobile’s IMSI info to contact mobile’s home HSS.
+	It check the euthentication, encryption, network service information...
+BS, mobile selezionare i parametri per il canale radio del piano dati BS-mobile
+
+## Configuring data-plane tunnels for mobile
+![[116.png|500]]
+- **S-GW to BS tunnel**: when mobile changes base stations, simply change endpoint IP address of tunnel
+- **S-GW to home P-GW tunne**l: implementation of indirect routing
+- **tunneling via GTP**: mobile’s datagram to streaming server encapsulated using GTP inside UDP
+
+## Handover between BSs in same cellular network
+![[117.png]]
+![[118.png]]
