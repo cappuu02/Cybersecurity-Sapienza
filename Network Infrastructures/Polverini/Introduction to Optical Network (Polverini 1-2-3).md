@@ -46,7 +46,6 @@ We have two generations of optical networks:
 ![[Pasted image 20241209163428.png]]
 
 ## Multiplexing Techniques
-How to allow different users to share the same physical resource that is optical fiber.
 We know two main ways of increasing the transmission capacity on a fiber:
 - **TDM (Time Division Multiplexing)**: (1 generation of optical)
 	- increase the bit rate (requires higher-speed electronics) 
@@ -105,7 +104,7 @@ Optical network is transparent to who is serving. Is important for business reas
 ==Optical add/drop multiplexers (OADMs)== provide a cost-effective means for handling passthrough traffic in both metro and long-haul networks.
 
 ![[Network Infrastructures/images/96.png]]
-Represent a possible physical network which once more is composed of three elements $a$, $b$ and $c$. In the image ($a$), node $A$ is an OLT whit multiple inputs and a multiplexer.
+Represent a possible physical network which once more is composed of three elements $a$, $b$ and $c$. In the image ($a$), node $A$ is an OLT with multiple inputs and a multiplexer.
 Node $C$ is also an OLT with four output (means that we have four different $\lambda$).
 They are multiplexed together over the optical link which has a capacity of four wavelengths in this case ($A$ to $B$) and after will be de-multiplexed.
 
@@ -168,8 +167,6 @@ Client 1 send a connection request to the optical network and, the optical netwo
 
 ![[WhatsApp Image 2024-12-09 at 16.57.03.jpeg]]
 
->VDM: we can let users to share the physical infrastructure by using different wavelengths. wavelength we can refer to the color of the light signal of the optical signal that we are sending into the optical network.
-
 Once we have the lightpath we can think that the logical connection has been established, and finally, the clients can send their own signals into the client layer. But actually, they will be using the lightpath to communicate.
 
 we want to keep the communication as much as possible in the so-called optical domain, meaning that the nature of the signals that we send is optical light rays (no electronic). the main difficulty when we deal with optical signals is that they are analog signals, we don't have the same representation as a binary string information for the signal that we are sending. So it means that if we have to do switching function. We need to introduce the **OADM**, a device which basically has 4 ports. There is an input and output fiber plus 2 local port that connect OADM into the ring topology (backbone) and then there are two other ports: one for dropping traffic and inject port. A main problem is that this device cost so much.
@@ -191,24 +188,25 @@ The main components of OLT are:
 
 >We can compose these in different way!
 
-Transponders typically constitute the bulk of the cost, footprint, and power consumption in an OLT Therefore, reducing the number of transponders helps minimize both the cost and the size of the equipment deployed
+Transponders typically constitute the bulk of the cost, footprint, and power consumption in an OLT Therefore, reducing the number of transponders helps minimize both the cost and the size of the equipment deployed.
 
 Logical representation of Optical line terminal (OLT)
 ![[Pasted image 20241208163000.png|600]]
 ```ad-info
 title: Explaination
-These arrows here models the client signal that is sent into the optical network and this is the ingress point of the optical network. The 1st element that we will meet as a client will be an optical line terminal.  This optical line terminal, as you see, has 3 different ports. There is one port dedicated to this client, another port to this other client, and another port to this other client here, and as you see, the different ports are kept in different ways. For instance, here there is a transponder, and here there is not. Ip router has an own OLT and so, send an optical signal to the Optical Line Terminal.
-The client is sending injecting into the optical network a lambda which is not compliant with the one that we use into the optical network. So for this reason, the transponder, what he has to do, is to take this optical signal as input, convert it into the electrical domain, And it will do 2 different things:
-1. Center the signal into the 1.5 micrometer wavelength (this is the lambda-in)
-	- $\lambda_{IN} \in 1,3 nm$ $\Rightarrow$ $\lambda_{OUT} \in 1,5 nm$
-2. Add the overhead 
+Le frecce rappresentano il segnale del cliente che viene inviato alla rete ottica e questo è il punto di ingresso della rete ottica. Il primo elemento che incontreremo come client sarà un terminale di linea ottica.  Questo terminale di linea ottica, come si vede, ha 3 porte diverse. C'è una porta dedicata a questo cliente, un'altra a quest'altro cliente e un'altra ancora a quest'altro cliente qui e, come vedete, le diverse porte sono tenute in modi diversi. Ad esempio, qui c'è un transponder e qui no. Il router Ip ha un proprio OLT e quindi invia un segnale ottico al terminale della linea ottica.
+Il cliente invia alla rete ottica un lambda che non è conforme a quello utilizzato nella rete ottica. Per questo motivo, il transponder deve prendere in ingresso questo segnale ottico, convertirlo nel dominio elettrico e fare due cose diverse:
+1. Centrare il segnale nella lunghezza d'onda di 1,5 micrometri (questo è il lambda-in)
+2. Aggiungere l'overhead 
 
-After that, multiplexer in the image generate a unique output light ray that will go inside the optical network (core part). After the core part, need to do the inverse so, demultiplex the unique light ray in multiple rays, eventually we need to convert it into a suitable lambda for the clients and we deliver the signal to the client.
 
-The laser/receiver device in the figure, is a dedicated transponder to monitor purposes of network. We dedicate a single transponder for monitoring purposes, for instance, analyze the health status of the network. This is keep with a laser that sends optical signal to a specific wavelength that cannot be used for carrying client signals, but it is only used for monitoring purposes, and this specific channel is called optical supervisory channel.
+
+Successivamente, il multiplexer nell'immagine genera un unico raggio di luce in uscita che andrà all'interno della rete ottica (parte centrale). Dopo la parte centrale, occorre fare l'operazione inversa, ossia demultiplexare il raggio di luce unico in più raggi, infine convertirlo in un lambda adatto ai client e consegnare il segnale al client.
+
+Il dispositivo laser/ricevitore nella figura è un transponder dedicato al monitoraggio della rete. Dedichiamo un singolo transponder a scopi di monitoraggio, ad esempio per analizzare lo stato di salute della rete. Questo viene mantenuto con un laser che invia il segnale ottico a una lunghezza d'onda specifica che non può essere usata per trasportare i segnali dei client, ma viene utilizzata solo per scopi di monitoraggio; questo canale specifico è chiamato canale ottico di supervisione.
 ```
 
-## Optical Crossconnects
+## Optical Crossconnects OXC
 The OXC (Optical Cross-Connect) is a device with multiple ports, each capable of transmitting optical signals. For each port we have an incoming fiber.
 Element $1$ must be able to recover this signal here so the multiplex send it from port one to port six. We must define a switching matrix.
 
@@ -220,18 +218,13 @@ Element $1$ must be able to recover this signal here so the multiplex send it fr
 
 These type of connections can't be realized through interconnection of the ports with fibers because it would be fixed. We must have a physical structure that is able to adapt is behavior depending on our goal.
 
-```ad-example
-Imagine that there is a light ray like the the red one that is going straight because it's you know it's guided from the fiber. It enters the device, and it would like to proceed ahead because it goes straight.But, as you see, we must force it to turn toward the port number 6. So how would you change the journey of a light ray, and to force it to go in a different direction with respect to the one it is currently going?
 
-```
-
+How would you change the journey of a light ray, and to force it to go in a different direction with respect to the one it is currently going?
 The answer to this question is: thanks to the "==Reflection phenomenon=="
 
 >For **reconfigurable** we means that we must be able to change the positions of this mirrors depending on the interconnection between input and output port that we want to realize
 
 There are other functions that OXC does: **Grooming**: multiplexing and grooming capabilities to switch traffic internally at much finer granularities. This time division multiplexing has to be done in the electrical domain.
-
->L'**OXC** (Optical Cross-Connect) ha altre funzioni, tra cui il **Grooming**.
 
 Il **Grooming** si riferisce alla capacità di **multiplexare** e **groomare** (ovvero, ottimizzare e organizzare) il traffico all'interno di una rete ottica. In pratica, permette di **combinare più flussi di traffico** su una singola connessione ottica, migliorando l'efficienza e la gestione della rete.
 
@@ -308,7 +301,7 @@ In this new structure we use single-mode fiber:
 >The speed of electromagnetic wave at which it propagates depends on the lambda on the wavelength.
 
 So if they go over the same distance, but a different speed, they arrive at different time intervals, different times. This caused another type of dispersion called "==chromatic dispersion==" that can be attenuated by:
-1. Creating a source of lights. Transmitter which is equipped which more precise laser which is able to concentrate all the power that we give to the signal on a smaller window of wavelengths (we are sending single color out).
+1. Creating a source of lights. Transmitter which is equipped with more precise laser which is able to concentrate all the power that we give to the signal on a smaller window of wavelengths (we are sending single color out).
 2. We can engineer fibers which that have a smaller, a thinner core for contrasting the multimode dispersion, plus the the density of the core made in such a way most of the different wavelength propagate at the same speed in general.
 
 ```ad-info
@@ -330,7 +323,7 @@ all these functionalities, either routing and configuration they can be performe
 
 ![[WhatsApp Image 2024-12-09 at 17.16.53.jpeg]]
 
-That allows the central element to communicate with the different elements of the optical network, to make control and management. In this type of centralized architecture, when we say there is a client that make a connection request to the optical network, the connection request is actually performed through  toward the management element control and management element. So this is a connection request. When the client does the connection request it can specifies different parameters, different performance that he wants to get. (the list of services that he wants to buy from the from the provider).
+Ciò consente all'elemento centrale di comunicare con i diversi elementi della rete ottica, per effettuare il controllo e la gestione. In questo tipo di architettura centralizzata, quando diciamo che c'è un client che fa una richiesta di connessione alla rete ottica, la richiesta di connessione viene in realtà eseguita attraverso l'elemento di gestione e controllo. Si tratta quindi di una richiesta di connessione. Quando il cliente effettua la richiesta di connessione può specificare diversi parametri, diverse prestazioni che vuole ottenere. (l'elenco dei servizi che vuole acquistare dal fornitore).
 
 Client layers can specify to the optical layer the following services during lightpath setup: 
 - the endpoints to interconnect 
@@ -466,17 +459,6 @@ L'**Optical Supervisory Channel (OSC)** è un canale dedicato all'**monitoraggio
 - **Sovraccarico che preserva il tasso (Rate-Preserving Overhead):**
     
     - Il sovraccarico trasportato nelle intestazioni della rete ottica senza ridurre il tasso di dati del cliente è chiamato **Sovraccarico che preserva il tasso**.
-
-
-----
-
-
-
-
-
-
-
-
 # Domande e risposte Wooclap
 
 ![[Pasted image 20241212125729.png]]
