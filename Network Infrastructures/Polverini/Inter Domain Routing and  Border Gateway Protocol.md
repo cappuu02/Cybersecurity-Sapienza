@@ -30,6 +30,8 @@ Schematicamente possiamo suddividere dunque:
 
 
 In this last image we can distinguish two types of technology of distributed routing in the IGP:
+
+## IGP
 ### Link State 
 Topology information is flooded within the routing domain
 Best end-to-end paths are computed locally at each router and determine next-hops
@@ -56,3 +58,82 @@ Does not require uniform policies at all routers
 Examples: RIP, BGP
 
 ```
+
+## BGP
+BGP (Border gateway Protocol), the protocol commonly used for inter-domain routing, has well known security vulnerabilities. 
+BGP is the defacto Exterior Gateway Protocol (EGP) used in today’s global Internet. Although BGP is relatively simple in terms of its protocol design, its configuration is complex, and errors can have wide-reaching consequences, as they can impact the entire global network. BGP operates on the concept of Autonomous Systems (AS), with each AS representing a large network or a group of networks under a unified routing policy.
+
+### AS (Autonomous Systems)
+```ad-abstract
+title: Definition
+An Autonomous System (AS) is a collection of IP networks and routers under the control of a single organization that presents a common routing policy to the Internet. AS are identified by a unique Autonomous System Number (ASN).
+
+```
+
+![[119.png]]
+### Interaction between EGP and IGP Protocols
+For an end-to-end route to be established, BGP (an EGP) and Interior Gateway Protocols (IGPs) must cooperate. The router nodes of an AS typically interact with both EGP and IGP protocols. These router nodes inform other internal nodes within the AS, through IGP, that the packet should be forwarded to the corresponding router node. This router node, in turn, sends the packet to the next AS. This interaction ensures efficient routing across multiple AS.
+
+### BGP for interdomain routing
+![[120.png]]
+**BGP Session Initiation**
+To ==enable communication between two AS, a BGP session must be established==. 
+When an AS seeks to connect to another AS (e.g., from AS1 to AS2), it initiates a BGP session to exchange routing information. In this session, the AS are referred to as peers. BGP sessions are point-to-point connections between routers, usually established over a TCP connection. During the session, the peers exchange routing information, including active routes.
+
+![[121.png]]
+Ad esempio, nel caso di un dominio stub (AS1), che è un dominio foglia che trasporta solo dati destinati o generati da se stesso o dai suoi clienti, tenterà di stabilire una sessione BGP con AS2 (un dominio di transito). AS1 invia ad AS2 i prefissi che conosce (in questo caso, solo due), mentre AS2 può rispondere con un percorso predefinito, impostandosi come percorso predefinito per AS1. La connessione viene continuamente aggiornata con messaggi di aggiornamento del percorso.
+
+![[122.png]]
+
+### Four types of BGP message
+- **Open**: Establish a peering session
+- **Keep Alive**: Handshake at regular intervals
+- **Notification**: Shuts down a peering session
+- **Update**: Announcing new routes or withdrawing previously announced route
+
+>Announcement = prefix + attributes values
+
+## AS Path Attribute
+
+![[123.png]]Come mostrato nell'immagine, il percorso verso alcuni prefissi viene inviato direttamente dal proprietario del prefisso agli altri AS. Ogni AS pubblicizza il miglior percorso che conosce per uno specifico prefisso e possono essere disponibili più percorsi, come si vede nel caso dell'AS 12654. In generale, viene preferito il percorso con il minor numero di hop AS (cioè il percorso più breve), anche se questo non sempre porta al percorso più ottimale per il viaggio del pacchetto.
+
+### Policy-Base Vs Distance-Based Routing
+![[124.png]]
+
+### Optimizing Path Selection
+Quando si seleziona il percorso migliore per raggiungere una destinazione, è generalmente vantaggioso ridurre al minimo il numero di hop AS. Tuttavia, la scelta del percorso più breve non sempre porta a prestazioni ottimali. Infatti, il percorso con meno hop AS può passare attraverso una rete interna non ottimale (dove il SA non ha visibilità o controllo). Inoltre, i fornitori di rete possono limitare alcuni percorsi a causa di accordi o politiche commerciali, il che potrebbe indurre i pacchetti a seguire percorsi più lunghi ma più affidabili. Le decisioni di instradamento BGP sono influenzate dalle relazioni tra gli AS. Ad esempio, il traffico potrebbe essere instradato attraverso un percorso più lento se non esiste un accordo con un altro AS che offre un percorso più veloce.
+
+### Peering
+```ad-abstract
+title: Definition
+Il **peering** è una connessione diretta tra due AS (Autonomous Systems) che consente di scambiare traffico Internet senza passare attraverso altri intermediari (provider di transito). È una "scorciatoia" che ottimizza il flusso di dati.
+
+```
+
+Stabilire una connessione di peering diretta con il AS di destinazione è spesso più efficiente che instradare il traffico attraverso più AS. Questa “scorciatoia” è particolarmente utile per le reti di distribuzione dei contenuti (CDN), che spesso effettuano il peering diretto con i principali fornitori di accesso per ottimizzare la consegna dei contenuti.
+
+![[125.png]]
+
+### Exports Routes
+![[126.png]]
+È vietato far trapelare le rotte tra provider e peer a entità che non dovrebbero vederle. Ad esempio, le rotte di un provider non dovrebbero essere pubblicizzate a un peer vicino. Questo problema viene tipicamente risolto utilizzando dei filtri che bloccano le pubblicità di rotte indesiderate in uscita da un particolare AS.
+
+## Route Leak and Privacy Issues
+Un **Route Leak** si verifica quando le informazioni di instradamento, che dovrebbero essere disponibili solo a un cliente specifico o a un AS (Sistema Autonomo), vengono condivise accidentalmente o intenzionalmente con altri AS.
+
+Nella figura sopra, solo il cliente direttamente connesso all'AS dovrebbe essere a conoscenza delle modifiche alle rotte. Se altri AS, che non sono coinvolti nell'aggiornamento, vengono a conoscenza di queste informazioni, potrebbero reindirizzare il traffico verso una destinazione errata, violando gli accordi di privacy.
+
+I **Route Leak** possono verificarsi anche accidentalmente a causa di errori da parte di clienti o peer.
+
+![[127.png]]
+
+## Tweak tweak tweak
+![[129.png]]![[130.png]]
+
+## Outbound traffic
+![[131.png]]
+In situazioni in cui sono disponibili più percorsi, è possibile designare un collegamento primario e uno di backup. Il collegamento primario è solitamente preferito perché ha un valore di **Local Preference** più alto (ad esempio, 100, come mostrato nel diagramma). Questo valore garantisce che il collegamento primario venga scelto rispetto a quello di backup, a meno che il collegamento primario non diventi indisponibile.
+
+Quando il collegamento primario fallisce, il collegamento di backup viene utilizzato come soluzione alternativa.
+
+Un'altra tecnica utilizzata per influenzare il traffico in entrata attraverso il collegamento primario è il **AS Path Prepending**. Questo metodo consiste nell'inserire più volte il numero dell'AS negli aggiornamenti BGP per aumentare artificialmente il conteggio dei salti di un determinato percorso, rendendolo meno attraente per altri AS.

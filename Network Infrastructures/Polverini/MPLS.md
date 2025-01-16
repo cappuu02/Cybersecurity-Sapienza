@@ -1,5 +1,5 @@
 ## Client-Server model
-we have the client layer and server layer.
+We have the client layer and server layer.
 
 ![[WhatsApp Image 2024-12-07 at 22.03.45.jpeg]]
 
@@ -19,7 +19,7 @@ $R1$ need to know the topology of network and it must have a method to create a 
 >This conclude the journey in the optical world.
 
 ---- 
-we move in the client layer now with the Multiple protocol label switching argument.
+We move in the client layer now with the Multiple protocol label switching argument.
 ## Client Layer (electrical domain)
 **Electric domain**: now we have full access on binary version of information
 
@@ -41,8 +41,6 @@ Service that customer want to buy from service provider
 
 Another service that the customer want to buy from service provider is the "==restoration service==" (against failures).
 
-
-
 Image that this link fails $\Rightarrow$ Losing packets
 **How we do restore the service in this IP network**? with the OSPF a link state protocol that notify all the other network nodes that here there is a failure. To discover a failure i send an hello message to my neighbor, if they don't respond, i understand that there is a failure. I flag the information about the failure to all the other nodes. all the routers re-compute the shortest-path and at the very end, after 100 of millisecond, the network find an alternative path.
 
@@ -50,19 +48,6 @@ Image that this link fails $\Rightarrow$ Losing packets
 
 3 services that customer want to buy from service provider.
 The Service provider is realized through the IP tech the services they are less efficient (have limitations). For these reasons in 199* the **MPLS** was founded.
-
-## The needs of a TLC provider of data services
- Offer services to its customers
-- good “Quality of Service” – QoS
-- Service Level Agreements – SLAs
-Run its backbone in a cost-effective way
-- convergence of services (example voice and data services)
-For its Data backbone the provider needs good support for:
-- Virtual Private networks
-- Traffic Engineering
-- Protection/restoration mechanism
-It turns the IP layer into a Connection-oriented packet switching technologies that represent a good answer to these needs
-
 ## MPLS over Ethernet
 Situation in the 199X for the stack of transport network:
 ![[Pasted image 20241207231845.png]]
@@ -71,7 +56,7 @@ Situation in the 199X for the stack of transport network:
 ## Connection-Oriented Packet Network
 ![[Pasted image 20241207232121.png]]
 Network domain with MPLS.
-It's **connection oriented parading**. why? Because, before selling traffic we must create entries inside this table, we need to insert a new row into each of these tables.
+It's **connection oriented parading**. Why? Because, before selling traffic we must create entries inside this table, we need to insert a new row into each of these tables.
 
 Create connection means go inside every single switching elements (router) and insert a line inside the switching table in order to handle the communications. for each row we find two number. How is realized this table? Two parts:
 - **input**: (1)-> input interface. (25)-> label, is carried on top of packets
@@ -97,8 +82,8 @@ Traffic flow is described by:
 - src-IP
 - dest-IP
 - Protocol (UDP, TCP)
-- src-pt
-- dest-pt
+- src-port
+- dest-port
 
 >these are the five couple classifier
 
@@ -109,7 +94,7 @@ Traffic flow is described by:
 ![[Pasted image 20241208000654.png]]
 >We can have multiple tunnels. (overlay model)
 
-How can we enforce the packets to follow a different path?
+			How can we enforce the packets to follow a different path
 - Classification performed at this ingress node
 - Use different labels
 
@@ -122,9 +107,7 @@ How can we enforce the packets to follow a different path?
 
 For the next step, remove the MPLS stack. (MPLS today is not so much used)
 ![[Pasted image 20241208123918.png]]
-MPLS is connection oriented paradigm, turn a connectionless environment as IP networks into connection oriented (before two clients send traffic, they has to ask for the creation of end to end tunnel that is called label switch path). One thing that MPLS done is to move from the concept of "switching base on destination address to switching function performed over the MPLS label". A label is a number which is carried on top of the packets. Labels are used to distinguish different packets carried over the same link.
-
-MPLS is cost full in term of overhead. For this reason we are moving into the ...
+**MPLS is connection oriented paradigm**, turn a connectionless environment as IP networks into connection oriented (==before two clients send traffic, they has to ask for the creation of end to end tunnel that is called label switch pat==h). One thing that MPLS done is to move from the concept of "switching base on destination address to switching function performed over the MPLS label". A label is a number which is carried on top of the packets. Labels are used to distinguish different packets carried over the same link.
 
 ## MPLS Network Node
 
@@ -174,17 +157,17 @@ This device has two different table, because it's an IP/MPLS Device.
 - Label Lookup Table: 
 	- Row 0000 use IP routing table to deliver the packet.
 
-## Label Switched Router
 
 ![[Pasted image 20241208133926.png|500]]
 - Yellow part is the IP header and the green one is MPLS label
-- packets with label 45 go inside an tunnel. In the image I'm performing the swap function. 
+- packets with label 45 go inside a tunnel. In the image I'm performing the swap function. 
 
 ## Connectionless Forwarding along the IP path
 We are exploiting the connectionless IP environment. Apply the $0000$ label and it follows the shortest path. Look that, in the image, the green path is the shortest with $4$ nodes instead of $5$.
 
 ![[Pasted image 20241208134424.png]]
 
+>0000 shortest path with Dijkstra.
 ## Connection oriented forwarding along a LSP
 
 ![[Pasted image 20241208134454.png]]
@@ -224,10 +207,9 @@ How can we create something like this? By the concept of **Label stack**
 We have two different FECS the blu and the green one. 
 The blue one is associated with label 25 to the top link and the green is associated with label 35 to the bottom link. this two packets are MPLS packets. There is an internal node that perform the second push operation, we are adding one more label which in this case is label 42 (this label is used for both the packets). With a single line in the MPLS table we can switch those packets from input to output. 
 
-
-
-
 ## VPN, Traffic Engineering and Fast Re-Route
+>Describe the implementation of a VPN based on MPLS/BGP technology.
+
 Service that we can implement with MPLS domain.
 
 Let us consider a company that needs to run an IP Intranet. A Virtual Private Network (VPN) offers a separated (private) network over a shared transport infrastructure.  How can we use an IP based network as transport infrastructure? The two main features of a VPN services are:
@@ -258,32 +240,34 @@ Three main steps to create a VPN:
 3) Define an encapsulation mechanism to transport packets from one PE to another across the network. (Use MPLS)
 
 ### Move 1 **Any-to-any IP connectivity among PEs**
+Assegnare un indirizzo di loopback a ogni router PE e utilizzare un IGP (ad esempio OSPF o IS-IS) per annunciare questi indirizzi come prefissi /32, in modo da garantire la connettività any-to-any tra loro. Vogliamo quindi assegnare un ID a ogni singolo PE (al confine!). Utilizziamo un'interfaccia di loopback e le assegniamo un IP. Perché identifichiamo il router in questo modo, con un'interfaccia di loopback? Il motivo è che le interfacce fisiche possono essere attive o passive, a causa di guasti o altri motivi. Le interfacce logiche, come quelle di loopback, sono invece sempre attive, stabili nel tempo. Quindi lo usiamo come ID.
 
-Assign a loopback address to each PE router and use an IGP (e.g. OSPF or IS-IS) to announce these addresses as /32 prefixes in order to ensure any-to-any connectivity among them. So we want to assign an ID to every single PE (at the border!). We use a loopback interface and assign to it an IP. Why do we identify the router like that, with a loopback interface? The reason is that physical interfaces can be up or down, due to failures or other reasons. On the other hand, logical interfaces such as loopback interfaces are always up, they are stable over time. So we use it as an ID.
-
->We must be sure then that every router knows how to reach the others. For doing so we use a routing algorithm that lets reachability information travel: the OSPF protocol.
+>Dobbiamo essere sicuri che ogni router sappia come raggiungere gli altri. Per farlo, utilizziamo un algoritmo di routing che fa viaggiare le informazioni di raggiungibilità: il protocollo OSPF.
 ![[Pasted image 20241209140832.png]]
 >In the system 100 will be a OSPF daemon running which provides any to any connectivity
 ### Move 2 **Use BGP to distribute customer prefixes**
-Multi-Protocol BGP (MP-BGP) used as signaling protocol to distribute reachability information about customer prefixes. BGP treats VPNs as a separate address family.
-**PE routers establish a full-mesh of iBGP peerings**: a PE announces to all the other PEs the customer prefixes that it can reach via the CE router it is connected to.
+Multi-Protocol BGP (MP-BGP) utilizzato come protocollo di segnalazione per distribuire informazioni di raggiungibilità sui prefissi dei clienti. BGP tratta le VPN come una famiglia di indirizzi separata.
+**I router PE stabiliscono una rete completa di peerings iBGP**: un PE annuncia a tutti gli altri PE i prefissi dei clienti che può raggiungere tramite il router CE a cui è connesso.
 ![[Pasted image 20241209141233.png|400]]
 
 >We use BGP that allows two nodes to exchange messages that contain all the reachable prefixes.
 
 ```ad-example
 ![[Pasted image 20241209141601.png]]
-AS stands for Autonomous system. After the BGP updates $R2$ knows that $AS1$ has $p_1, p_2, …, p_k$ prefixes and so it knows that these nodes are reachable through $R1$. So we want to have BGP sessions between all the PEs in the provider network. But there is a problem: there is no problem in having $2$ different routers that both say “hey through me you reach node $x$”. But here Rome PoP says “you can reach $10.0.0.0$ through me” and idem Turin Pop, but they are two different private nets with the same IP $10.0.0.0$. For solving this we use BGP modified: notify a list of entities (L3VPN identifier) not addresses, so there is no ambiguity.
+AS sta per Autonomous system (sistema autonomo). Dopo gli aggiornamenti BGP, $R2$ sa che $AS1$ ha $p_1, p_2, ..., p_k$ prefissi e quindi sa che questi nodi sono raggiungibili attraverso $R1$. Vogliamo quindi avere sessioni BGP tra tutti i PE della rete del provider. Ma c'è un problema: non c'è alcun problema nell'avere $2$ router diversi che dicono entrambi “ehi, attraverso di me si raggiunge il nodo $x$”. Ma qui Roma PoP dice “attraverso di me puoi raggiungere $10.0.0.0$” e idem Torino Pop, ma sono due reti private diverse con lo stesso IP $10.0.0.0$. Per risolvere questo problema utilizziamo BGP modificato: notificare un elenco di entità (identificatore L3VPN) e non di indirizzi, in modo da non creare ambiguità.
 ```
 
 ### Move 3 **Use MPLS encapsulation among PEs**
 
 ![[Pasted image 20241209151554.png]]
-Until now, with the first 2 moves, the packet still carries private addresses. Now it’s time to create a label switched path. If we use labels no matter what address is there, even private, the router will not read them; it will just read the labels. There is a problem: let’s assume we have this situation:
+Finora, con le prime due mosse, il pacchetto trasporta ancora indirizzi privati. Ora è il momento di creare un percorso a commutazione di etichetta. Se usiamo le etichette, non importa quale sia l'indirizzo, anche se privato, il router non le leggerà; leggerà solo le etichette. C'è un problema: supponiamo di avere questa situazione:
 
-The node does the POP operation and it’s left with a bare IP packet, so it has to use only the IP address to deliver it. The problem is, there is ambiguity, the ending network has the same IP address, to solve e that let’s create a trunk, with the internal label that tells us which of the two it’s our destination (the label addressed with “this label” in the picture).
+Il nodo esegue l'operazione POP e si ritrova con un pacchetto IP nudo, quindi deve usare solo l'indirizzo IP per consegnarlo. Il problema è che c'è un'ambiguità, la rete finale ha lo stesso indirizzo IP, per risolvere il problema creiamo un trunk, con l'etichetta interna che ci dice quale delle due è la nostra destinazione giusta.
 
-There is a last problem to address. Let’s consider this situation:
+>**Trunk:**  
+	Un trunk rappresenta un percorso logico che collega il router eLER alla destinazione finale. Questo trunk è identificato da un'etichetta interna aggiuntiva.
+
+C'è un ultimo problema da affrontare. Consideriamo questa situazione:
 ![[Pasted image 20241209142707.png]]
 Customer 1 sends a packet to destination 10.0.0.100, should it use VPN 1 or VPN 2? I have to define multiple routing tables, one for each customer. These routing tables are called VRF (Virtual Routing and Forwarding). When the packet comes from the interface connecting Customer 1 and Rome node, Rome node knows which VRF to inspect.
 
@@ -297,7 +281,7 @@ VRF are not necessarily one-to-one in terms of interfaces, but we have a VRF for
 This scenario implement the shortest path routing logic giving an high cost to link $R1-R2$
 We can change the scheme like this but this will make the net converge in another state, just moving the congestion in another place, as shown in the picture:
 ![[Pasted image 20241209143241.png]]
-We would like to have a technology that supports traffic engineering: a function that allows a net operator to balance the load. MPLS can state, for instance, that red flow is the only one that can pass through this link. So we are actually creating a LSP. The picture below, represent the best scenario:
+We would like to have a technology that supports ==traffic engineering==: a function that allows a net operator to balance the load. MPLS can state, for instance, that red flow is the only one that can pass through this link. So we are actually creating a LSP. The picture below, represent the best scenario:
 ![[Pasted image 20241209143413.png]]
 How can I find a router configuration like that? There are other uni subjects that explain this problem.
 ## Fast Recovery after Failure Service

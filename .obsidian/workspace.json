@@ -4,58 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "1c590fbd5d3b08cb",
+        "id": "0b2b1f653adc0dd5",
         "type": "tabs",
         "children": [
           {
-            "id": "53ce006cc918f2fb",
+            "id": "5a65f565f088667b",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-                "mode": "source",
-                "source": false
+                "file": "Network Infrastructures/images/119.png"
               },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Introduction to Optical Network (Polverini 1-2-3)"
+              "icon": "lucide-image",
+              "title": "119"
             }
           },
           {
-            "id": "b8b823cbd2d73922",
+            "id": "a9fd504407e5d468",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "Network Infrastructures/Polverini/MPLS.md",
-                "mode": "source",
-                "source": false
+                "file": "Network Infrastructures/images/131.png"
               },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "MPLS"
-            }
-          },
-          {
-            "id": "9cbf3ca3ca7e6e8d",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Inter Domain Routing and  Border Gateway Protocol"
+              "icon": "lucide-image",
+              "title": "131"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -123,8 +100,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.51103591918945,
-    "collapsed": true
+    "width": 413.51103591918945
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -209,11 +185,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "53ce006cc918f2fb",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "Network Infrastructures/images/119.png",
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
     "Network Infrastructures/Polverini/MPLS.md",
     "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
+    "Network Infrastructures/images/131.png",
+    "Network Infrastructures/images/130.png",
+    "Network Infrastructures/images/129.png",
+    "Network Infrastructures/images/128.png",
+    "Network Infrastructures/images/127.png",
+    "Network Infrastructures/images/126.png",
+    "Network Infrastructures/images/125.png",
+    "Network Infrastructures/images/124.png",
+    "Network Infrastructures/images/123.png",
+    "Network Infrastructures/images/122.png",
     "Biometric System/Performance.md",
     "Biometric System/Introduction.md",
     "Statistic/Riemann and Lesbegue Integral.md",
@@ -222,17 +209,7 @@
     "Statistic/Lesson 2.md",
     "Statistic/Lesson 3.md",
     "Statistic/Lesson 6 (14 novembre).md",
-    "Network Infrastructures/images/105.png",
     "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
-    "Network Infrastructures/images/118.png",
-    "Network Infrastructures/images/117.png",
-    "Network Infrastructures/images/116.png",
-    "Network Infrastructures/images/115.png",
-    "Network Infrastructures/images/114.png",
-    "Network Infrastructures/images/113.png",
-    "Network Infrastructures/images/112.png",
-    "Network Infrastructures/images/111.png",
-    "Network Infrastructures/images/110.png",
     "Network Infrastructures/Polverini/Kathara commands.md",
     "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
     "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
@@ -247,7 +224,6 @@
     "Cryptography/Lesson 17 (Asymmetric Scheme).md",
     "Cryptography/Lesson 15-16.md",
     "Cryptography/Lesson 12-14.md",
-    "Cryptography/Lesson 11.md",
     "Cryptography/PDF/Esercizi Risolti.pdf",
     "Cryptography/PDF/Esercizi Critto Simo.pdf",
     "Cryptography/Cryptography Notes.pdf",
