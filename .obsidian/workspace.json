@@ -4,35 +4,26 @@
     "type": "split",
     "children": [
       {
-        "id": "0b2b1f653adc0dd5",
+        "id": "aee1bd03bf1851ec",
         "type": "tabs",
         "children": [
           {
-            "id": "5a65f565f088667b",
+            "id": "e4c6cd067f1dcfe6",
             "type": "leaf",
+            "pinned": true,
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Network Infrastructures/images/119.png"
+                "file": "Distributed System/MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "119"
-            }
-          },
-          {
-            "id": "a9fd504407e5d468",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Network Infrastructures/images/131.png"
-              },
-              "icon": "lucide-image",
-              "title": "131"
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "MODELS, ABSTRACTIONS AND BASIC CONCEPTS"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -100,7 +91,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 413.51103591918945
+    "width": 256.5
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -185,22 +176,27 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "e4c6cd067f1dcfe6",
   "lastOpenFiles": [
-    "Network Infrastructures/images/119.png",
+    "Distributed System/Images/13.png",
+    "Distributed System/Images/12.png",
+    "Distributed System/Images/11.png",
+    "Distributed System/Images/10.png",
+    "Distributed System/Images/9.png",
+    "Pasted image 20250121154144.png",
+    "Distributed System/Images/8.png",
+    "Distributed System/Images/7.png",
+    "Distributed System/Images/6.png",
+    "Distributed System/Images/5.png",
+    "Distributed System/Images/4.png",
+    "Distributed System/MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+    "Distributed System/Introduction.md",
+    "Distributed System/Images",
+    "Cryptography/Lesson 1.md",
+    "Distributed System",
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
     "Network Infrastructures/Polverini/MPLS.md",
     "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-    "Network Infrastructures/images/131.png",
-    "Network Infrastructures/images/130.png",
-    "Network Infrastructures/images/129.png",
-    "Network Infrastructures/images/128.png",
-    "Network Infrastructures/images/127.png",
-    "Network Infrastructures/images/126.png",
-    "Network Infrastructures/images/125.png",
-    "Network Infrastructures/images/124.png",
-    "Network Infrastructures/images/123.png",
-    "Network Infrastructures/images/122.png",
     "Biometric System/Performance.md",
     "Biometric System/Introduction.md",
     "Statistic/Riemann and Lesbegue Integral.md",
@@ -221,17 +217,12 @@
     "Cryptography/Lattices.md",
     "Cryptography/Lesson 20-21-22-23.md",
     "Cryptography/Lesson 18-19.md",
-    "Cryptography/Lesson 17 (Asymmetric Scheme).md",
-    "Cryptography/Lesson 15-16.md",
-    "Cryptography/Lesson 12-14.md",
     "Cryptography/PDF/Esercizi Risolti.pdf",
     "Cryptography/PDF/Esercizi Critto Simo.pdf",
     "Cryptography/Cryptography Notes.pdf",
     "Cryptography.zip",
     "Network Infrastructures/Cuomo",
     "Network Infrastructures/Polverini",
-    "Cryptography Notes.pdf",
-    "Cryptography/Untitled",
-    "Statistic/Homework1/script.js"
+    "Cryptography Notes.pdf"
   ]
 }
