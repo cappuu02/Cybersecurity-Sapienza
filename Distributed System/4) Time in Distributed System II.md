@@ -43,12 +43,12 @@ Is possible because the Strong completness said that "eventually" every process 
 >Is possible? No, because a dead process cannot detect another dead process.
 
 ## Improving P (Round-Based P)
-Vogliamo ridurre il numero di messaggi necessari mantenendo la stessa accuratezza e completezza. Supponiamo di avere un clock synchronizer con uno scarto globale massimo di $\delta$$ con collegamento sincronizzati con un ritardo massimo (maxdelay) e minimo (mindelay > $\delta$)
+Vogliamo ridurre il numero di messaggi necessari mantenendo la stessa accuratezza e completezza. Supponiamo di avere un clock synchronizer con uno scarto globale massimo di $\delta$ con collegamento sincronizzati con un ritardo massimo (maxdelay) e minimo (mindelay > $\delta$)
 
 ![[Distributed System/Images/36.png]]
 
 ### Algorithm Round-Based
-Tale algoritmo e un approccio per rilevare i guasti nei sistemi distribuiti, utilizzando la divisione dell tempo in intervalli logici chiamati rounds. Ogni processo invia un segnale di "essere attivo" durante ogni round. L'obbiettivo e di garantire accuratezza e completezza nel rilevamento dei guasti, minimizzando la quantita di comunicazione.
+Tale algoritmo è un approccio per rilevare i guasti nei sistemi distribuiti, utilizzando la divisione dell tempo in intervalli logici chiamati rounds. Ogni processo invia un segnale di "essere attivo" durante ogni round. L'obbiettivo è di garantire accuratezza e completezza nel rilevamento dei guasti, minimizzando la quantita di comunicazione.
 
 ```ad-question
 title: Perche utilizziamo i round?
@@ -56,11 +56,11 @@ Dividendo il tempo in round, si facilita la progettazione e verifica di algoritm
 
 ```
 
-lo scafrto globale $\delta$ condiviso tra tutti i processi garantisce che i round di diversi processi siano quasi tutti allineati. La durata del round deve essere deve essere abbastanza lunga da compensare  lo scarto massimo e il ritardo nella comunicazione. Ovviamente un messaggio inviato all-inizio del round $r$ arrivera prima della fine del round $r$.
+lo scarto globale $\delta$ condiviso tra tutti i processi garantisce che i round di diversi processi siano quasi tutti allineati. La durata del round deve essere abbastanza lunga da compensare  lo scarto massimo e il ritardo nella comunicazione. Ovviamente un messaggio inviato all-inizio del round $r$ arrivera prima della fine del round $r$.
 
 #### Passi dell'algoritmo
 1. **Inizio del round**
-	ogni processo inizia un nuovo round $r$ al tempo $t$. Il processo invia un messaggio agli altri processi per segnalare che e attivo.
+	ogni processo inizia un nuovo round $r$ al tempo $t$. Il processo invia un messaggio agli altri processi per segnalare che è attivo.
 2. **Invio del BEAT**
 	 Il processo $p$ invia il BEAT non appena il proprio round numero $r$ inizia. Grazie alla sincronizzazione degli oroglogi e ai limiti temporali, il BEAT viene ricevuto dagli altri processi entro il round $r$.
 3. **Ricezione del BEAT**
@@ -79,9 +79,9 @@ Se invio un BEAT a $p$ quando il mio numero di round mostra $r$, allora il beat 
 
 
 ## Synchronous = Round-Based
-An alternative way to see synchronous systems is to imagine time divided in logical slots, the so called round. Synchrony assumptions are abstracted by assuming: 
-- Processes switch rounds exactly at the same time. 
-- If I a correct process send a message to a set of processes at the beginning of round r, the messages will reach all correct processes in the set by the end of round r
+Un modo alternativo di vedere i sistemi sincroni è quello di immaginare il tempo diviso in slot logici, i cosiddetti round. Le ipotesi di sincronia sono astratte, assumendo che: 
+- I processi cambiano turno esattamente nello stesso momento. 
+- Se un processo corretto invia un messaggio a un insieme di processi all'inizio del round $r$, i messaggi raggiungeranno tutti i processi corretti dell'insieme entro la fine del round $r$
 
 ![[Distributed System/Images/38.png]]
 
@@ -109,29 +109,18 @@ Un failure detector $◊P$ deve rispettare due proprietà fondamentali:
     Se un processo fallisce (crasha), esso sarà **sempre sospettato** da tutti i processi corretti, e non verrà mai rimosso dall'elenco dei sospetti.
     
 2. **Accuratezza forte eventuale (Eventual Strong Accuracy)**  
-    Dopo un certo tempo ttt, il sistema diventa sincrono (o sufficientemente stabile) e i failure detector smettono di fare errori. Da quel momento in poi:
+    Dopo un certo tempo $t$, il sistema diventa sincrono (o sufficientemente stabile) e i failure detector smettono di fare errori. Da quel momento in poi:
     
     - Solo i processi che hanno effettivamente fallito saranno sospettati.
     - Ogni sospetto errato viene rimosso (es. un processo erroneamente sospettato come fallito viene "perdonato").
 
 ![[Pasted image 20241014140726.png]]
 ### Funzionamento Algoritmo
-1. Quando si verifica un evento "upon event" (ad es. una richiesta di invio o di risposta), l'algoritmo esegue le seguenti azioni:
-    - Imposta lo stato "alive" del processo a 1 (vivo).
-    - Imposta lo stato "suspected" del processo a 0 (non sospettato).
-    - Imposta il ritardo "delay" a 0.
-2. Se si verifica un evento di timeout ("upon event (Timeout)"), l'algoritmo controlla se il processo è considerato sospetto ("suspected" != 0).
-    - Se è sospetto, l'algoritmo incrementa il ritardo ("delay := delay + Δ").
-    - Altrimenti, se il processo è vivo ("alive"), l'algoritmo imposta lo stato "suspected" a 1 (sospetto).
-3. Quando il ritardo supera un certo valore, l'algoritmo esegue le seguenti azioni:
-    - Imposta lo stato "suspected" a 1 (sospetto).
-    - Attiva il trigger "trigger (◊P, Suspect {p})".
-4. Il trigger "trigger (◊P, Suspect {p})" invia una richiesta di "HeartBeatRequest" al processo sospetto.
-5. Quando viene ricevuta una risposta di "HeartBeatReply", l'algoritmo:
-    - Imposta lo stato "alive" del processo a 1 (vivo).
-    - Imposta lo stato "suspected" del processo a 0 (non sospettato).
-    - Attiva il trigger "trigger (◊P, Send {p, HeartBeatRequest})".
-6. Il trigger "trigger (pl, Send {p, HeartBeatRequest})" invia una richiesta di "HeartBeatRequest" al processo.
+```ad-bug
+Da inserire 
+
+```
+
 
 >In sintesi, l'algoritmo monitora lo stato dei processi e sospetta quelli che non rispondono entro un certo tempo, inviando loro delle richieste di "HeartBeatRequest" per verificarne la disponibilità. Quando un processo risponde, l'algoritmo lo considera nuovamente attivo.
 ### Property of Suspected

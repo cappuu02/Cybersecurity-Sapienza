@@ -8,22 +8,71 @@
         "type": "tabs",
         "children": [
           {
-            "id": "43a09db9d4748844",
+            "id": "88ba5fa3ece2f250",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Distributed System/5) Broadcasting.md",
+                "file": "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "5) Broadcasting"
+              "title": "1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS"
+            }
+          },
+          {
+            "id": "6db269bd399c9656",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/2) Time Models.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "2) Time Models"
+            }
+          },
+          {
+            "id": "0d5a64ad7f260c37",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/3) Time in Distributed System.md",
+                "mode": "preview",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "3) Time in Distributed System"
+            }
+          },
+          {
+            "id": "0bc291da0cd95e17",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/4) Time in Distributed System II.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "4) Time in Distributed System II"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -91,7 +140,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 247.50260543823242
+    "width": 247.50260543823242,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -176,43 +226,80 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "43a09db9d4748844",
+  "floating": {
+    "id": "c5548635ad3c8481",
+    "type": "floating",
+    "children": [
+      {
+        "id": "c9a753c1ea9b5b95",
+        "type": "window",
+        "children": [
+          {
+            "id": "34d587ea65724c64",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "f04d4088f78a16ee",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "Distributed System/Ale DS/3/slides3.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "slides3"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 751,
+        "y": 32,
+        "width": 1169,
+        "height": 781,
+        "maximize": false,
+        "zoom": 1.5
+      }
+    ]
+  },
+  "active": "0bc291da0cd95e17",
   "lastOpenFiles": [
-    "Distributed System/Ale DS/5/Slides5.pdf",
-    "Distributed System/5) Broadcasting.md",
-    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+    "Distributed System/3) Time in Distributed System.md",
+    "Distributed System/Ale DS/3/slides3.pdf",
+    "Distributed System/Images/75.png",
+    "Distributed System/Images/74.png",
+    "Distributed System/Images/73.png",
+    "Distributed System/2) Time Models.md",
     "Distributed System/4) Time in Distributed System II.md",
-    "Distributed System/6) Quorum.md",
+    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+    "Distributed System/Ale DS/5/Slides5.pdf",
+    "Distributed System/1a) Introduction.md",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "Distributed System/Images/72.png",
+    "Distributed System/Images/71.png",
+    "Distributed System/6) Ordered Communications.md",
+    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
+    "Pasted image 20250124122737.png",
+    "Distributed System/Ale DS/6/Slides6.pdf",
+    "Distributed System/Images/70.png",
+    "Distributed System/Images/69.png",
+    "Distributed System/Images/68.png",
+    "Distributed System/Images/67.png",
+    "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/Ale DS/6. BROADCASTING.md",
     "Distributed System/Ale DS/4/Slides4.pdf",
-    "Distributed System/Images/57.png",
-    "Distributed System/Images/56.png",
-    "Distributed System/Images/55.png",
-    "Distributed System/Images/54.png",
-    "Distributed System/Images/53.png",
-    "Distributed System/Ale DS/3/slides3.pdf",
-    "Distributed System/Images/49.png",
-    "Distributed System/3) Time in Distributed System.md",
-    "Distributed System/Images/48.png",
-    "Distributed System/Images/47.png",
-    "Distributed System/Images/46.png",
-    "Distributed System/Images/45.png",
-    "Distributed System/1a) Introduction.md",
     "Distributed System/Ale DS/5. TIME.md",
     "Distributed System/Ale DS/4. LOGICAL CLOCK.md",
     "Distributed System/Ale DS/3/3. LOGICAL CLOCK.pdf",
     "Distributed System/Ale DS/3. TIME, SYNCHRONIZATION AND ALGORITHMS.md",
-    "Distributed System/2) Time Models.md",
     "Distributed System/Ale DS/2) FAILURES, ABSTRACTION AND LINK-ALGORITHM.md",
     "Distributed System/Ale DS/2/slides2.pdf",
     "Distributed System/Ale DS/2/2. TIME, SYNCHRONIZATION AND ALGORITHMS.pdf",
-    "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/2) Failure abstraction.md",
     "Distributed System/Ale DS/1. Models, Abstractions and Basic Concepts.md",
     "Distributed System/Ale DS/Immagini",
-    "Distributed System/Ale DS/9/9.O Paxos.pdf",
-    "Distributed System/Ale DS/9/9.E Paxos.pdf",
-    "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Cryptography/Lesson 1.md",
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
     "Network Infrastructures/Polverini/MPLS.md",

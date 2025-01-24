@@ -34,13 +34,13 @@ Applying these three rules is possible to define a causal ordered sequence of ev
 
 ![[Pasted image 20241009154428.png]]$S_1 = <e^1_1,e_2^1,e_2^2,e^2_3,e^3_3,e^3_1,e^4_1,e^5_1,e^4_2>$
 $S_2= <e^1_3,e^2_1,e^3_1,e^4_1,e^5_3>$
-Concurrent Elements: $(e^1_3,e^1_2)$
+Concurrent Elements: $(e^1_3,e^1_2)$ because they are overlaped and they are not in an happened-before relationship.
 
 > Tutti i restanti eventi sono in una happened-befor relationship
 ```
 
 ## Logical clock
-The logical clock introduced by lamport, is a monotonically increasing software counting register (not related to physical clock). Logical clock is not related to physical clock.
+Logical clock, introdotto da lamport, è un registro di conteggio software monotonicamente crescente (non legato all'orologio fisico). L'orologio logico non è correlato all'orologio fisico.
 
 Each process $p_i$ employs its logical clock $L_i$ to apply a timestamp to events.
 $L_i(e)$ is the **logical timestamp** assigned, using the logical clock, by a process $p_i$ to event $e$.
@@ -57,25 +57,25 @@ Each process $p_i$ initializes its logical clock $L_i=0$
 	- updates its logical clock $L_i = max(t,L_i)$
 	- produces an event $recive(m)$
 	- increases $L_i$
-![[Pasted image 20241009154853.png|500]]because of the property (if $e\to e'$ then $L(e)<L(e')$)
+![[Pasted image 20241009154853.png|500]]
+because of the property (if $e\to e'$ then $L(e)<L(e')$)
 
-Aggiungere immagini pagina 17-18-19
-
+![[Distributed System/Images/73.png]]
+![[Distributed System/Images/74.png]]
 
 ```ad-example
-![[Pasted image 20241009155034.png]]
+![[Distributed System/Images/75.png]]
 
 ```
 
-
 ## Limits of Scalar Logical Clock
-Scalar Logical clocks can guarantee the property
-- if $e\to e'$ then $L(e) <L(e')$
+Gli orologi logici scalari possono garantire la proprietà
+- se $e$ $\to$ $e'$ allora $L(e) <L(e')$
 
-But it is **not possible to guarantee**:
-- if $L(e)<L(e')$ then $e\to e'$ (Is not true everytime)
+Ma non è **possibile garantire**:
+- se $L(e)<L(e')$ allora $e \to e'$ (non è sempre vero perch).
 
-So it is **not possible to determine**, analyzing only scalar clocks, **if two events are concurrent or correlated by the happened-before relation**.
+Se il timestamp di un evento è più piccolo di quello di un altro ($L(e) < L(e')$), non significa necessariamente che eee ha causato $e'$. Potrebbero essere eventi indipendenti o "concurrent" (cioè accaduti nello stesso periodo senza influenzarsi a vicenda).
 
 ## Vector clock - Capture Casuality
 **GOAL**: capture causality (if $L(e) <L(e')$ then $e\to e'$)
@@ -89,9 +89,9 @@ $$L(e_i)>L(e_j)\Leftrightarrow \forall k:L(e_j)_{History_k}\subseteq L(e_i)_{His
 ![[Pasted image 20241009155842.png]]
 $History_x\subset History'_x \to History_x$ is a proper prefix of $History'_x$
 We can say that: $$History_x \subset History_x' \to len(History_x)<len(History'_x)$$![[Pasted image 20241009160200.png|500]]
->An event $e$ is in happened-before relation with an event $e'$ if in his $History$ there is a tuple of elements that $\subseteq$ and a tuple that is strictly $\subset$.
+>An event $e$ is in happened-before relation with an event $e'$ if in his $History$ there is a tuple of elements of $e$ that $\subseteq$ with the tuple of $e'$
 
->Un orologio vettoriale per un insieme di N processi è un array di N contatori interi:
+>A vector clock for a set of N processes is an array of N integer counters:
 - Ciascun processo $p_i$ mantiene un orologio vettoriale $V_i$ e mediante esso registra gli eventi.
 - Analogamente all'orologio scalare, al messaggio $m$ è allegato un orologio vettoriale (in questo caso alleghiamo un array di numeri interi).
 
@@ -139,7 +139,6 @@ $[4,3,2]?[3,-,3]\Rightarrow e^4_1||e^3_3$
 - Scalar Timestamp → Lamport’s Mutual Exclusion
 - Vector Timestamp → Causal Broadcast
 
-___
 ## Mutual exclusion abstraction - no crash tollerant
 
 **Events**:
@@ -182,11 +181,10 @@ Le richieste dunque vengono ordinate considerando:
 
 ```ad-success
 title: Vantaggi
-- Assicurare mutua esclusione senza deadlock (accesso di un soo $p$ alla CS)
+- Assicurare mutua esclusione senza deadlock (accesso di un solo $p$ alla CS)
 - Funziona in ambiente distribuito
 
 ```
-
 
 ![[Distributed System/Images/43.png]]
 ![[Distributed System/Images/44.png]]
@@ -194,8 +192,6 @@ title: Vantaggi
 ![[Distributed System/Images/46.png]]
 ![[Distributed System/Images/47.png]]
 ![[Distributed System/Images/48.png]]
-
-
 ### Dimonstration
 
 ==**Mutua esclusione**==

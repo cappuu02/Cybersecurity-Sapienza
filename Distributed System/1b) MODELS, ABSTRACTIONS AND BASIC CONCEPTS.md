@@ -29,12 +29,13 @@ Un processo comunica attraverso due livelli:
 Buffer:
 - **Input Buffer**: Accumula messaggi ricevuti ma non ancora processati.
 - **Output Buffer**: Contiene i messaggi inviati ma non ancora consegnati.
-# Model: Asynchronous executions
 
+
+# Model: Asynchronous executions
 ## Execution
-There is an adversary that schedule a set of events (**scheduler**):
-- Delivery of a msg - $Del(m,i,j)$: move message $m$ from OutBuff_i to InBuf_j
-- Execution of a local step - $Exec(i)$: process $i$ executes one step of its state machine.
+Esiste un avversario che programma un insieme di eventi (**scheduler**):
+- Consegna di un msg - $Del(m,i,j)$: sposta il messaggio $m$ da OutBuff_i a InBuf_j
+- Esecuzione di un passo locale - $Exec(i)$: il processo $i$ esegue un passo della sua macchina a stati.
 
 ![[Distributed System/Images/4.png]]
 ![[Distributed System/Images/5.png]]
@@ -75,9 +76,6 @@ Given an execution $E$ and a process $p_j$, we define has local execution $(E|p_
 
 Different executions could give the same local exec.
 ![[Distributed System/Images/14.png]]
-
->Exec(0): operazione seguita dal processo 0, e cosi via...
-
 >We say that $p_1$ (and $p_2$) cannot distinguish $E$ from $E’$.
 
 **Indistinguishability**
@@ -141,19 +139,19 @@ Un collegamento espone due eventi:
 
 _Properties_
 - **FL1**: (Fair-loss) Se un processo corretto $p$ invia $m$ infinitamente spesso a un processo $q$, allora consegna/processa $m$ un numero infinito di volte. (==_Liveness_==)
-- **FL2**: (Duplicazione finita) Se un processo corretto $p$ invia m un numero finito di volte a $q$ allora q non può consegnare m un numero infinito di volte.
-- **FL3**: (Nessuna creazione) Se un processo q consegna un messaggio $m$ con mittente $p$, allora m è stato inviato da $p$ a $q$. (==_Safety_==).
+- **FL2**: (finite duplication) Se un processo corretto $p$ invia m un numero finito di volte a $q$ allora q non può consegnare m un numero infinito di volte.
+- **FL3**: (No Creation) Se un processo q consegna un messaggio $m$ con mittente $p$, allora m è stato inviato da $p$ a $q$. (==_Safety_==).
 
 **Fair-Lossy Link**
 ![[Distributed System/Images/17.png]]
 All properties fall in two classes: Safety or Liveness
 
 A **safety property** is property that if violated at a time $t$, it can never be satisfied after $t$. Formally, if a safety property is violated in execution E, there is a prefix E’ of E such that any extension of E’ also violates the property. Formally, the safety property, state that something bad cannot happen.
-	Once a process $q$ delivers a message $m$ that was ot sent by anyone FL3 is violated forever.
+	Once a process $q$ delivers a message $m$ that was not sent by anyone FL3 is violated forever.
 	E = (e_1, e_2, e_3, **e_4**, e_5)
 	E' = (e_1, e_2, e_3, **e_4**)
 
->Nulla di brutto accada durante l'esecuzione del sistema, qualunque stato raggiunto dal sistema sia sempre corretto.Se una proprieta di safety vene violata non puo essere recuperata: una volta che il sistea si trova in uno stato non valido, rimane tale.
+>Nulla di brutto accada durante l'esecuzione del sistema, qualunque stato raggiunto dal sistema sia sempre corretto.Se una proprieta di safety viene violata non puo essere recuperata: una volta che il sistema si trova in uno stato non valido, rimane tale.
 
 A **Liveness property** is property that cannot be violated in finite executions:
 Formally, given any finite execution E that does not satisfy a liveness property there
@@ -162,7 +160,7 @@ is an extension of E that satisfy it. Informally, a liveness property specify th
 	$E=(e_1,e_2,e_3,e_4,e_5)$
 	$E’=(e_1,e_2,e_3,e_4,e_5, del(p,q,m))$
 
->Qualcosa di buono accada eventualmente nel sistema, il sistema progredira sempre verso uno stato desiderato. Se una proprieta di liveness viene temporaneamente violata, puo essere ripristinata, il sistema puo eventualmente recuperata e garantire il processo.
+>Qualcosa di buono accada eventualmente nel sistema, il sistema progredira sempre verso uno stato desiderato. Se una proprieta di liveness viene temporaneamente violata, puo essere ripristinata, il sistema puo eventualmente recuperarla e garantire il processo.
 
 **FL2 satisfy the liveness property**:
 It cannot be violated in finite execution.
@@ -207,7 +205,7 @@ Properties:
 title: Spiegazione Algoritmo
 - **Primo blocco**: Inizializzazione, variabile sent inizializzata come un insieme vuoto e si avvia un timer.
 - **Secondo Blocco**: Ad ogni timeout, l'algoritmo controlla tutti i messaggi nell'insieme sent e li rinvia attraverso il fair-lossy link
-- **Terzo blocco**: invio messaggio, quando un messaggio m viene inviato d un processo q, l'algoritmo lo aggiunge all'insieme sent e lo trasmette attraverso il fair-lossy link.
+- **Terzo blocco**: invio messaggio, quando un messaggio m viene inviato ad un processo q, l'algoritmo lo aggiunge all'insieme sent e lo trasmette attraverso il fair-lossy link.
 - **Quarto blocco**, Ricezione del messaggio: quando il fair lossy link consegna un messaggio m il messaggio viene inoltrato al livello stubborn link
 ```
 #### Proof of FL3
@@ -218,7 +216,7 @@ Fact 1 implies that fll, is delivering a message that was not sent by $p$.
 This implies that fll is not fair-lossy. This contradicts our hypothesis: fll is fair-lossy
 
 #### Proof of SL1
-**SL1**: (Stubborn-delivery) If a correct process $p$ sends $m$ to $q$, then $q$ delivers m an infinite number of times.
+**SL1**: (Stubborn-delivery) If a correct process $p$ sends $m$ to $q$, then $q$ delivers $m$ an infinite number of times.
 
 Proof by reduction. Suppose $q$ delivers $m$ a finite number of times.
 **Fact 1**: $p$ sends $m$ on fll an infinite number of times:
@@ -234,11 +232,11 @@ In:
 - PL1: (Reliable delivery) If a correct process $p$ sends $m$ to $q$, then $q$ eventually delivers $m$.
 - PL2: (No duplication) A message is delivered at most once.
 - FL3: (No creation) If some process $q$ delivers a message $m$ with sender $p$, then m was sent by $p$ to $q$.
-## Perfect P2P Link
+## Perfect PP2P Link
 ![[Distributed System/Images/21.png]]
 ### Perfect P2P Link Proof FL3
 Proof by contradiction:
-SUpose process $q$ executing our algorithm receives message m that was not sent by p.
+Suppose process $q$ executing our algorithm receives message m that was not sent by p.
 Fact 1: If q delivers a message, then it delivers here:
 ![[Distributed System/Images/22.png]]
 This implies that sl delivered a message that was not created. Violates the hypothesis that sl is a stubborn.

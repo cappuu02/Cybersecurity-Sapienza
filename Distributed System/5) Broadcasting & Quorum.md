@@ -1,56 +1,52 @@
+# Broadcasting
 
 ![[Pasted image 20241016111120.png|500]]
 
 ## BEST EFFORT BROADCAST (BEB)
-
 **System model**:
 - Asynchronous system
 - Perfect links
 - Crash failures
 
-![[Pasted image 20241016111324.png|250]]
+![[Pasted image 20241016111324.png]]
 
 ### Algorithm
 ![[Pasted image 20241016111409.png|500]]
 
-BEB1: Validity: If a correct process broadcasts a message m, then every correct process eventually delivers m.
-BEB2: No duplication: No message is delivered more than once.
-BEB3: No creation: If a process delivers a message m with sender s, then m was previously broadcast by process s.
+==BEB1==: **Validity**: If a correct process broadcasts a message $m$, then every correct process eventually delivers $m$.
+==BEB2==: **No duplication**: No message is delivered more than once.
+==BEB3==: **No creation**: If a process delivers a message $m$ with sender $s$, then $m$ was previously broadcast by process $s$.
 
 
-**Correctness**
-- *Validity*: it comes from the reliable delivery property of perfect links and the fact that the sender sends the message to every other process in the system.
-- *No Duplication*: it directly follows from the No Duplication of perfect links.
-- *No Creation*: it directly follows from the corresponding property of perfect links.
+![[Distributed System/Images/71.png]]
+
+### Correctness
+- **Validity**: it comes from the reliable delivery property of perfect links and the fact that the sender sends the message to every other process in the system.
+- **No Duplication**: it directly follows from the No Duplication of perfect links.
+- **No Creation**: it directly follows from the corresponding property of perfect links.
 
 >Correctness comes from the three proofs of perfect-link.
 
-BEB ensures the delivery of messages as long as the sender does not fail.
-If the sender fails processess may disagree on whether or not deliver the message.
+### Observation on BEB
+Il BEB assicura la consegna dei messaggi finché il mittente non fallisce.
+Se il mittente fallisce, i processi possono essere in disaccordo sulla consegna o meno del messaggio.
 ![[Pasted image 20241016111750.png|500]]
 
-### Problems
-Processes do not have a common view of messages sent by the non correct.
-- This can have a negative impact in some applications:
-	- Think about a distributed chat, a message from a client that crashes could reach only a subset of processes.
-- We would like to have an agreement on the set of messages to be delivered, at least among the correct processes (all-correct or nothing).
+```ad-missing
+title: Problems
+I processi non hanno una visione comune dei messaggi inviati dal non corretto, questo può avere un impatto negativo in alcune applicazioni. Vorremmo avere un accordo sull'insieme dei messaggi da consegnare, almeno tra i processi corretti (tutto corretto o niente).
+
+Pensate a una chat distribuita, un messaggio da un client che si blocca potrebbe raggiungere solo un sottoinsieme di processi.
 
 
-## (REGULAR) RELIABLE BROADCAST (RB)
 
-**Module**:
-- **Name**: $\text{Reliable\hspace{5px}Broadcast}$, **istance**: $rb$.
-**Events**:
-- **Request**: $\langle rb, \text{Broadcast}\hspace{5px}|\hspace{5px}m\rangle$ (Broadcasts a message $m$ to all processes).
-- **Indication**: $\langle rb, \text{Deliver}\hspace{5px}|\hspace{5px}p,m\rangle$ (Delivers a message $m$ broadcast by process $p$)
-**Properties**:
-- **RB1** (validity): if a correct process $p$ broadcasts a message $m$, then $p$ eventually delivers $m$.
-- **RB2** (no duplication): no message is delivered more than once.
-- **RB3** (no creation): if a process delivers a message $m$ with sender $s$, then $m$ was previously broadcast by process $s$.
-- **RB4** (agreement): if a message $m$ is delivered by some correct process, then $m$ is eventually delivered by every correct process.
+```
 
-**BEB vs RB**:
-![[Pasted image 20241016112522.png|500]]
+## (Regular) Reliable Broadcast (RB)
+![[Distributed System/Images/72.png]]
+
+### BEB vs RB
+![[Pasted image 20241016112522.png]]
 Processo $P1$ invia il messaggio verde acqua
 Processo $P2$ invia il messaggio arancione e blu
 $Processo P3$ invia il messaggio blu scuro
@@ -126,3 +122,35 @@ Message Deelay: (quante operazioni avvengono dall'inizio alla fine dell'algoritm
 	- **Best case**: $2$ step ($0$ failures) ($1$ for disseminate $1$ for ACKs).
 	- **Worst case**: $O(n)$ steps (chain of failures as in the lazy RB).
 
+
+# Quorum Definition and Properties
+Abbiamo $n$ processi nel nostro insieme di processi totali $P$, **un quorum è un qualsiasi sottoinsieme di $P$ di dimensioni minime**: $$\frac{n}{2}+1 = \text{Majority of the processes}$$![[Pasted image 20241030175001.png|500]]
+****proprietà**: due quorum qualsiasi si intersecano in almeno un processo (se due quorum non si intersecano, allora hanno tutti processi distinti. Questo implica $|P|>n$)
+
+If we have:
+- $C$: set of correct processes.
+- $F$: set of faulty processes.
+
+We don't know who is in $C$ and who is in $F$ but if we assume $f<\frac{n}{2}$ (Majority of the processes are in $C$), then we can say that:
+
+**Any quorum $Q$ of $P$ contain at least one correct process** ($C$ is a quorum, $Q$ is a quorum tooo. Two quorums intesect in at least one process).
+
+```ad-example
+takes 4 processes at random, at least one of them will be green. Protip: it works even if you first take your set and then you decide which is green and which is red.![[Pasted image 20241021141413.png|500]]
+
+```
+
+## Implementation in Fail-Silent
+![[Distributed System/Images/58.png]]
+
+## Majority-ACK
+```ad-question
+if $|P|=n$ and $|F|=n/2+1$, this algorithm works?
+
+**Response**: if I reach the treshold is fine but can happen that the number of ACK will never be reached
+(if |F| > n/2 and I wait for |F|+1 I will wait forever once everyone in F crashed. This means that the validity will never be satisfied)
+
+```
+
+We can use perfect failure detector:
+![[Distributed System/Images/59.png]]

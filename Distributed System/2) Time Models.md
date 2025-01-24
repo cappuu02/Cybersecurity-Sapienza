@@ -7,8 +7,6 @@
 	- local executions steps happen at certain predeterminated interval, and that they take bounded time.
 - **Eventually Synchronous**:
 	- there is a time, unknown to us, after which the system will be synchronous.
-
-
 ## Asynchronous
 - No global clock
 - No boun on message delay
@@ -17,7 +15,7 @@
 ## Synchronous
 Delay are bounded
 You can synchronise (up-to a certain precision)
-You can assume that local execution steps happen at certaain predeterminated interval, and that they take bounded time
+You can assume that local execution steps happen at certain predeterminated interval, and that they take bounded time
 
 ![[Pasted image 20241002171415.png|400]]
 
@@ -27,7 +25,7 @@ You can assume that local execution steps happen at certaain predeterminated int
 ## Partially-Synchronous
 System that in certain point is sync and in some points is async. ![[Pasted image 20241002171454.png]]
 
-An algorithm with Safety property (ex: Mutex) is not good for partial synchrony sistems. There can be some points where the proprery is broken by async parts.
+An algorithm with Safety property (ex: Mutex) is not good for partial synchrony systems. There can be some points where the proprerty is broken by async parts.
 
 An algorithm with liveness property (ex: No-Starvation) can be used for partial synchrony sistems (There is a time $t$, unknown to us, after which the system is synchronous and will be synchronous forever).
 
@@ -41,32 +39,25 @@ An algorithm with liveness property (ex: No-Starvation) can be used for partial 
 Many applications require ordering among events and synchronisation to terminate correctly (air traffic control, network monitoring, ...)
 
 Time breaks the diagram of indistinguishability because time can order the events.
-![[Pasted image 20241002171951.png|500]]
+![[Pasted image 20241002171951.png]]
 
 As we can see, an indistingushable diagram can be decifrated thanks to the time using:
-- **Timestamps**: each process attaches a label to each event (using a timestamp). In this way it should be possible to realise a **global history** of the system.
-- **Naif** **solution**: each process timestamps events by mean of its physical clock.
+- **Timestamps**: ogni processo attribuisce un'etichetta a ogni evento (utilizzando un timestamp). In questo modo dovrebbe essere possibile realizzare una **storia globale** del sistema.
+- **Naif** **solution**: ogni processo marca gli eventi con il proprio orologio fisico.
 
 ## Physical Clocks
 
 ### Physical clocks in computers
 The local clock is obtained by the operating system by reading a local hardware clock. Hardware clocks consists of an _oscilator_ and a _counting register_ that is incremented at every tick of the oscillator. 
 $$H_i(t) = \int_0^t{h_i(\tau)d\tau}$$
-At real time $t$, the operating system reads the hardware clock $H_i(t), and produces the local (software) clock ($C_i(t)$): $$C_i(t) = \alpha H_i(t)+\beta$$
+At real time $t$, the operating system reads the hardware clock $H_i(t)$, and produces the local (software) clock ($C_i(t)$): $$C_i(t) = \alpha H_i(t)+\beta$$
 ### Parameter affecting accuracy
 Different local clocks may have different values, due:
 - **Skew**:  difference in time between two software (local) clocks.
 $$Skew_{i,j}(t) = |C_i(t)-C_j(t)|$$
-- **Drift Rare**: gradual misalignment of synchronized clocks caused by the slight inaccuracies of the time-keeping mechanisms$$\frac{dH(t)}{dt}$$
+- **Drift Rare**: disallineamento graduale degli orologi sincronizzati causato da lievi imprecisioni dei meccanismi di misurazione dell'orario$$\frac{dH(t)}{dt}$$
 **Drift Rate**
 ![[Pasted image 20241002172806.png|500]]
-
-A drift rate of 2 microsec/sec means clock increases its value of $1sec+2microsec$ for each seconds.
-Ordinary quartz clock derivate nearly by $1 sec$ in 11-12 days. Hig precision quartz clocl dirft rate is $10^{-7}/10^{-8}$ ssec/sec.
-
-![[Pasted image 20241002172854.png|500]]
-
-This image shows how difficult is to set a correct $\alpha$ because quartz can oscillate from slow bound to fast bound.
 
 ### Correct Clock
 **An hardware clock $H$ is correct if its drift rate is within a limited bound of $\rho>0$**, (es: $10^{-5}$ ssec/sec).$$1-\rho\le\frac{dH(t)}{dt}\le1+\rho$$
@@ -74,8 +65,9 @@ In presence of a correct hardware clock $H$ we can measure a time interval $[t,t
 ![[Pasted image 20241002173206.png|500]]
 
 **Bounding the Skew**:
-![[Pasted image 20241002173339.png|250]]![[Pasted image 20241002173410.png|250]]![[Pasted image 20241002173428.png|250]]
-
+![[Pasted image 20241002173339.png|250]]
+![[Pasted image 20241002173410.png|250]]
+![[Pasted image 20241002173428.png|250]]
 
 ### Monotonicity
 software clocks have to be monotone:
@@ -94,11 +86,11 @@ UTC is an international standard: the base of any international time measure. UT
 - $1\hspace{3px}\mu sec$ for GPS.
 
 ### External Synchronization
-Processes synchronize their clock $C_i$ with an authoritative external source $S$. Let $D>0$ be a synchronization bound and $S$ be the soure of the UTC.
+Processes synchronize their clock $C_i$ with an authoritative external source $S$. Let $D>0$ be a synchronization bound and $S$ be the source of the UTC.
 - Clocks $C_i$ (for $i = 1,2,...,N$) are **externally synchronized** with a time source $S$ (UTC) if for each time interval $I$: $$|S(t)-C_i(t)|<D\hspace{50px}\forall i\in\{1,2,...,N\},\hspace{10px}\forall t\in I$$ We say that clock $C_i$ are **accurate** within the bound of $D$.
 
 ### Internal Synchronization:
-All the processes synchronize thei clocks $C_i$ among them. Let $D>0$ be a synchronization bound an let $C_i$ and $C_j$ be the clock at any two processes $p_i$ and $p_j$.
+All the processes synchronize their clocks $C_i$ among them. Let $D>0$ be a synchronization bound an let $C_i$ and $C_j$ be the clock at any two processes $p_i$ and $p_j$.
 - clocks are **internally synchronized** in a time interval $I$: $$|C_i(t)-C_j(t)|<D \hspace{50px} \forall i,j \in \{1,2,...,N\},\hspace{10px} \forall t\in I$$
 >We say that clock $C_i, C_j$ **agree within the bound of $D$.
 
@@ -121,8 +113,11 @@ Uses a **time server** $S$ that recives a signal from an UTC source.
 - Si basa sulla misurazione dei tempi di andata e ritorno (RTT) dei messaggi.
 - synchronization is reached only if $RTTs$ are small with respglobal historyect to the required accuracy.
 
-A process $p$ asks the current time through a message $m_r$ and receives $t$ in $m_t$ from $S$.
-$p$ sets is clock to $t+T_{round}/2$ where $T_{round}$ is round trip time measured by $p$
+Passaggi:
+1. Il client invia una richiesta di tempo al server
+2. Il server risponde con il proprio timestamp (ora corrente de server)
+3. Il client calcola l'orario corretto basandosi sul tempo impiegato dal messaggio per viaggiare (RTT = Round Trip Time).
+
 ![[Pasted image 20241002174623.png|500]]
 
 **Notes**:
@@ -131,7 +126,9 @@ $p$ sets is clock to $t+T_{round}/2$ where $T_{round}$ is round trip time measur
 - a time server can be attacked
 
 #### Accuracy
-**If the delay is equal in direction $p\to S$ and $S\to p$, then this algorithm works in a perfect way**. But if the message from me to the server is very fast and the message from the server to me is slower, so in real life it doesn't work properly.
+==Ideal Condition==: If the delay is equal in direction $p\to S$ and $S\to p$, then this algorithm works in a perfect way. 
+
+==Real Problem==: If the message from me to the server is very fast (upload) and the message from the server to me is slower (download), due congestion or high traffic, introduces errors in delay estimation.
 
 ![[Pasted image 20241002174710.png|500]]
 
@@ -172,7 +169,9 @@ When the master receives the reply message it reads the local clock ($t3$) and c
 - each process recives the correction and applies it to the local clock.
 - if the correction is a negative value, it slows down its clock.
 
-> Example: ![[Pasted image 20241002175733.png|500]]the third slave is discarded because it has the most distant value compared to the others (standard deviation is often used to calculate this).
+![[Pasted image 20241002175733.png]]
+
+Example: the third slave is discarded because it has the most distant value compared to the others (standard deviation is often used to calculate this).
 
 **Accuracy**
 The accuracy depends on the maximum round-trip time (the master does not consider clock values associated to $RRT$ grater than the maximum one).
@@ -232,5 +231,5 @@ But we can't say the same thing in that other case because the timestamp are ove
 ![[Pasted image 20241002182817.png|500]]
 
 
-
+>In general timestamps are a good metodology but not ever. when differents timestamps are overlayed aren't good enough to guarantuee the time storycal ordering.
 
