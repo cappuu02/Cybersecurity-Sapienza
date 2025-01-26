@@ -3,7 +3,7 @@
 A software module to be used together with process and link abstractions, It encapsulates timing assumptions of a either partially synchronous or fully synchronous system.
 
 - Failure Detectors **only work for Crash Failures** (No byzantine Failure)
-- The stronger the timing assumption are, the more accurate the information provided by a failure detector will be. 
+- Quanto più forti sono le ipotesi di temporizzazione, tanto più precise saranno le informazioni fornite da un rilevatore di guasti. 
 
 Fundamental property of Failure Detectors: 
 - **Accuracy** (informally is the ability to avoid mistakes in the detection) 
@@ -73,7 +73,7 @@ lo scarto globale $\delta$ condiviso tra tutti i processi garantisce che i round
 >Fact 1: If I send a BEAT i am alive
 >Fact 2: If i don't send a BEAT, i'm dead
 
-Se invio un BEAT a $p$ quando il mio numero di round mostra $r$, allora il beat raggiunge p quando il suo numero di round mostra $r$.
+
 - **Strong Completness**: Se $p$ muore, non riceverò il BEAT e lo segnalerò.
 - **Strong Decision**: Se non ricevo il BEAT atteso da $p$ allora, l'unica ragione possibile è che p non l'ha inviato. Pertanto $p$ è morto.
 
@@ -116,17 +116,41 @@ Un failure detector $◊P$ deve rispettare due proprietà fondamentali:
 
 ![[Pasted image 20241014140726.png]]
 ### Funzionamento Algoritmo
-```ad-bug
-Da inserire 
+
+1. Inizializzazione: 
+	- **Alive**: Include tutti i processi ($\Pi$).
+	- **Suspected**: Vuoto inizialmente ($\emptyset$).
+	- **Delay**: Inizializzato a un valore $\Delta$.
+
+2. Quando scatta il **timeout**:
+	- Se ci sono discrepanze tra i processi vivi (Alive) e quelli sospettati (Suspected), incrementa il **Delay** per rendere più tollerante il sistema ai ritardi.
+	- Per ogni processo $p$ in $\Pi$:
+	    - **Caso 1**: Se $p$ non è in Alive e non è già sospettato, aggiungilo a Suspected e genera un evento di sospetto (Suspect(p)).
+	    - **Caso 2**: Se $p$ è in Alive ma è anche in Suspected, rimuovilo da Suspected e genera un evento di ripristino (Restore(p)).
+	- Invia un messaggio di richiesta heartbeat (HeartbeatRequest) a tutti i processi $p$.
+	- Resetta l'insieme Alive riavvia il timer.
+
+3. **Ricezione di un messaggio HeartbeatRequest**: Quando un processo $p$ riceve un messaggio di richiesta heartbeat da $q$, risponde con un messaggio di HeartbeatReply
+
+4. **Ricezione Messaggio Heartbeatreply**: Quando un processo $p$ riceve una risposta di heartbeat (HeartbeatReply), aggiunge il mittente ($q$) all'insieme Alive, confermando che è ancora attivo.
+
+```ad-info
+title: Diagramma di funzionamento
+
+- **Suspect ($p_i$​)**: Se un processo non risponde entro un certo tempo, viene aggiunto all'insieme Suspected.
+- **Restore ($p_ip$)**: Se un processo sospettato risponde successivamente, viene rimosso dall'insieme Suspected.
+- **pp2pSend e pp2pDeliver**: Il canale di comunicazione affidabile garantisce che i messaggi di heartbeat vengano inviati e ricevuti correttamente.
 
 ```
 
 
 >In sintesi, l'algoritmo monitora lo stato dei processi e sospetta quelli che non rispondono entro un certo tempo, inviando loro delle richieste di "HeartBeatRequest" per verificarne la disponibilità. Quando un processo risponde, l'algoritmo lo considera nuovamente attivo.
+
+
 ### Property of Suspected
 Il lemma dice: se prendiamo due processi corretti, $p_1$​ e $p_2$​, allora, dopo un certo tempo di stabilizzazione $t$, i rispettivi insiemi dei sospettati ($suspected_1$ e $suspected_2$​) saranno identici. Cioè, dopo $t$, $p_1$​ e $p_2$​ avranno la stessa "visione" di quali processi sono sospettati.
 
-Supponiamo per assurdo che, dopo il tempo di stabilizzazione $t$, gli insiemi dei sospettati non siano uguali. Questo significa che esiste un processo ppp che:
+Supponiamo per assurdo che, dopo il tempo di stabilizzazione $t$, gli insiemi dei sospettati non siano uguali. Questo significa che esiste un processo $p$ che:
 
 - È sospettato da $p_1$ ($p \in suspected_1$),
 - Ma **non** è sospettato da $p_2$​ ($p \notin suspected_2$​).
@@ -134,37 +158,31 @@ Supponiamo per assurdo che, dopo il tempo di stabilizzazione $t$, gli insiemi de
 Ora analizziamo i casi possibili per il processo $p$:
 
 1. **Caso 1: $p$ è un processo corretto**  
-    Se $p$ è corretto, allora non dovrebbe essere sospettato da nessuno dei due processi ($p_1$ e $p_2$) dopo il tempo di stabilizzazione $t$, perché ciò violerebbe la proprietà di **accuratezza forte eventuale** (eventual strong accuracy). Quindi, $p$ non può essere corretto in questa situazione.
+    Se $p$ è corretto, allora non dovrebbe essere sospettato da nessuno dei due processi ($p_1$ e $p_2$) dopo il tempo di stabilizzazione $t$, perché ciò violerebbe la proprietà di **eventual strong accuracy**. Quindi, $p$ non può essere corretto in questa situazione.
     
 2. **Caso 2: $p$ è un processo fallito**  
-    Se ppp è effettivamente fallito, allora dovrebbe essere sospettato da **entrambi** i processi $p_1$​ e $p_2$​, perché ciò è richiesto dalla proprietà di **forte completezza** (strong completeness). Se $p$ è sospettato da uno solo dei due ($p_1$​ ma non $p_2$), questa proprietà viene violata.
-    
+    Se $p$ è effettivamente fallito, allora dovrebbe essere sospettato da **entrambi** i processi $p_1$​ e $p_2$​, perché ciò è richiesto dalla proprietà di **strong completness**. Se $p$ è sospettato da uno solo dei due ($p_1$​ ma non $p_2$), questa proprietà viene violata.
 
 >In entrambi i casi porta ad una contraddizione.
+
 ## Leader Election (monitoring an alive process)
 Sometimes, we may be interested in knowing one process that is alive instead of monitoring failures. In this case we can use a different oracle (called **leader election module**) that reports a process that is alive.
 
-- **Name**: LeaderElection, **istance** $le$.
-- **Indication**: $\langle le, Leader \hspace{5px}|\hspace{5px} p\rangle$: indicates that process $p$ **is elected as a leader**.
-- **Properties**:
-	- **LE1** (eventual detection): either there is no correct process, or some correct process is eventually elected as the leader (liveness property).
-	- **LE2** (accuracy): if a process is leader, then all previously elected leaders have crashed
-
+![[Distributed System/Images/76.png]]
 
 ### Algorithm
-![[Pasted image 20241014143525.png|500]]
+![[Pasted image 20241014143525.png]]
 $(\Pi \setminus suspected)$ is the subset of alive processes.
 
 ### Correctness
 **Eventual detection**: from the strong completeness of $P$ (perfect failure).
 **Accuracy**: from the strong accuracy of $P$ and the total order on the ranks (IDs) of processes.
 
-
 ![[Pasted image 20241014143136.png]]
 When $p_0$ dies it's okay because before he dies everyone know that he's the leader, but in $p_2$ after $p_0$ dead, the leader isn't changed. (broke the eventual detection property).
 
 ![[Pasted image 20241014143317.png]]
-In this case the accuracy propery is broken because $p_2$ changes the leader even if $p_1$ is still alive.
+In this case the accuracy property is broken because $p_2$ changes the leader even if $p_1$ is still alive.
 
 ```ad-question
 What if the failure detector is not perfect? In this case, we can use the "Eventual Leader Election $\Omega$"
@@ -183,7 +201,7 @@ Both of properties are **liveness** (pur non garantendo immediatezza, esse assic
 
 Idea: costruire un meccanismo di **Eventual Leader Election** utilizzando il modello dei **processi crash-stop**. Un processo crash-stop è un tipo di processo che, una volta che fallisce (crasha), non si riprende più, cioè non riprende mai l'esecuzione.
 
-1. Definizione del meccanismo
+1. **Definizione del meccanismo**
 	L'algoritmo si basa sull'astrazione di un failure detector che sospetta i processi falliti, utilizzando il failure detector che permette di identificare i processi sospettati di essere falliti. I processi che non sono sospettati da **◊P** sono considerati corretti.
 	**Regola Deterministica**: tra i processi che non sono sospettati da **◊P**, il processo con l'**identificativo più alto** viene scelto come leader.
 
@@ -198,14 +216,22 @@ Idea: costruire un meccanismo di **Eventual Leader Election** utilizzando il mod
 
 ## Three Models
 
+Abbiamo dunque tre modelli di failure nei sistemi distribuiti e intercorrono delle relazioni tra di essi:
+- **Fair Silent**: I processi che falliscono lo fanno in modo silenzioso. Quando un processo fallisce smette semplicemente di inviare messaggi. Richiede un canale di comunicazione affidabile (Perfect Link) che garantisce la consegna dei messaggi tra i processi.
+- **Fail Noisy**: Qui i processi che falliscono possono inviare messaggi errati o incompleti, causando rumore nella comunicazione.Richiede un failure detector eventualmente perfetto (◊P\Diamond P◊P), che garantisce di rilevare i processi falliti, ma non immediatamente.
+- **Fail Stop**: In questo modello, i processi falliti si arrestano in modo osservabile, ovvero altri processi possono rilevare immediatamente quando un processo si ferma. Richiede un failure detector perfetto (PPP), che identifica esattamente quali processi sono falliti senza errori.
+
+
+
 ![[Pasted image 20241014150957.png|500]]![[Pasted image 20241014151033.png|500]]
 We can also say that the set of problems solvable in fail-stop includes the problems solvable in other models.
 
 Relationship between Fail-Stop and SYNC:
 ![[Pasted image 20241014151416.png|500]]
-SYNC is stronger than Fail-Stop (Correct answer is $B$ !!!!possibile domanda esame!!!!).
-Problems we can solve with fail-stop is strictly contained in subset of problems we can solve with SYNC (SYNC can solve problems based on **time** like clock synchronization):![[Pasted image 20241014151751.png|250]]
 
+>In this image, the correct answer is $B!!$ Sync is stronger than Fail-Stop.
+
+Problems we can solve with fail-stop is strictly contained in subset of problems we can solve with SYNC (SYNC can solve problems based on **time** like clock synchronization):![[Pasted image 20241014151751.png|250]]
 
 ## Application of failure detector and leader elector
 

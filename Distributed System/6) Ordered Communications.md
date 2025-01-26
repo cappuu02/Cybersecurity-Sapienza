@@ -101,4 +101,4 @@ otal order would accept indeed a computation in which a process pi sends n messa
 The computation is totally ordered but it is not FIFO.
 
 ## Relationship Among BCAST Specifications
-![[Pasted image 20250124122737.png]]
+![[Distributed System/Images/77.png]]

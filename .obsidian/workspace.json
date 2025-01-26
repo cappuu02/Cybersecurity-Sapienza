@@ -70,9 +70,59 @@
               "icon": "lucide-file",
               "title": "4) Time in Distributed System II"
             }
+          },
+          {
+            "id": "f4c8aac1910f9b5a",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/5) Broadcasting & Quorum.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "5) Broadcasting & Quorum"
+            }
+          },
+          {
+            "id": "c8c386bc59ae2a6d",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/6) Ordered Communications.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "6) Ordered Communications"
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
+      },
+      {
+        "id": "66076b28b133e632",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "146a32ccfc98a083",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Distributed System/Ale DS/5/Slides5.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Slides5"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -231,65 +281,67 @@
     "type": "floating",
     "children": [
       {
-        "id": "c9a753c1ea9b5b95",
+        "id": "e87a61e78a909909",
         "type": "window",
         "children": [
           {
-            "id": "34d587ea65724c64",
+            "id": "883f54510d5a3da9",
             "type": "tabs",
             "children": [
               {
-                "id": "f04d4088f78a16ee",
+                "id": "da4d3c0623805e34",
                 "type": "leaf",
                 "state": {
                   "type": "pdf",
                   "state": {
-                    "file": "Distributed System/Ale DS/3/slides3.pdf"
+                    "file": "Distributed System/Ale DS/5/Slides5.pdf"
                   },
                   "icon": "lucide-file-text",
-                  "title": "slides3"
+                  "title": "Slides5"
                 }
               }
             ]
           }
         ],
         "direction": "vertical",
-        "x": 751,
-        "y": 32,
-        "width": 1169,
-        "height": 781,
-        "maximize": false,
-        "zoom": 1.5
+        "x": 370,
+        "y": 1261,
+        "width": 1308,
+        "height": 860,
+        "maximize": true,
+        "zoom": 1
       }
     ]
   },
-  "active": "0bc291da0cd95e17",
+  "active": "f4c8aac1910f9b5a",
   "lastOpenFiles": [
-    "Distributed System/3) Time in Distributed System.md",
+    "Distributed System/Images/78.png",
+    "Distributed System/Ale DS/5/Slides5.pdf",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "Distributed System/6) Ordered Communications.md",
+    "Pasted image 20250126153626.png",
+    "Pasted image 20250126153612.png",
+    "Pasted image 20250126153325.png",
+    "Untitled.md",
+    "Distributed System/Images/77.png",
+    "Distributed System/4) Time in Distributed System II.md",
+    "Distributed System/Ale DS/4/Slides4.pdf",
+    "Distributed System/Images/76.png",
     "Distributed System/Ale DS/3/slides3.pdf",
+    "Distributed System/3) Time in Distributed System.md",
     "Distributed System/Images/75.png",
     "Distributed System/Images/74.png",
     "Distributed System/Images/73.png",
     "Distributed System/2) Time Models.md",
-    "Distributed System/4) Time in Distributed System II.md",
     "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
-    "Distributed System/Ale DS/5/Slides5.pdf",
     "Distributed System/1a) Introduction.md",
-    "Distributed System/5) Broadcasting & Quorum.md",
     "Distributed System/Images/72.png",
     "Distributed System/Images/71.png",
-    "Distributed System/6) Ordered Communications.md",
     "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
     "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
-    "Pasted image 20250124122737.png",
     "Distributed System/Ale DS/6/Slides6.pdf",
-    "Distributed System/Images/70.png",
-    "Distributed System/Images/69.png",
-    "Distributed System/Images/68.png",
-    "Distributed System/Images/67.png",
     "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/Ale DS/6. BROADCASTING.md",
-    "Distributed System/Ale DS/4/Slides4.pdf",
     "Distributed System/Ale DS/5. TIME.md",
     "Distributed System/Ale DS/4. LOGICAL CLOCK.md",
     "Distributed System/Ale DS/3/3. LOGICAL CLOCK.pdf",
@@ -308,7 +360,6 @@
     "Biometric System/Introduction.md",
     "Statistic/Riemann and Lesbegue Integral.md",
     "Statistic/Lesson 7 (28 novembre).md",
-    "Statistic/Lesson 1.md",
-    "Statistic/Lesson 2.md"
+    "Statistic/Lesson 1.md"
   ]
 }
