@@ -8,10 +8,11 @@ Define guarantees about the order of deliveries inside group of processes
 ## Advantages of ordered communication
 Orthogonal TO reliable communication
 	Reliable broadcast does not have any property on ordered delivery of messages.
-This can cause anomalies in many applicative contexta
+This can cause anomalies in many applicative context
 
 ![[Distributed System/Images/60.png]]
 
+>nessuna regola ordinamento dei messaggi
 ## FIFO BROADCAST
 
 >Can be regular or uniform
@@ -19,23 +20,30 @@ This can cause anomalies in many applicative contexta
 ![[Distributed System/Images/61.png]]
 
 ### Implementation
+
 ![[Distributed System/Images/62.png]]
+lsn used by sender
+pending is empty
+next = array of sequence number 
 
 ```ad-example
 
 ![[Pasted image 20241021145408.png]]
 ```
 
+>Ogni processo invia un messaggio. Ciascun processo riceve (deliver) i messaggi inviati da uno specifico processo nell'ordine in cui il processo li ha inviati quindi non risulta essere un total order ma un local order (locale al processo).
 
 **FIFO RELIABLE BROADCAST**:
-FIFO property is orthogonal with reliability guarantees (you can be FIFO but not regular nor uniform):
+FIFO property is orthogonal with reliability guarantees (you can be FIFO but not regular or uniform):
 
-![[Pasted image 20241021145510.png]]![[Pasted image 20241021145630.png]]
+![[Pasted image 20241021145510.png]]
+
+![[Pasted image 20241021145630.png]]
 
 Sometimes FIFO is not enough:
 ![[Pasted image 20241021151346.png]]
 
-
+**SOMETIMES FIFO IS NOT ENOUGH**
 ![[Pasted image 20241021151403.png]]
 ![[Pasted image 20241030180132.png]]![[Pasted image 20241030180148.png]]![[Pasted image 20241030180207.png]]
 
@@ -51,10 +59,14 @@ A message $m_1$ may have potentially caused another message $m_2$ (denoted as $m
 ![[Pasted image 20241021152538.png ]]
 
 ![[Distributed System/Images/63.png]]
-## NO-WAIT Casual Reliable Broadcast (NO-Wait CRB)
+### NO-WAIT Casual Reliable Broadcast (NO-Wait CRB)
 ![[Pasted image 20241021152724.png]]
-![[Pasted image 20241021152806.png]]
+Past = lista vuota 
+processo $P0$ invia un messaggio in broadcast ed appende nella lista past la coppia ID, messggio. L'altro processo che deve consegnarlo vede:
+- se è stato consegnato non fa nulla
+- se non è stato consegnato vede prima se ci sta qualche messaggio che deve essere consegnato prima nell'ordine temporale, dunque in past, e nel caso consegna quello e poi consegna il messaggio attuale.
 
+![[Pasted image 20241021152806.png]]
 ## IMPROVED no-wait CRB
 The no-wait causal reliable broadcast algorithm has a practical limitation :
 - Each message travels together with all its causal history 
@@ -85,7 +97,7 @@ For example: Bank account replicated on two sites. NOTE THAT THIS EXAMPLE IS DIF
  - note that ensuring the same delivery order at each replicas does not consider the sending order of messages
 
 ## Total Order Broadcast
-A total-order (reliable) broadcast abstraction orders all messages, even those from different senders and those that are not causally related.
+A ==total-order (reliable) broadcast abstraction== orders all messages, even those from different senders and those that are not causally related.
 The total-order broadcast abstraction is sometimes also called atomic bradcast. 
 
 Message delivery occurs as if the broadcasts were an indivisible “atomic” action.
@@ -96,7 +108,7 @@ The message is delivered to all or none of the processes and, if the message is 
 
 >BEWARE!! Total order is orthogonal with respect to FIFO and Causal Order.
 
-otal order would accept indeed a computation in which a process pi sends n messages to a group, and each of the processes of the group delivers such messages in the reverse order of their sending. 
+Total order would accept indeed a computation in which a process $p_i$ sends $n$ messages to a group, and each of the processes of the group delivers such messages in the reverse order of their sending. 
 
 The computation is totally ordered but it is not FIFO.
 

@@ -104,25 +104,7 @@
             }
           }
         ],
-        "currentTab": 4
-      },
-      {
-        "id": "66076b28b133e632",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "146a32ccfc98a083",
-            "type": "leaf",
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Distributed System/Ale DS/5/Slides5.pdf"
-              },
-              "icon": "lucide-file-text",
-              "title": "Slides5"
-            }
-          }
-        ]
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -190,8 +172,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 247.50260543823242,
-    "collapsed": true
+    "width": 247.50260543823242
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -276,82 +257,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "floating": {
-    "id": "c5548635ad3c8481",
-    "type": "floating",
-    "children": [
-      {
-        "id": "e87a61e78a909909",
-        "type": "window",
-        "children": [
-          {
-            "id": "883f54510d5a3da9",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "da4d3c0623805e34",
-                "type": "leaf",
-                "state": {
-                  "type": "pdf",
-                  "state": {
-                    "file": "Distributed System/Ale DS/5/Slides5.pdf"
-                  },
-                  "icon": "lucide-file-text",
-                  "title": "Slides5"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 370,
-        "y": 1261,
-        "width": 1308,
-        "height": 860,
-        "maximize": true,
-        "zoom": 1
-      }
-    ]
-  },
-  "active": "f4c8aac1910f9b5a",
+  "active": "c8c386bc59ae2a6d",
   "lastOpenFiles": [
-    "Distributed System/Images/78.png",
     "Distributed System/Ale DS/5/Slides5.pdf",
-    "Distributed System/5) Broadcasting & Quorum.md",
     "Distributed System/6) Ordered Communications.md",
+    "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
+    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/Ale DS/12/12. RAFT.pdf",
+    "Distributed System/Ale DS/11/11. Replication.pdf",
+    "Distributed System/Ale DS/10/10. Total Order.pdf",
+    "Distributed System/Ale DS/9/9. Paxos.pdf",
+    "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
+    "Distributed System/Ale DS/8/8. Consensus.pdf",
+    "Distributed System/Ale DS/9/9.O Paxos.pdf",
+    "Distributed System/Ale DS/9/9.E Paxos.pdf",
+    "Distributed System/Ale DS/7. QUORUM.md",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+    "Distributed System/Images/78.png",
     "Pasted image 20250126153626.png",
     "Pasted image 20250126153612.png",
     "Pasted image 20250126153325.png",
     "Untitled.md",
     "Distributed System/Images/77.png",
     "Distributed System/4) Time in Distributed System II.md",
-    "Distributed System/Ale DS/4/Slides4.pdf",
     "Distributed System/Images/76.png",
-    "Distributed System/Ale DS/3/slides3.pdf",
     "Distributed System/3) Time in Distributed System.md",
     "Distributed System/Images/75.png",
     "Distributed System/Images/74.png",
     "Distributed System/Images/73.png",
     "Distributed System/2) Time Models.md",
-    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
     "Distributed System/1a) Introduction.md",
     "Distributed System/Images/72.png",
-    "Distributed System/Images/71.png",
-    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
-    "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
-    "Distributed System/Ale DS/6/Slides6.pdf",
-    "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/Ale DS/6. BROADCASTING.md",
     "Distributed System/Ale DS/5. TIME.md",
     "Distributed System/Ale DS/4. LOGICAL CLOCK.md",
-    "Distributed System/Ale DS/3/3. LOGICAL CLOCK.pdf",
     "Distributed System/Ale DS/3. TIME, SYNCHRONIZATION AND ALGORITHMS.md",
     "Distributed System/Ale DS/2) FAILURES, ABSTRACTION AND LINK-ALGORITHM.md",
-    "Distributed System/Ale DS/2/slides2.pdf",
-    "Distributed System/Ale DS/2/2. TIME, SYNCHRONIZATION AND ALGORITHMS.pdf",
     "Distributed System/2) Failure abstraction.md",
     "Distributed System/Ale DS/1. Models, Abstractions and Basic Concepts.md",
-    "Distributed System/Ale DS/Immagini",
     "Cryptography/Lesson 1.md",
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
     "Network Infrastructures/Polverini/MPLS.md",
