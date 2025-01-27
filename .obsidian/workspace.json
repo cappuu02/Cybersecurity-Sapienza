@@ -102,9 +102,25 @@
               "icon": "lucide-file",
               "title": "6) Ordered Communications"
             }
+          },
+          {
+            "id": "fb0dac584c5dda22",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/7) Register.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "7) Register"
+            }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -172,7 +188,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 247.50260543823242
+    "width": 247.50260543823242,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -188,7 +205,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cryptography/Lesson 20-21-22-23.md",
+                "file": "Distributed System/7) Register.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -198,7 +215,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Lesson 20-21-22-23"
+              "title": "Backlinks for 7) Register"
             }
           },
           {
@@ -257,38 +274,38 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c8c386bc59ae2a6d",
+  "active": "fb0dac584c5dda22",
   "lastOpenFiles": [
-    "Distributed System/Ale DS/5/Slides5.pdf",
-    "Distributed System/6) Ordered Communications.md",
     "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
-    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/7) Register.md",
+    "Distributed System/Images/139.png",
+    "Distributed System/Images/138.png",
+    "Distributed System/Images/137.png",
+    "Distributed System/Images/136.png",
+    "Distributed System/Images/135.png",
+    "Distributed System/Images/134.png",
+    "Distributed System/Images/133.png",
+    "Distributed System/Images/132.png",
+    "Distributed System/Images/131.png",
+    "Distributed System/Images/130.png",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
+    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/6) Ordered Communications.md",
+    "Untitled.md",
+    "Distributed System/Ale DS/5/Slides5.pdf",
     "Distributed System/Ale DS/11/11. Replication.pdf",
     "Distributed System/Ale DS/10/10. Total Order.pdf",
     "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
     "Distributed System/Ale DS/8/8. Consensus.pdf",
     "Distributed System/Ale DS/9/9.O Paxos.pdf",
-    "Distributed System/Ale DS/9/9.E Paxos.pdf",
     "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/5) Broadcasting & Quorum.md",
     "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
-    "Distributed System/Images/78.png",
-    "Pasted image 20250126153626.png",
-    "Pasted image 20250126153612.png",
-    "Pasted image 20250126153325.png",
-    "Untitled.md",
-    "Distributed System/Images/77.png",
     "Distributed System/4) Time in Distributed System II.md",
-    "Distributed System/Images/76.png",
     "Distributed System/3) Time in Distributed System.md",
-    "Distributed System/Images/75.png",
-    "Distributed System/Images/74.png",
-    "Distributed System/Images/73.png",
     "Distributed System/2) Time Models.md",
     "Distributed System/1a) Introduction.md",
-    "Distributed System/Images/72.png",
     "Distributed System/Ale DS/6. BROADCASTING.md",
     "Distributed System/Ale DS/5. TIME.md",
     "Distributed System/Ale DS/4. LOGICAL CLOCK.md",
@@ -303,7 +320,6 @@
     "Biometric System/Performance.md",
     "Biometric System/Introduction.md",
     "Statistic/Riemann and Lesbegue Integral.md",
-    "Statistic/Lesson 7 (28 novembre).md",
-    "Statistic/Lesson 1.md"
+    "Statistic/Lesson 7 (28 novembre).md"
   ]
 }

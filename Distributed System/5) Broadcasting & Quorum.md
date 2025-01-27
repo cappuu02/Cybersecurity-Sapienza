@@ -4,15 +4,15 @@
 UNicast
 
 # Broadcasting
-![[Pasted image 20250126153325.png]]
+![[Distributed System/Images/79.png]]
 I problemi arrivano quando avvengono i failures, alcuni ricevono il messaggio correttamente, altri invece no.
 ## BEST EFFORT BROADCAST (BEB)
 
-![[Pasted image 20250126153612.png]]
+![[Distributed System/Images/80.png]]
 
 >someone receive a messagge only if the sender is correct. If the sender is faulty it\s possible that you do not receive the message.
 
-![[Pasted image 20250126153626.png]]
+![[Distributed System/Images/81.png]]
 
 1. Invio di un messaggio in broadcast: quando un processo p vuole inviare un messaggio $m$ in broadcast, genera un ciclo for e lo invia a tutti i processi tramite il point to point link.
 2. Ricezione messaggio: Quando ricevo un messaggio dal point-to-point link  lo mandiamo sopra. 
