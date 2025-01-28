@@ -110,17 +110,65 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Distributed System/7) Register.md",
+                "file": "Distributed System/7a) Register.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "7) Register"
+              "title": "7a) Register"
+            }
+          },
+          {
+            "id": "8ce8f98509a5df57",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/7b) Register.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "7b) Register"
+            }
+          },
+          {
+            "id": "2b002a12ed019810",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Distributed System/Images/140.png"
+              },
+              "icon": "lucide-image",
+              "title": "140"
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 8
+      },
+      {
+        "id": "16242e71869371a4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8aab1189455da96a",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf"
+              },
+              "pinned": true,
+              "icon": "lucide-file-text",
+              "title": "7.2 Distributed Registers"
+            }
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -188,8 +236,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 247.50260543823242,
-    "collapsed": true
+    "width": 247.50260543823242
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -274,22 +321,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fb0dac584c5dda22",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
-    "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
-    "Distributed System/7) Register.md",
-    "Distributed System/Images/139.png",
-    "Distributed System/Images/138.png",
-    "Distributed System/Images/137.png",
-    "Distributed System/Images/136.png",
-    "Distributed System/Images/135.png",
-    "Distributed System/Images/134.png",
-    "Distributed System/Images/133.png",
-    "Distributed System/Images/132.png",
-    "Distributed System/Images/131.png",
-    "Distributed System/Images/130.png",
-    "Distributed System/Ale DS/12/12. RAFT.pdf",
+    "Distributed System/Images/142.png",
+    "Distributed System/Images/141.png",
+    "Distributed System/7b) Register.md",
+    "Distributed System/Images/149.png",
+    "Distributed System/Images/148.png",
     "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/Images/147.png",
+    "Distributed System/Images/146.png",
+    "Distributed System/Images/145.png",
+    "Distributed System/Images/144.png",
+    "Distributed System/7a) Register.md",
+    "Distributed System/Images/143.png",
+    "Distributed System/Images/140.png",
+    "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
+    "Distributed System/Ale DS/12/12. RAFT.pdf",
     "Distributed System/6) Ordered Communications.md",
     "Untitled.md",
     "Distributed System/Ale DS/5/Slides5.pdf",
@@ -319,7 +367,6 @@
     "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
     "Biometric System/Performance.md",
     "Biometric System/Introduction.md",
-    "Statistic/Riemann and Lesbegue Integral.md",
-    "Statistic/Lesson 7 (28 novembre).md"
+    "Statistic/Riemann and Lesbegue Integral.md"
   ]
 }
