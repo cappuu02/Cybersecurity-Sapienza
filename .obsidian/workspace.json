@@ -6,104 +6,8 @@
       {
         "id": "31b9f69bfe90f0dc",
         "type": "tabs",
-        "dimension": 45.7357075913777,
+        "dimension": 57.919400187441425,
         "children": [
-          {
-            "id": "88ba5fa3ece2f250",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS"
-            }
-          },
-          {
-            "id": "6db269bd399c9656",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/2) Time Models.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "2) Time Models"
-            }
-          },
-          {
-            "id": "0d5a64ad7f260c37",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/3) Time in Distributed System.md",
-                "mode": "preview",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "3) Time in Distributed System"
-            }
-          },
-          {
-            "id": "0bc291da0cd95e17",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/4) Time in Distributed System II.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "4) Time in Distributed System II"
-            }
-          },
-          {
-            "id": "f4c8aac1910f9b5a",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/5) Broadcasting & Quorum.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "5) Broadcasting & Quorum"
-            }
-          },
-          {
-            "id": "c8c386bc59ae2a6d",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/6) Ordered Communications.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "6) Ordered Communications"
-            }
-          },
           {
             "id": "fb0dac584c5dda22",
             "type": "leaf",
@@ -135,27 +39,43 @@
               "icon": "lucide-file",
               "title": "7b) Register"
             }
+          },
+          {
+            "id": "33229bc50a6334dd",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/8) Consensus.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "8) Consensus"
+            }
           }
         ],
-        "currentTab": 7
+        "currentTab": 2
       },
       {
-        "id": "a4a62622320caf29",
+        "id": "62fe20f5483355e5",
         "type": "tabs",
-        "dimension": 54.2642924086223,
+        "dimension": 42.080599812558575,
         "children": [
           {
-            "id": "8aab1189455da96a",
+            "id": "fcb511d3c6864c9b",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "pdf",
               "state": {
-                "file": "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf"
+                "file": "Distributed System/Ale DS/8/8. Consensus.pdf"
               },
               "pinned": true,
               "icon": "lucide-file-text",
-              "title": "7.2 Distributed Registers"
+              "title": "8. Consensus"
             }
           }
         ]
@@ -312,36 +232,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "8ce8f98509a5df57",
+  "active": "33229bc50a6334dd",
   "lastOpenFiles": [
-    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
+    "Distributed System/Ale DS/8/8. Consensus.pdf",
+    "Distributed System/8) Consensus.md",
+    "Distributed System/Images/206.png",
+    "Distributed System/Images/205.png",
+    "Distributed System/Images/204.png",
+    "Distributed System/Images/203.png",
+    "Pasted image 20250128210800.png",
+    "Distributed System/Images/202.png",
+    "Distributed System/Images/201.png",
+    "Distributed System/Images/200.png",
+    "Distributed System/Images/199.png",
+    "Distributed System/Images/198.png",
+    "Distributed System/7a) Register.md",
+    "Distributed System/6) Ordered Communications.md",
+    "Distributed System/5) Broadcasting & Quorum.md",
     "Distributed System/7b) Register.md",
-    "Distributed System/Images/fotoalgo.png",
-    "Distributed System/Images/183.png",
-    "Distributed System/Images/182.png",
-    "Distributed System/Images/181.png",
-    "Distributed System/Images/180.png",
-    "Distributed System/Images/179.png",
-    "Distributed System/Images/178.png",
-    "Distributed System/Images/177.png",
-    "Distributed System/Images/176.png",
-    "Distributed System/Images/175.png",
+    "Untitled.md",
+    "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
     "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/Ale DS/9/9.O Paxos.pdf",
     "Distributed System/Ale DS/9/9.E Paxos.pdf",
     "Distributed System/Ale DS/10/10. Total Order.pdf",
-    "Distributed System/Ale DS/8/8. Consensus.pdf",
     "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
     "154.md",
     "Distributed System/Images/174png",
-    "Distributed System/7a) Register.md",
     "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
     "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
-    "Distributed System/6) Ordered Communications.md",
-    "Untitled.md",
     "Distributed System/Ale DS/7. QUORUM.md",
-    "Distributed System/5) Broadcasting & Quorum.md",
     "Distributed System/4) Time in Distributed System II.md",
     "Distributed System/3) Time in Distributed System.md",
     "Distributed System/2) Time Models.md",
@@ -357,7 +278,6 @@
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
     "Network Infrastructures/Polverini/MPLS.md",
     "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-    "Biometric System/Performance.md",
-    "Biometric System/Introduction.md"
+    "Biometric System/Performance.md"
   ]
 }
