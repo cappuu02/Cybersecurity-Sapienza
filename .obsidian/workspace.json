@@ -6,6 +6,7 @@
       {
         "id": "31b9f69bfe90f0dc",
         "type": "tabs",
+        "dimension": 45.7357075913777,
         "children": [
           {
             "id": "88ba5fa3ece2f250",
@@ -134,25 +135,14 @@
               "icon": "lucide-file",
               "title": "7b) Register"
             }
-          },
-          {
-            "id": "2b002a12ed019810",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Distributed System/Images/140.png"
-              },
-              "icon": "lucide-image",
-              "title": "140"
-            }
           }
         ],
-        "currentTab": 8
+        "currentTab": 7
       },
       {
-        "id": "16242e71869371a4",
+        "id": "a4a62622320caf29",
         "type": "tabs",
+        "dimension": 54.2642924086223,
         "children": [
           {
             "id": "8aab1189455da96a",
@@ -236,7 +226,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 247.50260543823242
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -321,35 +312,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "8ce8f98509a5df57",
   "lastOpenFiles": [
-    "Distributed System/Images/142.png",
-    "Distributed System/Images/141.png",
-    "Distributed System/7b) Register.md",
-    "Distributed System/Images/149.png",
-    "Distributed System/Images/148.png",
     "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
-    "Distributed System/Images/147.png",
-    "Distributed System/Images/146.png",
-    "Distributed System/Images/145.png",
-    "Distributed System/Images/144.png",
+    "Distributed System/7b) Register.md",
+    "Distributed System/Images/fotoalgo.png",
+    "Distributed System/Images/183.png",
+    "Distributed System/Images/182.png",
+    "Distributed System/Images/181.png",
+    "Distributed System/Images/180.png",
+    "Distributed System/Images/179.png",
+    "Distributed System/Images/178.png",
+    "Distributed System/Images/177.png",
+    "Distributed System/Images/176.png",
+    "Distributed System/Images/175.png",
+    "Distributed System/Ale DS/9/9. Paxos.pdf",
+    "Distributed System/Ale DS/9/9.O Paxos.pdf",
+    "Distributed System/Ale DS/9/9.E Paxos.pdf",
+    "Distributed System/Ale DS/10/10. Total Order.pdf",
+    "Distributed System/Ale DS/8/8. Consensus.pdf",
+    "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
+    "154.md",
+    "Distributed System/Images/174png",
     "Distributed System/7a) Register.md",
-    "Distributed System/Images/143.png",
-    "Distributed System/Images/140.png",
+    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
     "Distributed System/Ale DS/7/7.1 Distributed Registers.pdf",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
     "Distributed System/6) Ordered Communications.md",
     "Untitled.md",
-    "Distributed System/Ale DS/5/Slides5.pdf",
-    "Distributed System/Ale DS/11/11. Replication.pdf",
-    "Distributed System/Ale DS/10/10. Total Order.pdf",
-    "Distributed System/Ale DS/9/9. Paxos.pdf",
-    "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
-    "Distributed System/Ale DS/8/8. Consensus.pdf",
-    "Distributed System/Ale DS/9/9.O Paxos.pdf",
     "Distributed System/Ale DS/7. QUORUM.md",
     "Distributed System/5) Broadcasting & Quorum.md",
-    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
     "Distributed System/4) Time in Distributed System II.md",
     "Distributed System/3) Time in Distributed System.md",
     "Distributed System/2) Time Models.md",
@@ -366,7 +358,6 @@
     "Network Infrastructures/Polverini/MPLS.md",
     "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
     "Biometric System/Performance.md",
-    "Biometric System/Introduction.md",
-    "Statistic/Riemann and Lesbegue Integral.md"
+    "Biometric System/Introduction.md"
   ]
 }
