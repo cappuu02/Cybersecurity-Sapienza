@@ -64,7 +64,14 @@ $$\text{NUA}: M_p \hspace{0.3cm} \text{can be} \hspace{0.3cm} \text{such that} \
 ### Total Order Algorithm (Non uniform Consensus)
 ![[242.png]]
 
-![[Pasted image 20250129175158.png]]
+```ad-info
+![[245.png]]
+
+```
+
+
+![[252.png]]
+
 ```ad-success
 title: Round-Based
 
@@ -72,13 +79,12 @@ This algorithm is **round-based**, i.e. we will trigger several instance of cons
 ```
 
 ```ad-example
-![[237.png]]
-![[238.png]]
-![[239.png]]
-![[240.png]]
-![[241.png]]
+![[Pasted image 20250129192641.png]]
+![[Pasted image 20250129192706.png]]
 
 ```
+
+![[244.png]]
 
 ### Formal Proof
 1. **No creation**
@@ -111,3 +117,7 @@ This algorithm is **round-based**, i.e. we will trigger several instance of cons
 ![[243.png]]
 
 ### Total Order Broadcast Algorithm (Uniform consensus)
+![[247.png]]
+
+## DIfference between Uniform vs Not Uniform
+![[246.png]]

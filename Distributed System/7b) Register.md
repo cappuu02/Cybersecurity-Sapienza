@@ -110,7 +110,7 @@ Since read(8) is concurrent with both write and read(5) is concurrent with write
 - The reader tracks the timestamp of previously read values to avoid to read something old
 
 **Algorithm FROM (1,N)-RR TO (1,1)-AR**
-![[Pasted image 20250128130023.png]]
+![[248.png]]
 
 
 **Correctness**

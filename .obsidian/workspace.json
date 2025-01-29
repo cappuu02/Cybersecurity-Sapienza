@@ -156,8 +156,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -242,23 +241,59 @@
       "command-palette:Open command palette": false
     }
   },
+  "floating": {
+    "id": "4fb0e63c03a5e855",
+    "type": "floating",
+    "children": [
+      {
+        "id": "1e2100bcd81a0c78",
+        "type": "window",
+        "children": [
+          {
+            "id": "423b23a0d108be0d",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "31612113b4e6f3d7",
+                "type": "leaf",
+                "state": {
+                  "type": "pdf",
+                  "state": {
+                    "file": "Distributed System/Ale DS/10/10. Total Order.pdf"
+                  },
+                  "icon": "lucide-file-text",
+                  "title": "10. Total Order"
+                }
+              }
+            ]
+          }
+        ],
+        "direction": "vertical",
+        "x": 564,
+        "y": 1118,
+        "width": 1356,
+        "height": 860,
+        "maximize": true,
+        "zoom": 1
+      }
+    ]
+  },
   "active": "47a8f7594508839f",
   "lastOpenFiles": [
+    "Distributed System/Ale DS/10/10. Total Order.pdf",
+    "Distributed System/10) Ordered Communications 2.md",
+    "Distributed System/Images/247.png",
+    "Distributed System/Images/246.png",
+    "Distributed System/Images/245.png",
+    "Pasted image 20250129192706.png",
+    "Pasted image 20250129192641.png",
+    "Distributed System/Images/244.png",
     "Pasted image 20250129175158.png",
     "Pasted image 20250129175149.png",
     "Pasted image 20250129175148.png",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
     "Distributed System/Ale DS/11/11. Replication.pdf",
-    "Distributed System/10) Ordered Communications 2.md",
     "Distributed System/Images/243.png",
-    "Distributed System/Ale DS/10/10. Total Order.pdf",
-    "Distributed System/Images/242.png",
-    "Distributed System/Images/241.png",
-    "Distributed System/Images/240.png",
-    "Distributed System/Images/239.png",
-    "Distributed System/Images/238.png",
-    "Distributed System/Images/237.png",
-    "Distributed System/Images/236.png",
     "Distributed System/9) Paxos.md",
     "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/8) Consensus.md",
