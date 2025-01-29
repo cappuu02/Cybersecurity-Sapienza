@@ -6,7 +6,6 @@
       {
         "id": "31b9f69bfe90f0dc",
         "type": "tabs",
-        "dimension": 57.919400187441425,
         "children": [
           {
             "id": "fb0dac584c5dda22",
@@ -55,27 +54,58 @@
               "icon": "lucide-file",
               "title": "8) Consensus"
             }
+          },
+          {
+            "id": "83b3191107d9c2e2",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/9) Paxos.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "9) Paxos"
+            }
+          },
+          {
+            "id": "47a8f7594508839f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/10).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "10)"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 4
       },
       {
-        "id": "62fe20f5483355e5",
+        "id": "251c2403ea1951c0",
         "type": "tabs",
-        "dimension": 42.080599812558575,
         "children": [
           {
-            "id": "fcb511d3c6864c9b",
+            "id": "c05af037fd35cf32",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "pdf",
               "state": {
-                "file": "Distributed System/Ale DS/8/8. Consensus.pdf"
+                "file": "Distributed System/Ale DS/10/10. Total Order.pdf"
               },
               "pinned": true,
               "icon": "lucide-file-text",
-              "title": "8. Consensus"
+              "title": "10. Total Order"
             }
           }
         ]
@@ -232,30 +262,32 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "33229bc50a6334dd",
+  "active": "47a8f7594508839f",
   "lastOpenFiles": [
-    "Distributed System/Ale DS/8/8. Consensus.pdf",
+    "Distributed System/Ale DS/10/10. Total Order.pdf",
+    "Distributed System/10).md",
+    "Distributed System/9) Paxos.md",
+    "Distributed System/Images/227.png",
+    "Distributed System/Images/226.png",
+    "Distributed System/Images/225.png",
+    "Distributed System/Images/224.png",
+    "Distributed System/Images/223.png",
+    "Distributed System/Images/222.png",
+    "Distributed System/Images/221.png",
+    "Distributed System/Images/220.png",
+    "Distributed System/Images/219.png",
+    "Distributed System/Images/218.png",
+    "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/8) Consensus.md",
-    "Distributed System/Images/206.png",
-    "Distributed System/Images/205.png",
-    "Distributed System/Images/204.png",
-    "Distributed System/Images/203.png",
-    "Pasted image 20250128210800.png",
-    "Distributed System/Images/202.png",
-    "Distributed System/Images/201.png",
-    "Distributed System/Images/200.png",
-    "Distributed System/Images/199.png",
-    "Distributed System/Images/198.png",
+    "Distributed System/Ale DS/8/8. Consensus.pdf",
+    "Distributed System/7b) Register.md",
     "Distributed System/7a) Register.md",
     "Distributed System/6) Ordered Communications.md",
     "Distributed System/5) Broadcasting & Quorum.md",
-    "Distributed System/7b) Register.md",
     "Untitled.md",
     "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
-    "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/Ale DS/9/9.O Paxos.pdf",
     "Distributed System/Ale DS/9/9.E Paxos.pdf",
-    "Distributed System/Ale DS/10/10. Total Order.pdf",
     "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
     "154.md",
     "Distributed System/Images/174png",
@@ -276,8 +308,6 @@
     "Distributed System/Ale DS/1. Models, Abstractions and Basic Concepts.md",
     "Cryptography/Lesson 1.md",
     "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
-    "Network Infrastructures/Polverini/MPLS.md",
-    "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-    "Biometric System/Performance.md"
+    "Network Infrastructures/Polverini/MPLS.md"
   ]
 }

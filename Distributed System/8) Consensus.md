@@ -60,23 +60,12 @@ The leader $1$ imposed $1$ on $p4$, then it crashes and $p2$ imposes $2$ on othe
 
 ```
 
-
 ## Hierarchical Consensus
 ==IDEA==: A livello locale, un nuovo round r inizia quando: 
 
-
 $N$ round = $N$ process
 The leader of round $1$ is $p1$ and so on
-r1: p1 leader, broadcast
-- impose to all the value (send value to all the other processes)
-- p1 dies (we don't care about the value1 and start a new round, because of the failure)
 
-after start the second round
-r2: p2 leader, try to impose the value (this round terminate when we receive the message or we detect that is dead)
- 
- and so on
-
-----
 $P1$ is the leader and he decide his value. after that it send a message to the other process to change their mind.
 $P3$ and $P4$ receive the value and changes his value. Then i go to a new round.
 
@@ -90,7 +79,7 @@ since to decide you have to go to the new round, if you go to the new round you 
 
 ```
 
-----
+
 
 ![[202.png]]
 ![[198.png]]
@@ -120,7 +109,9 @@ since to decide you have to go to the new round, if you go to the new round you 
 
 **Performance Messages**
 $O(N^2)$ messages: 
-- We have n rounds, in each round the leader Beb-Broadcast: $n$ messages $x$ $n$ rounds Performances communication steps: 
+- We have n rounds, in each round the leader Beb-Broadcast: $n$ messages $x$ $n$ rounds
+
+**Performances communication steps**
 - $O(N)$ fixed, does not depend on $f$.
 
 
@@ -155,3 +146,11 @@ Message complexity
 - $(1Beb + 1 Rb)*(f+1)$
 Step complexity 
 - $2$ delays for each leader failed, and $3$ for each leader that succeeds in sending and delivering one decided = $O(f)$
+
+## CONSENSUS: IN SYNCHRONOUS SYSTEMS, LOWER BOUND ON TIME
+
+```ad-bug
+title: Da aggiungere
+
+
+```
