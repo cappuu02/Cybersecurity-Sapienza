@@ -78,11 +78,7 @@ title: Round-Based
 This algorithm is **round-based**, i.e. we will trigger several instance of consensus and each instance belong to a round so we have round one in which everyone starts consensus, these consensus elaborate (dose some computation) then returns. When returns we will trigger round two of consensus. This second istance of consensus will do some computation and will terminate. Istance one and two are totally independent thanks to using tag of the round in couple with the message. (message with tag r=1 trip in first istance of consensus, and so on...)
 ```
 
-```ad-example
-![[Pasted image 20250129192641.png]]
-![[Pasted image 20250129192706.png]]
 
-```
 
 ![[244.png]]
 

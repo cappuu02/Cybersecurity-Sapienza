@@ -4,57 +4,40 @@
     "type": "split",
     "children": [
       {
-        "id": "31b9f69bfe90f0dc",
+        "id": "482c9f2ace7039eb",
         "type": "tabs",
         "children": [
           {
-            "id": "4cbb657b745c01f6",
+            "id": "f0e2505c690cadba",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Distributed System/12) Raft.md",
+                "file": "Distributed System/13a) Byzantine Faults.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "12) Raft"
+              "title": "13a) Byzantine Faults"
             }
           },
           {
-            "id": "249d577d20516d00",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/13) Byzantine Faults.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "13) Byzantine Faults"
-            }
-          },
-          {
-            "id": "c2110882fd5bed1f",
+            "id": "7a5645405a3ccfdb",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Distributed System/13) Byzantine Faults.md",
+                "file": "Distributed System/13b) Synchronous Byzantine Agreement.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "13) Byzantine Faults"
+              "title": "13b) Synchronous Byzantine Agreement"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -123,7 +106,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 244.5086555480957
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -208,42 +191,42 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c2110882fd5bed1f",
+  "active": "f0e2505c690cadba",
   "lastOpenFiles": [
+    "Distributed System/13b) Synchronous Byzantine Agreement.md",
+    "Distributed System/13a) Byzantine Faults.md",
+    "Byzantine Reliable Broadcast.md",
+    "Distributed System/10) Ordered Communications 2.md",
+    "Distributed System/9) Paxos.md",
+    "Distributed System/8) Consensus.md",
+    "Distributed System/6) Ordered Communications.md",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "DS-2223-Byzantine_agreement.pdf",
+    "Pasted image 20250201174131.png",
+    "Pasted image 20250201174052.png",
+    "Pasted image 20250201174046.png",
+    "Distributed System/Images/337.png",
+    "Pasted image 20250201160813.png",
+    "Pasted image 20250201160802.png",
+    "Distributed System/Images/336.png",
+    "Distributed System/Images/335.png",
+    "Distributed System/Images/334.png",
+    "Distributed System/Images/333.png",
     "Distributed System/12) Raft.md",
-    "Distributed System/13) Byzantine Faults.md",
-    "Distributed System/Images/325.png",
-    "Distributed System/Images/324.png",
     "Distributed System/Images/324png",
-    "Pasted image 20250131162843.png",
-    "Distributed System/Images/Pasted image 20250130144406.png",
-    "Distributed System/Images/Pasted image 20250131162550.png",
-    "Distributed System/Images/Pasted image 20250131162535.png",
-    "Distributed System/Images/Pasted image 20250131162221.png",
-    "Distributed System/Images/323.png",
-    "Distributed System/Untitled.md",
-    "Distributed System/Images/322.png",
-    "Distributed System/Images/321.png",
     "Distributed System/4) Time in Distributed System II.md",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
     "Distributed System/11) Software Replication in Synchronous systems.md",
     "Distributed System/Ale DS/11/11. Replication.pdf",
-    "Distributed System/10) Ordered Communications 2.md",
-    "Distributed System/9) Paxos.md",
-    "Distributed System/8) Consensus.md",
     "Distributed System/Ale DS/1. Models, Abstractions and Basic Concepts.md",
     "Distributed System/Ale DS/10/10. Total Order.pdf",
     "Distributed System/Ale DS/9/9. Paxos.pdf",
     "Distributed System/Ale DS/8/8. Consensus.pdf",
     "Distributed System/7b) Register.md",
     "Distributed System/7a) Register.md",
-    "Distributed System/6) Ordered Communications.md",
-    "Distributed System/5) Broadcasting & Quorum.md",
-    "Untitled.md",
     "Distributed System/Ale DS/7/7.2 Distributed Registers.pdf",
     "Distributed System/Ale DS/9/9.O Paxos.pdf",
     "Distributed System/Ale DS/9/9.E Paxos.pdf",
-    "Distributed System/Ale DS/8/8. Consensus (optional).pdf",
     "154.md",
     "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
     "Distributed System/Ale DS/7. QUORUM.md",
