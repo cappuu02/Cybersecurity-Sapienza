@@ -116,3 +116,128 @@ Anche in un sistema sincrono, non esiste alcun algoritmo che risolva il consenso
 >**RICORDA**: Con i fallimenti di tipo crash eravamo in grado di tollerare qualsiasi numero di fallimenti in un Sistema Sincrono (usando $P$)
 
 ## King Algorithm
+Solve byzantine agreement in a Synchronous systems when we have authenticated channel (no public key property). $N \ge 3f+1$
+
+
+## Possibility if $N>3F$
+If the number of correct is at least $3f+1$ is possible to solve byzantine agreement. 
+We will present the King algorithm. 
+**This algorithm can be seen as an adaptation of Hierarchical consensus for byzantine failures**. The king algorithm works in synchronous, when $f < n/3$ and when no signatures are available. Authenticated channels - MAC are needed.
+
+
+## The king algorithm
+The king algorithm runs for $f+1$ phases.
+- In each phase $j$ there is a king. One way is for the king of phase $j$ to be the node with $id=j$. 
+- Each node keep a variable $x=$to its proposal at the beginning. 
+- Variable $x$ is updated during the algorithm. 
+- At the end of phase $f+1$ each correct decides variable $x$.
+
+Each phase (that has a unique leader) is divided in the following 3 rounds:
+- **vote round**: Ogni processo corretto trasmette $x$, ovvero il proposal.
+- **Round di proposta**: Ogni processo corretto trasmette un valore $y$ se è stato ricevuto almeno $n-f$ volte nel turno di votazione. Alla fine del turno di proposta un processo corretto aggiorna il suo valore $x$ a $z$ se vede $z$ proposto almeno $f+1$ volte.
+- **Round del re**: Il re è l'unico a trasmettere il suo valore $x$. Alla fine del round del re un nodo imposta il suo valore sul valore del re se durante il round di proposta nessun valore è stato visto $n-f$ volte.
+
+Esempio (processi inviano lo stesso valore)
+![[Pasted image 20250202150610.png]]
+
+
+Esempio (processi inviano valori diversi)
+![[Pasted image 20250202152505.png]]
+![[Pasted image 20250202152518.png]]
+
+```ad-question
+Se $P1$ era corretto e non byzantine allora avrebbe funzionato dato che, essendo un correct process, avrebbe inviato lo stesso valore a tutti.
+
+```
+
+Intuitively the king algorithm has the following mechanisms inside:
+-  **Mechanism 1 - All same no change of idea (Implemented in Vote-Propose rounds)**: If all correct processes have the same value for x, they detect this during Vote-Propose round and they do not get influenced by a byzking and other byzantines.
+- **Mechanism 2 - Not All Same**: Correct King imposes value (implemented in the king round) -> if corrects disagree the correct king imposes agreement.
+
+### Algorithm
+![[Pasted image 20250202154016.png]]
+
+==Events==:
+- **Propose($V$)**
+- **Decide = $V$**
+==Properties==:
+- **Termination**: Every correct eventualy decides
+- **All-same Validity (Weak validity)**:  If all correct processes propose $v$, the only decision is $v$.
+- **Integrity**: No correct decides twice
+- **Agreement**: All correct decides the same value
+
+### Proof
+Termination is immediate from the structure of the algorithm, each correct decides at round $f+1$ and terminates. 
+Integrity is immediate from the fact that there exist a single line where a correct decides and this line can be executed just once. 
+We have to show: 
+- **Validity** $\to$ if all correct starts with $v$ they have to decide $v$. 
+- **Agreement** $\to$ no two correct process decide differently.
+
+```ad-abstract
+title: Theorem 1
+If all corrects starts with the same value $v$, then $v$ is decided
+
+```
+
+**Proof** (**Mechanism 1**):
+Each correct broadcast $v$ at the vote round. Each correct sees v voted $n-f$ times (note that a value voted only by the Byz has at most $f$ votes). 
+Each correct proposes v at the propose round. 
+Each correct sees v proposed $n-f$ times (note that a value proposed by the Byz has at most $f$ proposes). 
+Each correct ignores the king round and keeps its value to $v$. At phase $f+1$ each correct decides $v$
+
+```ad-abstract
+title: Lemma 1
+If a correct process $p$ proposes a value $x$ in a phase (propose phase), no other correct $p'$ proposes a value $y$ different than $x$. Two correct processes can never disagree!
+
+```
+ 
+**Proof** (**Mechanism 2**):
+If $p$ proposes $x$, then $N-2f$ votes seen are from correct. 
+If $p'$ proposes $y$, then $N-2f$ votes seen are from correct. 
+This implies that $N>=2(N-2f)+f$, $N>=2N-3f$ (but $3f < N$), so $N>=N+\epsilon$. Contradiction.
+
+![[Pasted image 20250202160503.png]]
+
+```ad-abstract
+title: Lemma 2
+There is a phase with a correct king.
+
+```
+
+**Proof**: 
+There $f$ failures and $f+1$ phases, in each phase we pick a different king any set of $f+1$ processes contains at least a correct process.
+
+```ad-abstract
+title: Observation 1
+Only a single value can be proposed more than $f+1$ times.
+
+```
+
+**Proof**:
+By Lemma $2$ we have that all correct process propose the same value. Suppose there are two values $v$ and $v’$ each proposed $f+1$ times. Then there is a correct that proposes $v$ and a correct that propose $v’$. By Lemma $2$ we have $v=v’$.
+
+```ad-summary
+title: Lemma 3
+After a phase with a correct king, all correct processes have the same value.
+
+```
+
+Proof:
+The correct king sends the same value to each process. All correct that change their proposal to the one of the king get the same value. It remains to show what happen to a correct process $p'$ that do not accept the value of the king (let $p$ be the king). $P’$ does not accept the value if it has seen a value $v$ proposed $n-f$ times in the propose phase. This means that $v$ has been proposed by $n-2f$ correct processes (at least) $n-2f>f+1$ (recall $n>3f$). This implies that $v$ has been seen at least $f+1$ time by each correct in the system. This implies that at the end of the propose round all correct have set their value to $v$ (also the king $p$) (see Obs. $1$). Thus $p’,$ even if does not accept the value of the king, has the same value $v$ of the king (that he sets at line $8$).
+
+![[Pasted image 20250202160211.png]]
+![[Pasted image 20250202160225.png]]
+![[Pasted image 20250202160236.png]]
+![[Pasted image 20250202160249.png]]
+
+```ad-abstract
+title: Theorem 2
+The king algorithm respects the agreement property. 
+
+```
+
+**Proof**:
+From Lemma $3$ and Lemma $2$.
+
+
+![[Pasted image 20250202160335.png]]

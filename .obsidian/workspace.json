@@ -8,24 +8,9 @@
         "type": "tabs",
         "children": [
           {
-            "id": "f0e2505c690cadba",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Distributed System/13a) Byzantine Faults.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "13a) Byzantine Faults"
-            }
-          },
-          {
             "id": "7a5645405a3ccfdb",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
@@ -33,6 +18,7 @@
                 "mode": "source",
                 "source": false
               },
+              "pinned": true,
               "icon": "lucide-file",
               "title": "13b) Synchronous Byzantine Agreement"
             }
@@ -191,27 +177,28 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f0e2505c690cadba",
+  "active": "7a5645405a3ccfdb",
   "lastOpenFiles": [
-    "Distributed System/13b) Synchronous Byzantine Agreement.md",
+    "Pasted image 20250202160503.png",
+    "Pasted image 20250202160335.png",
+    "Pasted image 20250202160249.png",
+    "Pasted image 20250202160236.png",
+    "Pasted image 20250202160225.png",
+    "Pasted image 20250202160211.png",
+    "Pasted image 20250202154016.png",
+    "Pasted image 20250202152707.png",
+    "Pasted image 20250202152518.png",
+    "Pasted image 20250202152505.png",
+    "Pasted image 20250202150610.png",
+    "DS-2223-Byzantine_agreement.pdf",
     "Distributed System/13a) Byzantine Faults.md",
+    "Distributed System/13b) Synchronous Byzantine Agreement.md",
     "Byzantine Reliable Broadcast.md",
     "Distributed System/10) Ordered Communications 2.md",
     "Distributed System/9) Paxos.md",
     "Distributed System/8) Consensus.md",
     "Distributed System/6) Ordered Communications.md",
     "Distributed System/5) Broadcasting & Quorum.md",
-    "DS-2223-Byzantine_agreement.pdf",
-    "Pasted image 20250201174131.png",
-    "Pasted image 20250201174052.png",
-    "Pasted image 20250201174046.png",
-    "Distributed System/Images/337.png",
-    "Pasted image 20250201160813.png",
-    "Pasted image 20250201160802.png",
-    "Distributed System/Images/336.png",
-    "Distributed System/Images/335.png",
-    "Distributed System/Images/334.png",
-    "Distributed System/Images/333.png",
     "Distributed System/12) Raft.md",
     "Distributed System/Images/324png",
     "Distributed System/4) Time in Distributed System II.md",
