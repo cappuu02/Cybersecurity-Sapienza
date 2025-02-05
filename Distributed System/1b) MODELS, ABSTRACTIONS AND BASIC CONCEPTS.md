@@ -168,7 +168,7 @@ $E=(del(p,q,m),del(p,q,m),del(p,q,m),...,del(p,q,m))$
 $E’=(del(p,q,m),del(p,q,m),del(p,q,m),...,del(p,q,m),e_1,e_2,e_3,....)$
 Such that no $e_j$ is $del(p,q,m).$
 
->Una proprieta che mischia sia liveness sia property non va bene dato che non possono coesistere insieme.
+>Una proprietà2 che mischia sia liveness sia property non va bene dato che non possono coesistere insieme.
 ### Other Properties
 **Mutual Exclusion**: se a un processo $p$ viene concessa una risorsa $r$ al tempo $t$, allora nessun altro processo $q$ riceve $r$ al tempo $t$.
 **No-deadlock**: se $r$ non è già stata concessa, alla fine qualcuno ottiene una concessione sulla risorsa $r$.

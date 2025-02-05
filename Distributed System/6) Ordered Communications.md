@@ -1,3 +1,4 @@
+
 # Ordered Communications
 Define guarantees about the order of deliveries inside group of processes
 - Type of ordering:
@@ -20,7 +21,6 @@ This can cause anomalies in many applicative context
 ![[Distributed System/Images/61.png]]
 
 ### Implementation
-
 ![[Distributed System/Images/62.png]]
 lsn used by sender
 pending is empty
@@ -48,7 +48,7 @@ Sometimes FIFO is not enough:
 ![[Pasted image 20241030180132.png]]![[Pasted image 20241030180148.png]]![[Pasted image 20241030180207.png]]
 
 
-## CAUSAL ORDER BROADCAST
+## Causal Order Broadcast
 **Guarantees that messages are delivered such that they respect all cause–effect relations**.
 Causal order is an **extension of the happened-before relation**.
 A message $m_1$ may have potentially caused another message $m_2$ (denoted as $m_1$ → $m_2$) if any of the following holds:
@@ -88,17 +88,22 @@ title: Waiting CRB Example
 
 ## Advantages of ordered communication
 Causal Order is not enough strong to avoid anomalies.
-For example: Bank account replicated on two sites. NOTE THAT THIS EXAMPLE IS DIFFERENT FROM THE PREVIOUS. IN THIS EXAMPLE OPERATIONS ON THE SAME ACCOUNT HAVE TWO DIFFERENT SOURCES AND OPERATIONS DO NOT COMMUTE!.
+
+Si considera un conto bancario replicato su due siti diversi (**R₁** e **R₂**).  
+Ogni replica inizia con lo stesso saldo: **£100**.
+Due operazioni vengono eseguite in parallelo:
+1. **R₁** esegue un deposito di **£20** (portando il saldo a **£120**).
+2. **R₂** applica un interesse del **10%** (portando il saldo a **£110**).
+Successivamente, entrambi ricevono l'operazione dell'altro e la applicano:
+- **R₁** applica l'interesse del 10% su **£120** → saldo finale **£132**.
+- **R₂** applica il deposito di **£20** su **£110** → saldo finale **£130**.
 
 ![[Distributed System/Images/69.png]]
-
- - same initial state, but different final state at the two sites 
- - we need to ensure that the order of deliveries is the same at each process. 
- - note that ensuring the same delivery order at each replicas does not consider the sending order of messages
+Anche se entrambe le repliche hanno ricevuto gli stessi aggiornamenti, i saldi finali non coincidono! Il problema nasce dal fatto che il sistema non ha imposto un ordine globale sugli eventi, causando risultati incoerenti.
 
 ## Total Order Broadcast
 A ==total-order (reliable) broadcast abstraction== orders all messages, even those from different senders and those that are not causally related.
-The total-order broadcast abstraction is sometimes also called atomic bradcast. 
+The total-order broadcast abstraction is sometimes also called atomic broadcast. 
 
 Message delivery occurs as if the broadcasts were an indivisible “atomic” action.
 
@@ -111,6 +116,5 @@ The message is delivered to all or none of the processes and, if the message is 
 Total order would accept indeed a computation in which a process $p_i$ sends $n$ messages to a group, and each of the processes of the group delivers such messages in the reverse order of their sending. 
 
 The computation is totally ordered but it is not FIFO.
-
 ## Relationship Among BCAST Specifications
 ![[Distributed System/Images/77.png]]

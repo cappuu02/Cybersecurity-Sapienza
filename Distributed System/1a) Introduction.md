@@ -24,7 +24,7 @@ All computer systems fail (sooner or later). It is a good design practice to bui
 
 >Failure are uncertain!
 
-WHen programs need to cooperate they coordinate their actioons by exchanging messages. Close coordination often depends on a shared idea of the time at which events occurs. There are limits to the accuracy with which computers on a network can synchronie their clocks:
+When programs need to cooperate they coordinate their actions by exchanging messages. Close coordination often depends on a shared idea of the time at which events occurs. There are limits to the accuracy with which computers on a network can synchronie their clocks:
 - Network delays are not constants
 - Clock drift cannot be know in a precise way
 

@@ -1,4 +1,5 @@
 
+
 # Atomic Register
 
 ```ad-abstract
@@ -27,7 +28,7 @@ Here we will se two implementations of atomic register:
 **Esecuzione 1**: rompe la proprieta di odering: read 5 avviene dopo read 6 significa che $6$ deve esssere stato scritto prima di 5 ma non risulta vero in questo caso.
 **Esecuzione 2**: In this case the register is atomic, it respect the ordering property.
 
->Registro non atomico: la relazione di precedenza si riferisce anche alle operazioni di lettura effettuate da processi diversi. e non solo su uno stesso processo!
+>Registro non atomico: la relazione di precedenza si riferisce anche alle operazioni di lettura effettuate da processi diversi e non solo su uno stesso processo!
 
 ![[141.png]]
 In questa esecuzione la read 6 precede la read 5 dunque la write di 6 dovrebbe stare prima della write di 5 ma non risulta essere cosi: rompe la proprieta di **ordering**!!
@@ -74,7 +75,7 @@ The first read operation has value 5 the second read operation ha value 0. 0 is 
 Atomic and regular because the reads operations are concurrents. 
 Perche e Atomic? Posso immaginare come se la linearization point di read()=5 avvenga prima della linearization point di read()=6, dunque la proprieta di ordering viene rispettata e il register, oltre che ad essere regular, e anche atomic.
 ```
-``
+
 ## (1,N) Atomic Register: Interface
 Algorithm to implement atomic regster which we have 1 writer and $N$ processes that can read.
 
@@ -89,12 +90,7 @@ the algorithm consists of two phases:
 - Phase $1$: We use a (1,N) regular register to build a (1,1) atomic register
 - Phase $2$: We use a set of (1,1) atomic registers to build a (1,N) atomic register
 
->Hereafter, RR and AR, will be sometimes used to respectively denote Regular Register and Atomic Registe
-
-
 ![[148.png]]
-
-
 ```ad-error
 title: Problematic case
 ![[157.png]]
@@ -104,7 +100,7 @@ Since read(8) is concurrent with both write and read(5) is concurrent with write
 ```
 
 #### Phase 1 - FROM (1,N)-RR TO (1,1) AR=
-- p1 is the writer and p2 is the reader of the (1,1) atomic register, we aim to implement 
+- $p1$ is the writer and $p2$ is the reader of the (1,1) atomic register, we aim to implement 
 - We use a (1,N) regular register where p1 is the writer and p2 is the reader 
 - Each write operation on the atomic register writes the pair (value, timestamp) into the underlying regular register 
 - The reader tracks the timestamp of previously read values to avoid to read something old
@@ -123,8 +119,6 @@ Since read(8) is concurrent with both write and read(5) is concurrent with write
 - **Read** - Each read operation performs a read on a (1,N) regular register (1 read)
 
 >Weak register (1-1)
-
-
 #### Phase 2 - FROM (1,1)-AR TO (1,N)-AR
 We are not using messages , only registers
 ![[159.png]]
@@ -140,10 +134,14 @@ When a writer want to write, he write on the first atomic register  and so on. f
 ![[160.png]]
 ![[161.png]]
 
+```ad-attention
 How can we fix it?
+
+```
+
 ```ad-success
 title: Solution
-When $P2$ reads, before completing its operation writes the Value $X$ on the other processes using another register. read terminate when al the writes operations terminate!
+When $P2$ reads, before completing its operation, writes the Value $X$ on the other processes using another register. read terminate when al the writes operations terminate!
 
 ```
 
@@ -153,7 +151,7 @@ We need timestamp to decide the last value. A process reads the incoming registe
 So, if i have five processes in the system i will have $N$ register. This is called a matrix of registers
 $P1 \to (1,N)$
 ![[163.png]]
-Garantisco che quando P4 si sveglia vede che ha un nuovo valore aggiornato con un tmiestamp nuovo e dunque ritorna l'ultimo valore con il timestamp aggiornato.
+Garantisco che quando P4 si sveglia vede che ha un nuovo valore aggiornato con un timestamp nuovo e dunque ritorna l'ultimo valore con il timestamp aggiornato.
 
 
 ![[164.png]]
@@ -182,11 +180,7 @@ For loop: ($N^2$): creating a row for all the processes ($r = 1 \to p1$ creation
 
 IMPORTANTE!!
 ![[167.png]]
-
-
-
 ### Atomic registers implementations using message passing
-
 #### Algorithm READ-IMPOSE WRITE-ALL
 ![[168.png]]
 
@@ -194,15 +188,10 @@ The algorithm is a modified version of the Read-One Write-All (1,N) Regular Regi
 ==Idea==: The algorithm is called “Read-Impose Write-All” because a read operation imposes to all correct processes to update their local copy of the register with the value read, unless they store a more recent value
 
 ##### Structure
-- Write: increase wts, and disseminate a write order to any one
-- Read: read locally a (wts,val) , and disseminate a write order to any one 
-- Process: accept a write if your ts is less than the one in the order. Send ack in any case
 
 ![[169.png]]
 ![[170.png]]
 p2 leggera bot, dunque un valore vecchio. Dobbiamo evitare ciò.
-
->The LP of the read operation is where the LP is the last point in which bottom disappears
 
 ![[172.png]]
 
@@ -211,14 +200,12 @@ p2 leggera bot, dunque un valore vecchio. Dobbiamo evitare ciò.
 - **Validity** - as for Read-One Write-All (1,N) Regular Register. 
 - **Ordering** – to complete a read operation, the reader process has to be sure that every other process has in its local copy of the register a value with timestamp bigger or equal of the timestamp of the value read. In this way, any successive read could not return an older value.
 
-
 **Performance**
 - Write - a write requests at most $2N$ messages 
 - Read - a read requests at most $2N$ messages 
 - Number of steps? $2$ for write or read
 
 #### IMPLEMENTATION FOR FAIL-SILENT
-
 ##### Read impose write majority
 Voglio costruire un algoritmo senza il PFD P che mi garantisca un atomic register (1,N).
 A majority of correct processes is assumed. The algorithm is a variation of the Majority Voting (1,N) Regular Register.
@@ -242,7 +229,7 @@ How many messages we create for read? $4N$ ($2$ broadcast with $2$ reply)
 How many message delay for read? $4$ ($1$ delay for broadcast $1$ for acks, $1$ for query, $1$ for acks)
 ```
 
-Is it true that every message from the writer pass the check ts' > ts? No, perchè un messaggio inviato dal writer in broadcast potrebbe raggiungere molto tardi un determinato processo e quindi non supererebbe questo controllo. (Guardare esempio di freccie e guardare ultimo processo quando riceve il valore $5$ del writer).
+Is it true that every message from the writer pass the check $ts' > ts$? No, perchè un messaggio inviato dal writer in broadcast potrebbe raggiungere molto tardi un determinato processo e quindi non supererebbe questo controllo. (Guardare esempio di freccie e guardare ultimo processo quando riceve il valore $5$ del writer).
 
 How many of the message that writer generate can reach the process and  be false on this point ($ts' > ts$)? $N-1$. will be a single process that is a disseminator.
 

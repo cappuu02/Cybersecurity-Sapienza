@@ -75,7 +75,7 @@ Gli orologi logici scalari possono garantire la proprietà
 Ma non è **possibile garantire**:
 - se $L(e)<L(e')$ allora $e \to e'$ (non è sempre vero perch).
 
-Se il timestamp di un evento è più piccolo di quello di un altro ($L(e) < L(e')$), non significa necessariamente che eee ha causato $e'$. Potrebbero essere eventi indipendenti o "concurrent" (cioè accaduti nello stesso periodo senza influenzarsi a vicenda).
+Se il timestamp di un evento è più piccolo di quello di un altro ($L(e) < L(e')$), non significa necessariamente che $e$ ha causato $e'$. Potrebbero essere eventi indipendenti o "concurrent" (cioè accaduti nello stesso periodo senza influenzarsi a vicenda).
 
 ## Vector clock - Capture Casuality
 **GOAL**: capture causality (if $L(e) <L(e')$ then $e\to e'$)
@@ -152,7 +152,7 @@ $[4,3,2]?[3,-,3]\Rightarrow e^4_1||e^3_3$
 ![[Pasted image 20241009162208.png|250]]
 
 The algorithm assumes **no crashes** ($F=0$):
-when a process wants to enter the CS (critical section) it sends a request message to all the oteher (using **scalar clocks**). The algorithm assume a FIFO link.
+when a process wants to enter the CS (critical section) it sends a request message to all the other (using **scalar clocks**). The algorithm assume a FIFO link.
 
 ## Lamport's Algorithm
 
@@ -197,7 +197,7 @@ title: Vantaggi
 ==**Mutua esclusione**==
 Supponiamo per assurdo che due processi $p_1$ e $p_2$ entrino contemporaneamente nella Sezione Critica (CS). L'algoritmo garantisce che questo non possa avvenire per i seguenti motivi:
 
-1. *Ogni processo deve ricevere gli ACK* (acknowledgments) da tutti gli altri prima di accedere alla CS.  
+1. *Ogni processo deve ricevere gli ACK* da tutti gli altri prima di accedere alla CS.  
    - Quando $p_1$ riceve un ACK da $p_2$, vuol dire che $p_2$ ha già inserito la richiesta di $p_1$ nel proprio insieme di richieste $Requests$, poiché inviare un ACK implica aver registrato la richiesta.
    - Analogamente, quando $p_2$ riceve un ACK da $p_1$, $p_1$ ha già registrato la richiesta di $p_2$ nel proprio insieme di richieste.
 
@@ -221,7 +221,6 @@ L'algoritmo garantisce che le richieste vengano soddisfatte in ordine temporale 
 2. Se il timestamp della richiesta di $p_i$ è minore di quello di $p_j$, allora:
    - Tutti i processi vedranno $req_{p_i}$ prima di $req_{p_j}$.
    - Questo accade perché i messaggi vengono ricevuti in ordine FIFO.
-
 3. Di conseguenza, $p_i$ entrerà nella CS prima di $p_j$, rispettando l'ordine temporale.
 
 >*Conclusione:* Le richieste vengono gestite in ordine di timestamp, garantendo equità.

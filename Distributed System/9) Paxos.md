@@ -1,4 +1,3 @@
-
 ## Asynchrnonous Systems
 
 ```ad-abstract

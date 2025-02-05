@@ -1,21 +1,21 @@
 
 ## Failure Detector Abstraction
-A software module to be used together with process and link abstractions, It encapsulates timing assumptions of a either partially synchronous or fully synchronous system.
+Un modulo software da usare insieme alle astrazioni di processo e di collegamento, che incapsula le ipotesi di temporizzazione di un sistema parzialmente sincrono o completamente sincrono.
 
-- Failure Detectors **only work for Crash Failures** (No byzantine Failure)
+- Rilevatori di guasti **funzionano solo per guasti di tipo Crash** (nessun guasto bizantino)
 - Quanto più forti sono le ipotesi di temporizzazione, tanto più precise saranno le informazioni fornite da un rilevatore di guasti. 
 
-Fundamental property of Failure Detectors: 
-- **Accuracy** (informally is the ability to avoid mistakes in the detection) 
-- **Completeness** (informally is ability to detect all failures)
+Proprietà fondamentale dei rilevatori di guasti: 
+- **Accuratezza** (informalmente è la capacità di evitare errori nel rilevamento) 
+- **Completezza** (informalmente è la capacità di rilevare tutti i guasti)
 
->They are based on the idea of "Pinging"
+>Si basano sull'idea del “Pinging”.
 
 ## Perfect Failure Detectors (P)
 System model 
-- Synchronous system 
-- Crash failures 
-- Perfect Synchronous Point2point: If a message m is sent at time t, m is received by at most t+max_delay.
+- **Synchronous system** 
+- **Crash-stop failures** 
+- **Perfect Synchronous Point2point**: If a message $m$ is sent at time $t$, $m$ is received by at most $t+maxdelay$.
 
 Using its clock and the bounds of the synchrony model, a process can infer if another process has crashed. In Asynch?
 
@@ -26,7 +26,7 @@ Using its clock and the bounds of the synchrony model, a process can infer if an
 **Events**: 
 	< P, Crash | p >: Detects that process $p$ has crashed
 **Properties**: 
-- ==PFD1==: **Strong completeness**: Eventually, every process that crashes is permanently detected by every correct process. 
+- ==PFD1==: **Strong completeness**: Eventually, every process that crashes is permanently detected by every correct process.
 - ==PFD2==: **Strong accuracy**: If a process p is detected by any process, then p has crashed.
 
 ### Algorithm
@@ -77,7 +77,6 @@ lo scarto globale $\delta$ condiviso tra tutti i processi garantisce che i round
 - **Strong Completness**: Se $p$ muore, non riceverò il BEAT e lo segnalerò.
 - **Strong Decision**: Se non ricevo il BEAT atteso da $p$ allora, l'unica ragione possibile è che p non l'ha inviato. Pertanto $p$ è morto.
 
-
 ## Synchronous = Round-Based
 Un modo alternativo di vedere i sistemi sincroni è quello di immaginare il tempo diviso in slot logici, i cosiddetti round. Le ipotesi di sincronia sono astratte, assumendo che: 
 - I processi cambiano turno esattamente nello stesso momento. 
@@ -91,15 +90,6 @@ A round-based P, is possible?
 ![[Distributed System/Images/40.png]]
 ![[Distributed System/Images/41.png]]
 
-## Trade-off
-![[Distributed System/Images/42.png]]
-
-
-----
-----
-----
-----
-
 ## EVENTUALLY PERFECT FAILURE DETECTORS $◊P$
 $◊P$ sono una classe di rilevatori di guasti utilizzati nei sistemi distribuiti per identificare i processi che falliscono. L'obbiettivo principale e quello di fornire informazioni sui guasti in modo accurato ed eventuale, nonostante le incertezze che derivano dall'asincronia di rete o dai ritardi nella comunicazione.
 
@@ -109,7 +99,7 @@ Un failure detector $◊P$ deve rispettare due proprietà fondamentali:
     Se un processo fallisce (crasha), esso sarà **sempre sospettato** da tutti i processi corretti, e non verrà mai rimosso dall'elenco dei sospetti.
     
 2. **Accuratezza forte eventuale (Eventual Strong Accuracy)**  
-    Dopo un certo tempo $t$, il sistema diventa sincrono (o sufficientemente stabile) e i failure detector smettono di fare errori. Da quel momento in poi:
+    Dopo un certo tempo $t$, il sistema diventa sincrono (o sufficientemente stabile) e i failure detector smettono di fare errori. Da quel momento in poi.:
     
     - Solo i processi che hanno effettivamente fallito saranno sospettati.
     - Ogni sospetto errato viene rimosso (es. un processo erroneamente sospettato come fallito viene "perdonato").
@@ -215,12 +205,10 @@ Idea: costruire un meccanismo di **Eventual Leader Election** utilizzando il mod
 - **ELD2** (Eventual Agreement): for any pair of correct processes, their suspected sets eventually stabilises to the same content (by the property of the FD). If the set are equals $\Pi \setminus suspected$ returns the same ID on both processes.
 
 ## Three Models
-
 Abbiamo dunque tre modelli di failure nei sistemi distribuiti e intercorrono delle relazioni tra di essi:
 - **Fair Silent**: I processi che falliscono lo fanno in modo silenzioso. Quando un processo fallisce smette semplicemente di inviare messaggi. Richiede un canale di comunicazione affidabile (Perfect Link) che garantisce la consegna dei messaggi tra i processi.
-- **Fail Noisy**: Qui i processi che falliscono possono inviare messaggi errati o incompleti, causando rumore nella comunicazione.Richiede un failure detector eventualmente perfetto (◊P\Diamond P◊P), che garantisce di rilevare i processi falliti, ma non immediatamente.
+- **Fail Noisy**: Qui i processi che falliscono possono inviare messaggi errati o incompleti, causando rumore nella comunicazione.Richiede un failure detector eventualmente perfetto ($\Diamond P$), che garantisce di rilevare i processi falliti, ma non immediatamente.
 - **Fail Stop**: In questo modello, i processi falliti si arrestano in modo osservabile, ovvero altri processi possono rilevare immediatamente quando un processo si ferma. Richiede un failure detector perfetto (PPP), che identifica esattamente quali processi sono falliti senza errori.
-
 
 
 ![[Pasted image 20241014150957.png|500]]![[Pasted image 20241014151033.png|500]]
@@ -256,8 +244,7 @@ Using $P$ to make Lamport's ME fault tolerant
 **Patch**
 ![[Distributed System/Images/52.png]]
 
-**Patch Uncorrect
-![[Distributed System/Images/53.png]]
+>È sufficiente fare ciò? 
 
 ![[Distributed System/Images/54.png]]
 ![[Distributed System/Images/55.png]]
@@ -269,7 +256,7 @@ A simpler algorithm using LE and FD P.
 
 ```
 
-Fault-tolerance Mutual Exclusion
+**Fault-tolerance Mutual Exclusion**
 ![[Distributed System/Images/57.png]]
 
 **IDEAS**: 
@@ -280,7 +267,6 @@ Fault-tolerance Mutual Exclusion
 - If the leader detects a crash p: 
 - If p is not in CS, it removes the pending request of p (if any) 
 - If p is in CS, it acts as p released the CS 
-- Problem: What to do when a new leader is elected? The old leader was the only one to know who was in CS,
 
 ```ad-failure
 title: Problem

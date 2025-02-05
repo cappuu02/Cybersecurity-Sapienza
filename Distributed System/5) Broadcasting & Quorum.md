@@ -1,8 +1,5 @@
-**Topics that we touched in the previous slides**:
+  **Topics that we touched in the previous slides**:
 ![[Pasted image 20241016111120.png|500]]
-
-UNicast
-
 # Broadcasting
 ![[Distributed System/Images/79.png]]
 I problemi arrivano quando avvengono i failures, alcuni ricevono il messaggio correttamente, altri invece no.
@@ -53,10 +50,11 @@ Pensate a una chat distribuita, un messaggio da un client che si blocca potrebbe
 ```
 
 To solve, we want to have an agreement on the set of messages to be delivered, at least among the correct processes (all correct or nothing)
+.
 ##  Regular Reliable Broadcast (RB)
 ![[Distributed System/Images/72.png]]
 
->RB4 is lveness property, RB3 and RB2 are saftey property
+>RB4 is liveness property, RB3 and RB2 are safety property
 ### BEB vs RB
 ![[Pasted image 20241016112522.png]]
 Processo $P1$ invia il messaggio verde acqua in broadcast (doppia freaccia in su e giu = generazione broadcast operation)
@@ -117,14 +115,16 @@ If two faulty processes send to each other a message m and m' and after that the
 ### Proof
 - **Validity and No Creation** are ensured by th **BEB Broadcast**.
 - **No Duplication**: by the check - *if m $\in$ from[p]* - in the Delivery handler from BEB.
-- **Accordo**: supponiamo per contraddizione che il processo $p$ sia corretto e consegni il messaggio $m$ con il mittente originale $q$, mentre un altro processo corretto $p'$ non consegni $m$. Cosa succede?
+- **Agreement**: supponiamo per contraddizione che il processo $p$ sia corretto e consegni il messaggio $m$ con il mittente originale $q$, mentre un altro processo corretto $p'$ non consegni $m$. Cosa succede?
 	1) se $q$ non si blocca allora, per BEB, anche $p'$ consegna $m$.
 	2) se $q$ si blocca e $q$ rileva il crash prima di ricevere $m$, allora $p$ trasmette il messaggio $m$. Per BEB $p'$ consegna anche $m$.
 	3) Se $q$ si blocca e $q$ rileva l'incidente dopo aver consegnato $m$, allora $p$ trasmette anche il messaggio $m$. Per BEB $p'$ consegna anche $m$.
 
 ### Complexity for number of messages
-- **Best Case**: $1$ BEB message per one RB message (n total point-to-point messages)
+- **Best Case**: $1$ BEB message per one RB message ($N$ total point-to-point messages)
+	- La sorgente non fallisce, ed invia il messaggio a tutti gli $N$ processi con BEB!
 - **Worst Case**: $n^2$ total messages. (source fail)
+	- la sorgente fallisce subito dopo aver inviato il messaggio ad alcuni processi quindi gli altri processi devono diffondere il messaggio per garantire che tutti lo ricevano. QUesto genera un comportamento quadratico!
 
 ![[Pasted image 20241016113954.png]]
 
@@ -140,12 +140,10 @@ If two faulty processes send to each other a message m and m' and after that the
 ![[Pasted image 20241016114240.png]]
 >p6 invia il messaggio poi crasha (non fa in tempo ad invialo a tutti)
 
-
-
 ## Implementation in Fail-Silent (Algorithm)
 ![[Pasted image 20241016114751.png]]
 
->Here, when a process receive a message immediatlely start doing broadcast b 
+>Here, when a process receive a message immediatlely start doing broadcast $b$ 
 
 ### Complexity on number of messages
 Best Case = Worst Case = $N^2$
@@ -178,16 +176,10 @@ In this algorithm if two processes send the same message like '$X$', the second 
 **Prova di accordo** (per contraddizione): supponiamo che $p5$ (difettoso) fornisca $m$ e $p6$ corretto no. L'unica possibilità è che $p6$ non veda il messaggio (**dichiarazione**). Ciò implica che $p6$ viene rilevato difettoso da $p5$, $p5$ consegna senza ricevere l'ack da $p6$. Questo **contraddice la forte precisione del rilevatore di guasti P**.
 
 ![[Pasted image 20241030174436.png]]
-**Costs**:
-- BEST CASE = WORST CASE - N BEB messages per one RB ($N^ 2$ point to point messages).
-- Deelays:
-	- **Best case**: $2$ step ($0$ failures) ($1$ for disseminate $1$ for ACKs).
-	- **Worst case**: $O(n)$ steps (chain of failures as in the lazy RB).
-
-
+**C 
 # Quorum Definition and Properties
 Abbiamo $n$ processi nel nostro insieme di processi totali $P$, **un quorum è un qualsiasi sottoinsieme di $P$ di dimensioni minime**: $$\frac{n}{2}+1 = \text{Majority of the processes}$$![[Pasted image 20241030175001.png|500]]
-****proprietà**: due quorum qualsiasi si intersecano in almeno un processo (se due quorum non si intersecano, allora hanno tutti processi distinti. Questo implica $|P|>n$)
+**proprietà**: due quorum qualsiasi si intersecano in almeno un processo (se due quorum non si intersecano, allora hanno tutti processi distinti. Questo implica $|P|>n$)
 
 If we have:
 - $C$: set of correct processes.

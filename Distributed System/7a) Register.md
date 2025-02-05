@@ -54,12 +54,12 @@ Each written value is univocally identified (similar assumption of unique messag
 ## Failed Operations
 A Failed operation is an operation invoked by some process $p_i$ that crashes before obtaining a return.
 
->Se un'operazione di un processo fallisce ovvero crasha prima del return, tutte le successive operazioni del **sistema** avvengono in maniera concurrent, dato che è come se il processo non termini mai.
+>Se un'operazione di un processo fallisce ovvero crasha prima del return, tutte le successive operazioni del **sistema** avvengono in maniera ==concurrent==, dato che è come se il processo non termini mai.
 
 ![[Distributed System/Images/124.png]]
 
 ## Operation Precedence
-L'esecuzione di un'operazione invocata da un processo p è l'intervallo di tempo definito dall'evento di invocazione e dall'evento di ritorno.
+L'esecuzione di un'operazione invocata da un processo $p$ è l'intervallo di tempo definito dall'evento di invocazione e dall'evento di ritorno.
 
 Given two operations $o$ e $o’$, $o$ precedes $o’$ if the return event of $o$ precedes the invocation event of $o’$. 
 
@@ -78,7 +78,6 @@ If no precedence relation between two operations can be defined, they are said t
 ```
 
 # Register Semantic
-
 ## STRICTLY SERIALISED SEMANTIC
 
 **Assumptions**: 
@@ -154,7 +153,7 @@ Processes can crash but the crashes can be reliably detected by all the other pr
 
 Uses: 
 - Perfect failure detector 
-- Perfect point-to-point link
+- Perfect Ppoint-to-point link
 - Best effort broadcast
 
 Algorithm Idea: Each process stores a local copy of the register
@@ -196,9 +195,15 @@ Writeset = used for the ACKs
 
 ![[Distributed System/Images/106.png]]
 
-$P1$ invokes write(6) and then falsely suspects $P2$. Thus, $P1$ completes the write operation without waiting for the ACK of $P2$ , i.e. without being sure that the value has been written in the local copy of the register at p2 p1 write(5) p2 write(6)
+- **Inizialmente, il failure detector potrebbe essere impreciso**, portando P1 a **sospettare falsamente P2**.
+- **P1 conclude `write(6)` senza attendere P2**, lasciando il registro in uno stato inconsistente.
+- Quando **P2 esegue una lettura, potrebbe ancora vedere `5` invece di `6`**, violando la validità dell'algoritmo.
+- **Solo dopo un certo tempo, il failure detector diventa perfetto**, evitando futuri errori, ma il danno è già stato fatto.
 
+```ad-question
 IS IT POSSIBLE TO ADAPT THE ALGORITHM FOR FAIL- SILENT?
+
+```
 #### Fail-silent algorithm
 I crash dei processi non possono mai essere rilevati in modo affidabile
 - Failure model: crash 
@@ -212,11 +217,11 @@ Communication Primitives:
 - Perfect point-to-point link 
 - Best-effort broadcast
 
->Write: BEBCast, and then I wait for acks from n/2+1 processes (a quorum of processes). Assuming majority of corrects this eventually terminates.
+>**Write**: BEBCast, and then I wait for acks from n/2+1 processes (a quorum of processes). Assuming majority of corrects this eventually terminates.
 
 ![[Distributed System/Images/107.png]]
 
->Read: BEBCast, and wait for register values from n/2+1 processes (another quorum). Assuming majority of corrects this eventually terminates.
+>**Read**: BEBCast, and wait for register values from $n/2+1$ processes (another quorum). Assuming majority of corrects this eventually terminates.
 
 ![[Distributed System/Images/108.png]]
 
@@ -239,26 +244,24 @@ A small problem has to be fixed. You write 1, then you update to 2. Then someone
 ![[Distributed System/Images/131.png]]
 
 **Correctness**
- Termination – from the properties of the communication primitives and the assumption of a majority of correct processes ▪ Validity – from the intersection property of the quorums Performance - Message Complexity: ▪ Write –at most 2N messages ▪ Read - at most 2N messages Performance - Communication Steps: ▪ Write -2 steps ▪ Read - 2 steps Resiliency? (How many faults do you tollerate?)
+ - **Termination**: from the properties of the communication primitives and the assumption of a majority of correct processes 
+ - **Validity** from the intersection property of the quorums Performance 
+ 
+ Message Complexity: 
+ - Write: at most $2N$ messages
+ - Read: at most $2N$ messages Performance 
+ 
+ Communication Steps: 
+ - Write: 2 steps
+ - Read: 2 steps 
+
+Resiliency? (How many faults do you tollerate?)
 
 ```ad-example
 title: Example of execution
 ![[Distributed System/Images/130.png]]
 
 ```
-
-**Correctness**: 
-- **Termination** – from the properties of the communication primitives and the assumption of a majority of correct processes 
-- **Validity** – from the intersection property of the quorums
-
-**Performance, Message Complexity**: 
-- Write –at most 2N messages 
-- Read - at most 2N messages
-
-**Performance - Communication Steps**: 
-- Write -2 steps 
-- Read - 2 steps
-
 ## Sequential Consistency
 Il risultato di ogni esecuzione è lo stesso che si avrebbe se le operazioni (di lettura e scrittura) di tutti i processi sull'archivio dati fossero eseguite in un certo ordine sequenziale e le operazioni di ogni singolo processo apparissero in questa sequenza nell'ordine specificato dal suo programma.
 ![[Distributed System/Images/110.png]]
@@ -269,7 +272,7 @@ Il risultato di ogni esecuzione è lo stesso che si avrebbe se le operazioni (di
 
 ![[Distributed System/Images/113.png]]
 ![[Distributed System/Images/114.png]]
-Sequential consistency gives to each process the illusion of using a single storage. Even if the results does not respect the global constraint that happens in the real execution.
+Sequential consistency gives to each process the illusion of using a single storage. Even if the results does not respect the global constraint9
 
 ![[Distributed System/Images/115.png]]
 ![[Distributed System/Images/116.png]]
@@ -298,16 +301,17 @@ Atomic? Yes, LP are horizontal lines
 This run is bot regular and sequential consistency but no atomic.
 ![[135.png]]
 
-## Relationship between Cons
+## Relationship between Consistency
 ![[136.png]]
 
 # Compositionality of consistency conditions
-Given a set of registers, such that each one of them independently respects a consistency condition, we would like that any execution on this set of registers respects the same consistency conditions.
+Dato un insieme di registri, tale che ognuno di essi rispetti indipendentemente una condizione di coerenza, vorremmo che ogni esecuzione su questo insieme di registri rispetti le stesse condizioni di coerenza.
 
-Stated more formally: 
-- Let an execution $E$ be the sequence of write and read operations on a set of registers $R$. 
-- $E \mid r_i$ be the sequence of operations in E that operate on register r_i. 
-We say that a consistency property C is compositional iff:
+Detto più formalmente: 
+- Sia un'esecuzione $E$ la sequenza di operazioni di scrittura e lettura su un insieme di registri $R$. 
+- $E \mid r_i$ è la sequenza di operazioni in $E$ che operano sul registro $r_i$. 
+Diciamo che una proprietà di consistenza C è compositional se:
+
 
 $$\forall r_i \in R \mid C(E\mid r_i) = True \Leftrightarrow C(E) = True$$
 

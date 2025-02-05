@@ -3,12 +3,12 @@ Generals must reach consensus: attack or retreat?
 
 >Reach a consensus on what to do. 
 # Single-Value Consensus Definition
-Set of initial values $\in \{0,1\}$.
-All process shall decide the same value ∈ {0,1} based on the initial proposals.
+Insieme di valori iniziali $\in \{0,1\}$.
+Tutti i processi decideranno lo stesso valore $\in \{0,1\}$ in base alle proposte iniziali.
 
 ![[185.png]]
 
-# Consensus: In synchronoues systems algorithm
+# Consensus: In synchronous systems algorithm
 
 ## Consensus specification
 ![[186.png]]
@@ -37,7 +37,7 @@ Violate the termination property: $P1$ does not decide a value
 Violata la proprietà di validity
 ![[191.png]]
 
-Violated run? NO because p2 and p4 choose different value but crashes.
+Violated run? No, because $p2$ and $p4$ choose different value but crashes.
 ![[192.png]]
 This is not correct. $P4$ decide a value that is not propose yet!
 ![[193.png]]
@@ -61,7 +61,7 @@ The leader $1$ imposed $1$ on $p4$, then it crashes and $p2$ imposes $2$ on othe
 ```
 
 ## Hierarchical Consensus
-==IDEA==: A livello locale, un nuovo round r inizia quando: 
+==Idea==: A livello locale, un nuovo round $r$ inizia quando: 
 
 $N$ round = $N$ process
 The leader of round $1$ is $p1$ and so on
@@ -134,9 +134,6 @@ $O(N^2)$ messages:
 	- **Caso base ID=1**: Per il BebCast e il rilevatore di fallimenti perfetto, se $p_1$ è corretto, esegue eventualmente il `reliableBroadcast` di Decided e lo consegna terminando.  
 	- **Ipotesi induttiva, ID=k-1**: Termina o si arresta.  
 	- **Passo induttivo ID=k**: Se un processo con $ID \leq k-1$ è corretto, allora termina attraverso un `ReliableDelivered` di un messaggio Decided; per la proprietà del reliable broadcast, se sono corretto riceverò anch'io un messaggio Decided e terminerò. Se tutti i processi con $ID \leq k-1$ si arrestano, allora, per la proprietà di $P$, passo al round $r=k$. Poiché il mio $ID$ è $k$, mi arresto o termino come dimostrato nel caso base.  
-
-### Correttezza  
-
 - **Accordo uniforme**: Sia $p_i$ il primo processo che decide; allora ha ricevuto gli acks da tutti i processi corretti (ogni processo ha $proposed[i]=v$, dove $v$ è il valore deciso da $p_i$). Abbiamo due casi:  
 	- **$p_i$ è corretto** -> gli altri processi ricevono il messaggio Decided da $p_i$ e devono decidere lo stesso valore.  
 	- **$p_i$ si arresta** -> tutti i processi che passano al round $i+1$ impostano $proposal=v$. I processi che decidono nel round $i$ decideranno ricevendo il messaggio Decided di $p_i$, che contiene anche $v$.  
@@ -149,8 +146,47 @@ Step complexity
 
 ## CONSENSUS: IN SYNCHRONOUS SYSTEMS, LOWER BOUND ON TIME
 
-```ad-bug
-title: Da aggiungere
+Remember the equivalence between round-based model and synchronous system (Failure-Detector Lecture)
 
+>NB: this round is different from the concept of round used in the previous algorithm
+
+Synchrony assumptions are abstracted by assuming:
+- Processes switch rounds exactly at the same time.
+- If I a correct process send a message to a set of processes at the beginning of round r, the messages will reach all correct processes in the set by the end of round r.
+
+### Full-Information Protocol
+In a Full-Information Protocol (FIP) at each round, each process sends its entire states
+to others (broadcast). Each synchronous protocol (or algorithm) can be expressed as a FIP. Intuition: With FIP each process collect all possible information on the system, it builds a view of the system and then decides locally.
+
+![[339.png]]
+
+Consensus FIP - ASSUME you cannot used processes ID in the algorithm:
+- Broadcast my set of proposed values (initially, just my value) to all at the beginning of round $r$
+- Collect all messages at the end of round $r$ and updates proposed value as union of the received message.
+- At round $r=k$ take the maximum value in the proposed value set and decides.
+
+![[340.png]]
+
+```ad-question
+What is the good value for $k$ in a system with $f$ failures to solve uniform consensus?
 
 ```
+
+What happens with 1 failure? Note that using min instead of max does not save you
+
+![[341.png]]
+![[342.png]]
+
+But if $f=1$ at the end of round $2$, I know that everyone alive has my same set
+
+![[343.png]]
+![[344.png]]
+
+```ad-abstract
+title: Theorem
+Given a synchronous system with $f$ crash failures and $n$ processes. There exists no algorithm that terminates in less than $f+1$ rounds, and so there exists no algorithm that has a step complexity of $f$ or less
+
+```
+
+
+![[345.png]]

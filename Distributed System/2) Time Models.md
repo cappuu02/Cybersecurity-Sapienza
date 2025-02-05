@@ -35,7 +35,6 @@ An algorithm with liveness property (ex: No-Starvation) can be used for partial 
 ![[Pasted image 20241002171822.png|250]]
 
 # Clock Synchronisation in Synchronous Systems
-
 Many applications require ordering among events and synchronisation to terminate correctly (air traffic control, network monitoring, ...)
 
 Time breaks the diagram of indistinguishability because time can order the events.
@@ -81,7 +80,7 @@ So to have a situation where two pc have the same clock is **slow down one and s
 - Non è possibile imporre un valore di clock nel passato. Questa azione può violare l'ordinamento causa/effetto degli eventi prodotti da un processo e la monotonicità temporale.
 - Di conseguenza rallentiamo i clock nascondendo gli interrupt. Nascondendo gli interrupt, il clock locale non viene aggiornato, quindi dobbiamo nascondere un numero di interrupt pari al tempo di rallentamento diviso per il periodo di interrupt.
 ## UNIVERSAL TIME COORDINATED (UTC)
-UTC is an international standard: the base of any international time measure. UTC-signals come from shortwave radio broadcasting stations or from satellites (GPS) with an accuracy of:
+L'UTC è uno standard internazionale: la base di qualsiasi misura internazionale del tempo. I segnali UTC provengono da stazioni di radiodiffusione a onde corte o da satelliti (GPS) con una precisione di:
 - $1\hspace{3px}msec$ for broadcasting.
 - $1\hspace{3px}\mu sec$ for GPS.
 
@@ -179,7 +178,7 @@ The accuracy depends on the maximum round-trip time (the master does not conside
 **Fault Tollerance**:
 - If the master crashes, another master is elected (in an unknown amount of time).
 - It is tolerant to arbitrary behavior (ex: slaves that send wrong values)
-	- Master process consider a certain number of clock values and these values do not differ between them more than a certain threashold.
+	- Master process consider a certain number of clock values and these values do not differ between them more than a certain threshold.
 
 ### Network Time Protocol (NTP)
 Il **Network Time Protocol (NTP)** è un protocollo utilizzato per sincronizzare gli orologi dei computer su una rete. Ecco i concetti principali:
