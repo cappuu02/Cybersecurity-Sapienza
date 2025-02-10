@@ -256,3 +256,12 @@ Reason 1: $m$ is in delivered when the delivery handler is executed
 - If $m$ is delivered then, $q$ eventually will execute trigger <pl Deliver $\mid$ p,m>. This contradicts the fact that q does not deliver m.
 Reason 2: the delivery handler is never triggered with $<p,m>$
 - This means that sl is not stubborn. Violating our hypothesis.
+
+### FIFO
+Properties
+- PL1, PL2, FL3
+- Fifo: if a process $p$ delivers $m$ before $m’$, then $m$ was sent before $m’$.
+
+![[353.png]]
+![[354.png]]
+![[355.png]]

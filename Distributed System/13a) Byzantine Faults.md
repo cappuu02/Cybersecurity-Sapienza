@@ -79,23 +79,22 @@ There is a distributed oracle Authentication:
 ![[313.png]]
 
 ```ad-question
-In the autheticity properties why p must be correct?
+In the autheticity properties why $p$ must be correct?
 
 ```
-
+ 
 ## Uniform Consensus Specification
 ![[314.png]]
 
 ### Faulty State
-NOTE: a Byzantine process may act arbitrarily and no mechanism can guarantee anything that restricts its actions.
-1) We do not define any “uniform” variant of primitives in the Byzantine failure model.
-2) No properties can be enforced on faulty process. E.g., in consensus they can decide more than once, they can deliver arbitrary messages in pp2p, …
+NOTA: un processo bizantino può agire arbitrariamente e nessun meccanismo può garantire qualcosa che ne limiti le azioni.
+1) Non definiamo alcuna variante “uniforme” delle primitive nel modello di fallimento bizantino.
+2) Nessuna proprietà può essere applicata ai processi difettosi. Ad esempio, nel consenso possono decidere più di una volta, possono consegnare messaggi arbitrari in pp2p, ...
 
-**WHAT ABOUT FAILURE DETECTOR?** Cnnot exists.
-
+**Che dire del rilevatore di guasti? ** Non può esistere.
 ## Byzantine Broadcast
 Broadcast is a fundamental primitive, and it is used in a set of applications.
-When we have seen crash failure a key achievement has been to create a broadcast property with an **agreement property**:
+When we have seen crash failure a key achievement has been to create a broadcast property with an agreement property:
 - Regular Reliable $\to$ If a correct delivers a message m, then all corrects deliver m. (all-or-nothing-semantic)
 
 ![[315.png]]
@@ -113,7 +112,7 @@ PER COSTRUIRE UNA PRIMITIVA DI BROADCAST CHE IMPEDISCA AL BYZANTINE DI FAR SÌ C
 
 - **FASE 1**: Costruiamo una primitiva di broadcast (Consistent Broadcast) in cui con un byz. Bcaster un processo onesto o non consegna alcun messaggio, o se consegna un messaggio m, allora nessun altro corretto consegna un messaggio diverso da m.
 
-- **FASE 2**: Costruiamo un Broadcast più potente (Byzantine Reliable Broadcast), in cui abbiamo una semantica del tutto o niente: quando il Bcaster è byz. o nessun processo corretto consegna un messaggio, o tutti i processi corretti consegnano lo stesso messaggio.
+- **FASE 2**: Costruiamo un Broadcast più potente (Byzantine Reliable Broadcast),  in cui abbiamo una semantica “tutto o niente”: quando il Bcaster è byz.  nessun processo corretto consegna un messaggio, oppure tutti i processi corretti consegnano lo stesso messaggio.  stesso messaggio.
 ```
 ### Byzantine Consistent Broadcast
 ![[317.png]]
@@ -121,7 +120,7 @@ PER COSTRUIRE UNA PRIMITIVA DI BROADCAST CHE IMPEDISCA AL BYZANTINE DI FAR SÌ C
 Un processo bizantino può inviare due tipi di messaggi $m$ o $m'$
 Tramite gli echos riusciamo a garantire una soglia che ci permette di evitare che il processo bizantino confonda i vari processi.
 ![[337.png]]
-Questo non soddisfa le proprietà dato che tre processi corretti consegnao messaggi differenti!
+Questo non soddisfa le proprietà dato che tre processi corretti consegno messaggi differenti!
 #### Tentative 2
 ![[319.png]]
 ![[320.png]]
@@ -136,7 +135,7 @@ You know that a correct can see at most one message Different! (one byz).
 
 Why not $4$ echoes? If the byz does not echo (or does the echo of a different message) no one delivers even if sender is correct!
 
-#### How do we generalise?
+#### Generalise
 What happens if $f$ is an arbitrary value? (assuming $f<n/3$). What is the threshold $k$ of echoes we have to see?
 
 echoes are votes for a certain message:
@@ -147,19 +146,18 @@ Suppose $p$ delivers message $m$ that reaches threshold $k$. Then it means there
 
 Suppose $p’$ delivers $m’$ that reaches threshold $k$, then there is a set $Vm’$ of $k$ processes that voted $m’$.
 
-if $V_m \cap V_m' = f + 1$ then the same honest process voted in both set, this
-implies $m = m'$. 
+if $V_m \cap V_m' = f + 1$ then the same honest process voted in both set, this implies $m = m'$. 
 $$k > \frac{N + f}{2} = k \ge \frac{n+f+1}{2} \hspace{0.9cm} \text{sostituendo} \hspace{0.9cm} k \ge \frac{4+1+1}{2}=3$$
 
 ![[Pasted image 20250201174131.png]]
+![[Pasted image 20250209213057.png]]
 
 #### Byzantine Consistent Broadcast Algorithm
 ![[Pasted image 20250131162221.png]]
 
 ##### Proof
-
 **Validity**: 
-Se il mittente è corretto, allora almeno N−fN - fN−f processi riceveranno il messaggio mmm e faranno l'**echo** di $m$. Affinché gli altri processi possano **deliverare** $m$, devono ricevere almeno **$(N+f)/2$** messaggi **echo(m)** (soglia fissata dall'algoritmo).
+Se il mittente è corretto, allora almeno $N - f$ processi riceveranno il messaggio $m$ e faranno l'**echo** di $m$. Affinché gli altri processi possano **deliverare** $m$, devono ricevere almeno **$(N+f)/2$** messaggi **echo(m)** (soglia fissata dall'algoritmo).
 
 La condizione per garantire questo è:
 $N - f > \frac{N+f}{2}$

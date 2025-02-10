@@ -1,4 +1,4 @@
-Generals must reach consensus: attack or retreat?
+upGenerals must reach consensus: attack or retreat?
 ![[184.png]]
 
 >Reach a consensus on what to do. 
@@ -61,8 +61,6 @@ The leader $1$ imposed $1$ on $p4$, then it crashes and $p2$ imposes $2$ on othe
 ```
 
 ## Hierarchical Consensus
-==Idea==: A livello locale, un nuovo round $r$ inizia quando: 
-
 $N$ round = $N$ process
 The leader of round $1$ is $p1$ and so on
 
@@ -81,10 +79,12 @@ since to decide you have to go to the new round, if you go to the new round you 
 
 
 
-![[202.png]]
+
 ![[198.png]]
 
+
 ### Hierarchial Consensus Algorithm
+![[202.png]]
 ![[200.png]]
 
 #### Correctness

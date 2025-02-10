@@ -22,7 +22,7 @@ Questa immagine mostra l'**attenuazione della fibra ottica** in funzione della l
 ## Chromatic Dispersion 
 **Fiber monomodal** = transmit a single-color
 **Fiber multimodal** = transmit multi-color
-By reflecting on the glass. Thanks to the glass reflection allow signal to propagate in to the fiber. 
+Thanks to the glass reflection allow signal to propagate in to the fiber. 
 
 ![[Network Infrastructures/images/74.png]]
 smaller diameter: more fast is the signal.
@@ -49,7 +49,11 @@ Every time i split i lose a bit of signal but today this is the most used config
 **Second Possibility**: put single fiber from CO to curb switch(cabinet). after, transmit the signal for each user. curb switch is an active element, it need a lot of energy and space.
 **Third Possibility**: configuration obtained by using the splitters. (image up)
 
+```ad-success
+title: Goal
+
 The goal is to build a **passive infrastructure**, which offers significant advantages. A passive setup eliminates the need for active components along the entire path from the Central Office (CO) to the end user, including houses and street cabinets.
+```
 
 With fiber optics, reducing the number of fiber cables is preferable, making passive networks particularly appealing. This infrastructure relies entirely on fiber cables and passive optical components, such as filters, to manage signal distribution without the need for external power or active electronics along the way. This simplicity and efficiency make passive optical networks (PON) a cost-effective and scalable solution for modern telecommunications.
 
@@ -62,7 +66,7 @@ We have a ring with network elements. from this elements starts another smaller 
 
 >With fiber we use a lot the ring topology
 
-## FTTx
+## FTTX
 ![[Network Infrastructures/images/78.png]]
 
 ## Basic PON Operations
@@ -122,8 +126,7 @@ All packets carried in EPON are encapsulated in Ethernet frames.
 4. bus topology
 
 ## WDM-PON
-
-![[88.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/88.png]]
 share multiple wavelength in the same fiber (multimodal fiber). we dedicate each color to each end user. At the receiver side we need to have a filter able to switch and recognized a color respect to the other.
 
 **WDM modulate source**: wich generates optical signal at different wavelength.

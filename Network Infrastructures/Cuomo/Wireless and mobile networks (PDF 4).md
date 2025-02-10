@@ -9,7 +9,7 @@ Tv system
 - single direction broadcast
 - channel access is well defined
 - less amount of MPEG2 transmission stream
-- Less challenging chnnel
+- Less challenging channel
 
 Cellular System
 - $N$ to $N$
@@ -45,7 +45,7 @@ Two important challenges:
 ## Characteristic of selected wireless links
 ![[Network Infrastructures/images/36.png]]
 Image that tells how far we can go if we stay indoor (a home, in the building, ecc...)
-Bluetooth is the connectin that has the lower range of connectivity..
+Bluetooth is the connectivity that has the lower range of connectivity.
 
 ## Network infrastructure mode
 ![[Network Infrastructures/images/37.png]]
@@ -93,7 +93,7 @@ Encoding" inner product
 Decoding: Summed inner-product: (encoded data) X (Chipping sequence)
 
 ### Two sender Interface
-![[41.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/41.png]]
 
 
 
@@ -195,7 +195,7 @@ the solution for wide-area mobile Internet.
 
 ## Elements of 4G LTE Architecture
 
-![[106.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/106.png]]
 **Mobile Device (UE)**
 Smartphone, tablet, laptop with 4G LTE radio
 Identità internazionale dell'abbonato mobile (IMSI) a 64 bit, memorizzata sulla scheda SIM (Subscriber  Identity Module) della scheda SIM
@@ -224,7 +224,7 @@ Situati lungo il percorso dei dati da/verso i dispositivi mobili e Internet.
 Il P-GW funge da gateway per la rete cellulare, fornendo il servizio di NAT (Network Address Translation).
 
 ## LTE: data plane control plane separation
-![[107.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/107.png]]
 **Control plane**: gestisce e controlla il comportamento della rete.
 - prende decisioni sul routing, gestisce autenticazione ed autorizzazione e stabilisce/termina connessioni (OSPF, BGP)
 - P-GW: connessione con l'esterno.
@@ -239,9 +239,9 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 ```
 
 ### First Hop
-![[108.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/108.png]]
 
-![[109.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/109.png]]
 - **Downstream channel**: Trasmissione dai ripetitori (base station) verso il dispositivo. Utilizza tecniche come il Frequency Division Multiplexing (FDM) e il Time Division Multiplexing (TDM) all'interno di canali.
 - **Upstream**: Trasmissione dal dispositivo verso la base station. Simile a OFDM per ottimizzare l'uso delle frequenze.
 
@@ -251,7 +251,7 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 >Supporting mobility: only tunneling endpoints change when mobile user moves
 
 ### LTE data plane: associating with a BS
-![[110.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/110.png]]
 1. La BS trasmette il segnale di sincronizzazione primario ogni 5 ms su tutte le frequenze. 
 	- Le BS di più vettori possono trasmettere segnali di sincronizzazione. 
 2. il cellulare trova un segnale di sincronizzazione primario, quindi individua il secondo segnale di sincronizzazione su questa frequenza. 
@@ -261,7 +261,7 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 4. sono necessari altri passaggi per l'autenticazione, la creazione dello stato e la configurazione del piano dati. 
 
 ### LTE mobiles Sleep Modes
-![[111.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/111.png]]
 As in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve battery:
 - Light Sleep: After 100's msec of inactivity
 	- wake up periodically (100’s msec) to check for downstream transmissions
@@ -270,7 +270,7 @@ As in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve batte
 
 ## Global cellular network: a network of IP networks
 
-![[112.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/112.png]]
 
 ## 5G Part
 
@@ -296,7 +296,7 @@ It's important to specificy the difference between Home network and visited netw
 
 >The notion of global home network is specific for mobile network.
 
-![[113.png|500]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/113.png]]
 When your mobile phone enter another country for example, usually it receives a message for roaming from your home network operator. The one device that informs your home network is the mobility manager.
 
 ## Indirect routing
@@ -323,20 +323,20 @@ Data flow is this:
    Not transparent to the correspondent since he must gets the foreign address.
 
 ## Mobility in 4G networks
-![[114.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/114.png]]
 ## Configuring LTE control-plane elements
-![[115.png|500]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/115.png]]
 Mobile communicates with local MME via BS control-plane channel.
 MME uses mobile’s IMSI info to contact mobile’s home HSS.
 	It check the euthentication, encryption, network service information...
 BS, mobile selezionare i parametri per il canale radio del piano dati BS-mobile
 
 ## Configuring data-plane tunnels for mobile
-![[116.png|500]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/116.png]]
 - **S-GW to BS tunnel**: when mobile changes base stations, simply change endpoint IP address of tunnel
 - **S-GW to home P-GW tunne**l: implementation of indirect routing
 - **tunneling via GTP**: mobile’s datagram to streaming server encapsulated using GTP inside UDP
 
 ## Handover between BSs in same cellular network
-![[117.png]]
-![[118.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/117.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/118.png]]

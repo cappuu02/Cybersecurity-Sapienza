@@ -15,16 +15,16 @@ you either:
 ## EVENTUALLY - SYNCHRONOUS
 
 ### Paxos
-The Paxos provide a viable solution to consensus in eventually
-synchronous settings with crash failures:
+The Paxos provide a viable solution to consensus in eventually synchronous settings with crash failures:
 - Safety (validity + integrity + agreement) is always guaranteed
-- The algorithm is live (termination) only when the network
-behaves in a “good way” for long enough periods of time
+- The algorithm is live (termination) only when the network behaves in a “good way” for long enough periods of time
 
-Actors in the basi Paxos Protocol
-- Proposers: propose values.
-- Acceptors: processes that must commit on a final decided value.
-- Learners: passively assist to the decision and obtain the final decided value
+>**Assumption**: majority of correct processes and eventually synchronous system.
+
+Actors in the basic Paxos Protocol
+- **Proposers**: propose values.
+- **Acceptors**: processes that must commit on a final decided value.
+- **Learners**: passively assist to the decision and obtain the final decided value
 
 >The majority assumption is needed only on the set of acceptors.
 
@@ -36,7 +36,6 @@ Let us think about what the protocol should do.
 - A process never learns that a value has been chosen unless it actually has been.
 
 >Time(chosen) $\not =$ Time(Learned)
-
 
 The easiest way to solve the problem is to have a single acceptor
 - A proposer sends a proposal to the acceptor
@@ -73,25 +72,26 @@ Problem: if several values are concurrently proposed by different proposers, non
 
 ![[212.png]]
 
-His implies that an acceptor should accept multiple proposals.
+This implies that an acceptor should accept multiple proposals.
 
-----
 
-We keep track of different proposed values assigning them a proposal number that is unique (total order of proposals). A proposal will be a pair <round number,value>.
-A value is chosen when a single proposal with that value has been accepted by a majority of the acceptors (chosen proposal).
-We can allow multiple proposals to be chosen, but **all chosen proposals must have the same value**.
 
->==$P2$==: if a proposal with value $v$ is chosen, every higher-numbered proposal that is  chosen has value $v$
+Teniamo traccia dei diversi valori proposti assegnando loro un numero di proposta unico (ordine totale delle proposte). Una proposta sarà una coppia <round number, value>.
+Un valore viene scelto quando una singola proposta con quel valore è stata accettata dalla maggioranza degli accettanti (proposta scelta).
+È possibile consentire la scelta di più proposte, ma **tutte le proposte scelte devono avere lo stesso valore**.
 
-first majority decide the value and the next majority set must hae the same value with obiviously different round number.
+
+>==$P2$==: if a proposal with value $v$ is chosen, every higher-numbered proposal that is chosen has value $v$
+
+first majority decide the value and the next majority set must have the same value with obiviously different round number.
 
 ![[213.png]]
 
-For a value v to be chosen, a proposal containing it must have been accepted by at least one acceptor, thus:
+Affinché un valore $v$ venga scelto, una proposta che lo contiene deve essere stata accettata da almeno un acceptor:
 
 >$P2a$: if a proposal with value $v$ is chosen, every higher-numbered proposal that is accepted by any acceptor has value $v$
 
-What if a proposal with value $v$ is chosen while an acceptor c never saw it ? A new proposer could wake up and propose to $c$ a different value $v’$ that $c$ must accept due to $P1$
+What if a proposal with value $v$ is chosen while an acceptor $c$ never saw it ? A new proposer could wake up and propose to $c$ a different value $v’$ that $c$ must accept due to $P1$
 
 ![[214.png]]
 
@@ -107,8 +107,7 @@ Supponiamo che sia stata scelta una proposta di round $m$ con valore $v$. Voglia
 - ogni proposta con numero tondo compreso in $[m, n-1]$ contiene il valore $v$
 
 Perché una proposta nel round $m$ venga scelta, è necessario un quorum $Q$ di accettatori (una maggioranza) che l'abbiano accettata.  
-Pertanto, l'ipotesi che un valore sia stato scelto nel round mm implica che:
-
+Pertanto, l'ipotesi che un valore sia stato scelto nel round $m$ implica che:
 - Ogni accettatore in $Q$ ha accettato una proposta con numero di round $m$ e valore $v$.
 
 Poiché qualsiasi maggioranza di accettatori $S$ contiene almeno un membro di $Q$, possiamo concludere che una proposta con numero di round $n$ ha valore $v$ assicurandoci che venga mantenuto il seguente invariante:
@@ -131,16 +130,12 @@ Prepare: acceptors ditemi se avete qualche valore gia proposto
 Response: si ho round 1 con val 0
 Boradcast the value returned back
 
-Remember that P2c says v is the value of the highest-numbered proposal among all proposals numbered less than n accepted by the acceptors in S”
 
-![[218.png]]
->p3 manda un proposer agli acceptors
->Gli acceptors non hanno nulla
->P3 invia il suo valore con il suo round
 
 ```ad-danger
 title: Problem
-![[219.png]]
+![[Pasted image 20250205220644.png]]
+
 
 p3 manda proposer e gli rispondono "non abbiamo nulla"
 stessa cosa viene fatta da p1
@@ -164,8 +159,7 @@ The protocol has two main phases:
 
 
 **Phase 1**
-Proposer chooses a new proposal round number $n$, and sends a
-prepare request $(PREPARE,n)$ to a majority of acceptors:
+Proposer chooses a new proposal round number $n$, and sends a prepare request $(PREPARE,n)$ to a majority of acceptors:
 - $(a)$ Can I make a proposal with number $n$?
 - $(b)$ if yes, do you suggest some value for my proposal?
 
@@ -193,7 +187,7 @@ If the proposer receives responses from a majority of the acceptors, then it can
 
 ![[224.png]]
 
-If the acceptor receives an accept request $(ACCEPT, n , v$), it accepts the proposal unless it has already responded to a prepare request having a number greater than n.
+If the acceptor receives an accept request $(ACCEPT, n , v$), it accepts the proposal unless it has already responded to a prepare request having a number greater than $n$.
 
 ![[224.png]]
 

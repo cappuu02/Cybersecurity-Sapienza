@@ -30,8 +30,6 @@ Applicazioni in sistemi di sensori mission-critical: sistemi industriali, aerei,
 
 >The AGREEMENT remains the same!!!
 
-Bizantine Agreement Problem
-
 ## Bizantine Agreement Problem
 **Events**: 
 - Propose(V) 
@@ -61,9 +59,8 @@ Consider a synchronous system with authenticated channels composed by $3$ proces
 
 
 ### Scenario - 6 Processes
-
 **Step1**
-Take algorithm A and let it run on a system S of 6 processes arranged in a ring (see figure below). All processes in S are correct.
+Take algorithm $A$ and let it run on a system $S$ of $6$ processes arranged in a ring (see figure below). All processes in $S$ are correct.
 ![[329.png]]
 Since $A$ has not been designed to run on $S$ its behaviour can be arbitrary, so a violation of a property on $S$ does not directly imply that $A$ is not correct. 
 Per prima cosa dobbiamo dimostrare che su $S$ ogni processo termina. Questo non è garantito! Supponiamo, senza perdita di generalità, che il processo $P2$ grigio non termini.

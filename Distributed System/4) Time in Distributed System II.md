@@ -1,4 +1,4 @@
-
+,
 ## Failure Detector Abstraction
 Un modulo software da usare insieme alle astrazioni di processo e di collegamento, che incapsula le ipotesi di temporizzazione di un sistema parzialmente sincrono o completamente sincrono.
 
@@ -11,7 +11,7 @@ Proprietà fondamentale dei rilevatori di guasti:
 
 >Si basano sull'idea del “Pinging”.
 
-## Perfect Failure Detectors (P)
+[## Perfect Failure Detectors (P)
 System model 
 - **Synchronous system** 
 - **Crash-stop failures** 

@@ -1,4 +1,4 @@
-  **Topics that we touched in the previous slides**:
+l  **Topics that we touched in the previous slides**:
 ![[Pasted image 20241016111120.png|500]]
 # Broadcasting
 ![[Distributed System/Images/79.png]]
@@ -176,7 +176,7 @@ In this algorithm if two processes send the same message like '$X$', the second 
 **Prova di accordo** (per contraddizione): supponiamo che $p5$ (difettoso) fornisca $m$ e $p6$ corretto no. L'unica possibilità è che $p6$ non veda il messaggio (**dichiarazione**). Ciò implica che $p6$ viene rilevato difettoso da $p5$, $p5$ consegna senza ricevere l'ack da $p6$. Questo **contraddice la forte precisione del rilevatore di guasti P**.
 
 ![[Pasted image 20241030174436.png]]
-**C 
+
 # Quorum Definition and Properties
 Abbiamo $n$ processi nel nostro insieme di processi totali $P$, **un quorum è un qualsiasi sottoinsieme di $P$ di dimensioni minime**: $$\frac{n}{2}+1 = \text{Majority of the processes}$$![[Pasted image 20241030175001.png|500]]
 **proprietà**: due quorum qualsiasi si intersecano in almeno un processo (se due quorum non si intersecano, allora hanno tutti processi distinti. Questo implica $|P|>n$)

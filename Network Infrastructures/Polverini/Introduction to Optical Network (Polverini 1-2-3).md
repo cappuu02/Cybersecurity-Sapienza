@@ -60,7 +60,7 @@ We know two main ways of increasing the transmission capacity on a fiber:
 	- virtual fibers
 
 
-![[102.png|700]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/102.png]]
 ![[104.jpeg|700]]
 ## Second-Generation Optical Networks
 Also known as **wavelength routed networks**, where the main idea is to incorporate some of the switching and routing functions into the optical part of the network. The network provides lightpaths to its users.  These are optical connections that:
@@ -133,7 +133,7 @@ OADM has four port:
 - first two able to pass through the signal
 - second two able to drop and add locally
 
-![[100.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/100.png]]
 ## OLT (Optical Line Terminal)
 ==OLTs== are used at either end of a point-to-point link to multiplex and demultiplex wavelength. It is composed by three functional elements: 
 - Transponders 
@@ -147,10 +147,10 @@ OADM has four port:
 
 Transponders typically constitute the **bulk of the cost, footprint, and power consumption in an OLT**.  Therefore, reducing the number of transponders, helps minimize both the cost and the size of the equipment deployed.
 
-![[101.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/101.png]]
 
 ----
-![[103.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/103.png]]
 1. Client ask to the network the creation of a logical circuit.
 2. As this requested is received by the transport network a whole process start. First, we need to find an end-to-end path
 3. Founded the path (with switch elements organized in a mesh topology), next step is to do results reservation on each link. (We have links divided in subchannels using multiplexing techniques (TDM-FDM)). We have to go over each link of this path and look if there is available resources. In case there are, we can book these resources for the connection that we are just creating.

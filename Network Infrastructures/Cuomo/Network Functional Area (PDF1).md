@@ -124,8 +124,7 @@ There not anymore the active element. There is now a splitter element (glass ele
 ![[Network Infrastructures/images/15.png]]
 
 ## Bandwidth requirements
-
-![[16.png]]
+![[Cybersecurity-Sapienza/Network Infrastructures/images/16.png]]
 
 Web surface is unbalanced, there is more downstream then upload.
 Today we need more and more unbalanced network able to provides more traffic in downstream.
