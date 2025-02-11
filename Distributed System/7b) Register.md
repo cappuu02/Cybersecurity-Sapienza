@@ -1,5 +1,3 @@
-
-
 # Atomic Register
 
 ```ad-abstract
@@ -180,6 +178,10 @@ For loop: ($N^2$): creating a row for all the processes ($r = 1 \to p1$ creation
 
 IMPORTANTE!!
 ![[167.png]]
+
+
+
+
 ### Atomic registers implementations using message passing
 #### Algorithm READ-IMPOSE WRITE-ALL
 ![[168.png]]

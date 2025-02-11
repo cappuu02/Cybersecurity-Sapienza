@@ -1,52 +1,40 @@
-# "Problema dei Generali Bizantini" (Lamport, Pease, Shostak)
 
-I processi difettosi possono mostrare un "comportamento arbitrario":  
-- Possono iniziare in stati arbitrari, inviare messaggi arbitrari, eseguire transizioni arbitrarie.  
-- Per rendere il volo più sicuro, i ricercatori hanno studiato i possibili guasti di vari sensori e macchine utilizzati negli aerei. Le macchine guaste non si limitavano a bloccarsi, ma a volte mostravano un comportamento insolito prima di fermarsi completamente. (Progetto SIFT)  
+Byzantine processes could behave in an arbitrary way.
 
-## **Modello sincrono: ripasso**  
-Assumiamo un modello di round sincrono:  
-- Ritardo fisso e noto dei messaggi.  
+**Assumption**: modello di round sincrono
+- Fixed delay
 - Se un processo corretto invia un messaggio al round $0$, ogni destinatario corretto lo riceve entro la fine del round $0$. (Nessun ritardo nei messaggi).  
-- I calcoli sono istantanei.  
 
 ![[327.png]]  
 ## Consensus with crash failures
 ![[328.png]]  
 
-## **Una validità significativa**  
-(Se un processo decide $v$, allora $v$ è stato proposto da un processo)  
-- E se $v$ è proposto da un processo Bizantino? Si pensi agli altimetri degli aerei.  
+ Property of ==Validity==
 - (Validità dell'input corretto) Se un processo decide $v$, allora $v$ è stato proposto da un processo corretto.  
-- Ma... cosa succede se il processo Bizantino si comporta correttamente ma falsifica il suo valore di input? In molti casi, è impossibile distinguerlo da quello corretto.  
-
-> La validità dell'input ha applicazioni nella vita reale: aggiunta di voci a un registro distribuito.  
+- Cosa succede se il processo Bizantino si comporta correttamente ma falsifica il suo valore di input? In molti casi, è impossibile distinguerlo da quello corretto.  
 
 **Validità totale (o validità debole)**: Se tutti i processi corretti iniziano con il valore $v$, allora il valore di decisione deve essere $v$. Questo ha senso in alcune applicazioni: si pensi ai sensori, se tutti i sensori corretti leggono lo stesso valore, dobbiamo deciderlo.  
 
-```ad-example  
-Applicazioni in sistemi di sensori mission-critical: sistemi industriali, aerei, satelliti, ...  
-```
-
->The AGREEMENT remains the same!!!
-
+>All the others properties remains the same!
 ## Bizantine Agreement Problem
 **Events**: 
 - Propose(V) 
 - Decide=V 
 
 **Properties**: 
-- **Termination**: Every correct eventually decides 
+- **Termination**: Every correct eventually decides some value
 - **All-same validity (Weak validity)**: If all correct processes propose $v$, the only decision is $v$. 
 - **Integrity**: No correct decides twice. 
 - **Agreement**: All correct decides the same value
 
+```ad-info
+
 Dimostreremo la prova formale dell'impossibilità di risolvere Byzantine Agreement (BA quando $n=3f$ (quando non ci sono firme digitali). Mostreremo the king algorithm che risolve BA purché $n=3f+1$.  
+```
 
 > **IMPORTANTE**: Assumiamo canali autenticati (MAC) ma nessuna firma digitale.  
 
 Impossibilità del consenso in sistemi sincroni con canali autenticati quando $N=3F$ (o meno). Quando sono disponibili firme digitali, è possibile tollerare $f < N/2$ guasti.
-
 
 ## Impossibility for $3$ processes if one bizantine
 ```ad-summary
@@ -55,84 +43,100 @@ Consider a synchronous system with authenticated channels composed by $3$ proces
 
 ```
 
-**Proof**: The proof is by contradiction we assume that an algorithm $A$ exists and tolerates 1 bz failure in a system of 3 process. We will show that A is not able to satisfy all the properties of the specification. The proof uses a “scenario argument”
-
-
-### Scenario - 6 Processes
-**Step1**
-Take algorithm $A$ and let it run on a system $S$ of $6$ processes arranged in a ring (see figure below). All processes in $S$ are correct.
-![[329.png]]
-Since $A$ has not been designed to run on $S$ its behaviour can be arbitrary, so a violation of a property on $S$ does not directly imply that $A$ is not correct. 
-Per prima cosa dobbiamo dimostrare che su $S$ ogni processo termina. Questo non è garantito! Supponiamo, senza perdita di generalità, che il processo $P2$ grigio non termini.
-Allora $P2$ non termina anche in un sistema ridotto $B$ che è composto da $3$ processi con uno bizantino che simula la parte rimanente di $S$. Ovvero il processo bizantino $B$ in $S$ si comporta come se includesse in sé stesso i processi $P1, P2, P3, P1$ in $S$.
-
-![[330.png]]
-Si noti che il comportamento del processo bizantino su $B$ è ben definito. Se $P1$ bluastro su $S$ invia un messaggio $m$ a $P3$ al tempo $t$, il processo bizantino su $B$ invierà il messaggio $m$ a $P3$ al tempo $t$; se $P1$ grigio invia a $P2$ un messaggio $m'$ al tempo $t'$, il processo bizantino invierà $m'$ a $P2$ in $B$ al tempo $t'$, e così via. In System $B$ process $P2$ has to terminate. We can replicate this algorithm for each process in $S$. Thus:
-
-**Fatto1**: Nel sistema $S$ ogni processo termina ed emette un valore di decisione.
-
-Esaminiamo il processo grigio P2 in S. Dal suo punto di vista, S è indistinguibile da B. Il processo P2 in B deve decidere 0 per la proprietà di accordo e validità (in B, P2 e P3 sono corretti ed entrambi propongono 0). Questo significa che il P2 grigio deve emettere 0 nel Sistema S. Lo stesso vale per il processo P3. Pertanto...
-
-**FATTO 2**: $P2$ e $P3$ emettono il valore di decisione $0$ in $S$.
-
-Consideriamo ora i processi bluastri P1 e P3 in S. Possiamo creare un sistema ridotto B' e ripetere il ragionamento della slide precedente. Questo dimostra che P1 e P3 bluastri in S devono decidere 1 poiché non possono distinguere questo sistema da B.
-
-**Fatto 3**: I processi bluastri $P1$ e $P3$ devono decidere $1$ su $S$.
-
-![[331.png]]
-
-Pertanto sul Sistema S possiamo identificare due tagli: Il taglio verde dove P2 e P3 grigi devono emettere 0 e il taglio rosso dove P1 e P3 bluastri devono emettere 1. Ma questo porta a una contraddizione sulla correttezza di A, riesci a capire perché?
-
-![[332.png]]
-
-Consideriamo il taglio arancione evidenziato...
-
-![[333.png]]
-
-Possiamo costruire un sistema proprio B'' sul quale A deve essere corretto. Sul sistema B'' il P3 grigio e il P1 bluastro emetteranno lo stesso output che emettono su S. B'' non può essere distinto da S. Questo implica che P3 grigio emette 0 e P1 bluastro emette 1.
-
-![[334.png]]
-
-**Contraddizione**: Questo implica che P3 grigio emette 0 e P1 bluastro emette 1. Ma facendo così violano la proprietà di accordo sul sistema B''. Pertanto A non è corretto su B''. Quindi, A non è un algoritmo di consenso corretto.
-
-> POSSIAMO ITERARE QUESTO PER QUALSIASI ROUND R
+**Proof**: The proof is by contradiction we assume that an algorithm $A$ exists and tolerates $1$ bz failure in a system of $3$ process. We will show that $A$ is not able to satisfy all the properties of the specification. The proof uses a “**scenario argument**”
 
 ----
 
-Nessun algoritmo di consenso con validità all-same esiste per $3$ processi se uno è bizantino. Cosa dire di $n=3f$? È ancora impossibile. Riesci a capire perché?
+## Scenario - 6 Processi
+![[329.png|600]]
+Abbiamo un algoritmo **A** eseguito su un sistema **S** di **6 processi** disposti in un anello. Tutti i processi in **S** sono corretti. Tuttavia, **A non è stato progettato per S**, quindi il suo comportamento potrebbe essere arbitrario.
 
-Nessun algoritmo di consenso con validità all-same esiste per $3$ processi se uno è bizantino. Cosa dire di $n=3f$? È ancora impossibile. Riesci a capire perché? Intuitivamente: Supponiamo che esista un algoritmo A che funzioni con $n=3f$, allora potresti usare A per risolvere il caso di $n=3$
+>Una violazione di proprietà in **S** non implica necessariamente che **A sia errato**.
 
-![[335.png]]
+### **Passaggio 1: Dimostrazione della terminazione**
+Dobbiamo dimostrare che **ogni processo in $S$ termina**. Questo **non è garantito**.
 
-```ad-abstract
-title: Definizione
-Anche in un sistema sincrono, non esiste alcun algoritmo che risolva il consenso con validità any-input (e quindi con validità all-same) su canali autenticati se un terzo o più dei processi sono bizantini. Quindi $f<N/3$ è un requisito necessario.
-```
+![[330.png|600]]
+
+- Supponiamo che il processo **P2 grigio non termini**.
+- Se ciò avviene, possiamo costruire un sistema **B ridotto** con **3 processi**, di cui **uno bizantino** che simula il resto di **S** (==Byz = simula tutti i processi nel yellow cut==).
+
+Il comportamento del processo bizantino è **ben definito**:
+- Se **P1 blu in S** invia un messaggio **m** a **P3 al tempo t**, allora il processo bizantino in **B** farà lo stesso.
+- Se **P1 grigio in S** invia un messaggio **m' a P2 al tempo t'**, il processo bizantino in **B** farà lo stesso.
+
+Possiamo replicare questo algoritmo per ogni processo in $S$!
+
+✅ **Facts 1:** Nel sistema **S**, ogni processo termina ed emette un valore di decisione.
+
+
+### **Passaggio 2: Decisione di P2 e P3 grigi** 
+
+![[330.png|600]]
+
+- **P2 grigio in S** non può distinguere **S da B**.
+- In **B**, **P2 e P3 sono corretti** e propongono **0**.
+- Quindi, **P2 deve decidere 0 in S**.
+- Lo stesso vale per **P3 grigio**.
+
+✅ **Facts 2:** **P2 e P3 emettono il valore di decisione 0 in S**.
+### **Passaggio 3: Decisione di P1 e P3 blu**
+
+![[331.png]]
+
+- Costruiamo un sistema **B'** e ripetiamo il ragionamento precedente.
+- In **B'**, i processi bluastri **P1 e P3** **devono decidere 1**, perché **non possono distinguere B' da S**.
+
+✅ **Fatto 3:** **I processi bluastri P1 e P3 devono decidere 1 su S**.
+
+### **Passaggio 4: Contraddizione**
+![[332.png]]
+Sul sistema $S$ possiamo identificare due tagli:
+- Il **taglio verde** indica che **P2 e P3 grigi decidono 0**.
+- Il **taglio rosso** indica che **P1 e P3 bluastri decidono 1**.
+
+🚨 **Contraddizione:** Abbiamo processi nello stesso sistema che decidono valori diversi! Questo **viola la proprietà di agreement dell’algoritmo **A**.
+### **Passaggio 5: Caso Generale**
+![[334.png]]
+
+Costruiamo un sistema **B''**, dove:
+- **P3 grigio e P1 bluastro** emettono lo stesso output che emettono in **S**.
+- **B'' non è distinguibile da S**.
+- Questo implica che **P3 grigio emette 0 e P1 bluastro emette 1**.
+
+🚨 **Contraddizione:** P3 grigio e P1 bluastro **violano la proprietà di agreement in B''**, quindi **A non è corretto su B''**.
+
+✅ **Conclusione:** **Non esiste un algoritmo di consenso con validità all-same per 3 processi se uno è bizantino**.
+
+>POSSIAMO ITERARE QUESTO PER QUALSIASI ROUND R
+
+## **Passaggio 7: Caso Generale con n = 3f**
+Il ragionamento si estende a **qualsiasi numero di processi**:
+- Se **n = 3f**, possiamo usare lo stesso metodo per dimostrare che **non può esistere un algoritmo di consenso corretto**.
+
+📌 **Regola fondamentale:** In un sistema sincrono con **canali autenticati**, **non esiste un algoritmo che risolva il consenso se un terzo o più dei processi sono bizantini**.
+
+🔴 **Conclusione Finale:** Se **f < N/3**, il consenso è possibile; altrimenti, **è impossibile**.
 
 >**RICORDA**: Con i fallimenti di tipo crash eravamo in grado di tollerare qualsiasi numero di fallimenti in un Sistema Sincrono (usando $P$)
 
-## King Algorithm
-Solve byzantine agreement in a Synchronous systems when we have authenticated channel (no public key property). $N \ge 3f+1$
+## Introduction to the King Algorithm
+Solve byzantine agreement in a Synchronous systems when we have authenticated channel (no public key property). 
 
-
-## Possibility if $N>3F$
 If the number of correct is at least $3f+1$ is possible to solve byzantine agreement. 
-We will present the King algorithm. 
-**This algorithm can be seen as an adaptation of Hierarchical consensus for byzantine failures**. The king algorithm works in synchronous, when $f < n/3$ and when no signatures are available. Authenticated channels - MAC are needed.
-
+**This algorithm can be seen as an adaptation of Hierarchical consensus for byzantine failures**. The king algorithm works in synchronous, when $f < n/3$ and when no signatures are available. **Authenticated channels - MAC are needed**.
 
 ## The king algorithm
 The king algorithm runs for $f+1$ phases.
 - In each phase $j$ there is a king. One way is for the king of phase $j$ to be the node with $id=j$. 
-- Each node keep a variable $x=$to its proposal at the beginning. 
+- Each node keep a variable $x=$ to its proposal at the beginning. 
 - Variable $x$ is updated during the algorithm. 
-- At the end of phase $f+1$ each correct decides variable $x$.
+- At the end of phase $f+1$ (algoritmo ha al max $f+1$ fasi), each correct decides variable $x$.
 
-Each phase (that has a unique leader) is divided in the following 3 rounds:
-- **vote round**: Ogni processo corretto trasmette $x$, ovvero il proposal.
-- **Round di proposta**: Ogni processo corretto trasmette un valore $y$ se è stato ricevuto almeno $n-f$ volte nel turno di votazione. Alla fine del turno di proposta un processo corretto aggiorna il suo valore $x$ a $z$ se vede $z$ proposto almeno $f+1$ volte.
-- **Round del re**: Il re è l'unico a trasmettere il suo valore $x$. Alla fine del round del re un nodo imposta il suo valore sul valore del re se durante il round di proposta nessun valore è stato visto $n-f$ volte.
+Each phase (that has a unique leader) is divided in the following $3$ rounds:
+- ==vote round==: Ogni processo corretto trasmette $x$, ovvero il proposal.
+- ==Round di proposta==: Ogni processo corretto trasmette un valore $y$ se è stato ricevuto almeno $n-f$ volte nel turno di votazione. Alla fine del turno di proposta un processo corretto aggiorna il suo valore $x$ a $z$ se vede $z$ proposto almeno $f+1$ volte.
+- ==Round del re==: Il re è l'unico a trasmettere il suo valore $x$. Alla fine del round del re un nodo imposta il suo valore sul valore del re se durante il round di proposta nessun valore è stato visto $n-f$ volte.
 
 Esempio (processi inviano lo stesso valore)
 ![[Pasted image 20250202150610.png]]
@@ -148,7 +152,7 @@ Se $P1$ era corretto e non byzantine allora avrebbe funzionato dato che, essendo
 ```
 
 Intuitively the king algorithm has the following mechanisms inside:
--  **Mechanism 1 - All same no change of idea (Implemented in Vote-Propose rounds)**: If all correct processes have the same value for x, they detect this during Vote-Propose round and they do not get influenced by a byzking and other byzantines.
+-  **Mechanism 1 - All same no change of idea (Implemented in Vote-Propose rounds)**: If all correct processes have the same value for $x$, they detect this during Vote-Propose round and they do not get influenced by a byzking and other byzantines.
 - **Mechanism 2 - Not All Same**: Correct King imposes value (implemented in the king round) -> if corrects disagree the correct king imposes agreement.
 
 ### Algorithm
@@ -164,11 +168,21 @@ Intuitively the king algorithm has the following mechanisms inside:
 - **Agreement**: All correct decides the same value
 
 ### Proof
-Termination is immediate from the structure of the algorithm, each correct decides at round $f+1$ and terminates. 
+
+#### Termination
+```ad-tip
+
+
+Termination is immediate from the structure of the algorithm, each correct decides at round $f+1$ and terminates
+```
+#### Integrity
 Integrity is immediate from the fact that there exist a single line where a correct decides and this line can be executed just once. 
+
+#### Validity and Agreement
 We have to show: 
 - **Validity** $\to$ if all correct starts with $v$ they have to decide $v$. 
 - **Agreement** $\to$ no two correct process decide differently.
+
 
 ```ad-abstract
 title: Theorem 1
@@ -177,10 +191,11 @@ If all corrects starts with the same value $v$, then $v$ is decided
 ```
 
 **Proof** (**Mechanism 1**):
-Each correct broadcast $v$ at the vote round. Each correct sees v voted $n-f$ times (note that a value voted only by the Byz has at most $f$ votes). 
-Each correct proposes v at the propose round. 
-Each correct sees v proposed $n-f$ times (note that a value proposed by the Byz has at most $f$ proposes). 
-Each correct ignores the king round and keeps its value to $v$. At phase $f+1$ each correct decides $v$
+- Each correct broadcast $v$ at the vote round. Each correct sees v voted $n-f$ times (note that a value voted only by the Byz has at most $f$ votes). 
+- Each correct proposes $v$ at the propose round. 
+- Each correct sees $v$ proposed $n-f$ times 
+- Each correct ignores the king round and keeps its value to $v$. 
+- **At phase $f+1$ each correct decides $v$**
 
 ```ad-abstract
 title: Lemma 1

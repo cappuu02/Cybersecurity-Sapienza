@@ -119,10 +119,10 @@ Poiché qualsiasi maggioranza di accettatori $S$ contiene almeno un membro di $Q
 
 $$P2c \Rightarrow P2b$$
 
-P2c can be maintained by asking to a proposer that wants to propose a value numbered n to learn the highest-numbered value (with number less than n, if any) that
--  has been accepted
--  or will by accepted
-by each acceptor in a majority.
+P2c può essere mantenuto chiedendo al proposer che vuole proporre un valore numerato $n$ di conoscere il valore più alto (con numero inferiore a n, se presente) che è stato accettato.
+- è stato accettato
+- o che sarà accettato
+da ogni accettante in maggioranza.
 
 ![[216.png]]
 

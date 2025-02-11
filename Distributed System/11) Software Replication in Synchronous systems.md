@@ -168,7 +168,7 @@ If there is another operations that append after the first, this has timestamp e
 ##### Scenario 3
 Primary fails while sending update messages and before receiving all the ack messages. The problematic case is if the update is received by only some of the backups.
 
-![[ ]]
+
 To fix: Run leader election algorithm that elect as a primary (leader) the process with the most updated state!
 
 Assume only append and get operations:
@@ -203,7 +203,9 @@ Positive points:
 Negative points:
 - Delivering state change can be costly, the client has to wait for a new primary.
 - Backups are just backups.
-- Scenario 3 (crash in the middle of the update) is complex to solve in eventually sync-systems. -> RAFT solves it.
+- Scenario 3 (crash in the middle of the update) is complex to solve in eventually sync-systems. -
+
+> RAFT solves it.
 
 
 ### Active Replication

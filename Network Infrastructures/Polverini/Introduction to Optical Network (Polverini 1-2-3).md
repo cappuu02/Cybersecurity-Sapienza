@@ -37,7 +37,7 @@ We have two generations of optical networks:
 
 ![[Pasted image 20241209163412.png]]
 
-**Second generation**: also intelligent functions are done in the optical layer. We try to stay as much as possible in the optical layer for the performance benefits. The problem is that in the optical domain we don’t have binary information and it’s impossible to understand which is the source and which is the destination, since the TN is shared (e.g. if a light bulb it’s transmitting we receive 1 if not 0, but we don’t know which light bulb transmitted the signal). To solve this problem we have to find a way of switching a light ray. We use Wavelength Division Multiplexing (WDM), or FDM2 :
+**Second generation**: also intelligent functions are done in the optical layer. We try to stay as much as possible in the optical layer for the performance benefits. The problem is that in the optical domain we don’t have binary information and it’s impossible to understand which is the source and which is the destination, since the TN is shared (e.g. if a light bulb it’s transmitting we receive 1 if not 0, but we don’t know which light bulb transmitted the signal). To solve this problem we have to find a way of switching a light ray. We use **Wavelength Division Multiplexing (WDM)**, or FDM2 :
 
 ![[Pasted image 20241209163354.png]]
 
@@ -60,7 +60,7 @@ We know two main ways of increasing the transmission capacity on a fiber:
 	- virtual fibers
 
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/102.png]]
+![[Network Infrastructures/images/102.png]]
 ![[104.jpeg|700]]
 ## Second-Generation Optical Networks
 Also known as **wavelength routed networks**, where the main idea is to incorporate some of the switching and routing functions into the optical part of the network. The network provides lightpaths to its users.  These are optical connections that:
@@ -72,7 +72,7 @@ Lightpaths may be ==converted from one wavelength to another wavelength==.
 ![[Network Infrastructures/images/92.png]]
 
 - different shades (triangle, square, ecc...) are modelling different devices.
-	- square = **OXC** (same function of router: swicthing + routing), is multi port device and has large number of ports. OXC is re-configurable, we can change how it works. It has many different ports. (mesh topology)
+	- square = **OXC** (same function of router: swicthing + routing), is multi port device and has large number of ports. OXC is re-configurable, we can change how it works. (mesh topology)
 	- Triangle = **OLT** (like an optical link) used at the ends of a p2p to multiplex and demultiplex wavelength. It is composed by:
 		- Transponder
 		- Optical Amplifier
@@ -122,7 +122,6 @@ title: Idea
 Use a device which is able to deal with this type of situation but in a cost-effective manner (reducing number of responders). This device is the OADM.
 ```
 
->We don't need to demultiplex and multiplex but te optical passthrough.
 >I drop and add locally a lambda and the other lambdas passthrough.
 
 ![[Network Infrastructures/images/99.png]]
@@ -133,12 +132,12 @@ OADM has four port:
 - first two able to pass through the signal
 - second two able to drop and add locally
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/100.png]]
+![[Network Infrastructures/images/100.png]]
 ## OLT (Optical Line Terminal)
 ==OLTs== are used at either end of a point-to-point link to multiplex and demultiplex wavelength. It is composed by three functional elements: 
-- Transponders 
-- Wavelength multiplexers 
-- Optical amplifiers (gives power to the signal)
+- **Transponders** 
+- **Wavelength multiplexers** 
+- **Optical amplifiers** (gives power to the signal)
 
 **Transponder (O-E-O)**: A transponder adapts the signal received from a client device in an optical network. It converts the signal from its original wavelength or format into one that is optimized for transmission within the optical network. This process involves converting the incoming optical signal into an electrical signal (Optical-to-Electrical), processing it, and then converting it back into an optical signal (Electrical-to-Optical) at the appropriate wavelength for the network.
 - adds OTN overhead (OPU, ODU, OTU, FEC, etc.) 
@@ -147,10 +146,8 @@ OADM has four port:
 
 Transponders typically constitute the **bulk of the cost, footprint, and power consumption in an OLT**.  Therefore, reducing the number of transponders, helps minimize both the cost and the size of the equipment deployed.
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/101.png]]
-
 ----
-![[Cybersecurity-Sapienza/Network Infrastructures/images/103.png]]
+![[Network Infrastructures/images/103.png]]
 1. Client ask to the network the creation of a logical circuit.
 2. As this requested is received by the transport network a whole process start. First, we need to find an end-to-end path
 3. Founded the path (with switch elements organized in a mesh topology), next step is to do results reservation on each link. (We have links divided in subchannels using multiplexing techniques (TDM-FDM)). We have to go over each link of this path and look if there is available resources. In case there are, we can book these resources for the connection that we are just creating.
@@ -158,7 +155,6 @@ Transponders typically constitute the **bulk of the cost, footprint, and power c
 5. Since all switches are correctly configurated, the logical circuit is up at this point and the clients in the client layer can start exchanging information.
 6. Circuit has to be constantly monitored by the transport network (carrier need to ensure a good quality of services toward the customers)
 7. When the connection and the communication is finally done, the logical circuit turn off an the resources are released.
-
 ----
 # Lesson 8 novembre 2024
 
@@ -196,8 +192,8 @@ Logical representation of Optical line terminal (OLT)
 title: Explaination
 Le frecce rappresentano il segnale del cliente che viene inviato alla rete ottica e questo è il punto di ingresso della rete ottica. Il primo elemento che incontreremo come client sarà un terminale di linea ottica.  Questo terminale di linea ottica, come si vede, ha 3 porte diverse. C'è una porta dedicata a questo cliente, un'altra a quest'altro cliente e un'altra ancora a quest'altro cliente qui e, come vedete, le diverse porte sono tenute in modi diversi. Ad esempio, qui c'è un transponder e qui no. Il router Ip ha un proprio OLT e quindi invia un segnale ottico al terminale della linea ottica.
 Il cliente invia alla rete ottica un lambda che non è conforme a quello utilizzato nella rete ottica. Per questo motivo, il transponder deve prendere in ingresso questo segnale ottico, convertirlo nel dominio elettrico e fare due cose diverse:
-1. Centrare il segnale nella lunghezza d'onda di 1,5 micrometri (questo è il lambda-in)
-2. Aggiungere l'overhead 
+8. Centrare il segnale nella lunghezza d'onda di 1,5 micrometri (questo è il lambda-in)
+9. Aggiungere l'overhead 
 
 
 
@@ -218,7 +214,6 @@ Element $1$ must be able to recover this signal here so the multiplex send it fr
 
 These type of connections can't be realized through interconnection of the ports with fibers because it would be fixed. We must have a physical structure that is able to adapt is behavior depending on our goal.
 
-
 How would you change the journey of a light ray, and to force it to go in a different direction with respect to the one it is currently going?
 The answer to this question is: thanks to the "==Reflection phenomenon=="
 
@@ -228,7 +223,7 @@ There are other functions that OXC does: **Grooming**: multiplexing and grooming
 
 Il **Grooming** si riferisce alla capacità di **multiplexare** e **groomare** (ovvero, ottimizzare e organizzare) il traffico all'interno di una rete ottica. In pratica, permette di **combinare più flussi di traffico** su una singola connessione ottica, migliorando l'efficienza e la gestione della rete.
 
-Nel caso dell'OXC, il grooming viene fatto con una **granularità molto fine**, ovvero gestendo il traffico a livelli molto dettagliati. Questo permette di **ottimizzare il flusso dei dati** attraverso la rete, indirizzando e commutando il traffico in modo più efficiente
+Nel caso dell'OXC, il grooming viene fatto con una **granularità molto fine**, ovvero gestendo il traffico a livelli molto dettagliati. Questo permette di **ottimizzare il flusso dei dati** attraverso la rete, indirizzando e commutando il traffico in modo più efficiente.
 
 ![[WhatsApp Image 2024-12-08 at 17.31.28.jpeg]]
 
@@ -269,10 +264,21 @@ What are the points where we need the electronic functions? There are essentiall
 >Electronic is used for regeneration purposes
 
 ### Signal Regeneration Types
-Electronic regenerators reduce the transparency of the network. Three types of electronic regeneration techniques for digital data:
-- 1R: Regeneration (Can be seen as an Optical Amplifier)
-- 2R: Regeneration with reshaping
-- 3R: regeneration with retiming and reshaping
+L'immagine spiega i tre tipi di rigenerazione del segnale nelle reti di trasporto ottico, ovvero le tecniche utilizzate per mantenere l'integrità dei segnali digitali trasmessi su lunghe distanze.
+Nelle reti di trasporto ottico, i segnali subiscono degradazione a causa di attenuazione, dispersione e rumore. Per contrastare questo fenomeno, si utilizzano i rigeneratori elettronici, che possono essere di tre tipi:
+
+- **1R (Amplificazione):**
+  - Amplifica il segnale in modo ottico.
+  - Non corregge distorsioni o jitter.
+
+- **2R (Reshaping):**
+  - Converte il segnale in dominio elettrico.
+  - Rimodella il segnale per ridurre distorsioni e jitter (senza ripristino del timing).
+
+- **3R (Retiming e Reshaping):**
+  - Esegue il rimodellamento e il ripristino del timing.
+  - Garantisce la massima integrità del segnale per lunghe distanze.
+
 
 ![[Pasted image 20241209171557.png]]
 ## Network Evolution
@@ -315,7 +321,7 @@ From image A to image C we have seen three different models of 1st generation op
  **Image d**: A 2nd generation WDM system with optical amplifiers instead of regenerators. Different lasers share the same p2p link through a multiplexer that sends a single light ray containing all the several colors (lambdas). The degradation is so small that amplification can be performed directly in the optical domain. This is the most transparent of the systems.
 ## Control and Management
 
-_Control_: we refer to control plane (routing). In this case it will be that function that is in charge of establishing the connections. Find the light path and find the suitable wavelength to carry a a client signal.
+_Control_: we refer to control plane (routing). In this case it will be that function that is in charge of establishing the connections. Find the light path and find the suitable wavelength to carry a client signal.
 
 _Management_: Part of the network that we use to make configuration. (assign ip to interface, configure routing protocols, all the things that we do in khatara)
 
@@ -332,8 +338,6 @@ Client layers can specify to the optical layer the following services during lig
 - the targeted Bit Error Rate (BER). This is about quality of services.
 - the level of protection against failure events (if fiber fails there is a service disruption in the client layer, meaning that i see that logical connection fall down). Two ways to recover from it. Maybe i'm a customer, a client that is able to deal with failures.
 - requirements related to jitter and maximum end to end delay. 
-
-![[Pasted image 20241209161238.png]]
 
 ----
 ## Lezione 18 Novembre
@@ -363,17 +367,17 @@ title: Spiegazione in ITA
 ![[Pasted image 20241209161238.png]]
 
 
-
+----
 ## Performance and Fault Management
 To provide guaranteed **quality of service to end-users**, **constant monitoring of both performance** and **fault management** is essential. This process involves the following:
 
 ### Performance Monitoring
-1. monitoring performance parameters for all connections
-2. Taking necessary actions to ensure desired performance goals are met
+3. monitoring performance parameters for all connections
+4. Taking necessary actions to ensure desired performance goals are met
 ### Fault Management
-1. Detecting problems in the network.
-2. Alerting management systems appropriately through alarms.
-3. Attempting to recover lost services in case of a fault.
+5. Detecting problems in the network.
+6. Alerting management systems appropriately through alarms.
+7. Attempting to recover lost services in case of a fault.
 
 ## Bit Error Rate (BER) and Optical Trace
 
@@ -382,11 +386,7 @@ To provide guaranteed **quality of service to end-users**, **constant monitoring
 - BER detection is only possible when the signal is in the **electrical domain**, typically at regenerator or transponder locations.
 - Overhead inserted in OTN (Optical Transport Network) frames, consisting of parity check bytes, enables BER computation.
 ### Optical Trace
-Lightpaths traverse multiple nodes and multiple cards within the equipment at each node.
-A **unique identifier**, called the optical path trace, is associated with each lightpath.
-This trace helps the management system identify, verify, and manage lightpath
-connectivity.
-The trace contains at least the following four values:
+I percorsi luminosi attraversano più nodi e più schede all'interno delle apparecchiature di ciascun nodo. A ogni percorso luminoso è associato un **identificatore unico**, chiamato traccia del percorso ottico. Questa traccia aiuta il sistema di gestione a identificare, verificare e gestire la connettività dei percorsi luminosi. The trace contains at least the following four values:
 1. ID of the client sender.
 2. ID of the client receiver.
 3. ID of the transponder on the left side.
@@ -417,20 +417,20 @@ network with 32 lightpaths on a given link, each traversing two intermediate nod
 ### Pilot Tone
 Il **Pilot Tone** è un segnale utilizzato nelle reti ottiche per il **monitoraggio e la gestione dei guasti**. Ecco come funziona, spiegato in parole semplici:
 
-1. **Posizionamento nel "gap" tra i segnali**: Ogni lunghezza d'onda, cioè ogni canale di comunicazione, è centrata su una certa frequenza. Tra questi segnali ci sono degli spazi vuoti, chiamati **gap**. Il Pilot Tone viene posizionato in uno di questi spazi vuoti, in modo che non interferisca con i segnali di comunicazione principali.
+5. **Posizionamento nel "gap" tra i segnali**: Ogni lunghezza d'onda, cioè ogni canale di comunicazione, è centrata su una certa frequenza. Tra questi segnali ci sono degli spazi vuoti, chiamati **gap**. Il Pilot Tone viene posizionato in uno di questi spazi vuoti, in modo che non interferisca con i segnali di comunicazione principali.
     
-2. **Bassa potenza e bassa velocità**: Il Pilot Tone viene trasmesso con una potenza molto bassa e una bassa velocità di trasmissione dati. Questo è sufficiente per svolgere la sua funzione di monitoraggio senza sovraccaricare la rete.
+6. **Bassa potenza e bassa velocità**: Il Pilot Tone viene trasmesso con una potenza molto bassa e una bassa velocità di trasmissione dati. Questo è sufficiente per svolgere la sua funzione di monitoraggio senza sovraccaricare la rete.
     
-3. **Codifica dei messaggi**: I messaggi di controllo e monitoraggio vengono codificati in **binario** (0 e 1), poi vengono modulati e trasformati in segnali ottici che vengono inviati attraverso la banda del Pilot Tone.
+7. **Codifica dei messaggi**: I messaggi di controllo e monitoraggio vengono codificati in **binario** (0 e 1), poi vengono modulati e trasformati in segnali ottici che vengono inviati attraverso la banda del Pilot Tone.
     
-4. **Monitoraggio dei guasti**: Il Pilot Tone viene aggiunto come un "sovraccarico" (overhead) al **Canale Ottico** (OCH) dal transponder, e viene interrotto alla fine del percorso. Il suo scopo principale è quello di monitorare la qualità del segnale e rilevare eventuali guasti o errori nel segnale del client (ad esempio, nel traffico di dati).
+8. **Monitoraggio dei guasti**: Il Pilot Tone viene aggiunto come un "sovraccarico" (overhead) al **Canale Ottico** (OCH) dal transponder, e viene interrotto alla fine del percorso. Il suo scopo principale è quello di monitorare la qualità del segnale e rilevare eventuali guasti o errori nel segnale del client (ad esempio, nel traffico di dati).
 
 ### Optical Supervisory Channel (OSC)
 L'**Optical Supervisory Channel (OSC)** è un canale dedicato al **monitoraggio e al controllo** delle reti ottiche, utilizzato per garantire la salute e l'affidabilità della fibra ottica. Ecco come funziona, spiegato in modo semplice:
 
-1. **Lunghezza d'onda riservata**: L'OSC utilizza una **lunghezza d'onda riservata**, cioè una frequenza specifica nella banda ottica, che non è utilizzata per il traffico dati del cliente. Questo gli permette di funzionare indipendentemente dai segnali principali di comunicazione.
+9. **Lunghezza d'onda riservata**: L'OSC utilizza una **lunghezza d'onda riservata**, cioè una frequenza specifica nella banda ottica, che non è utilizzata per il traffico dati del cliente. Questo gli permette di funzionare indipendentemente dai segnali principali di comunicazione.
     
-2. **Monitoraggio della fibra**: La principale funzione dell'OSC è quella di **monitorare la salute della fibra ottica**. In pratica, può rilevare problemi fisici nella fibra stessa, come guasti, degrado del segnale o altre anomalie che potrebbero influire sulla qualità della comunicazione.
+10. **Monitoraggio della fibra**: La principale funzione dell'OSC è quella di **monitorare la salute della fibra ottica**. In pratica, può rilevare problemi fisici nella fibra stessa, come guasti, degrado del segnale o altre anomalie che potrebbero influire sulla qualità della comunicazione.
 
 
 > OSC ha un canale dedicato separato, utilizzato per il monitoraggio e la gestione della rete ottica nel suo complesso.
@@ -440,14 +440,14 @@ L'**Optical Supervisory Channel (OSC)** è un canale dedicato al **monitoraggio 
 
 ![[Pasted image 20241212125729.png]]
 
-6) The source node ask to the network the creation of a new circuit
-8) The network compute a path from the source to the destination node
-5) The network check if, in each link of the path, there is an available sub-channel
-3) The clients are notified that the circuit is up 
-2) New rules are inserted in the switching table of the network nodes
-1) the communication happens
-4) The network monitors the circuit
-7) The network tears down the circuit 
+11) The source node ask to the network the creation of a new circuit
+12) The network compute a path from the source to the destination node
+13) The network check if, in each link of the path, there is an available sub-channel
+14) The clients are notified that the circuit is up 
+15) New rules are inserted in the switching table of the network nodes
+16) the communication happens
+17) The network monitors the circuit
+18) The network tears down the circuit 
 
 
 ![[Pasted image 20241213162918.png]]

@@ -1,4 +1,4 @@
-upGenerals must reach consensus: attack or retreat?
+Generals must reach consensus: attack or retreat?
 ![[184.png]]
 
 >Reach a consensus on what to do. 
@@ -160,10 +160,10 @@ to others (broadcast). Each synchronous protocol (or algorithm) can be expressed
 
 ![[339.png]]
 
-Consensus FIP - ASSUME you cannot used processes ID in the algorithm:
-- Broadcast my set of proposed values (initially, just my value) to all at the beginning of round $r$
-- Collect all messages at the end of round $r$ and updates proposed value as union of the received message.
-- At round $r=k$ take the maximum value in the proposed value set and decides.
+Consenso FIP - ASSUMERE di non poter utilizzare i processi ID nell'algoritmo:
+- Trasmettere il mio insieme di valori proposti (inizialmente solo il mio valore) a tutti all'inizio del round $r$.
+- Raccogliere tutti i messaggi alla fine del round $r$ e aggiornare il valore proposto come unione dei messaggi ricevuti.
+- Al round $r=k$ prende il valore massimo nell'insieme dei valori proposti e decide.
 
 ![[340.png]]
 

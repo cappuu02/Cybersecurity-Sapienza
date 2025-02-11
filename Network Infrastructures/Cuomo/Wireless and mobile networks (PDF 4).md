@@ -93,7 +93,7 @@ Encoding" inner product
 Decoding: Summed inner-product: (encoded data) X (Chipping sequence)
 
 ### Two sender Interface
-![[Cybersecurity-Sapienza/Network Infrastructures/images/41.png]]
+![[Network Infrastructures/images/41.png]]
 
 
 
@@ -163,7 +163,7 @@ return ACK after SIFS (ACK needed due to hidden terminal problem)
 
 ## Advanced Capablities
 
-****Adattamento della velocità**  
+**Adattamento della velocità**  
 La velocità di trasmissione viene regolata dinamicamente in base alle variazioni dell'SNR (rapporto segnale-rumore) dovute agli spostamenti del cellulare:
 
 1. **SNR basso** → **BER alto** (aumento degli errori di trasmissione).
@@ -195,7 +195,7 @@ the solution for wide-area mobile Internet.
 
 ## Elements of 4G LTE Architecture
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/106.png]]
+![[Network Infrastructures/images/106.png]]
 **Mobile Device (UE)**
 Smartphone, tablet, laptop with 4G LTE radio
 Identità internazionale dell'abbonato mobile (IMSI) a 64 bit, memorizzata sulla scheda SIM (Subscriber  Identity Module) della scheda SIM
@@ -207,8 +207,7 @@ Coordina l'autenticazione dei dispositivi con altri elementi della rete.
 Svolge un ruolo attivo nella mobilità dell'utente, collaborando con le stazioni base vicine per ottimizzare l'uso delle risorse radio.
 
 **Home Subscriber Service (HSS)**
-Memorizza l'**IMSI**, ovvero la SIM e conserva informazioni sul piano tariffario dell-abbonato. Fornisce le credenziali e i chiavi crittografiche necessarie per autenticare il dispositivo mobile.
-
+Memorizza l'**IMSI**, ovvero la SIM e conserva informazioni sul piano tariffario dell'abbonato. Fornisce le credenziali e le chiavi crittografiche necessarie per autenticare il dispositivo mobile.
 
 Collabora con l'MME (Mobility Management Entity) per l'autenticazione dei dispositivi.
 
@@ -224,7 +223,7 @@ Situati lungo il percorso dei dati da/verso i dispositivi mobili e Internet.
 Il P-GW funge da gateway per la rete cellulare, fornendo il servizio di NAT (Network Address Translation).
 
 ## LTE: data plane control plane separation
-![[Cybersecurity-Sapienza/Network Infrastructures/images/107.png]]
+![[Network Infrastructures/images/107.png]]
 **Control plane**: gestisce e controlla il comportamento della rete.
 - prende decisioni sul routing, gestisce autenticazione ed autorizzazione e stabilisce/termina connessioni (OSPF, BGP)
 - P-GW: connessione con l'esterno.
@@ -239,9 +238,9 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 ```
 
 ### First Hop
-![[Cybersecurity-Sapienza/Network Infrastructures/images/108.png]]
+![[Network Infrastructures/images/108.png]]
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/109.png]]
+![[Network Infrastructures/images/109.png]]
 - **Downstream channel**: Trasmissione dai ripetitori (base station) verso il dispositivo. Utilizza tecniche come il Frequency Division Multiplexing (FDM) e il Time Division Multiplexing (TDM) all'interno di canali.
 - **Upstream**: Trasmissione dal dispositivo verso la base station. Simile a OFDM per ottimizzare l'uso delle frequenze.
 
@@ -251,7 +250,7 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 >Supporting mobility: only tunneling endpoints change when mobile user moves
 
 ### LTE data plane: associating with a BS
-![[Cybersecurity-Sapienza/Network Infrastructures/images/110.png]]
+![[Network Infrastructures/images/110.png]]
 1. La BS trasmette il segnale di sincronizzazione primario ogni 5 ms su tutte le frequenze. 
 	- Le BS di più vettori possono trasmettere segnali di sincronizzazione. 
 2. il cellulare trova un segnale di sincronizzazione primario, quindi individua il secondo segnale di sincronizzazione su questa frequenza. 
@@ -261,7 +260,7 @@ Il **Control Plane** definisce come i dati debbano essere instradati, mentre il 
 4. sono necessari altri passaggi per l'autenticazione, la creazione dello stato e la configurazione del piano dati. 
 
 ### LTE mobiles Sleep Modes
-![[Cybersecurity-Sapienza/Network Infrastructures/images/111.png]]
+![[Network Infrastructures/images/111.png]]
 As in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve battery:
 - Light Sleep: After 100's msec of inactivity
 	- wake up periodically (100’s msec) to check for downstream transmissions
@@ -269,8 +268,7 @@ As in WiFi, Bluetooth: LTE mobile may put radio to “sleep” to conserve batte
 	- mobile may change cells while deep sleeping (nee to re-establish association)
 
 ## Global cellular network: a network of IP networks
-
-![[Cybersecurity-Sapienza/Network Infrastructures/images/112.png]]
+![[Network Infrastructures/images/112.png]]
 
 ## 5G Part
 
@@ -283,60 +281,57 @@ Frequenze a onde millimetriche: velocità di trasmissione dati molto più elevat
 - Celle Pico: diametro delle celle di 10-100 m
 - È necessaria una distribuzione massiccia di nuove stazioni base
 ## Wireless Mobility
-We are interested in connections where the devices moves amoung APs in the same provider network and among multiple provider networks.
+Siamo interessati a connessioni in cui i dispositivi si spostano tra gli AP della stessa rete di provider e tra più reti di provider.
 
-The approach to solve the mobility problem are 
-- **indirect routing**: Communication from correspondent to mobile goes through home network gateway
-- **direct routing**: the correspondent gets foreign address of mobile, and send directly.
-It's important to specificy the difference between Home network and visited network
+Gli approcci per risolvere il problema della mobilità sono:
+- **Instradamento indiretto**: La comunicazione dal corrispondente al cellulare passa attraverso il gateway della rete domestica.
+- **direct routing**: il corrispondente ottiene l'indirizzo estero del cellulare e lo invia direttamente. È importante specificare la differenza tra rete domestica e rete visitata.
 
-**home network** is the network of the isp you have a service plan with (paid service eg. vodafone, tim)
+La **rete domestica** è la rete dell'isp con cui si ha un piano di servizio (servizio a pagamento, ad esempio vodafone, tim).
 
-**visited network** are any other network. Nowadays providers have agreements to provide internet connections even if you are not in your home network.
+**rete visitata** è qualsiasi altra rete. Al giorno d'oggi i provider hanno stipulato accordi per fornire connessioni a Internet anche se non ci si trova nella propria rete domestica.
 
->The notion of global home network is specific for mobile network.
+>Il concetto di rete domestica globale è specifico per la rete mobile.
 
-![[Cybersecurity-Sapienza/Network Infrastructures/images/113.png]]
+![[Network Infrastructures/images/113.png]]
 When your mobile phone enter another country for example, usually it receives a message for roaming from your home network operator. The one device that informs your home network is the mobility manager.
 
-## Indirect routing
-The data you receive with your phone during roaming does this:
+## Routing indiretto
+I dati che si ricevono con il telefono durante il roaming fanno questo:
+- l'altro host utilizza l'indirizzo di casa come datagram
+- il gateway di casa riceve il datagramma, lo inoltra al gateway remoto
+- il router del gateway remoto visitato inoltra al cellulare
+- Il router del gateway visitato inoltra la risposta dal cellulare alla rete domestica o direttamente all'altro host.
 
-- other host uses home address as datagram
-- home gateway receives datagram, forwards to remote gateway
-- visited remote gateway router forwads to mobile
-- visitede gateway router forwards reply from the mobile to the home network or directly to the other host
 
+Questa strategia è chiamata instradamento indiretto, può essere inefficiente se i due dispositivi si trovano nella stessa rete, ma risolve il problema di mantenere una connessione (ad esempio TCP) quando si passa dalla rete domestica a quella visitata.
 
-so this strategy is called indirect routing, it may be inefficient if the two devices are in the same network but solves the problem to maintain a connection (eg. TCP) when moving from home network to a visited one.
+>È trasparente per il corrispondente.
+## Instradamento diretto
+Il flusso di dati è questo:
 
->This is transparent to the correspondent.
-## Direct routing
-Data flow is this:
+- il corrispondente contatta la rete domestica del cellulare e ottiene la rete visitata dove si trova il cellulare.
+- invia i dati direttamente all'indirizzo della rete visitata
+- il gateway della rete visitata li inoltra al cellulare
+- Le risposte del cellulare passano solo attraverso il gateway della rete visitata.
 
-- correspondent contacts home network of the mobile and gets the visited network where the mobile is.
-- sends data directly to the visited network address
-- visited network gateway forwards them to the the mobile
-- replies from the mobile pass only through the visited network gateway
-
->Not inefficient unlike indirect routing
-   Not transparent to the correspondent since he must gets the foreign address.
-
+>Non è inefficiente, a differenza del routing indiretto.
+   Non è trasparente per il corrispondente, poiché deve ottenere l'indirizzo estero.
 ## Mobility in 4G networks
-![[Cybersecurity-Sapienza/Network Infrastructures/images/114.png]]
+![[Network Infrastructures/images/114.png]]
 ## Configuring LTE control-plane elements
-![[Cybersecurity-Sapienza/Network Infrastructures/images/115.png]]
+![[Network Infrastructures/images/115.png]]
 Mobile communicates with local MME via BS control-plane channel.
 MME uses mobile’s IMSI info to contact mobile’s home HSS.
-	It check the euthentication, encryption, network service information...
-BS, mobile selezionare i parametri per il canale radio del piano dati BS-mobile
+	It check the authentication, encryption, network service information...
+
 
 ## Configuring data-plane tunnels for mobile
-![[Cybersecurity-Sapienza/Network Infrastructures/images/116.png]]
+![[Network Infrastructures/images/116.png]]
 - **S-GW to BS tunnel**: when mobile changes base stations, simply change endpoint IP address of tunnel
 - **S-GW to home P-GW tunne**l: implementation of indirect routing
 - **tunneling via GTP**: mobile’s datagram to streaming server encapsulated using GTP inside UDP
 
 ## Handover between BSs in same cellular network
-![[Cybersecurity-Sapienza/Network Infrastructures/images/117.png]]
-![[Cybersecurity-Sapienza/Network Infrastructures/images/118.png]]
+![[Network Infrastructures/images/117.png]]
+![[Network Infrastructures/images/118.png]]

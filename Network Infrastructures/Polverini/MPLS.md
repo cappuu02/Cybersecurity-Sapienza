@@ -94,7 +94,7 @@ Traffic flow is described by:
 ![[Pasted image 20241208000654.png]]
 >We can have multiple tunnels. (overlay model)
 
-			How can we enforce the packets to follow a different path
+How can we enforce the packets to follow a different path
 - Classification performed at this ingress node
 - Use different labels
 
@@ -129,7 +129,7 @@ Structure of MPLS Header. The MPLS label is carried in a MPLS header (also known
 - **Exp**: used for different purpose (assign a level of quality service to the quality).
 - **S**: flag:
 	- 1 = next header is IP header
-	- 0 = is more than MPLS
+			- 0 = is more than MPLS
 - **TTL**: decrement by 1 when packet is sent.
 
 ## Terminology for MPLS Network
@@ -208,8 +208,6 @@ We have two different FECS the blu and the green one.
 The blue one is associated with label 25 to the top link and the green is associated with label 35 to the bottom link. this two packets are MPLS packets. There is an internal node that perform the second push operation, we are adding one more label which in this case is label 42 (this label is used for both the packets). With a single line in the MPLS table we can switch those packets from input to output. 
 
 ## VPN, Traffic Engineering and Fast Re-Route
->Describe the implementation of a VPN based on MPLS/BGP technology.
-
 Service that we can implement with MPLS domain.
 
 Let us consider a company that needs to run an IP Intranet. A Virtual Private Network (VPN) offers a separated (private) network over a shared transport infrastructure.  How can we use an IP based network as transport infrastructure? The two main features of a VPN services are:
@@ -260,12 +258,11 @@ AS sta per Autonomous system (sistema autonomo). Dopo gli aggiornamenti BGP, $R2
 ### Move 3 **Use MPLS encapsulation among PEs**
 
 ![[Pasted image 20241209151554.png]]
-Finora, con le prime due mosse, il pacchetto trasporta ancora indirizzi privati. Ora è il momento di creare un percorso a commutazione di etichetta. Se usiamo le etichette, non importa quale sia l'indirizzo, anche se privato, il router non le leggerà; leggerà solo le etichette. C'è un problema: supponiamo di avere questa situazione:
+Finora, con le prime due mosse, il pacchetto trasporta ancora indirizzi privati. Ora è il momento di creare un MPLS tunnel. Se usiamo le label, non importa quale sia l'indirizzo, anche se privato, il router non le leggerà; leggerà solo le etichette. C'è un problema: supponiamo di avere questa situazione:
 
 Il nodo esegue l'operazione POP e si ritrova con un pacchetto IP nudo, quindi deve usare solo l'indirizzo IP per consegnarlo. Il problema è che c'è un'ambiguità, la rete finale ha lo stesso indirizzo IP, per risolvere il problema creiamo un trunk, con l'etichetta interna che ci dice quale delle due è la nostra destinazione giusta.
 
->**Trunk:**  
-	Un trunk rappresenta un percorso logico che collega il router eLER alla destinazione finale. Questo trunk è identificato da un'etichetta interna aggiuntiva.
+>**Trunk:**  Un trunk rappresenta un percorso logico che collega il router eLER alla destinazione finale. Questo trunk è identificato da un'etichetta interna aggiuntiva.
 
 C'è un ultimo problema da affrontare. Consideriamo questa situazione:
 ![[Pasted image 20241209142707.png]]

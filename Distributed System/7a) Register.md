@@ -85,7 +85,8 @@ If no precedence relation between two operations can be defined, they are said t
 - no failures 
 
 **Specification**: 
-- Liveness. Each operation eventually terminates ▪ Safety. Each read operation returns the last value written
+- Liveness. Each operation eventually terminates 
+- Safety. Each read operation returns the last value written
 
 ![[Distributed System/Images/86.png]]
 
@@ -153,7 +154,7 @@ Processes can crash but the crashes can be reliably detected by all the other pr
 
 Uses: 
 - Perfect failure detector 
-- Perfect Ppoint-to-point link
+- Perfect point-to-point link
 - Best effort broadcast
 
 Algorithm Idea: Each process stores a local copy of the register
