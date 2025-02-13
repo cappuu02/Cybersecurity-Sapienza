@@ -343,9 +343,7 @@ Client layers can specify to the optical layer the following services during lig
 ## Lezione 18 Novembre
 
 ## Multi-Layered Network
-The optical network consists of a multi-layered infrastructure designed to handle various
-challenges such as bit-error checking, recovery, routing, and transmission. It includes the
-following layers:
+The optical network consists of a multi-layered infrastructure designed to handle various challenges such as bit-error checking, recovery, routing, and transmission. It includes the following layers:
 
 ![[Pasted image 20241211170703.png]]
 ```ad-info
@@ -428,9 +426,9 @@ Il **Pilot Tone** è un segnale utilizzato nelle reti ottiche per il **monitorag
 ### Optical Supervisory Channel (OSC)
 L'**Optical Supervisory Channel (OSC)** è un canale dedicato al **monitoraggio e al controllo** delle reti ottiche, utilizzato per garantire la salute e l'affidabilità della fibra ottica. Ecco come funziona, spiegato in modo semplice:
 
-9. **Lunghezza d'onda riservata**: L'OSC utilizza una **lunghezza d'onda riservata**, cioè una frequenza specifica nella banda ottica, che non è utilizzata per il traffico dati del cliente. Questo gli permette di funzionare indipendentemente dai segnali principali di comunicazione.
+1. **Lunghezza d'onda riservata**: L'OSC utilizza una **lunghezza d'onda riservata**, cioè una frequenza specifica nella banda ottica, che non è utilizzata per il traffico dati del cliente. Questo gli permette di funzionare indipendentemente dai segnali principali di comunicazione.
     
-10. **Monitoraggio della fibra**: La principale funzione dell'OSC è quella di **monitorare la salute della fibra ottica**. In pratica, può rilevare problemi fisici nella fibra stessa, come guasti, degrado del segnale o altre anomalie che potrebbero influire sulla qualità della comunicazione.
+2. **Monitoraggio della fibra**: La principale funzione dell'OSC è quella di **monitorare la salute della fibra ottica**. In pratica, può rilevare problemi fisici nella fibra stessa, come guasti, degrado del segnale o altre anomalie che potrebbero influire sulla qualità della comunicazione.
 
 
 > OSC ha un canale dedicato separato, utilizzato per il monitoraggio e la gestione della rete ottica nel suo complesso.
@@ -440,14 +438,14 @@ L'**Optical Supervisory Channel (OSC)** è un canale dedicato al **monitoraggio 
 
 ![[Pasted image 20241212125729.png]]
 
-11) The source node ask to the network the creation of a new circuit
-12) The network compute a path from the source to the destination node
-13) The network check if, in each link of the path, there is an available sub-channel
-14) The clients are notified that the circuit is up 
-15) New rules are inserted in the switching table of the network nodes
-16) the communication happens
-17) The network monitors the circuit
-18) The network tears down the circuit 
+3) The source node ask to the network the creation of a new circuit
+4) The network compute a path from the source to the destination node
+5) The network check if, in each link of the path, there is an available sub-channel
+6) The clients are notified that the circuit is up 
+7) New rules are inserted in the switching table of the network nodes
+8) the communication happens
+9) The network monitors the circuit
+10) The network tears down the circuit 
 
 
 ![[Pasted image 20241213162918.png]]

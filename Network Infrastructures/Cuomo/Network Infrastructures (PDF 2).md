@@ -37,7 +37,7 @@ An ADSL local loop is for the exclusive use of the subscriber and provides for p
 >Higher bandwidth
 >Use two separate frequency bands (upstream and downstream bands) 
 
->Asymmetric because downstream is higer then downstream.
+>Asymmetric because downstream is higer then upstream.
 ### ADSL frequency bands
 Before, in the past, we had only 4Khz of bandit.
 Now they extend the bandit.
@@ -135,18 +135,17 @@ to phone / DSL modem.
 
 ## ADSL Modulations
 
-### DMT (discrete multi-tone)
+### DMT (discrete multiple tone)
 Un requisito obbligatorio per la trasmissione è che l'attenuazione sia piatta.
 
 Dividere la larghezza di banda operativa ADSL in sottocanali molto piccoli.
-- Al centro di ogni sottocanale dati vengono utilizzate portanti discrete (o toni).
+- Al centro di ogni sottocanale dati vengono utilizzate portanti discrete (o tone).
 - Queste portanti vengono utilizzate per trasmettere i dati in modo indipendente in ogni sottoportante mediante una specifica modulazione QAM.
 
->based on FDM to support DSL. Attenuation and channel behavior is completely different.
+>based on FDM to support XDSL. Attenuation and channel behavior is completely different.
 
-Channel behavior: 
-Nice idea: instead of considering this bandit has unique bandit let has divide this bandit in multiple pieces. Each of this has 4 Khz. 
-- Multiple transmission contemporary TON in the same frequency.
+Each of this subchannel has 4 Khz. 
+- Able to allow multiple transmission contemporary  in the same frequency.
 ![[Network Infrastructures/images/27.png]]
 
 Independent subchannels can be manipulated individually with consideration of the line conditions
@@ -203,7 +202,7 @@ There is a frequency or a small frequency band of 4 kHz where the attenuation is
 - The signal power for each subcarrier is determined as the depth of the liquid in a pool
 - Conoscendo i valori discreti di $p(f_k)$ per ogni sottoportante $f_k$ si può dedurre il numero di bit per simbolo da associare alla costellazione QAM utilizzata in ogni sottocanale
 ![[Network Infrastructures/images/29.png]]
-![[Cybersecurity-Sapienza/Network Infrastructures/images/105.png]]
+![[Network Infrastructures/images/105.png]]
 
 
 >More water $\to$ the noise is lower.

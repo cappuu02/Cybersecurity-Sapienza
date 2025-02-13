@@ -4,20 +4,103 @@
     "type": "split",
     "children": [
       {
-        "id": "69e10446b7c59e6c",
+        "id": "f9c72906b0a0b22a",
         "type": "tabs",
         "children": [
           {
-            "id": "b6b7e0d6421d6018",
+            "id": "a70a414c619c33a0",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Answer & Question.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Answer & Question"
+            }
+          },
+          {
+            "id": "b72bd197e3d919f3",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Network Functional Area (PDF1)"
+            }
+          },
+          {
+            "id": "c974d9bf4674ae8c",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Network Infrastructures (PDF 2)"
+            }
+          },
+          {
+            "id": "05a832b307fd517f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Fiber Part (PDF 3)"
+            }
+          },
+          {
+            "id": "8364f4e8e2ad8833",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "Wireless and mobile networks (PDF 4)"
+            }
+          },
+          {
+            "id": "d5b1563977b38f0e",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "type": "image",
+              "state": {
+                "file": "Network Infrastructures/images/Pasted image 20250213102746.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20250213102746"
             }
           }
-        ]
+        ],
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -86,7 +169,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 211.500732421875
+    "width": 279.5004348754883
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -171,46 +254,45 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "b6b7e0d6421d6018",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
+    "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
+    "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
+    "Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
+    "Network Infrastructures/Answer & Question.md",
+    "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
+    "Network Infrastructures/Polverini/MPLS (4).md",
+    "Network Infrastructures/Polverini/IGP & BGP (5, Last).md",
+    "Network Infrastructures/images/Immagine WhatsApp 2025-02-13 ore 11.19.03_7337b608.jpg",
+    "fffffff.jpg",
+    "Network Infrastructures/images/Pasted image 20250213102746.png",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "Distributed System/11) Software Replication in Synchronous systems.md",
+    "Distributed System/7a) Register.md",
+    "Distributed System/7b) Register.md",
+    "Distributed System/6) Ordered Communications.md",
+    "Distributed System/2) Time Models.md",
     "Distributed System/13b) Synchronous Byzantine Agreement.md",
+    "Distributed System/12) Raft.md",
+    "Network Infrastructures/Polverini/Kathara commands.md",
+    "Network Infrastructures/images/Immagine WhatsApp 2025-02-12 ore 10.26.20_00d0e6d1.jpg",
     "Untitled.md",
+    "Network Infrastructures/Polverini/test-optical-network-2023.pdf",
     "Byzantine Consensus.md",
     "Distributed System/13a) Byzantine Faults.md",
     "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
-    "Distributed System/2) Time Models.md",
     "Distributed System/3) Time in Distributed System.md",
     "Distributed System/4) Time in Distributed System II.md",
-    "Distributed System/5) Broadcasting & Quorum.md",
-    "Network Infrastructures/Polverini/Inter Domain Routing and  Border Gateway Protocol.md",
-    "Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-    "Network Infrastructures/Polverini/MPLS.md",
-    "Network Infrastructures/Polverini/test-optical-network-2023.pdf",
-    "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
-    "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
-    "Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
-    "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
     "Distributed System/10) Ordered Communications 2.md",
     "Distributed System/8) Consensus.md",
-    "Distributed System/9) Paxos.md",
-    "Distributed System/7b) Register.md",
-    "Distributed System/7a) Register.md",
-    "Distributed System/6) Ordered Communications.md",
-    "Distributed System/11) Software Replication in Synchronous systems.md",
-    "Distributed System/1a) Introduction.md",
-    "Distributed System/12) Raft.md",
-    "Network Infrastructures/Polverini/Kathara commands.md",
     "Distributed System/Images/345.png",
     "Distributed System/Images/344.png",
     "Distributed System/Images/343.png",
     "Distributed System/Images/342.png",
     "Distributed System/Images/341.png",
     "Distributed System/Images/340.png",
-    "Distributed System/Images/339.png",
     "DS-2223-Byzantine_agreement.pdf",
-    "Distributed System/Images/Pasted image 20250202160503.png",
-    "Distributed System/Images/Pasted image 20250202160335.png",
-    "Distributed System/Images/Pasted image 20250202160249.png",
     "Distributed System/Images/324png",
     "Distributed System/Ale DS/12/12. RAFT.pdf",
     "Distributed System/Ale DS/11/11. Replication.pdf",

@@ -126,7 +126,7 @@ All packets carried in EPON are encapsulated in Ethernet frames.
 4. bus topology
 
 ## WDM-PON
-![[Cybersecurity-Sapienza/Network Infrastructures/images/88.png]]
+![[Network Infrastructures/images/88.png]]
 share multiple wavelength in the same fiber (multimodal fiber). we dedicate each color to each end user. At the receiver side we need to have a filter able to switch and recognized a color respect to the other.
 
 **WDM modulate source**: wich generates optical signal at different wavelength.

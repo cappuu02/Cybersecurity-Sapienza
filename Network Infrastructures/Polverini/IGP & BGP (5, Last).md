@@ -57,8 +57,10 @@ Examples: RIP, BGP
 
 ```
 ## BGP
-BGP (Border gateway Protocol), the protocol commonly used for inter-domain routing, has well known security vulnerabilities. 
-BGP is the defacto Exterior Gateway Protocol (EGP) used in today’s global Internet. Although BGP is relatively simple in terms of its protocol design, its configuration is complex, and errors can have wide-reaching consequences, as they can impact the entire global network. BGP operates on the concept of Autonomous Systems (AS), with each AS representing a large network or a group of networks under a unified routing policy.
+Il **protocollo BGP (Protocollo di Gateway Esterno, acronimo di Border Gateway Protocol)** è il protocollo comunemente utilizzato per la gestione della rotta tra domini, e presenta notevoli vulnerabilità di sicurezza.
+
+Anche se il BGP è relativamente semplice dal punto di vista della sua progettazione del protocollo, la sua configurazione è complessa e gli errori possono avere conseguenze estreme, poiché possono influire su tutta rete globale. Il BGP funziona sulla base del concetto di Sistemi Autonomi (AS), con ogni AS che rappresenta una grande rete o un gruppo di reti sotto una politica di routing
+unitaria.
 
 ### AS (Autonomous Systems)
 ```ad-abstract
@@ -95,6 +97,14 @@ Ad esempio, nel caso di un dominio stub (AS1), che è un dominio foglia che tras
 
 ### Policy-Base Vs Distance-Based Routing
 ![[Network Infrastructures/images/124.png]]
+
+1. **Distance-Based Routing**: This policy relies exclusively on the number of **hops** (the number of routers traversed) to choose the shortest path. However, this method ignores commercial relationships between ISPs, which may have peering agreements, transit arrangements, or other restrictions.
+    
+2. **Policy-Based Routing**: BGP does not simply select the shortest path but follows policies defined by ISPs, which depend on economic agreements and routing preferences. Some paths may be avoided for economic or political reasons.
+    
+
+> **Distance-Based Routing** may seem more efficient in terms of hop count, but **Policy-Based Routing** is more realistic in the Internet world, where ISPs establish rules to optimize traffic based on economic and contractual interests.
+
 
 ### Optimizing Path Selection
 Quando si seleziona il percorso migliore per raggiungere una destinazione, è generalmente vantaggioso ridurre al minimo il numero di hop AS. Tuttavia, la scelta del percorso più breve non sempre porta a prestazioni ottimali. Infatti, il percorso con meno hop AS può passare attraverso una rete interna non ottimale (dove il SA non ha visibilità o controllo). Inoltre, i fornitori di rete possono limitare alcuni percorsi a causa di accordi o politiche commerciali, il che potrebbe indurre i pacchetti a seguire percorsi più lunghi ma più affidabili. Le decisioni di instradamento BGP sono influenzate dalle relazioni tra gli AS. Ad esempio, il traffico potrebbe essere instradato attraverso un percorso più lento se non esiste un accordo con un altro AS che offre un percorso più veloce.

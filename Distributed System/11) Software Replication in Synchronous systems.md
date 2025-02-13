@@ -216,12 +216,11 @@ Negative points:
 ![[272.png]]
 Client broadcast operations to all the replica's and every replica receive the operation from the client and execute it. Witch kind of broadcast is this that send the same operations to all? **Total Order**! Reliable broadcast is not enough because is possible that two operations are run in different order.
 
-▪There is no coordinator
-▪All replicas have the same role
-▪Each replica is deterministic. If any replica starts from the same
-state and receives the same input, they will produce the same
-output
-▪The above implies that if each replica executes the same list of
+- There is no coordinator
+- All replicas have the same role
+- Each replica is deterministic. If any replica starts from the same state and receives the same input, they will produce the same output
+
+The above implies that if each replica executes the same list of
 command, then the clients will receive the same response from all
 (non-faulty) replicas
 

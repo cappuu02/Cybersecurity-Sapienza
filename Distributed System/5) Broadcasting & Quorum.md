@@ -1,4 +1,4 @@
-l  **Topics that we touched in the previous slides**:
+l **Topics that we touched in the previous slides**:
 ![[Pasted image 20241016111120.png|500]]
 # Broadcasting
 ![[Distributed System/Images/79.png]]
