@@ -121,10 +121,10 @@ In raft an entry is committed when is on a majority of server.
 Abbiamo bisogno di una majority perchè se io invio il comando ai server replica questi lo visualizzano e poi si disconnettono il comando non è stato salvato.
 How many process can die? a minority!
 
->This definition of committed works only if the primary does not die. BUt for now it's fine.
+>This definition of committed works only if the primary does not die. But for now it's fine.
 
 ```ad-question
-Quando passiamo ad un nuovo term, i systm replica non dovrebbero avere tutti lo stesso contenuto? Il candidato che viene eletto come leader sarà quello che ha la log structure più aggiornata. Anche se non sono sincronizzate perfettamente tutte, comunque scegliamo, come leader, quella più aggiornata che contiene tutto!
+Quando passiamo ad un nuovo term, i systems replica non dovrebbero avere tutti lo stesso contenuto? Il candidato che viene eletto come leader sarà quello che ha la log structure più aggiornata. Anche se non sono sincronizzate perfettamente tutte, comunque scegliamo, come leader, quella più aggiornata che contiene tutto!
 
 ```
 

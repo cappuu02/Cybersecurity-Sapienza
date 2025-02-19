@@ -86,7 +86,7 @@ title: Waiting CRB Example
 
 ```
 
-## Advantages of ordered communication
+## Limitations of Causal communication
 Causal Order is not enough strong to avoid anomalies.
 
 Si considera un conto bancario replicato su due siti diversi (**R₁** e **R₂**).  
@@ -117,4 +117,4 @@ Total order would accept indeed a computation in which a process $p_i$ sends $n$
 
 The computation is totally ordered but it is not FIFO.
 ## Relationship Among BCAST Specifications
-![[Distributed System/Images/77.png]]
+![[Distributed System/Images/77.png]]![[Pasted image 20250214172846.png]]

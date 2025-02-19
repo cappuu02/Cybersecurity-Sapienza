@@ -185,13 +185,6 @@ While we keep:
 ### Our First Algorithm
 ![[Distributed System/Images/18.png]]
 
-▪I protocolli  in questo corso sono presentati in pseudo-codice
-▪Lo pseudo-codice riflette un modello di elaborazione reattiva in cui:
-	▪i componenti dello stesso processo comunicano scambiando eventi
-	▪l'algoritmo è descritto come un set di gestori di eventi
-	▪i gestori reagiscono agli eventi in arrivo e possono eventualmente innescare nuovi eventi.
-	▪I gestori sono atomici. Possono essere interrotti solo in caso di crash.
-
 Events:
 - **Request**: $<Send \mid q,m>$ send a message $m$ to process $q$.
 - **Indication**: $<Deliver \mid p,m>$ delivers message $m$ from process $p$.

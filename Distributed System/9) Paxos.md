@@ -208,6 +208,13 @@ If the acceptor receives an accept request $(ACCEPT, n , v$), it accepts the pro
 - se i processi sono due: assegno i round con pari e dispari
 - Se i processi sono $N>2$: utilizzo il modulo $N$
 
+## Algoritmo
+![[Pasted image 20250217170322.png]]
+![[Pasted image 20250217170346.png]]
+![[Pasted image 20250217170404.png]]
+
+
+
 
 **Dimostrazione di Paxos**
 Se un accettatore $a_i$ accetta una proposta $<num=r, val>$, diciamo che  
@@ -234,4 +241,4 @@ La dimostrazione procede per induzione sul numero di round:
 - **Ipotesi induttiva**: L'affermazione è corretta per i round $r = 1, 2, 3, \dots, i-1$.  
 - **Passo induttivo**: Analizziamo il round $r = i$. Sia $<r = j, v>$ il voto per il round più alto visto nell'insieme $Q$ (ricorda che $i > j$).  
 
-![[227.png]]
+

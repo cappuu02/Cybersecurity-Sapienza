@@ -200,8 +200,11 @@ $G = (V,E)$ is an arbitrary graph where $V$ is the set of edges and $E$ is the s
 ![[Pasted image 20241002181520.png|250]]
 
 We have teo different arbitrary graph:
-- **Tree Like**: server imposes its clock ![[Pasted image 20241002181626.png|250]]
-- **Fully Ditributed** : adjust the clock based on you neighbours ![[Pasted image 20241002181650.png|250]]
+- **Tree Like**: server imposes its clock 
+![[Pasted image 20241002181626.png|250]]
+
+- **Fully Ditributed** : adjust the clock based on you neighbours 
+![[Pasted image 20241002181650.png|250]]
 
 ### Global skew vs Local Skew
 

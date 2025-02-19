@@ -53,7 +53,7 @@ Assume we have single byzantine process and a crash-failure.
 Take even a single byzantine process. Assume it can send messages faking an arbitrary sender… then it can entirely decide the local view of a process p3 (when channels do not have bounds on delay).
 
 ![[311.png]]
-$P4$ è il processo bizantino che può impersonificare un sender ed inviare messaggi per contro di altri processi.
+$P4$ è il processo bizantino che può impersonificare un sender ed inviare messaggi per conto di altri processi.
 
 >So, Authentication is necessary.
 
@@ -127,14 +127,6 @@ Questo non soddisfa le proprietà dato che tre processi corretti consegno messag
 ![[321.png]]
 ![[322.png]]
 ![[Pasted image 20250201174046.png]]![[Pasted image 20250201174052.png]]
-You know that a correct can see at most one message Different! (one byz).
-1) `[m’,m’, m, m]` no deliv. (safe)
-2) `[m’,m,m,m]` ame deliv.(safe)
-3) `[m’,m,m]` (no del.) or `[m,m,m]` (same del).
-4) (impossible `[m’,m’,m]`) why?
-
-Why not $4$ echoes? If the byz does not echo (or does the echo of a different message) no one delivers even if sender is correct!
-
 #### Generalise
 What happens if $f$ is an arbitrary value? (assuming $f<n/3$). What is the threshold $k$ of echoes we have to see?
 
@@ -180,10 +172,10 @@ Un processo può **deliverare** $m$ solo dopo aver ricevuto **più di** $(N+f)/2
 - Poiché ci sono al massimo $f$ processi bizantini, l'intersezione di due quorums **contiene almeno un processo corretto**.
 
 #### **Dimostrazione della Consistenza**
-1. Supponiamo che un processo corretto $p$ consegni $m$. Ciò significa che ha ricevuto un **Byzantine quorum** di ECHO(m).
+1. Supponiamo che un processo corretto $p$ consegni $m$. Ciò significa che ha ricevuto un **Byzantine quorum** di `ECHO(m)`.
 2. Supponiamo che un altro processo corretto $p′$ consegni un altro messaggio $m′$.
 3. Poiché ogni Byzantine quorum ha un’intersezione di almeno $f+1$ processi, esiste almeno un processo corretto $p′$ comune tra i due quorums.
-4. Un processo corretto invia **un solo messaggio** ECHO. Quindi, se $p′$ ha inviato un ECHO per $m$, allora anche $p$ deve aver ricevuto mmm, garantendo che $m = m'$.
+4. Un processo corretto invia **un solo messaggio** ECHO. Quindi, se $p′$ ha inviato un ECHO per $m$, allora anche $p$ deve aver ricevuto $m$, garantendo che $m = m'$.
 
 >**Conclusione**: Non esistono due processi corretti che consegnano messaggi diversi.
 
@@ -215,15 +207,32 @@ P3: performs an "amplification" technique
 ![[325.png]]
 
 ##### Proof
-**Validity**: if the sender is correct at least n-f processes do the echo (all the correct) of $m$. For our discussion of the consistent byz. Cast, we know that all corrects will send ready messages. Thus each correct receives (at least) $2f+1$ ready for m and delivers.
+**Validity**: if the sender is correct at least $n-f$ processes do the echo (all the correct) of $m$. For our discussion of the consistent byz. Cast, we know that all corrects will send ready messages. Thus each correct receives (at least) $2f+1$ ready for m and delivers.
 
 **No duplication**: Immediate from the auth. channel
 
 **Integrity**: Immediate from the auth. channel
 
-**Consistency**: A correct process p sends a ready for m only in two cases:
-5) if it received from a quorum of echo.
-6) if it received f+1 ready for m.
-It is not possible that two correct for (1) send ready for messages different from m. For (2) is the same considering that at least one of that f+1 is correct. Thus no two corrects send ready for two different messages. Therefore, it is impossible that two corrects see 2f+1 ready for different messages (at lest f+1 of these 2f+1are correct)
+**Consistency**: 
+La proprietà di **Consistency** (o coerenza) garantisce che **nessun processo corretto possa inviare READY per due messaggi diversi**.
+
+La dimostrazione parte da due condizioni chiave in cui un processo corretto ppp invia un messaggio READY per un messaggio mmm:
+
+1. **Se riceve un quorum di messaggi ECHO per mmm**
+    - Per "quorum" si intende **N+12\frac{N+1}{2}2N+1​**, ovvero una maggioranza assoluta.
+    - Questo assicura che molti nodi abbiano già visto e supportato il messaggio.
+2. **Se riceve almeno f+1f+1f+1 messaggi READY per mmm**
+    - Tra questi f+1f+1f+1 READY, almeno **uno** deve provenire da un nodo corretto.
+    - Questo nodo corretto non avrebbe mai inviato READY se non avesse visto una diffusione affidabile del messaggio.
+
+🔹 **Dimostrazione dell'impossibilità di inconsistenza:**
+
+- Supponiamo per assurdo che due processi corretti p1p_1p1​ e p2p_2p2​ mandino READY per due messaggi diversi, m1m_1m1​ e m2m_2m2​.
+- Per farlo, devono aver ricevuto un **quorum di ECHO** o **almeno f+1f+1f+1 READY** per i rispettivi messaggi.
+- Ma se c’è un **quorum di ECHO per m1m_1m1​**, allora almeno metà dei nodi ha già visto m1m_1m1​, rendendo impossibile la diffusione indipendente di m2m_2m2​.
+- Inoltre, per la seconda condizione, almeno **uno degli f+1f+1f+1 nodi che mandano READY per m2m_2m2​ deve essere corretto**. Ma un nodo corretto non invierebbe mai READY per un messaggio se non avesse ricevuto un quorum di ECHO per quello stesso messaggio.
+- Quindi, un nodo corretto **non può mai inviare READY per due messaggi diversi**.
+
+💡 **Conclusione:** Se nessun nodo corretto invia READY per due messaggi diversi, allora è **impossibile** che due processi corretti vedano **2f+1 READY per due messaggi diversi**. **Coerenza garantita!** ✅
 
 **Totality**: A correct process p delivers if it sees 2f+1 ready for m. At least f+1 of these 2f+1 are correct. Therefore, any correct sees at least f+1 ready for m. This implies that any correct will amplify (if it does not send a ready upon receipt of a byzquorum of echo). There are at least 2f+1 corrects in our system, thus each correct will see at least 2f+1 ready for m, delivering.

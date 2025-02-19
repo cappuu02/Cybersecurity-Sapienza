@@ -118,16 +118,32 @@ $O(N^2)$ messages:
 ## Uniform Consensus Specification 
 ![[201.png]]
 
->Does the previous algorithms satisfy the Uniform Consensus specification?NO!
+```ad-question
+
+Does the previous algorithms satisfy the Uniform Consensus specification?
+
+No, non soddisfa lo uniform consensus perchè il processo p1 decide il valore 1 ed il processo p2 decide un valore differente ovvero 2. quindi abbiamo due processi diversi che hanno deciso valori diversi e questo non garantisce lo uniform consensus!
+```
+
+Il problema sta nel fatto che il leader decide troppo presto ed in anticipo dunque si potrebbe verificare questa situazione.
 
 ![[203.png]]
+
+
+```ad-success
+Soluzione: Il leader, prima di decidere un valore, invia una proposta ai processi e, finchè non ottiene indietro tutti gli ack non deciderà il valore! (il messaggio a p2 va perso).
+
+Sfrotunatamente il processo P1 fallisce, dunque inizia un nuovo round con nuovo leader P2. Dal processo P1 non era stato scelto alcun tipo di valore. IL porcesso P2 quindi manda la proposta, riceve gli ack e poi decide!
+
+```
+
+
 ![[205.png]]
 
 ### Uniform Hirerarchical consensus
 ![[206.png]]
 
 ### Correttezza  
-
 - **Integrità e Validità**: La stessa dimostrazione dell'algoritmo gerarchico non uniforme.  
 
 - **Terminazione**: Per induzione sugli ID, simile all'algoritmo precedente:  

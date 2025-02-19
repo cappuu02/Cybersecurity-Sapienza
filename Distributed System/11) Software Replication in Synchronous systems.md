@@ -39,8 +39,6 @@ A client interacts with a distributed object (list) implemented in our set of pr
 >Molti clienti significano operazioni concorrenti. Cosa abbiamo definito per gestire la concorrenza nei **Register**? **Consistent Semantic**!
 
 ## Consistency Criteria
-A consistency criterion defines the result returned by an operation
-- It defines all acceptable runs.
 Three main consistency criteria are defined in literature
 - **Linearizability** (Strong consistency)
 - **Sequential Consistency** (Strong consistency) 
@@ -135,7 +133,7 @@ So, assuming no crash:
 The di cult case is when the primary crashes. Three scenarios:
 - **Scenario 1**: Primary fails after the operation is completed and when is not handling any operation.
 - **Scenario 2**: Primary fails after its has received all the Acks and before the client receives the response. The client will not receive the response.
-- **Scenario 3**: Primary fails while sending update messages and beforereceiving all the ack messages.
+- **Scenario 3**: Primary fails while sending update messages and before receiving all the ack messages.
 
 >In all cases there is the need of electing a new primary (new leader).
 
@@ -224,7 +222,6 @@ The above implies that if each replica executes the same list of
 command, then the clients will receive the same response from all
 (non-faulty) replicas
 
-
 To ensure Linearizability we need to preserve:
 - Atomicity
 -  Ordering
@@ -242,8 +239,7 @@ Pros:
 Cons:
 - It is hard to implement non-deterministic operations.
 - Total order broadcast is generally expensive - especially if we have 1000 clients.
-- Reads cannot be local. In primary backup a read can be satisfieed directly by
-the primary. In active replication a read has to go through the Total Order Bcast.
+- Reads cannot be local. In primary backup a read can be satisfieed directly by the primary. In active replication a read has to go through the Total Order Bcast.
 
 ## REPLICATED GENERIC OBJECT
 A replicated generic object (deterministic) needs consensus to be implemented with linearisable semantic.

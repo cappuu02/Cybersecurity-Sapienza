@@ -41,7 +41,7 @@ Distinct specifications arise from distinct formulations of each property:
 
 ![[233.png]]
 
->Se un provesso, corretto o no, consegna un messaggio, tutti i processi corretti consegneranno quel messaggio lì!
+>Se un processo, corretto o no, consegna un messaggio, tutti i processi corretti consegneranno quel messaggio lì!
 
 **Non Uniform Agreement (NUA) $\to$ Non Uniform Agreement**: If a correct process TODelivers a message $m$, then all correct processes will eventually TODeliver $m$.
 
@@ -60,7 +60,7 @@ $$\text{NUA}: M_p \hspace{0.3cm} \text{can be} \hspace{0.3cm} \text{such that} \
 
 ![[236.png]]
 
-### Total Order Algorithm (Non uniform Consensus)
+### Total Order Algorithm (Non uniform Consensus) 
 ![[242.png]]
 
 ```ad-info

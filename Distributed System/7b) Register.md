@@ -114,7 +114,7 @@ Since read(8) is concurrent with both write and read(5) is concurrent with write
 
 **Performance**: 
 - **Write** – Each write operation performs a write on a (1,N) regular register (1 write)
-- **Read** - Each read operation performs a read on a (1,N) regular register (1 read)
+- **Read** - Each read operation performs a read on a (1,N) regular register (1 write)
 
 >Weak register (1-1)
 #### Phase 2 - FROM (1,1)-AR TO (1,N)-AR

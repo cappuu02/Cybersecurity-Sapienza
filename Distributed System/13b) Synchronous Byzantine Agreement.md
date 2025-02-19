@@ -1,5 +1,5 @@
 
-Byzantine processes could behave in an arbitrary way.
+I processi bizantini potrebbero comportarsi in modo arbitrario.
 
 **Assumption**: modello di round sincrono
 - Fixed delay
@@ -92,10 +92,10 @@ Possiamo replicare questo algoritmo per ogni processo in $S$!
 ### **Passaggio 4: Contraddizione**
 ![[332.png]]
 Sul sistema $S$ possiamo identificare due tagli:
-- Il **taglio verde** indica che **P2 e P3 grigi decidono 0**.
+- Il **taglio grigio** indica che **P2 e P3 grigi decidono 0**.
 - Il **taglio rosso** indica che **P1 e P3 bluastri decidono 1**.
 
-🚨 **Contraddizione:** Abbiamo processi nello stesso sistema che decidono valori diversi! Questo **viola la proprietà di agreement dell’algoritmo **A**.
+🚨 **Contraddizione:** Abbiamo processi nello stesso sistema che decidono valori diversi! Questo **viola la proprietà di agreement dell’algoritmo A.
 ### **Passaggio 5: Caso Generale**
 ![[334.png]]
 
@@ -123,7 +123,7 @@ Il ragionamento si estende a **qualsiasi numero di processi**:
 ## Introduction to the King Algorithm
 Solve byzantine agreement in a Synchronous systems when we have authenticated channel (no public key property). 
 
-If the number of correct is at least $3f+1$ is possible to solve byzantine agreement. 
+==If the number of correct is at least $3f+1$ is possible to solve byzantine agreement with the Kings.==
 **This algorithm can be seen as an adaptation of Hierarchical consensus for byzantine failures**. The king algorithm works in synchronous, when $f < n/3$ and when no signatures are available. **Authenticated channels - MAC are needed**.
 
 ## The king algorithm
@@ -135,8 +135,8 @@ The king algorithm runs for $f+1$ phases.
 
 Each phase (that has a unique leader) is divided in the following $3$ rounds:
 - ==vote round==: Ogni processo corretto trasmette $x$, ovvero il proposal.
-- ==Round di proposta==: Ogni processo corretto trasmette un valore $y$ se è stato ricevuto almeno $n-f$ volte nel turno di votazione. Alla fine del turno di proposta un processo corretto aggiorna il suo valore $x$ a $z$ se vede $z$ proposto almeno $f+1$ volte.
-- ==Round del re==: Il re è l'unico a trasmettere il suo valore $x$. Alla fine del round del re un nodo imposta il suo valore sul valore del re se durante il round di proposta nessun valore è stato visto $n-f$ volte.
+- ==Propose Round==: Ogni processo corretto trasmette un valore $y$ se è stato ricevuto almeno $n-f$ volte nel turno di votazione. Alla fine del turno di proposta un processo corretto aggiorna il suo valore $x$ a $z$ se vede $z$ proposto almeno $f+1$ volte.
+- ==King Round==: Il re è l'unico a trasmettere il suo valore $x$. Alla fine del round del re un nodo imposta il suo valore sul valore del re se durante il round di proposta nessun valore è stato visto $n-f$ volte.
 
 Esempio (processi inviano lo stesso valore)
 ![[Pasted image 20250202150610.png]]
@@ -191,7 +191,7 @@ If all corrects starts with the same value $v$, then $v$ is decided
 ```
 
 **Proof** (**Mechanism 1**):
-- Each correct broadcast $v$ at the vote round. Each correct sees v voted $n-f$ times (note that a value voted only by the Byz has at most $f$ votes). 
+- Each correct broadcast $v$ at the vote round. Each correct sees $v$ voted $n-f$ times (note that a value voted only by the Byz has at most $f$ votes). 
 - Each correct proposes $v$ at the propose round. 
 - Each correct sees $v$ proposed $n-f$ times 
 - Each correct ignores the king round and keeps its value to $v$. 

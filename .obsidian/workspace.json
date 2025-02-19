@@ -4,103 +4,57 @@
     "type": "split",
     "children": [
       {
-        "id": "f9c72906b0a0b22a",
+        "id": "76778c5db3f6fd81",
         "type": "tabs",
         "children": [
           {
-            "id": "a70a414c619c33a0",
+            "id": "4fb6240b2f913e04",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Network Infrastructures/Answer & Question.md",
+                "file": "Distributed System/7a) Register.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "Answer & Question"
+              "title": "7a) Register"
             }
           },
           {
-            "id": "b72bd197e3d919f3",
+            "id": "9bd1e57355239cd6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Distributed System/7b) Register.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "7b) Register"
+            }
+          },
+          {
+            "id": "d08507a5193aac35",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
+                "file": "Distributed System/12) Raft.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "Network Functional Area (PDF1)"
-            }
-          },
-          {
-            "id": "c974d9bf4674ae8c",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Network Infrastructures (PDF 2)"
-            }
-          },
-          {
-            "id": "05a832b307fd517f",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Fiber Part (PDF 3)"
-            }
-          },
-          {
-            "id": "8364f4e8e2ad8833",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "Wireless and mobile networks (PDF 4)"
-            }
-          },
-          {
-            "id": "d5b1563977b38f0e",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Network Infrastructures/images/Pasted image 20250213102746.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20250213102746"
+              "title": "12) Raft"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -254,10 +208,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "d08507a5193aac35",
   "lastOpenFiles": [
-    "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
+    "Distributed System/8) Consensus.md",
+    "Distributed System/4) Time in Distributed System II.md",
+    "Distributed System/5) Broadcasting & Quorum.md",
+    "Distributed System/7a) Register.md",
+    "Distributed System/7b) Register.md",
+    "Distributed System/2) Time Models.md",
+    "Distributed System/13a) Byzantine Faults.md",
+    "Distributed System/3) Time in Distributed System.md",
+    "Distributed System/9) Paxos.md",
+    "Distributed System/11) Software Replication in Synchronous systems.md",
+    "Distributed System/10) Ordered Communications 2.md",
+    "Distributed System/6) Ordered Communications.md",
+    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
+    "Distributed System/13b) Synchronous Byzantine Agreement.md",
+    "Pasted image 20250217170404.png",
+    "Pasted image 20250217170346.png",
+    "Pasted image 20250217170322.png",
+    "Distributed System/1a) Introduction.md",
+    "Distributed System/12) Raft.md",
+    "Pasted image 20250214172846.png",
+    "Network Infrastructures/images/Pasted image 20250213102746.png",
     "Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
+    "Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
     "Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
     "Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
     "Network Infrastructures/Answer & Question.md",
@@ -266,32 +241,11 @@
     "Network Infrastructures/Polverini/IGP & BGP (5, Last).md",
     "Network Infrastructures/images/Immagine WhatsApp 2025-02-13 ore 11.19.03_7337b608.jpg",
     "fffffff.jpg",
-    "Network Infrastructures/images/Pasted image 20250213102746.png",
-    "Distributed System/5) Broadcasting & Quorum.md",
-    "Distributed System/11) Software Replication in Synchronous systems.md",
-    "Distributed System/7a) Register.md",
-    "Distributed System/7b) Register.md",
-    "Distributed System/6) Ordered Communications.md",
-    "Distributed System/2) Time Models.md",
-    "Distributed System/13b) Synchronous Byzantine Agreement.md",
-    "Distributed System/12) Raft.md",
     "Network Infrastructures/Polverini/Kathara commands.md",
     "Network Infrastructures/images/Immagine WhatsApp 2025-02-12 ore 10.26.20_00d0e6d1.jpg",
-    "Untitled.md",
     "Network Infrastructures/Polverini/test-optical-network-2023.pdf",
-    "Byzantine Consensus.md",
-    "Distributed System/13a) Byzantine Faults.md",
-    "Distributed System/1b) MODELS, ABSTRACTIONS AND BASIC CONCEPTS.md",
-    "Distributed System/3) Time in Distributed System.md",
-    "Distributed System/4) Time in Distributed System II.md",
-    "Distributed System/10) Ordered Communications 2.md",
-    "Distributed System/8) Consensus.md",
     "Distributed System/Images/345.png",
     "Distributed System/Images/344.png",
-    "Distributed System/Images/343.png",
-    "Distributed System/Images/342.png",
-    "Distributed System/Images/341.png",
-    "Distributed System/Images/340.png",
     "DS-2223-Byzantine_agreement.pdf",
     "Distributed System/Images/324png",
     "Distributed System/Ale DS/12/12. RAFT.pdf",

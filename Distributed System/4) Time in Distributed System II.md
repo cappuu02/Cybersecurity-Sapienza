@@ -1,4 +1,4 @@
-,
+ 
 ## Failure Detector Abstraction
 Un modulo software da usare insieme alle astrazioni di processo e di collegamento, che incapsula le ipotesi di temporizzazione di un sistema parzialmente sincrono o completamente sincrono.
 
@@ -11,7 +11,7 @@ Proprietà fondamentale dei rilevatori di guasti:
 
 >Si basano sull'idea del “Pinging”.
 
-[## Perfect Failure Detectors (P)
+## Perfect Failure Detectors (P)
 System model 
 - **Synchronous system** 
 - **Crash-stop failures** 
@@ -169,7 +169,7 @@ $(\Pi \setminus suspected)$ is the subset of alive processes.
 **Accuracy**: from the strong accuracy of $P$ and the total order on the ranks (IDs) of processes.
 
 ![[Pasted image 20241014143136.png]]
-When $p_0$ dies it's okay because before he dies everyone know that he's the leader, but in $p_2$ after $p_0$ dead, the leader isn't changed. (broke the eventual detection property).
+When $p_0$ dies it's okay because before he dies everyone know that he's the leader, but in $p_2$ after $p_0$ dead, the leader isn't changed. (==broke the eventual detection property==).
 
 ![[Pasted image 20241014143317.png]]
 In this case the accuracy property is broken because $p_2$ changes the leader even if $p_1$ is still alive.
@@ -204,7 +204,7 @@ Idea: costruire un meccanismo di **Eventual Leader Election** utilizzando il mod
 - **ELD1** (Eventual Accuracy): by the strong completeness of the FD we have that eventually suspected set contains all the crashed processes. Thus $\Pi \setminus suspected$ contains only correct processes (or its empty).
 - **ELD2** (Eventual Agreement): for any pair of correct processes, their suspected sets eventually stabilises to the same content (by the property of the FD). If the set are equals $\Pi \setminus suspected$ returns the same ID on both processes.
 
-## Three Models
+## Three Models of Failures
 Abbiamo dunque tre modelli di failure nei sistemi distribuiti e intercorrono delle relazioni tra di essi:
 - **Fair Silent**: I processi che falliscono lo fanno in modo silenzioso. Quando un processo fallisce smette semplicemente di inviare messaggi. Richiede un canale di comunicazione affidabile (Perfect Link) che garantisce la consegna dei messaggi tra i processi.
 - **Fail Noisy**: Qui i processi che falliscono possono inviare messaggi errati o incompleti, causando rumore nella comunicazione.Richiede un failure detector eventualmente perfetto ($\Diamond P$), che garantisce di rilevare i processi falliti, ma non immediatamente.
