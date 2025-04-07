@@ -4,19 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "2a0020901dc26547",
+        "id": "e05257dde709e8a9",
         "type": "tabs",
         "children": [
           {
-            "id": "cadff9a1c3bb1796",
+            "id": "5a8e0835d774a928",
             "type": "leaf",
             "state": {
               "type": "pdf",
               "state": {
-                "file": "2Semester/IOT/5) Markov Chain and Decision Process.pdf"
+                "file": "2Semester/IOT/8) Information Theory.pdf"
               },
               "icon": "lucide-file-text",
-              "title": "5) Markov Chain and Decision Process"
+              "title": "8) Information Theory"
             }
           }
         ]
@@ -173,11 +173,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cadff9a1c3bb1796",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "2Semester/IOT/8) Information Theory.pdf",
+    "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
+    "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
+    "2Semester/IOT/7) Information Theory.md",
+    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "2Semester/IOT/4) Embedded Systems (PDF4).md",
     "2Semester/IOT/3) IOT.md",
     "2Semester/IOT/1-2) IOT.md",
-    "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
+    "2Semester/IOT/9) Lesson 31 March 2025.md",
     "2Semester/IOT/PDF/RadioFrequencyCommunications.pdf",
     "2Semester/IOT/PDF/4_2InformationTheory.pdf",
     "2Semester/IOT/PDF/4_1InformationTheory (OK).pdf",
@@ -186,9 +192,6 @@
     "2Semester/IOT/PDF/3_2IoTDevices2_EmbeddedSystems-1.pdf",
     "2Semester/IOT/PDF/3_1IoTDevices1_sensors_actuators.pdf",
     "2Semester/IOT/PDF/2IoTArchitecture.pdf",
-    "2Semester/IOT/PDF/1Introduction.pdf",
-    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
-    "2Semester/IOT/4) Embedded Systems (PDF4).md",
     "2Semester/IOT/Images/38a.png",
     "2Semester/IOT/Images/37a.png",
     "2Semester/IOT/Images/36a.png",
@@ -199,8 +202,6 @@
     "2Semester/IOT/Images/40a.png",
     "2Semester/IOT/Images/9e.png",
     "2Semester/IOT/Images/9d.png",
-    "2Semester/IOT/9) Lesson 31 March 2025.md",
-    "2Semester/IOT/7) Information Theory.md",
     "1 Semester/Statistic/Riemann and Lesbegue Integral.md",
     "1 Semester/Statistic/Lesson 7 (28 novembre).md",
     "1 Semester/Statistic/Lesson 6 (14 novembre).md",
