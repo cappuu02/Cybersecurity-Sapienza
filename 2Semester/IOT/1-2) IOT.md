@@ -4,9 +4,14 @@ The term IoT was first coined in 1999 by Kevin Ashton in the context of supply c
 
 >IOT = Sensors + Networks + Data + Services
 
-IoT can be treated as the extension of the contemporary internet services to enclose different objects, which can become part of the IoT when embedded with sensors, actuators, microcontrollers.
+```ad-abstract
+title: Definizione
 
-IoT binds together the IT and OT domains:
+L'IoT può essere considerato come l'estensione degli attuali servizi Internet per includere diversi oggetti, che possono diventare parte dell'IoT quando integrati con sensori, attuatori e microcontrollori.
+```
+
+
+IoT binds (unisce) together the IT and OT domains:
 - **IT** consists of the secure connectivity of servers, databases and applications. 
 - **OT** is concerned with the industrial work and combines things like sensors and devices connected to the machines or some other equipment. It supervises devices and processes on physical systems (e.g., Industries, roadways, production services etc).
 
@@ -16,7 +21,7 @@ Internet of Things allows all things to communicate each other.
 ```
 
 
-# Smart Objects
+## Smart Objects
 Like human cells, smart objects represent the building blocks of an IoT system and must have the ability of:
 - sensing
 - computing
@@ -26,26 +31,25 @@ Like human cells, smart objects represent the building blocks of an IoT system a
 >Smart objects are made of several components…
 
 ![[28.png]]
-## Sensors
+### Sensors
 Sensors embedded in the device allows the object to 
 - sensing
 - measuring the changes in the environment
 - convert the physical quantity into a digital representation
 The physical quantity is passed into some computational unit
 
-## Processing unit (CPU)
-Gathers, processes and analyzes the data acquired from the sensors.
-The computations, need some control signals that prompt the actuator according to the need. CPU allow to Control communication and power system.
+### Processing unit (CPU)
+Raccoglie, elabora e analizza i dati acquisiti dai sensori. I calcoli necessitano di alcuni segnali di controllo che sollecitano l'attuatore in base alle necessità. La CPU consente di controllare la comunicazione e il sistema di alimentazione.
 
 >The type of processing unit varies according to the needs and kind of processing to be used by the applications. Micro controllers are widely used technology in smart objects.
 
-## Memory
+### Memory
 Stores key information such as the smart object identifier, physical properties. 
 Allows the computation and communication abilities of the device.
 - Can store sensed data.
 - Varies from few KB to GB.
 
-## Actuators
+### Actuators
 Data collected by the sensors is stored and processed and can in turn trigger the actuators. An actuator receives control signal and produces some response to the physical world.
 
 ```ad-example
@@ -53,21 +57,21 @@ Data collected by the sensors is stored and processed and can in turn trigger th
 A sensor senses the level of moist in a field. If the level of moist is below a given threshold, we want to open up the water pump and irrigate our field. In this case, the actuator is triggered and turns the pump switch on and off accordingly.
 ```
 
-## Communication unit
+### Communication unit
 - Allows the smart objects to communicate with other devices for sharing information/data.
 - Communication may take place between two or more smart objects or to the outside world through the network.
 - The wireless connectivity is preferred more over the wired connectivity (cost, ease of deployment)
 
 >In the previous image is the Wi-Fi-Logo
 
-## Power source
+### Power source
 - Power sources may be batteries, solar power, wind power, main supply.
 - The requirements of power consumption vary greatly according to the scenarios (deployment area, switching between the active and sleep mode, accessibility, the power source being used, criticality of the information etc).
 
 >In the previous image is the Battery-Logo
 
 
-## Smart Objects - continue
+### Smart Objects - continue
 ```ad-summary
 title: Important
 Notice that not all smart objects are composed of all the components. A smart object could be just a sensor that continuously sends data to a different object equipped with a microprocessor and an actuator.
@@ -82,7 +86,7 @@ Desirable features of smart objects are:
 
 
 
-## Evolution 
+### Evolution 
 IoT systems can be very different from one another. For example we can have different IoT systems, like:
 ![[30a.png]]
 Despite all the differences, all IoT systems have a similar architecture. Microcontrollers and tiny wireless devices were developed more than 25 years ago, but things started to change some time after that. Three game changers are:
@@ -95,7 +99,7 @@ Today all is possible thanks to:
 - Because we now have protocols for connecting small devices together which are very energy efficient.
 - Because we have new Internet standards to compress internet packets
 
-## Key Characteristics of IoT systems
+### Key Characteristics of IoT systems
 
 - Dispositivi molto diversi tra loro, con scopi, capacità, caratteristiche e protocolli di comunicazione differenti
 - Deployment massiccio: miliardi di dispositivi interconnessi tra loro e tramite Internet, potenzialmente oltre le capacità attuali della rete
@@ -115,7 +119,7 @@ Today all is possible thanks to:
 - Gestione di dati sensibili in alcuni sistemi IoT
 - Programmazione efficiente per decisioni intelligenti basate su dati elaborati
 
-## Challenges of IoT
+### Challenges of IoT
 - **Security and Privacy Concerns**: IoT devices are vulnerable to hacking, data breaches, and unauthorized access.
 - **Data Overload and Management**: IoT generates massive amounts of data, requiring efficient storage, processing and analysis.
 - **Interoperability and Standardisation**: Lack of common standards can hinder the integration of devices from different manufacturers.
@@ -124,7 +128,7 @@ Today all is possible thanks to:
 - **Energy Efficiency and Battery Life**
 - **ROI (Cost and Return On Investment)**
 - **Latency and Reliability**
-# Cool Application (Just For Info)
+## Cool Application (Just For Info)
 
 ## Smart Cities
 A **smart city** is an urban area that uses digital technology to collect data and to operate/provide services
@@ -162,9 +166,9 @@ A smart street lighting system incorporates a cluster of streetlights that can c
 # IOT Architectures (PDF2)
 
 ## Drivers of IOT Architectures
-Two key differences between IT and IoT:
-1. IT systems are mostly concerned with reliable and continuous support for business applications such as email, web, database, etc., IoT is all about the data generated by sensors and how data is used.
-2. IT systems are mostly running on computers and servers. A IoT system is also composed by ordinary objects that are made “smart” and produce a lot of data.
+Due differenze fondamentali tra IT e IoT:
+1. I sistemi IT sono principalmente interessati al supporto affidabile e continuo per applicazioni aziendali come e-mail, web, database, ecc., IoT riguarda i dati generati dai sensori e il modo in cui vengono utilizzati.
+2. I sistemi IT sono principalmente in esecuzione su computer e server. Un sistema IoT è anche composto da oggetti ordinari che sono resi "intelligenti" e producono molti dati.
 
 >What should we be taking into consideration when designing an IoT architecture?
 
@@ -181,10 +185,10 @@ IoT devices, especially those on wireless sensor networks (WSNs), are often phys
 - Every IoT endpoint node on the network must be part of the overall security strategy and must support device-level authentication and link encryption.
 
 ### Constrained devices and networks
-Most IoT sensors are designed for a single job, and they are typically small and inexpensive
-- Limited power, CPU, memory, and they transmit only when there is something important to say
-- Large scale of the devices + large, uncontrolled environments = lossy network supporting low data rates
-- This is very different from traditional IT networks, which enjoy Gb connections and endpoints with powerful CPUs.
+La maggior parte dei sensori IoT sono progettati per un singolo lavoro e sono in genere piccoli ed economici
+- Potenza, CPU, memoria limitate e trasmettono solo quando c'è qualcosa di importante da dire
+- Ampia scala dei dispositivi + grandi ambienti non controllati = rete con perdite che supporta basse velocità di trasmissione dati
+- Questo è molto diverso dalle reti IT tradizionali, che godono di connessioni Gb ed endpoint con CPU potenti.
 
 ### Data
 In IoT, data enables business to deliver new IoT services that enhance the user experience and reduce costs.
@@ -193,14 +197,13 @@ In IoT, data enables business to deliver new IoT services that enhance the user 
 - Data analytics capabilities need to be distributed throughout the IoT network, from the edge to the cloud. In traditional IT networks, analytics and applications typically run only in the cloud.
 
 
-### Compute and network assets in IoT
-Compute and network assets used in IoT can be very different from those in IT
-environments.
-- This is because IoT devices are deployed in various environments, which belong to different OT environments.
-- Deciding what devices to deploy is key factor:
-	- Thermometers can be place near the furnaces of a steel mill, or used for cold chains
-	- Devices can be placed in environments with very different humidities, or even underwater.
-	- Some devices are subject to constant kinetic vibrations, or to abrupt ones
+### Risorse di calcolo e di rete nell'IoT
+Le risorse di calcolo e di rete utilizzate nell'IoT possono essere molto diverse da quelle negli ambienti IT.
+- Questo perché i dispositivi IoT vengono distribuiti in vari ambienti, che appartengono a diversi ambienti OT.
+- Decidere quali dispositivi distribuire è un fattore chiave:
+	- I termometri possono essere posizionati vicino alle fornaci di un'acciaieria o utilizzati per le catene del freddo
+	- I dispositivi possono essere posizionati in ambienti con umidità molto diverse o persino sott'acqua.
+	- Alcuni dispositivi sono soggetti a vibrazioni cinetiche costanti o a vibrazioni improvvise
 
 ## IoT Architecture layers
 ![[31a.png|700]]
@@ -227,7 +230,7 @@ power connected
 Smart devices can be:
 - ==Mobile== or ==static==: This classification is based on whether the “thing” should move or always stay at the same location.
 - A thing can be moved because it is located on a moving object.
-- The frequency of a movement may also vary, from occasional to permanent.
+- The frequency of a movement may also vary, from **occasional** to **permanent**.
 
 ```ad-example
 Self-driving car, Smart thermometer
@@ -276,7 +279,7 @@ Different M2M protocols support different topologies that define the connections
 ![[5.png]]
 
 The choice of what topology (and protocol) to use, highly depends on the application of the IoT system.
-- Mesh topology are more reliable, since they have redundant links and the failure OF one link does not necessarily disconnect the network.
+- Mesh topology are more reliable, since they have redundant links and the failure of one link does not necessarily disconnect the network.
 - Nevertheless, keeping more connections influences the power consumption of the devices.
 - Topologies depend also on the transmission range of the devices (trivially, two devices are connected by a link in a topology only if they are within the transmission range of one another)
 - In remote areas when devices can possibly be very far apart from each other, it might be necessary to leverage satellite communication.
@@ -284,7 +287,7 @@ The choice of what topology (and protocol) to use, highly depends on the applica
 #### Network layer - Gateways 
 Data collected from a smart object may need to be forwarded to a central station (i.e., a server, a data center, or more generally the cloud) where data is processed.
 - The station is often far from the smart object, and requires an Internet connection.
-- Many small IoT devices do not support the a full TCP/IP stack, i.e., they cannot access the internet directly (when they do, they form a peer-to-peer network).
+- Many small IoT devices do not support the full TCP/IP stack, i.e., they cannot access the internet directly (when they do, they form a peer-to-peer network).
 -  Gateways are responsible for bridging the sensors/smart devices with the internet to transmit data to a central station, but they can also act as edge servers!
 
 ![[6.png]]
@@ -337,15 +340,18 @@ Once data coming from different sensors is transmitted to a central station thro
 -  From an architectural standpoint, we can classify IoT applications into two main types:
 
 **Analytics Application**
-Collects data from multiple smart objects, processes it and displays the resulting information. The display can be about any aspect of the IoT system, e.g., historical reports, statistics, trend, individual system states. The application processes the data to convey a view of the network.
+==Collects data from multiple smart objects, processes it and displays the resulting information==. 
+>The display can be about any aspect of the IoT system, e.g., historical reports, statistics, trend, individual system states. The application processes the data to convey a view of the network.
 
 **Control application**
-Controls the behaviour of the smart objects, allowing to control complex aspects of an IoT system with a logic that cannot be programmed inside a single IoT device. The program is too complex to fit into the local system or requires data from other objects.E.g., pressure sensor connected to a pump. The control application increases the pump speed when
+==Controls the behaviour of the smart objects, allowing to control complex aspects of an IoT system with a logic that cannot be programmed inside a single IoT device==. The program is too complex to fit into the local system or requires data from other objects.E.g., pressure sensor connected to a pump. The control application increases the pump speed when
 the sensor senses a drop in pressure.
 
 
+----
+
 ### Applications and Analytics Layer - Analytics
-Analytics è un termine generico che descrive l'elaborazione delle informazioni per dare un senso ai dati raccolti. In IoT, una possibile classificazione della funzione di analisi è la seguente:
+==Analytics== è un termine generico che descrive l'elaborazione delle informazioni per **dare un senso ai dati raccolti**. In IoT, una possibile classificazione della funzione di analisi è la seguente:
 
 **Data Analytics**
 Elaborazione dei dati raccolti da oggetti intelligenti e combinazione di tali dati per fornire una vista intelligente correlata al sistema IoT. L'analisi dei dati può anche monitorare il sistema IoT
@@ -359,6 +365,8 @@ Ad esempio, temperatura, pressione, vento, umidità e livelli di luce raccolti d
 **Network Analytics**
 Network Analytics **elabora informazioni sulla connettività del sistema IoT**.
 La perdita o il degrado della connettività comporta la perdita di dati dai sensori e può talvolta avere effetti drammatici (ad esempio, veicoli autonomi, fabbriche).
+
+
 
 ## Edge, Fog and Cloud Computing
 
@@ -378,31 +386,45 @@ local server.
 ![[10.png]]
 
 ### Edge Computing
-- Edge computing is a distributed architecture in which client data is processed at the periphery of the network, i.e., as geographically close to the source of data as possible. 
-- In a IoT system, edge computing is performed by embedded systems, local computers/servers, IoT gateways to provide initial processing and filtering of all the data continuously sent from sensors. 
-- Data does not travel through the Internet, but is transmitted from the sensors using IoT protocols.
+L=='edge computing== è **un'architettura distribuita in cui i dati del client vengono elaborati** **direttamente sul dispositivo** (o molto vicino alla sorgente dei dati). Avviene su dispositivi **embedded**, **sensori intelligenti**, **gateway** IoT locali per fornire l'elaborazione iniziale e il filtraggio di tutti i dati inviati continuamente dai sensori.
+
+>I dati non viaggiano attraverso Internet, ma vengono trasmessi dai sensori utilizzando protocolli IoT.
+
+```ad-example
+title: **Esempio**
+Un sensore industriale che analizza i dati di vibrazione di una macchina e decide se fermarla per evitare guasti, **senza connettersi a Internet**.
+
+```
 
 ### Cloud Computing
-Cloud computing is the delivery of on-demand computing resources physical or virtual servers, data storage, networking capabilities, application development tools, software, AI-powered analytic platforms and more—over the internet with pay-per-use pricing.
+Il ==cloud computing== si riferisce all'elaborazione e archiviazione **remota**, su server potenti accessibili via Internet. Permette la  fornitura di risorse di elaborazione on-demand, server fisici o virtuali, archiviazione dati, capacità di rete ed altro, tramite Internet con prezzi a consumo.
 
-- Resources are dynamically assigned and reassigned among multiple users and scale up and down in response to user’s needs.
-- Cloud data centres are connected to the Internet with very high speed, high capacity fibre optical cables.
+Le risorse vengono assegnate e riassegnate dinamicamente tra più utenti e vengono aumentate o diminuite in risposta alle esigenze dell'utente.
+I data center cloud sono collegati a Internet con cavi in ​​fibra ottica ad altissima velocità e capacità.
 
 ### Fog Computing
-Fog computing lies in between edge and cloud computing.
-- The concept was introduced by Cisco and represents a decentralised infrastructure that places storage and processing components (e.g., servers) at the edge of the cloud.
-- Depending on the IoT application, fog computing can provide more power resources and storage capacity than edge devices with lower costs than cloud resources.
-- Fog servers usually located in LANs.
-- Difference with Edge layer is blurry.
+Un **livello intermedio** tra Edge e Cloud, che distribuisce l'elaborazione su nodi locali (es. server in una LAN o router avanzati). A seconda dell'applicazione IoT, il fog computing può fornire più risorse di potenza e capacità di archiviazione rispetto ai dispositivi edge con costi inferiori rispetto alle risorse cloud.
+
+**Dove avviene?** In piccoli data center locali, router intelligenti, micro-cloud aziendali.
+
+```ad-important
+title: Difference Edge vs Fog
+- **Edge** = Elaborazione sul singolo dispositivo.
+- **Fog**: Elaborazione in un nodo locale che serve più dispositivi Edge.
+
+```
+
+```ad-example
+title: Global Example
+1. **Edge**: Ogni turbina analizza i propri dati di vibrazione per evitare guasti immediati.
+    
+2. **Fog**: Un server locale raccoglie dati da tutte le turbine per ottimizzare l'energia prodotta.
+    
+3. **Cloud**: I dati aggregati di tutto il parco vengono usati per previsioni di manutenzione globale.
+
+```
 
 ![[11.png]]
-
-**Why do we need the Fog if we have the Cloud?**
-Offload the cloud, specially after the evolution of IoT.
-- Optimised use of network and computing resources.
-- Reducing latency.
-- Reducing transport costs through the Internet.
-- Supports cellular connections.
 
 ### “X as a Service” XaaS
 Cloud computing allows businesses to deploy and run their applications on cloud servers.

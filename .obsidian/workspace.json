@@ -4,11 +4,73 @@
     "type": "split",
     "children": [
       {
-        "id": "e05257dde709e8a9",
+        "id": "805cffc7853d5149",
         "type": "tabs",
         "children": [
           {
-            "id": "5a8e0835d774a928",
+            "id": "b3ad2ff0310ece69",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/1-2) IOT.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "1-2) IOT"
+            }
+          },
+          {
+            "id": "3f40df21d0e937ed",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/3) IOT (Sensors and Actuators).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "3) IOT (Sensors and Actuators)"
+            }
+          },
+          {
+            "id": "cbc6d62663465aa7",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/4) Embedded Systems (PDF4).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "4) Embedded Systems (PDF4)"
+            }
+          },
+          {
+            "id": "b636b9f604803cfa",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "2Semester/IOT/5) Markov Chain and Decision Process.pdf"
+              },
+              "pinned": true,
+              "icon": "lucide-file-text",
+              "title": "5) Markov Chain and Decision Process"
+            }
+          },
+          {
+            "id": "fd2fe74ba2b2e32e",
             "type": "leaf",
             "state": {
               "type": "pdf",
@@ -19,7 +81,8 @@
               "title": "8) Information Theory"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -173,17 +236,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "fd2fe74ba2b2e32e",
   "lastOpenFiles": [
-    "2Semester/IOT/8) Information Theory.pdf",
     "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
-    "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
     "2Semester/IOT/7) Information Theory.md",
-    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
     "2Semester/IOT/4) Embedded Systems (PDF4).md",
-    "2Semester/IOT/3) IOT.md",
+    "2Semester/IOT/3) IOT (Sensors and Actuators).md",
     "2Semester/IOT/1-2) IOT.md",
+    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "Pasted image 20250408162901.png",
     "2Semester/IOT/9) Lesson 31 March 2025.md",
+    "2Semester/IOT/8) Information Theory.pdf",
+    "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
     "2Semester/IOT/PDF/RadioFrequencyCommunications.pdf",
     "2Semester/IOT/PDF/4_2InformationTheory.pdf",
     "2Semester/IOT/PDF/4_1InformationTheory (OK).pdf",
@@ -191,7 +255,6 @@
     "2Semester/IOT/PDF/3_3Markov_Chains_and_Markov_Decision_Processes.pdf",
     "2Semester/IOT/PDF/3_2IoTDevices2_EmbeddedSystems-1.pdf",
     "2Semester/IOT/PDF/3_1IoTDevices1_sensors_actuators.pdf",
-    "2Semester/IOT/PDF/2IoTArchitecture.pdf",
     "2Semester/IOT/Images/38a.png",
     "2Semester/IOT/Images/37a.png",
     "2Semester/IOT/Images/36a.png",
@@ -201,7 +264,6 @@
     "2Semester/IOT/Images/30a.png",
     "2Semester/IOT/Images/40a.png",
     "2Semester/IOT/Images/9e.png",
-    "2Semester/IOT/Images/9d.png",
     "1 Semester/Statistic/Riemann and Lesbegue Integral.md",
     "1 Semester/Statistic/Lesson 7 (28 novembre).md",
     "1 Semester/Statistic/Lesson 6 (14 novembre).md",

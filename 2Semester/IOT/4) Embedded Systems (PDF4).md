@@ -1,15 +1,14 @@
 
 # Introduction
-Embedded systems are computerised systems that are purpose-built for their applications (highly specialised in one application and few tasks around the application). While general purpose computers’ main function is computation, that is not the same for IoT devices (e.g., smart cars, smart refrigerators, smart light bulbs).
-IoT devices are embedded systems with the additional feature that they can talk through the internet.
+I ==sistemi embedded== sono sistemi computerizzati costruiti appositamente per le loro applicazioni (altamente specializzati in un'applicazione e poche attività attorno all'applicazione). Mentre la funzione principale dei computer per uso generale è il calcolo, non è lo stesso per i dispositivi IoT (ad esempio, auto intelligenti, frigoriferi intelligenti, lampadine intelligenti). I dispositivi IoT sono sistemi embedded con la caratteristica aggiuntiva di poter comunicare tramite Internet.
 
 # Architecture
 ![[36a.png]]
 
 ## Microcontrollers and Microprocessors
-**Microcontrollers (MCU)** are the brain of an embedded system and responsible for orchestrating all the operations. They are slower than microprocessor with less memory and fewer features.
+==Microcontrollers (MCU)== are the **brain of an embedded system** and responsible for orchestrating all the operations. They are **slower than microprocessor** with less memory and fewer features.
 
->A typical microcontroller contains a CPU, interrupts, timer/counter, memory and other peripherals, all in a single integrated circui
+>A typical microcontroller contains a CPU, interrupts, timer/counter, memory and other peripherals, all in a single integrated circuit.
 
 **Microprocessors** are mainly general-purpose systems (e.g., computers), whereas microcontrollers are designed to perform very few tasks
 
@@ -26,25 +25,25 @@ IoT devices are embedded systems with the additional feature that they can talk 
 ## CPU (Microprocessor)
 ![[38a.png]]
 
-CPU has three main components: 
+**CPU** has three ==main components==: 
 - **Arithmetic central unit (ALU)**: performs arithmetic and logical operations 
 - **Registers**: provide operands to ALU and store results of ALU operations 
-- **Control Unit**: controls the overall operations and communicates with ALU and registers
+- **Control Unit**: controls the overall operations (operazioni generali) and communicates with ALU and registers
 
-CPU are characterised by their **instruction set architecture (ISA)**, a set of basic operations that CPU can perform:
-- Complex Instruction set Computing (CISC): Has a very large instruction sets, more complex hardware, more compact software, takes more cycles per instruction. (Example: AMD and Intel x86, mainly used on computers, workstations and server)
-- Reduced Instruction Set Computing (RISC): Has small instruction sets, simpler hardware, more complicated software, one instruction per cycle. (Example: Atmel AVR, PIC and ARM)
+CPU are characterised by their ==instruction set architecture (ISA)==, a set of basic operations that CPU can perform:
+- **Complex Instruction set Computing (CISC)**: Has a very large instruction sets, more complex hardware, more compact software, takes more cycles per instruction. (Example: AMD and Intel x86, mainly used on computers, workstations and server)
+- **Reduced Instruction Set Computing (RISC)**: Has small instruction sets, simpler hardware, more complicated software, one instruction per cycle. (Example: Atmel AVR, PIC and ARM)
 
-CPU need to communicate with the other peripherals (such as memory and I/O). This is done through the system bus, which includes:
-- Data bus (for carrying information)
+**CPU need to communicate with the other peripherals** (such as memory and I/O). This is done through the ==system bus==, which includes:
+- **Data bus** (for carrying information)
 	- bi-directional connection
 	- width of the data bus determines how much data can be transferred in one cycle
 	- carries the actual data being transferred between the processor, memory, and peripherals.
-- Address bus, for determining where the information should be sent
+- **Address bus**, for determining where the information should be sent
 	- carries information about the memory address or I/O device where the data should be read from or written to
 	- uni-directional communication
 	- The width of the address bus determines the maximum addressable memory space
-- Control bus, for controlling the operation
+- **Control bus**, for controlling the operation
 	- carries commands to coordinate the operations of the processor, memory and peripherals
 	- Some common control signals include: Read, Write, Clock, Interrupt, ...
 
@@ -64,7 +63,6 @@ It is a bus connecting the CPU with UART ports/peripherals.
 Allows for synchronous, full duplex master-slave-based communication. Has a clock line, two lines for transmission (master starts the communication). 
 There are $n$ chip select lines, one for each connected peripheral. 
 The master selects the slave by pulling the corresponding CS line low (0 V).
-
 ## Memory
 In addition to classical external memories (RAM and ROM), microcontrollers are also equipped with:
 
@@ -87,10 +85,11 @@ Le porte I/O parallele trasferiscono 8 bit simultaneamente su otto fili distinti
 Le porte I/O seriali utilizzano un singolo filo per trasferire un unico flusso di dati. Questo approccio elimina la diafonia e gli errori dovuti a differenze di velocità, permettendo comunicazioni su lunghe distanze. Il componente UART (Universal Asynchronous Receiver/Transmitter) è ampiamente utilizzato nei sistemi embedded, sebbene sia stato sostituito da porte più veloci come Ethernet e USB nei computer. La velocità di trasmissione seriale è inferiore rispetto a quella parallela.
 
 ## Convertitore Analogico-Digitale (ADC)  
-L'ADC converte segnali analogici continui in segnali digitali discreti. Viene utilizzato per leggere l'output analogico di sensori, come il suono catturato da un microfono, la luce in una fotocamera digitale, o tensioni e correnti. Le prestazioni di un ADC sono definite dalla sua larghezza di banda (frequenza di campionamento) e dal rapporto segnale-rumore (SNR), che dipende da risoluzione, linearità e accuratezza nella corrispondenza tra livelli di quantizzazione e segnale analogico originale.
+==L'ADC converte segnali analogici continui in segnali digitali discreti==. 
+Viene utilizzato per leggere l'output analogico di sensori, come il suono catturato da un microfono, la luce in una fotocamera digitale, o tensioni e correnti. **Le prestazioni di un ADC sono definite dalla sua larghezza di banda (frequenza di campionamento) e dal rapporto segnale-rumore (SNR)**, che dipende da risoluzione, linearità e accuratezza nella corrispondenza tra livelli di quantizzazione e segnale analogico originale.
 
 ## Convertitore Digitale-Analogico (DAC)  
-Il DAC esegue l'operazione inversa dell'ADC, convertendo segnali digitali in analogici. Viene impiegato per controllare dispositivi analogici, come altoparlanti e motori, trasformando numeri binari in grandezze fisiche (es. tensione). Secondo il teorema di Nyquist-Shannon, la conversione tra segnali analogici e digitali è quasi perfetta se la frequenza di campionamento è almeno il doppio della larghezza di banda del segnale.
+==Il DAC esegue l'operazione inversa dell'ADC, convertendo segnali digitali in analogici==. Viene impiegato per controllare dispositivi analogici, come altoparlanti e motori, trasformando numeri binari in grandezze fisiche (es. tensione). Secondo il teorema di Nyquist-Shannon, la conversione tra segnali analogici e digitali è quasi perfetta se la frequenza di campionamento è almeno il doppio della larghezza di banda del segnale.
 
 ## Microcontrollori CortexM  
 I microcontrollori CortexM utilizzano architetture a 32 bit e si dividono in diverse versioni: dalle più semplici (M0, M0+, M1) alle più potenti (M4, M7, M33). Le tre principali sottofamiglie sono ARMv6-M (M0, M0+, M1), ARMv7-M (M3) e ARMv7E-M (M4, M7). La serie CortexM definisce il set di istruzioni e le funzionalità di base comuni a tutti i microcontrollori.
@@ -126,8 +125,9 @@ La CPU ARM include 16 registri:
 | r14      | Registro di collegamento  |
 | r15      | Contatore del programma   |
 
+----
 ## Modalità di esecuzione  
-I microcontrollori operano in due modalità:  
+I ==microcontrollori== **operano in due modalità**:  
 - **Utente**: Codice con privilegi limitati per stabilità  
 - **Kernel**: Accesso completo all'hardware  
 
@@ -143,40 +143,29 @@ Oltre ai registri principali, esistono registri speciali:
 - **IPSR**: Numero dell'interrupt corrente  
 - **EPSR**: Stato di esecuzione  
 
-Questi elementi sono fondamentali per la gestione degli interrupt e del controllo del processore.
-
+Questi ==elementi sono fondamentali per la gestione degli interrupt e del controllo del processore==.
 ## Controller degli interrupt e stati
-Il controller degli interrupt è una periferica che aiuta il processore a gestire gli interrupt. Le sorgenti di interrupt possono essere diverse periferiche come ADC, timer, GPIO e UART. Gli interrupt presentano tre stati principali: inattivo (quando le condizioni non sono soddisfatte), pending (condizioni soddisfatte ma ISR non ancora chiamato) e attivo (quando l'ISR sta gestendo l'interrupt).
+Il ==controller degli interrupt== è una **periferica che aiuta il processore a gestire gli interrupt. Le sorgenti di interrupt possono essere diverse periferiche come ADC, timer, GPIO e UART**. Gli interrupt presentano ==tre stati principali==: 
+- inattivo (quando le condizioni non sono soddisfatte), 
+- pending (condizioni soddisfatte ma ISR non ancora chiamato) 
+- attivo (quando l'ISR sta gestendo l'interrupt).
 
 ## Tabella dei vettori di interrupt (IVT)
-La IVT contiene gli indirizzi delle routine di servizio degli interrupt (ISR) e associa ciascuna ISR alle richieste di interrupt provenienti da diverse sorgenti. Tipicamente memorizzata nella flash memory, la IVT varia a seconda del produttore del microcontrollore. Gli interrupt hanno priorità per determinare quale gestire per primo quando sono presenti più interrupt pending.
+La ==IVT== **contiene gli indirizzi delle routine di servizio degli interrupt (ISR) e associa ciascuna ISR alle richieste di interrupt provenienti da diverse sorgenti**. 
 
 ## Tipi di interrupt
-Esistono due categorie principali di interrupt:
+Esistono ==due categorie principali di interrupt==:
 - **Hardware**: Generati da dispositivi esterni in modo asincrono (es. un sensore di temperatura che segnala superamento soglia)
 - **Software**: Attivati dal microcontrollore quando vengono eseguite istruzioni speciali o si verificano condizioni particolari (es. divisione per zero)
 
 ## Costi nei sistemi embedded
-Nella progettazione di sistemi embedded IoT, i due costi principali da considerare sono energia e denaro. I sistemi più potenti consumano più energia, mentre MCU con maggiori funzionalità hanno costi più elevati. È fondamentale scegliere il microcontrollore minimale che soddisfi i requisiti dell'applicazione e ottimizzare il codice per ridurre consumi e costi.
-
-## Esempi di costi
-Ecco un confronto tra diversi microcontrollori:
-
-| Modello         | Famiglia    | Flash  | RAM   | Prezzo | Caratteristiche          |
-|-----------------|-------------|--------|-------|--------|--------------------------|
-| ATSAMD20E15A    | Cortex-M0+  | 16kB   | 2kB   | $1.37  |                          |
-| ATSAMD21E16B    | Cortex-M0+  | 64kB   | 8kB   | $1.70  | LIN, USB                 |
-| NRF51422        | Cortex-M0   | 256kB  | 32kB  | $2.44  | BLE                      |
-| ATSAM4EBEA      | Cortex-M4   | 512kB  | 128kB | $7.62  | CAN, Ethernet, USB, IrDA |
-
-In generale, all'aumentare di memoria flash e RAM aumenta anche il costo.
+Nella ==progettazione di sistemi embedded IoT==, i due ==costi principali== da considerare sono **energia** e **denaro**. I sistemi più potenti consumano più energia, mentre MCU con maggiori funzionalità hanno costi più elevati. È fondamentale scegliere il microcontrollore minimale che soddisfi i requisiti dell'applicazione e ottimizzare il codice per ridurre consumi e costi.
 
 ## Bilancio energetico
-I sistemi embedded alimentati a batteria richiedono un'attenta gestione dell'energia per massimizzare l'autonomia. Calcolare il bilancio energetico permette di valutare compromessi progettuali, come dimensionamento batteria e ottimizzazioni software per ridurre i cicli di ricarica.
+==I sistemi embedded alimentati a batteria richiedono un'attenta gestione dell'energia per massimizzare l'autonomia==. Calcolare il bilancio energetico permette di valutare compromessi progettuali, come dimensionamento batteria e ottimizzazioni software per ridurre i cicli di ricarica.
 
 # High level energy consumption
-
-Roughly speaking, the energy consumed by a device is the energy consumed while they are sleeping and the energy consumed while they are active:  
+l'energia consumata da un dispositivo è l'energia consumata mentre è in modalità di sospensione e l'energia consumata mentre è attivo:
 
 $E = P_s t_s + P_a t_a$  
 
@@ -190,9 +179,14 @@ Where:
 In practice, it is more complicated, because there could be many terms and many different active modes (radio on/off, processor speed, etc).  
 
 ## Minimizing energy consumption
-To minimise **sleep energy**, put microcontroller into lowest possible state - in the previous example we only saw “sleep” mode, but microcontrollers have different many low-power states and power-saving features. - the state the microcontroller is in has complex implications to software 
+To minimise **sleep energy**, put microcontroller into lowest possible state 
 
-To _minimise_ **active energy**, minimise time peripherals and MCU are active - perform operations in parallel to minimise active time - cluster/batch operations to minimise transition times (e.g., instead of sending one packet every second you can send 10 packets every ten seconds). - minimize clock rate.
+in the previous example we only saw “sleep” mode, but microcontrollers have different many low-power states and power-saving features.
+
+To _minimise_ **active energy**, 
+- minimise time peripherals and MCU are active 
+- perform operations in parallel to minimise active time 
+- cluster/batch operations to minimise transition times (e.g., instead of sending one packet every second you can send 10 packets every ten seconds). - minimize clock rate.
 
 ## Sleep States: SAM4L running modes
 ![[41a.png]]
