@@ -12,15 +12,15 @@ l trasmettitore raccoglie energia dall'ambiente e la immagazzina in una **batter
 
 L'intero sistema (la grandezza dei dati e l'energia che arrivano su ogni TS) è modellato come un processo di Markov, in cui gli stati cambiano con una certa probabilità di transizione.
 
-- $D_n \in D = \{d_1, ..., d_{N_D}\}$ is the size of the data packet arriving at time slot $n$
-- $p_D(d_j, d_k)$ transition probability, i.e., probability that the next data packet has size $d_k$ given that the current packet has size $d_j$. (La grandezza dei pacchetti di dati varia nel tempo in modo **stocastico** (random ma con una logica predittiva basata su una catena di Markov).)
-- $p_e(e_j, e_k)$ probabilità che l'energia raccolta nel time slot attuale sia $e_j$​ e che nel prossimo TS sia $e_k$​.
-- $E^H_n$ energy stored in the battery that can be used for data transmission from TS $n+1$
-- The battery is limited and has size of $B_{max}$ energy units. The energy harvested when the battery is full goes lost. The amount of energy stored in the battery in TS $n$ is $B_n$ $0 \le B_n \le B_{max}$
-- $H_n \in H = \{h_1, ..., h_{N_H}\}$ is the state of the channel during TS $n$ (lo stato del canale wireless che può essere buono, medio, pessimo)
-- The channel state follows a Markov model, $p_h (h_j, h_k)$ is the channel state transition probability. (probabilità che, se il canale è nello stato $h_j$ oggi, passo allo stato $h_k$ domani)
+- $D_n \in D = \{d_1, ..., d_{N_D}\}$ is the ==size of the data packet arriving at time slot $n$==
+- $p_D(d_j, d_k)$ transition probability, i.e., ==probability that the next data packet has size $d_k$ given that the current packet has size $d_j$==. (La grandezza dei pacchetti di dati varia nel tempo in modo **stocastico** (random ma con una logica predittiva basata su una catena di Markov).)
+- $p_e(e_j, e_k)$ ==probabilità che l'energia raccolta nel time slot attuale sia $e_j$​ e che nel prossimo TS sia $e_k$==​.
+- $E^H_n$ ==energy stored in the battery that can be used for data transmission from TS $n+1$==
+- The battery is limited and has size of $B_{max}$ energy units. The amount of energy stored in the battery in TS $n$ is $B_n$ $0 \le B_n \le B_{max}$
+- $H_n \in H = \{h_1, ..., h_{N_H}\}$ is the ==state of the channel during TS $n$== (lo stato del canale wireless che può essere buono, medio, pessimo)
+- ==The channel state follows a Markov model==, $p_h (h_j, h_k)$ is the channel state transition probability. (probabilità che, se il canale è nello stato $h_j$ oggi, passo allo stato $h_k$ domani)
 
-La qualità della comunicazione cambia dinamicamente e segue un processo di Markov.
+**La qualità della comunicazione cambia dinamicamente e segue un processo di Markov**.
 Uno stato del canale $H_n$ più scarso richiede più energia per trasmettere lo stesso pacchetto di dati. Per ogni combinazione di stato del canale $H_n$ e pacchetto $D_n$, il trasmettitore conosce l'energia minima necessaria per trasmettere:
 $$E_n^T = f_e(D_n, H_N)$$
 
@@ -29,7 +29,7 @@ $$E_n^T = f_e(D_n, H_N)$$
 
 ```ad-success
 title: Obiettivo Finale
-Il trasmettitore deve **decidere se trasmettere o aspettare**, basandosi sull'energia disponibile, sulla qualità del canale e sulla dimensione del pacchetto, massimizzando il throughput con un **uso ottimale della batteria**. Il trasmettitore, inoltre, garantisce che l-energia spesa nel time slot $n$ non è maggiore dell'energia disponibile nella batteria $B_n$.
+Il trasmettitore deve **decidere se trasmettere o aspettare**, basandosi sull'energia disponibile, sulla qualità del canale e sulla dimensione del pacchetto, massimizzando il throughput con un **uso ottimale della batteria**. Il trasmettitore, inoltre, garantisce che l'energia spesa nel time slot $n$ non è maggiore dell'energia disponibile nella batteria $B_n$.
 La trasmissione può fallire con una certa probabilità pari a $\rho$
 
 ```
@@ -56,7 +56,7 @@ dove:
 >Il trasmettitore vuole **massimizzare la somma scontata di tutti i dati che invierà in tutta la sua vita operativa**, tenendo conto che: **Trasmettere oggi** (Xₙ=1) dà un beneficio immediato (**Dₙ**), ma consuma energia (**Eₙᵀ**). **Non trasmettere oggi** (Xₙ=0) conserva energia per trasmettere **più dati domani** (se γ è alto).
 
 $$
-X_n E_n^T \leq B_n \hspace{0.5cm} \text{Non trasmetto se l'esenrgia richiesta supera quella disponibile}
+X_n E_n^T \leq B_n \hspace{0.5cm} \text{Non trasmetto se l'energia richiesta supera quella disponibile}
 $$
 $$
 B_{n+1} = \min\{B_n - X_n E_n^T + E_n^H, B_{\text{max}}\}
@@ -122,7 +122,7 @@ Nel paper sono stati implementati tre approcci, a seconda delle ipotesi sulla co
   - Simulazioni e analisi what-if
 
 ### Why Dynamic Programming?
-Un MDP non è un "problema" che dobbiamo "risolvere". Dato un MDP, l'obiettivo è trovare una politica ottimale. Per farlo, dobbiamo trovare la politica che massimizza l'equazione di Bellman:
+Un MDP non è un "problema" che dobbiamo "risolvere". Dato un **MDP**, l'==obiettivo== è ==trovare una politica ottimale==. Per farlo, dobbiamo trovare la ==politica che massimizza l'equazione di Bellman==:
   $$V^*(s) = \max_a \mathcal{R}_s^a + \gamma \sum_{s' \in S} P_{s,s'}^a V^*(s')$$$$Q^*(s,a) = \mathcal{R}_s^a + \gamma \sum_{s' \in S} P_{s,s'}^a \max_{a'} Q^*(s',a')$$
 Queste equazioni presentano due proprietà fondamentali:
 - **Sottostruttura ottima**  
@@ -220,14 +220,14 @@ In this case we have an Infinite horizon (no final state)
 ![[39.png]]
 
 ## Q-learning
-If an agent does not know the environment, it has to explore it first. By exploring it, it learns the rewards and the state space. ==Q-learning== is an **algorithm for finding the optimal policy of a MDP** (has convergence guarantees for both deterministic and non deterministic MDPs). 
+**If an agent does not know the environment, it has to explore it first**. By exploring it, it **learns the rewards and the state space**. ==Q-learning== is an **algorithm for finding the optimal policy of a MDP** (has convergence guarantees for both deterministic and non deterministic MDPs). 
 **Q-learning is one of the simplest Reinforcement Learning algorithms**. 
-Reinforcement Learning algorithms are unsupervised Machine Learning algorithms, i.e., they do not need to see labeled samples to learn tasks. They only need a feedback from the environment (state and reward).
+**Reinforcement Learning algorithms are unsupervised Machine Learning algorithms**, i.e., they do not need to see labeled samples to learn tasks. They only need a feedback from the environment (state and reward).
 
 ![[40.png]]
 
 ### Q-learning - finite horizon environments (1)
-Questo algoritmo è una variante del **Q-learning classico**, adattato per problemi in cui l’episodio termina dopo un numero finito di passi (es. labirinti, giochi a turni, task con scadenza).
+Questo algoritmo è una variante del **Q-learning classico**, adattato per problemi in cui il game termina dopo un numero finito di passi (es. labirinti, giochi a turni, task con scadenza).
 
 - **Learning rate (α)**: Quanto velocemente l’agente impara (es. `α = 0.1`).
     - Se **α = 1**, l’agente dimentica tutto il passato e impara solo dall’ultima esperienza.
@@ -238,7 +238,8 @@ Questo algoritmo è una variante del **Q-learning classico**, adattato per probl
 
 
 **Inizializzazione della Q-table**
-Initialize $Q(s,a)$ randomly $\forall s \in S, a \in A$. Set $Q(s_{\text{FINAL}}, a) = 0$ $\forall a \in S_F$ (final states)  
+Initialize $Q(s,a)$ randomly $\forall s \in S, a \in A$. 
+Set $Q(s_{\text{FINAL}}, a) = 0$ $\forall a \in S_F$ (final states)  
 - For each episode (ogni episodio è una sequenza di azioni fino a raggiungere uno stato finale):  
   - Initialize initial state $s$  
   - While $s \notin S_F$  (finché non arriviamo nello stato finale)
@@ -276,7 +277,8 @@ Valori elevati ci consentono una maggiore esplorazione dell'ambiente. Man mano c
 
 ### Q-learning - finite horizon environments (2)
  Parameters: learning rate $\alpha \in (0,1]$, small $\epsilon > 0$  
-- Initialize $Q(s,a)$ randomly $\forall s \in S, a \in A$. Set $Q(s_{final}, \cdot) = 0$ $\forall a \in S_F$ (final states)  
+- Initialize $Q(s,a)$ randomly $\forall s \in S, a \in A$. 
+- Set $Q(s_{final}, \cdot) = 0$ $\forall a \in S_F$ (final states)  
 - For each episode:  
   - Initialize initial state $s$  
   - While $s \notin S_F$  

@@ -120,7 +120,7 @@ In questo scenario abbiamo una retta spezzare e dunque non proporzionale.
 ### Non-linearity
 La **non linearità** è una caratteristica comune nei sensori reali. Idealmene, ci aspetteremmo che a un certo input (es. pressione `P`) corrisponda sempre lo stesso output (es. tensione `V`). Tuttavia, diversi effetti possono introdurre errori, che fanno sì che la risposta del sensore **non segua una linea retta** o un comportamento perfettamente prevedibile.
 
-![[Pasted image 20250408162901.png]]
+![[45a.png]]
 
 **Hysteresis**: L’output del sensore dipende **non solo dall’input corrente**, ma anche dalla **storia** del sistema.
 **Repeatability:** Quando **ripeti** la stessa misura con **lo stesso input**, ottieni risultati **leggermente diversi**.

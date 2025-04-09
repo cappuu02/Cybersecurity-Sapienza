@@ -56,7 +56,7 @@
             }
           },
           {
-            "id": "b636b9f604803cfa",
+            "id": "957ec33e1b9eb130",
             "type": "leaf",
             "pinned": true,
             "state": {
@@ -70,19 +70,51 @@
             }
           },
           {
-            "id": "fd2fe74ba2b2e32e",
+            "id": "da8f6ea9f36efa83",
             "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "6) Energy harvesting -Markov Decision Processes (MDP)"
+            }
+          },
+          {
+            "id": "a67e7aea651270a4",
+            "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "pdf",
               "state": {
                 "file": "2Semester/IOT/8) Information Theory.pdf"
               },
+              "pinned": true,
               "icon": "lucide-file-text",
               "title": "8) Information Theory"
             }
+          },
+          {
+            "id": "f1f51a0dcff4345a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/9) Lesson 31 March 2025.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "9) Lesson 31 March 2025"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -236,17 +268,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "fd2fe74ba2b2e32e",
+  "active": "957ec33e1b9eb130",
   "lastOpenFiles": [
-    "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
+    "2Semester/IOT/9) Lesson 31 March 2025.md",
+    "2Semester/IOT/8) Information Theory.pdf",
     "2Semester/IOT/7) Information Theory.md",
+    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
     "2Semester/IOT/4) Embedded Systems (PDF4).md",
     "2Semester/IOT/3) IOT (Sensors and Actuators).md",
     "2Semester/IOT/1-2) IOT.md",
-    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
-    "Pasted image 20250408162901.png",
-    "2Semester/IOT/9) Lesson 31 March 2025.md",
-    "2Semester/IOT/8) Information Theory.pdf",
+    "2Semester/IOT/Images/45a.png",
     "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
     "2Semester/IOT/PDF/RadioFrequencyCommunications.pdf",
     "2Semester/IOT/PDF/4_2InformationTheory.pdf",
