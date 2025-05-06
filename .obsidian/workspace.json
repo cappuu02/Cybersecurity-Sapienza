@@ -4,117 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "805cffc7853d5149",
+        "id": "c1f8b31283077678",
         "type": "tabs",
         "children": [
           {
-            "id": "b3ad2ff0310ece69",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/IOT/1-2) IOT.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "1-2) IOT"
-            }
-          },
-          {
-            "id": "3f40df21d0e937ed",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/IOT/3) IOT (Sensors and Actuators).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "3) IOT (Sensors and Actuators)"
-            }
-          },
-          {
-            "id": "cbc6d62663465aa7",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/IOT/4) Embedded Systems (PDF4).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "4) Embedded Systems (PDF4)"
-            }
-          },
-          {
-            "id": "957ec33e1b9eb130",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "2Semester/IOT/5) Markov Chain and Decision Process.pdf"
-              },
-              "pinned": true,
-              "icon": "lucide-file-text",
-              "title": "5) Markov Chain and Decision Process"
-            }
-          },
-          {
-            "id": "da8f6ea9f36efa83",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "6) Energy harvesting -Markov Decision Processes (MDP)"
-            }
-          },
-          {
-            "id": "a67e7aea651270a4",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "pdf",
-              "state": {
-                "file": "2Semester/IOT/8) Information Theory.pdf"
-              },
-              "pinned": true,
-              "icon": "lucide-file-text",
-              "title": "8) Information Theory"
-            }
-          },
-          {
-            "id": "f1f51a0dcff4345a",
+            "id": "5878e657a4459cc4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/9) Lesson 31 March 2025.md",
+                "file": "2Semester/IOT/11) Mesh Networking.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "9) Lesson 31 March 2025"
+              "title": "11) Mesh Networking"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -183,7 +90,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5004348754883
+    "width": 279.5004348754883,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -268,34 +176,46 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "957ec33e1b9eb130",
+  "active": "5878e657a4459cc4",
   "lastOpenFiles": [
+    "2Semester/IOT/Image IOT2ESONERO/27k.png",
+    "2Semester/IOT/Image IOT2ESONERO/26k.png",
+    "2Semester/IOT/Image IOT2ESONERO/25k.png",
+    "2Semester/IOT/Image IOT2ESONERO/24k.png",
+    "2Semester/IOT/Image IOT2ESONERO/23k.png",
+    "2Semester/IOT/Image IOT2ESONERO/22k.png",
+    "2Semester/IOT/Image IOT2ESONERO/21k.png",
+    "2Semester/IOT/Image IOT2ESONERO/20k.png",
+    "2Semester/IOT/Image IOT2ESONERO/19k.png",
+    "2Semester/IOT/Image IOT2ESONERO/18k.png",
+    "2Semester/IOT/Image IOT2ESONERO/17k.png",
     "2Semester/IOT/9) Lesson 31 March 2025.md",
+    "2Semester/IOT/11) Mesh Networking.md",
+    "2Semester/IOT/10) Communication Wireless MAC.md",
+    "2Semester/IOT/Image IOT2ESONERO",
+    "2Semester/IOT/Untitled",
+    "Commands.md",
+    "Roadmap e settings.md",
+    "Untitled.md",
+    "2Semester/PND/NAT (Lecture 12).md",
+    "2Semester/CMS Commands.md",
+    "Assignment Ethical Hacking.md",
+    "2Semester/PND/(PDF 10) Network traffic regulationwith firewalls.md",
+    "2Semester/Cyber Law/Cyber Law (2 lecture of monday).md",
+    "2Semester/IOT/IOT Last.md",
+    "2Semester/Cyber Law",
+    "2Semester/IOT/images IOT",
+    "2Semester/PND/images PND",
+    "2Semester/PND",
     "2Semester/IOT/8) Information Theory.pdf",
-    "2Semester/IOT/7) Information Theory.md",
     "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
     "2Semester/IOT/5) Markov Chain and Decision Process.pdf",
+    "2Semester/IOT/7) Information Theory.md",
     "2Semester/IOT/4) Embedded Systems (PDF4).md",
     "2Semester/IOT/3) IOT (Sensors and Actuators).md",
     "2Semester/IOT/1-2) IOT.md",
-    "2Semester/IOT/Images/45a.png",
     "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
     "2Semester/IOT/PDF/RadioFrequencyCommunications.pdf",
-    "2Semester/IOT/PDF/4_2InformationTheory.pdf",
-    "2Semester/IOT/PDF/4_1InformationTheory (OK).pdf",
-    "2Semester/IOT/PDF/3_3_1IoTDevices2_EmbeddedSystems_EnergyHarvestingOptimization.pdf",
-    "2Semester/IOT/PDF/3_3Markov_Chains_and_Markov_Decision_Processes.pdf",
-    "2Semester/IOT/PDF/3_2IoTDevices2_EmbeddedSystems-1.pdf",
-    "2Semester/IOT/PDF/3_1IoTDevices1_sensors_actuators.pdf",
-    "2Semester/IOT/Images/38a.png",
-    "2Semester/IOT/Images/37a.png",
-    "2Semester/IOT/Images/36a.png",
-    "2Semester/IOT/Images/44a.png",
-    "2Semester/IOT/Images/43a.png",
-    "2Semester/IOT/Images/42a.png",
-    "2Semester/IOT/Images/30a.png",
-    "2Semester/IOT/Images/40a.png",
-    "2Semester/IOT/Images/9e.png",
     "1 Semester/Statistic/Riemann and Lesbegue Integral.md",
     "1 Semester/Statistic/Lesson 7 (28 novembre).md",
     "1 Semester/Statistic/Lesson 6 (14 novembre).md",
@@ -303,17 +223,6 @@
     "1 Semester/Statistic/Lesson 4.md",
     "1 Semester/Statistic/Lesson 3.md",
     "1 Semester/Statistic/Lesson 2.md",
-    "1 Semester/Statistic/Lesson 1.md",
-    "1 Semester/Statistic/Global summary of statistics.md",
-    "1 Semester/Network Infrastructures/Polverini/MPLS (4).md",
-    "1 Semester/Network Infrastructures/Polverini/Kathara commands.md",
-    "1 Semester/Network Infrastructures/Polverini/Introduction to Optical Network (Polverini 1-2-3).md",
-    "1 Semester/Network Infrastructures/Polverini/IGP & BGP (5, Last).md",
-    "1 Semester/Network Infrastructures/Cuomo/Wireless and mobile networks (PDF 4).md",
-    "1 Semester/Network Infrastructures/Cuomo/Network Infrastructures (PDF 2).md",
-    "1 Semester/Network Infrastructures/Cuomo/Network Functional Area (PDF1).md",
-    "1 Semester/Network Infrastructures/Cuomo/Fiber Part (PDF 3).md",
-    "1 Semester/Network Infrastructures/Answer & Question.md",
-    "1 Semester/Distributed System/9) Paxos.md"
+    "1 Semester/Statistic/Lesson 1.md"
   ]
 }

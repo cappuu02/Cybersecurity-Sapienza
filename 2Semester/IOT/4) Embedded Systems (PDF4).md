@@ -1,6 +1,6 @@
 
 # Introduction
-I ==sistemi embedded== sono sistemi computerizzati costruiti appositamente per le loro applicazioni (altamente specializzati in un'applicazione e poche attività attorno all'applicazione). Mentre la funzione principale dei computer per uso generale è il calcolo, non è lo stesso per i dispositivi IoT (ad esempio, auto intelligenti, frigoriferi intelligenti, lampadine intelligenti). I dispositivi IoT sono sistemi embedded con la caratteristica aggiuntiva di poter comunicare tramite Internet.
+I ==sistemi embedded== sono sistemi computerizzati costruiti appositamente per un'applicazione (altamente specializzati in un'applicazione e poche attività attorno all'applicazione). Mentre la funzione principale dei computer per uso generale è il calcolo, non è lo stesso per i dispositivi IoT (ad esempio, auto intelligenti, frigoriferi intelligenti, lampadine intelligenti). I dispositivi IoT sono sistemi embedded con la caratteristica aggiuntiva di poter comunicare tramite Internet.
 
 # Architecture
 ![[36a.png]]
@@ -10,7 +10,7 @@ I ==sistemi embedded== sono sistemi computerizzati costruiti appositamente per l
 
 >A typical microcontroller contains a CPU, interrupts, timer/counter, memory and other peripherals, all in a single integrated circuit.
 
-**Microprocessors** are mainly general-purpose systems (e.g., computers), whereas microcontrollers are designed to perform very few tasks
+==Microprocessors== are mainly general-purpose systems (e.g., computers), whereas microcontrollers are designed to perform very few tasks
 
 ![[37a.png]]
 
@@ -47,30 +47,25 @@ CPU are characterised by their ==instruction set architecture (ISA)==, a set of 
 	- carries commands to coordinate the operations of the processor, memory and peripherals
 	- Some common control signals include: Read, Write, Clock, Interrupt, ...
 
+Protocolli di comunicazione seriale usati per trasferire dati tra microcontrollori e periferiche: 
 
-**Inter-Integrated Circuit (I2C) bus**
-The master sets the clock rate and sends it through the serial clock line (SCL). The data (SDATA) line is used for both the microcontroller to send data to external chips and viceversa (half-duplex transmission mode). It offers a direct and efficient way for multiple devices to communicate over a shared bus, without the need for individual communication lines per device. Accommodates a broad spectrum of devices, ranging from sensors to memory chips.
+**Bus Inter-Integrated Circuit (I2C)**
+![[26q.png]]
 
-**Universal Asynchronous Receiver-Transmitter (UART) bus**
-It is a bus connecting the CPU with UART ports/peripherals. 
-- No clock line. One line for transmitting and one for receiving messages. 
-- Allows for asynchronous communication, very versatile. •
-- Transmission is serial, bit by bit.
-
+**Bus Universal Asynchronous Receiver-Transmitter (UART)**
+![[27q.png]]
 ![[39a.png]]
 
 **Serial Peripheral Interface (SPI)**
-Allows for synchronous, full duplex master-slave-based communication. Has a clock line, two lines for transmission (master starts the communication). 
-There are $n$ chip select lines, one for each connected peripheral. 
-The master selects the slave by pulling the corresponding CS line low (0 V).
+![[28q.png]]
 ## Memory
 In addition to classical external memories (RAM and ROM), microcontrollers are also equipped with:
 
 **EEPROM (Electrically Erasable Programmable Read-Only Memory)**
-is a user-alterable read-only memory that can be erased and reprogrammed. Store information in memory cells that use floating gate transistors to store and retrieve data.
+È una memoria di sola lettura modificabile dall'utente, che può essere cancellata e riprogrammata. Memorizza le informazioni in celle di memoria.
 
 **NVRAM (non-volatile RAM)**
-Works as a SRAM when powered (i.e., retains its contents as long as electrical power is applied to the chip), and uses a battery to retain data when power is off.
+Conserva il suo contenuto finché l'alimentazione elettrica è applicata al chip e utilizza una batteria per conservare i dati quando l'alimentazione è interrotta.
 
 >NVRAM + Flash memory
 
@@ -82,7 +77,7 @@ Works as a SRAM when powered (i.e., retains its contents as long as electrical p
 Le porte I/O parallele trasferiscono 8 bit simultaneamente su otto fili distinti. Utilizzano più fili/pin paralleli per accedere a più segnali contemporaneamente, garantendo un'elevata velocità di trasmissione. Per evitare diafonia e errori, tutti i flussi di bit devono trasferire dati alla stessa velocità, condizione difficile da rispettare. Per questo motivo, le comunicazioni parallele sono adatte per collegamenti brevi, come quelli utilizzati per monitor, stampanti e memorie.
 
 ## Porte I/O seriali  
-Le porte I/O seriali utilizzano un singolo filo per trasferire un unico flusso di dati. Questo approccio elimina la diafonia e gli errori dovuti a differenze di velocità, permettendo comunicazioni su lunghe distanze. Il componente UART (Universal Asynchronous Receiver/Transmitter) è ampiamente utilizzato nei sistemi embedded, sebbene sia stato sostituito da porte più veloci come Ethernet e USB nei computer. La velocità di trasmissione seriale è inferiore rispetto a quella parallela.
+Le porte I/O seriali utilizzano un singolo filo per trasferire un unico flusso di dati. Questo approccio elimina la diafonia e gli errori dovuti a differenze di velocità, permettendo comunicazioni su lunghe distanze. La velocità di trasmissione seriale è inferiore rispetto a quella parallela.
 
 ## Convertitore Analogico-Digitale (ADC)  
 ==L'ADC converte segnali analogici continui in segnali digitali discreti==. 
@@ -151,7 +146,10 @@ Il ==controller degli interrupt== è una **periferica che aiuta il processore a 
 - attivo (quando l'ISR sta gestendo l'interrupt).
 
 ## Tabella dei vettori di interrupt (IVT)
-La ==IVT== **contiene gli indirizzi delle routine di servizio degli interrupt (ISR) e associa ciascuna ISR alle richieste di interrupt provenienti da diverse sorgenti**. 
+La **IVT (Interrupt Vector Table)** è una tabella che dice alla CPU:  
+_"Se arriva un interrupt X, salta all’indirizzo Y dove trovi la routine (ISR) per gestirlo!"_
+
+![[1q.png]]
 
 ## Tipi di interrupt
 Esistono ==due categorie principali di interrupt==:
@@ -162,7 +160,7 @@ Esistono ==due categorie principali di interrupt==:
 Nella ==progettazione di sistemi embedded IoT==, i due ==costi principali== da considerare sono **energia** e **denaro**. I sistemi più potenti consumano più energia, mentre MCU con maggiori funzionalità hanno costi più elevati. È fondamentale scegliere il microcontrollore minimale che soddisfi i requisiti dell'applicazione e ottimizzare il codice per ridurre consumi e costi.
 
 ## Bilancio energetico
-==I sistemi embedded alimentati a batteria richiedono un'attenta gestione dell'energia per massimizzare l'autonomia==. Calcolare il bilancio energetico permette di valutare compromessi progettuali, come dimensionamento batteria e ottimizzazioni software per ridurre i cicli di ricarica.
+==I sistemi embedded alimentati a batteria richiedono un'attenta gestione dell'energia per massimizzare l'autonomia==. ==Calcolare il bilancio energetico== permette di valutare compromessi progettuali, come dimensionamento batteria e ottimizzazioni software per ridurre i cicli di ricarica.
 
 # High level energy consumption
 l'energia consumata da un dispositivo è l'energia consumata mentre è in modalità di sospensione e l'energia consumata mentre è attivo:
@@ -184,9 +182,9 @@ To minimise **sleep energy**, put microcontroller into lowest possible state
 in the previous example we only saw “sleep” mode, but microcontrollers have different many low-power states and power-saving features.
 
 To _minimise_ **active energy**, 
-- minimise time peripherals and MCU are active 
-- perform operations in parallel to minimise active time 
-- cluster/batch operations to minimise transition times (e.g., instead of sending one packet every second you can send 10 packets every ten seconds). - minimize clock rate.
+- ridurre al minimo il tempo di attività delle periferiche e della MCU
+- eseguire operazioni in parallelo per ridurre al minimo il tempo di attività
+- operazioni cluster/batch per ridurre al minimo i tempi di transizione ridurre al minimo la frequenza di clock.
 
 ## Sleep States: SAM4L running modes
 ![[41a.png]]
@@ -196,7 +194,7 @@ Parallelism is one technique to enhance efficiency in active mode
 ![[42a.png]]
 
 ## Active state: Batching
-If your system has very high transition costs (probably because it takes long to go from sleep to active mode), you can improve the efficiency of your system by batching a whole bunch of operations to amortise transition costs between them.
+Se il sistema presenta costi di transizione molto elevati, è possibile migliorarne l'efficienza raggruppando una serie di operazioni per ammortizzare i costi di transizione tra di esse.
 
 ![[43a.png]]
 
@@ -206,17 +204,34 @@ If your system has very high transition costs (probably because it takes long to
 ![[44a.png]]
 
 ## Battery-powered IoT sensors
-Molte applicazioni IoT utilizzano sensori alimentati a batteria, come nel monitoraggio ambientale, vulcanico, strutturale e nel tracciamento veicoli. Tuttavia, la capacità della batteria è limitata e batterie più grandi risultano costose e ingombranti, spesso impraticabili. Inoltre, i sensori vengono spesso installati in luoghi difficili da raggiungere, rendendo la sostituzione delle batterie onerosa e complessa.
+Molte applicazioni IoT usano sensori a batteria per monitoraggio ambientale, strutturale o tracciamento veicoli. Le limitazioni principali sono:  
+- **Capacità limitata**: batterie più grandi sono costose e ingombranti  
+- **Sostituzione complessa**: spesso installati in luoghi remoti o difficili da raggiungere  
+- **Compromessi prestazionali**: soluzioni a basso consumo riducono capacità computazionale e velocità  
 
-Per affrontare questo problema, si possono adottare processori e moduli radio a basso consumo, sebbene ciò riduca la capacità computazionale e la velocità di trasmissione. Un'altra soluzione è l'uso di protocolli di comunicazione a basso consumo, che migliorano l’efficienza energetica ma non eliminano del tutto la limitazione della batteria.
+**Energy Harvesting**  
+Alternativa per ridurre la dipendenza dalle batterie:  
+- **Harvest-use**: energia usata immediatamente (sensore si disattiva se insufficiente)  
+- **Harvest-store-use**: energia accumulata (supercondensatori/batterie tampone) per uso continuativo  
 
-## Another solution: Energy Harvesting
-**Energy Harvesting** consente di raccogliere energia dall'ambiente o da altre fonti, come il calore corporeo o il movimento. Esistono due principali architetture di raccolta:
-- **Harvest-use**: l'energia raccolta alimenta direttamente il sensore. Se l'energia è insufficiente, il nodo si disattiva.
-- **Harvest-store-use**: l'energia raccolta viene immagazzinata in un componente di storage e utilizzata per alimentare il sensore in modo più continuo.
+**Fonti energetiche**  
+- **Controllabili**: disponibili su richiesta (es. movimento umano in dispositivi indossabili)  
+- **Non controllabili**: dipendono dall'ambiente (sole, vento)  
+- **Prevedibili**: modelli previsionali (cicli solari, pattern vento)  
+- **Alta intensità**: solare/eolico (miglior rapporto potenza)  
 
-Le fonti di energia variano in base a controllabilità, prevedibilità e intensità. Le fonti **controllabili** forniscono energia su richiesta, come il movimento del polso, mentre quelle **non controllabili**, come l’energia solare, dipendono dall’ambiente. Alcune fonti, come il sole e il vento, sono **prevedibili** con una certa precisione. Inoltre, l’intensità dell’energia varia: il sole e il vento offrono maggiore potenza rispetto alla respirazione o alla pressione sanguigna.
+**Tecnologie di raccolta**  
+- **Fotovoltaico**: conversione luce solare  
+- **Termoelettrico**: gradienti termici → elettricità  
+- **Piezoelettrico**: vibrazioni meccaniche → energia  
+- **Micro-eolico**: mini turbine per vento a bassa velocità  
 
-## Ambient Energy Harvesting
-L’**energia solare** è la fonte di energia più abbondante sulla Terra. I **generatori termoelettrici** sfruttano la giunzione di due materiali diversi per convertire il calore in elettricità in presenza di un gradiente termico. L’**energia eolica** viene raccolta tramite turbine, che trasformano l’energia cinetica del vento in elettricità. L’**energia da vibrazioni meccaniche** può essere convertita con dispositivi piezoelettrici, che generano elettricità quando sottoposti a deformazione.
+**Vantaggi**  
+- Autonomia prolungata  
+- Riduzione interventi manutenzione  
+- Sostenibilità ambientale  
 
+**Sfide**  
+- Variabilità ambientale (disponibilità energia intermittente)  
+- Efficienza di conversione  
+- Costi iniziali di implementazione  

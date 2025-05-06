@@ -1,4 +1,4 @@
-
+ 
 # What is IOT? (PDF1)
 The term IoT was first coined in 1999 by Kevin Ashton in the context of supply chain management, and was redefined during the following years.
 
@@ -130,7 +130,7 @@ Today all is possible thanks to:
 - **Latency and Reliability**
 ## Cool Application (Just For Info)
 
-## Smart Cities
+### Smart Cities
 A **smart city** is an urban area that uses digital technology to collect data and to operate/provide services
 
 Smart cities integrate information and communication technology, and IoT
@@ -138,7 +138,7 @@ devices to optimize city services and connect to citizens.
 
 Applications include **traffic and transportation systems**, power plants, utilities, urban forestry, water supply networks, waste disposal, criminal investigations, information systems, schools, libraries, hospitals, and other community services.
 
-## Smart Waste Management
+### Smart Waste Management
 Smart Waste Management System
 - Each trash can is equipped with wireless ultrasonic fill-level sensor (to detect when the trash can is full or even too smelly)
 - Uses cellular based wireless technologies to connect to a control centre
@@ -147,7 +147,7 @@ Smart Waste Management System
 
 This increase waste collection efficiency by 90%
 
-## Smart Street Lights
+### Smart Street Lights
 In a smart street light system, street lights adjust their brightness when a car or a pedestrian is approaching. Light intensity can be adjusted under different
 weather conditions.
 
@@ -157,12 +157,6 @@ A smart street lighting system incorporates a cluster of streetlights that can c
 - Lights are equipped with lighting and motion sensors triggering some actuators (e.g., if motion is sensed, bright up the light).
 - Sensed data is sent to local relay, that manages and transmits the relevant data often by a cellular-based modem to a secure server, that captures the data for further analysis.
 - Data can be sent to a central controller and exploited for other smart city systems, e.g., Smart Parking, Traffic and Security Monitoring
-
-
-
-
-
-
 # IOT Architectures (PDF2)
 
 ## Drivers of IOT Architectures
@@ -177,33 +171,20 @@ The scale of typical IT networks is very smaller than the scale of IoT endpoints
 IPv4 address space has reached exhaustion and is unable to meet IoT’s scalability requirements. **Scale can be met only by using IPv6**.
 
 ### Security
-IoT devices, especially those on wireless sensor networks (WSNs), are often physically exposed to the world.
-
-- Traditional models of IT security do not always work for the new attack vectors
-- IoT devices vary widely in hardware, software, and communication protocols
-- Many devices have limited computational resources, making it difficult to implement strong encryption, firewalls, or intrusion detection systems.
-- Every IoT endpoint node on the network must be part of the overall security strategy and must support device-level authentication and link encryption.
+I ==dispositivi IoT==, soprattutto quelli connessi a reti di sensori wireless (WSN), sono spesso **esposti fisicamente e vulnerabili ad attacchi**. I modelli tradizionali di sicurezza IT non sono sempre efficaci in questo contesto, anche perché l’hardware, il software e i protocolli variano molto tra un dispositivo e l’altro. Inoltre, le risorse limitate di molti dispositivi rendono difficile adottare soluzioni di sicurezza avanzate come crittografia complessa o firewall. ==Per garantire la protezione==, **ogni nodo IoT deve contribuire alla strategia di sicurezza generale, supportando almeno l’autenticazione del dispositivo e la crittografia del collegamento**.
 
 ### Constrained devices and networks
-La maggior parte dei sensori IoT sono progettati per un singolo lavoro e sono in genere piccoli ed economici
-- Potenza, CPU, memoria limitate e trasmettono solo quando c'è qualcosa di importante da dire
-- Ampia scala dei dispositivi + grandi ambienti non controllati = rete con perdite che supporta basse velocità di trasmissione dati
-- Questo è molto diverso dalle reti IT tradizionali, che godono di connessioni Gb ed endpoint con CPU potenti.
+La maggior parte dei ==sensori IoT== è progettata per svolgere un compito specifico, ed essendo piccoli ed economici, **dispongono di risorse limitate in termini di potenza, CPU e memoria**. Trasmettono dati solo quando necessario, e operano spesso in ambienti estesi e non controllati, dove la rete può essere instabile e supportare solo basse velocità di trasmissione. Questo li distingue nettamente dalle reti IT tradizionali, che invece si basano su connessioni veloci e dispositivi con capacità di calcolo elevate.
 
 ### Data
-In IoT, data enables business to deliver new IoT services that enhance the user experience and reduce costs.
+In IoT, ==data== **enables business to deliver new IoT services that enhance the user experience and reduce costs**.
 - Most IoT generated data is unstructured.
-- When all the data is combined, it can be difficult to manage and analyse it effectively.
-- Data analytics capabilities need to be distributed throughout the IoT network, from the edge to the cloud. In traditional IT networks, analytics and applications typically run only in the cloud.
+- When all the data is combined, it can be difficult to manage and analyse it.
+- Data analytics capabilities need to be distributed throughout the IoT network, from the edge to the cloud. 
 
 
 ### Risorse di calcolo e di rete nell'IoT
-Le risorse di calcolo e di rete utilizzate nell'IoT possono essere molto diverse da quelle negli ambienti IT.
-- Questo perché i dispositivi IoT vengono distribuiti in vari ambienti, che appartengono a diversi ambienti OT.
-- Decidere quali dispositivi distribuire è un fattore chiave:
-	- I termometri possono essere posizionati vicino alle fornaci di un'acciaieria o utilizzati per le catene del freddo
-	- I dispositivi possono essere posizionati in ambienti con umidità molto diverse o persino sott'acqua.
-	- Alcuni dispositivi sono soggetti a vibrazioni cinetiche costanti o a vibrazioni improvvise
+Le ==risorse di calcolo e di rete nell'IoT== sono molto diverse rispetto agli ambienti IT, poiché **i dispositivi vengono distribuiti in contesti operativi (OT) molto vari**. **La scelta del tipo di dispositivo da utilizzare è cruciale**: ad esempio, i termometri possono essere impiegati sia vicino alle fornaci di un'acciaieria sia per monitorare la catena del freddo. Inoltre, i dispositivi possono trovarsi in ambienti con livelli di umidità molto diversi, sott'acqua, oppure essere esposti a vibrazioni continue o improvvise.
 
 ## IoT Architecture layers
 ![[31a.png|700]]
@@ -279,10 +260,10 @@ Different M2M protocols support different topologies that define the connections
 ![[5.png]]
 
 The choice of what topology (and protocol) to use, highly depends on the application of the IoT system.
-- Mesh topology are more reliable, since they have redundant links and the failure of one link does not necessarily disconnect the network.
+- ==Mesh topology== are more **reliable** (affidabili), since they have **redundant links** and the **failure of one link does not necessarily disconnect the network**.
 - Nevertheless, keeping more connections influences the power consumption of the devices.
-- Topologies depend also on the transmission range of the devices (trivially, two devices are connected by a link in a topology only if they are within the transmission range of one another)
-- In remote areas when devices can possibly be very far apart from each other, it might be necessary to leverage satellite communication.
+- **Topologies depend also on the transmission range of the devices** (trivially, two devices are connected by a link in a topology only if they are within the transmission range of one another)
+- **In remote areas when devices can possibly be very far apart from each other, it might be necessary to leverage** satellite ==communication==.
 
 #### Network layer - Gateways 
 Data collected from a smart object may need to be forwarded to a central station (i.e., a server, a data center, or more generally the cloud) where data is processed.
@@ -329,14 +310,13 @@ title: Example3
 ```
 
 ## IoT architecture: application and analytics layer
-The application and analytics layer provides the requested services to IoT users.
+The ==application and analytics layer== **provides the requested services to IoT users**.
 - It interprets data using software applications. Applications may monitor, control, and provide reports based on the analysis of the data.
 - Data driven decision making.
 
 ### Applications and Analytics Layer - Applications
 Once data coming from different sensors is transmitted to a central station through the network via a gateway, applications that running on top of the central station, analyse the data.
 - IoT applications are very diverse depending on the considered IoT system
-- Think of the IoT examples in the previous lecture: an application for baby monitoring has very different features and goals than an application for smart cities.
 -  From an architectural standpoint, we can classify IoT applications into two main types:
 
 **Analytics Application**
@@ -354,7 +334,7 @@ the sensor senses a drop in pressure.
 ==Analytics== è un termine generico che descrive l'elaborazione delle informazioni per **dare un senso ai dati raccolti**. In IoT, una possibile classificazione della funzione di analisi è la seguente:
 
 **Data Analytics**
-Elaborazione dei dati raccolti da oggetti intelligenti e combinazione di tali dati per fornire una vista intelligente correlata al sistema IoT. L'analisi dei dati può anche monitorare il sistema IoT
+==Elaborazione dei dati raccolti da oggetti intelligenti e combinazione di tali dati per fornire una vista intelligente correlata al sistema IoT==. L'analisi dei dati può anche **monitorare** il sistema IoT
 
 ```ad-example
 
@@ -363,8 +343,8 @@ Ad esempio, temperatura, pressione, vento, umidità e livelli di luce raccolti d
 ```
 
 **Network Analytics**
-Network Analytics **elabora informazioni sulla connettività del sistema IoT**.
-La perdita o il degrado della connettività comporta la perdita di dati dai sensori e può talvolta avere effetti drammatici (ad esempio, veicoli autonomi, fabbriche).
+Network Analytics ==elabora informazioni sulla connettività del sistema IoT==.
+**La perdita o il degrado della connettività comporta la perdita di dati dai sensori e può talvolta avere effetti drammatici** (ad esempio, veicoli autonomi, fabbriche).
 
 
 
@@ -432,13 +412,14 @@ Cloud computing allows businesses to deploy and run their applications on cloud 
 - XaaS “anything as a service”: delivery of solutions, application, products, tools and technologies as services, which exist on some Cloud platform.
 
 ### IaaS/PaaS/SaaS
-![[29.png]]
+![[24q.png]]
+![[25q.png]]
 
 ----
 
 ## Example of optimization for task offloading on the fog
 
-![[12.png]]
+![[2Semester/IOT/Images/12.png]]
 ![[14.png]]
 ![[15.png]]
 

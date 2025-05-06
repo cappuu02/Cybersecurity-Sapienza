@@ -1,0 +1,201 @@
+{
+  "main": {
+    "id": "4b705aaaa7d0e4b2",
+    "type": "split",
+    "children": [
+      {
+        "id": "2dfd4a16c60e66b6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "424bf0685da2f8e1",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "01d27a3fa5dfac84",
+    "type": "split",
+    "children": [
+      {
+        "id": "cc7ba1708e058691",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9e54715a822f87eb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "00de8e8c69dc9326",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "4fb0a3100b606580",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1827c9cd2fb9bf14",
+    "type": "split",
+    "children": [
+      {
+        "id": "0aab5bba8cc3fb4d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f66f11877dc6af6f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "PND/5) IPV6 Addressing.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for 5) IPV6 Addressing"
+            }
+          },
+          {
+            "id": "2c9c744fdad4eddd",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "PND/5) IPV6 Addressing.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from 5) IPV6 Addressing"
+            }
+          },
+          {
+            "id": "59f085065a0d755f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "f6e18a1c588fd10a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "PND/5) IPV6 Addressing.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of 5) IPV6 Addressing"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "9e54715a822f87eb",
+  "lastOpenFiles": [
+    "PND/4) IPv6 Protocol Overview.md",
+    "PND/7) NAT.md",
+    "PND/images PND/150a.png",
+    "PND/images PND/149a.png",
+    "PND/images PND/148a.png",
+    "PND/images PND/147a.png",
+    "PND/images PND/146a.png",
+    "PND/6) Network traffic regulation with firewalls.md",
+    "PND/5) IPv6 Security.md",
+    "PND/2) Network traffic monitoring and Wire shark lab.md",
+    "PND/1) Lesson.md",
+    "PND/08-NewIPv6Security-Slides.pdf",
+    "PND/3) IPV6 Addressing.md",
+    "PND/4) Lesson.md",
+    "PND/3).md",
+    "PND/images PND/145a.png",
+    "PND/images PND/144a.png",
+    "PND/images PND/143a.png",
+    "PND/images PND/142a.png",
+    "PND/images PND/141a.png",
+    "IOT/12) Standards and Protocols in IoT.md",
+    "IOT/11) Mesh Networking.md",
+    "IOT/10) Communication Wireless MAC.md",
+    "IOT/8) Electromagnetism Theory.md",
+    "IOT/7) Information Theory.pdf",
+    "IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "IOT/5) Markov Chain and Decision Process.pdf",
+    "IOT/4) Embedded Systems (PDF4).md",
+    "IOT/3) IOT (Sensors and Actuators).md",
+    "IOT/1-2) IOT.md",
+    "IOT/IOT Last.md"
+  ]
+}

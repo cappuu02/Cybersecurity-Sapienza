@@ -2,7 +2,7 @@
 In depth analysis, Energy harvesting - Markov decision process.
 A Learning Theoretic Approach to Energy Harvesting Communication System Optimization.
 # System Model (PDF5)
-l trasmettitore raccoglie energia dall'ambiente e la immagazzina in una **batteria ricaricabile** di capacità limitata ($B_{max}$​). L'energia raccolta può essere utilizzata per trasmettere dati nel **Time Slot successivo**. **Se la batteria è piena, l’energia in eccesso viene persa** (non può essere accumulata ulteriormente).
+ll trasmettitore raccoglie energia dall'ambiente e la immagazzina in una **batteria ricaricabile** di capacità limitata ($B_{max}$​). L'energia raccolta può essere utilizzata per trasmettere dati nel **Time Slot successivo**. **Se la batteria è piena, l’energia in eccesso viene persa** (non può essere accumulata ulteriormente).
 
 **Il sistema opera in fasi discrete**: ogni TS ha una durata fissa (per tutti uguale), durante la quale:
 - Arrivano pacchetti di **dati** e **energia** in ogni TS.
@@ -42,7 +42,7 @@ Il trasmettitore mira a **massimizzare il numero totale di dati trasmessi** nel 
 Variabile decisionale (ci permette di decidere se trasmettere o meno):
 $$X_n \in \{0,1\}, X_n = \begin{cases} 1 \hspace{0.5cm} \text{Incoming packet is trasmitted} \\ 0 \hspace{0.5cm} \text{Otherwise} \end{cases}$$
 
->La variabile $X$ è una scelta binaria che decide se trasmettere o meno un pacchetto dati al tempo $n$. Se trasmetto ($X=1$) consumo energia `Eₙᴴ` ma guadagno dati utili $D_n$. Se non trasmetto risparmio energia per il futuro.
+>La variabile $X$ è una scelta binaria che decide se trasmettere o meno un pacchetto dati al tempo $n$. Se trasmetto ($X=1$) consumo energia `EₙT` ma guadagno dati utili $D_n$. Se non trasmetto risparmio energia per il futuro.
 
 $$
 \text{Max}_{\{X_i\}^{\infty}_{i=0}}\lim_{N \to \infty} \mathbb{E} \left[ \sum_{n=0}^N \gamma^n X_n D_n \right]
@@ -63,7 +63,7 @@ B_{n+1} = \min\{B_n - X_n E_n^T + E_n^H, B_{\text{max}}\}
 $$
 La batteria si scarica trasmettendo e si ricarica raccogliendo energia (`Eₙᴴ`), senza superare la capacità massima
 $$
-0 \leq 1 - \gamma \leq 1 \hspace{0.5cm} \text{Pr. that the transmission terminates its operations in each TS}
+0 \leq 1 - \gamma \leq 1 \hspace{0.5cm} \text{Pr. that the transmission terminates (si ferma o per terminazione batteria o perchè terminato) its operations in each TS}
 $$
 
 ## MDP for ETD (Expected Total Transmitted Data)
@@ -95,6 +95,8 @@ Trovare la **policy ottima**:
 $$\pi: \mathcal{S} \to \mathcal{A}, \quad \pi(s) = a$$
 Che massimizza:
 $$\max_{\{X_i\}} \lim_{N \to \infty} \mathbb{E} \left[ \sum_{n=0}^N \gamma^n X_n D_n \right]$$
+
+>**massimizzare il totale atteso dei dati trasmessi** nel lungo periodo, considerando anche il "valore futuro" dell'energia.
 
 ## Solving ETDP
 Nel paper sono stati implementati tre approcci, a seconda delle ipotesi sulla conoscenza del modello:
@@ -220,9 +222,14 @@ In this case we have an Infinite horizon (no final state)
 ![[39.png]]
 
 ## Q-learning
+
 **If an agent does not know the environment, it has to explore it first**. By exploring it, it **learns the rewards and the state space**. ==Q-learning== is an **algorithm for finding the optimal policy of a MDP** (has convergence guarantees for both deterministic and non deterministic MDPs). 
 **Q-learning is one of the simplest Reinforcement Learning algorithms**. 
 **Reinforcement Learning algorithms are unsupervised Machine Learning algorithms**, i.e., they do not need to see labeled samples to learn tasks. They only need a feedback from the environment (state and reward).
+
+Se un agente non conosce l'ambiente, deve prima esplorarlo. Esplorandolo, apprende le ricompense e lo spazio degli stati. Il Q-learning è un **algoritmo per trovare la politica ottimale di un MDP** (offre garanzie di convergenza sia per MDP deterministici che non deterministici).
+Il Q-learning è uno degli algoritmi di apprendimento per rinforzo più semplici.
+Gli algoritmi di apprendimento per rinforzo sono algoritmi di apprendimento automatico non supervisionato, ovvero non necessitano di visualizzare campioni etichettati per apprendere i compiti. Richiedono solo un feedback dall'ambiente (stato e ricompensa).
 
 ![[40.png]]
 
@@ -271,9 +278,9 @@ Set $Q(s_{\text{FINAL}}, a) = 0$ $\forall a \in S_F$ (final states)
 Valori elevati ci consentono una maggiore esplorazione dell'ambiente. Man mano che scopriamo l'ambiente, la diminuzione migliora lo sfruttamento della conoscenza acquisita. $\alpha$ è il tasso di apprendimento e rappresenta quanto è grande il passo che facciamo per muoverci verso la soluzione ottimale.
 
 ![[41.png]]
-- High learning rate: La soluzione oscilla selvaggiamente attorno all'ottimo.
-- Low learning rate: Convergenza lenta ma stabile
-- Decaying learning rate: Convergenza rapida e precisa (inizia veloce e termina lento e preciso)
+- ==High learning rate==: La soluzione oscilla selvaggiamente attorno all'ottimo.
+- ==Low learning rate==: Convergenza lenta ma stabile
+- ==Decaying learning rate==: Convergenza rapida e precisa (inizia veloce e termina lento e preciso)
 
 ### Q-learning - finite horizon environments (2)
  Parameters: learning rate $\alpha \in (0,1]$, small $\epsilon > 0$  
@@ -305,3 +312,5 @@ $$\sum_{t=1}^{\infty} a_t = \infty \hspace{0.5cm} \sum_{t=1}^{\infty} a^2_t < \i
 		- $s \leftarrow s'$
 	- Decrease $\epsilon$ and $\alpha$
 
+
+![[29q.png]]
