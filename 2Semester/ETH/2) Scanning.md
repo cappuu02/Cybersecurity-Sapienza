@@ -10,9 +10,9 @@
 
 ### Network ping sweeps 
 - ARP host discovery: on the same subnet 
-- **Arp-scan**: run as root by sudo to list IP-MAC 
-- **Nmap** (Network Mapper): host and service discovery with various options (host only: -PR –sn) 
-- **Cain** (Windows-only): beyond host and service discovery
+	- **Arp-scan**: run as root by sudo to list IP-MAC 
+	- **Nmap** (Network Mapper): host and service discovery with various options (host only: -PR –sn) 
+	- **Cain** (Windows-only): beyond host and service discovery
 
 #### Address Resolution Protocol (ARP)
 
@@ -75,14 +75,18 @@ Port scanning:
 - Identifying TCP/UDP services running on the target 
 - Identifying type of OS of the target 
 - Identifying applications or versions of a service – Scan types (anomalous TCP packets) 
-- TCP connect scan (3-way handshake) 
-- TCP SYN scan (half-open scan, SYN then SYN/ACK or RST/ACK) (not traceable) 
-- TCP FIN scan (RST if closed port) 
-- TCP Xmas Tree scan (FIN/URG/PUSH) 
-- TCP null scan, TCP ACK scan 
-- TCP Windows scan 
-- TCP RPC scan 
-- UDP scan (ICMP port unreachable msg, if closed port)
+	- TCP connect scan (3-way handshake) 
+	- TCP SYN scan (half-open scan, SYN then SYN/ACK or RST/ACK) (not traceable) 
+	- TCP FIN scan (RST if closed port) 
+	- TCP Xmas Tree scan (FIN/URG/PUSH) 
+	- TCP null scan, TCP ACK scan 
+	- TCP Windows scan 
+	- TCP RPC scan 
+	- UDP scan (ICMP port unreachable msg, if closed port)
+
+## Determining Which Services Are Running or Listening
+![[2Semester/ETH/Images/37.png]]
+
 
 ## Detecting The Operating System
 Useful info for vulnerability mapping 
@@ -95,14 +99,10 @@ Making guess from available ports
 - Windows: ports 135, 139, 445 (139 only for Windows 95/98); 3389 for RDP (Remote Desktop Protocol) 
 - UNIX: TCP 22 (SSH), TCP 111 (RPC portmapper=port 135), TCP 512-514 (Berkeley Remote services, rlogin), TCP 2049 (NFS, Network File System), high number ports 3277x (RPC, Remote Procedure Call in Solaris)
 
-
-
 ## Port 135, 139, 445
 - ==Port 135== Microsoft EPMAP, end-point mapper. Microsoft relies upon DCE RPC to remotely manage services. Some services that use port 135 of end-point mapping are: DHCP server, DNS server, WINS server 
 - ==Port 139== NetBIOS 
 - ==Port 445== MS Server Message Block (SMB), SAMBA-compatible
-
-
 
 
 Active stack fingerprinting (Phrack Magazine) 

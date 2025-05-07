@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "c1f8b31283077678",
+        "id": "90eb05af7f974f72",
         "type": "tabs",
         "children": [
           {
-            "id": "5878e657a4459cc4",
+            "id": "5648e5eefedf74da",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/11) Mesh Networking.md",
+                "file": "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "11) Mesh Networking"
+              "title": "4.2) Rainbow Tables - Hacking Unix"
             }
           }
         ]
@@ -90,8 +90,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5004348754883,
-    "collapsed": true
+    "width": 279.5004348754883
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -176,21 +175,30 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5878e657a4459cc4",
+  "active": "5648e5eefedf74da",
   "lastOpenFiles": [
-    "2Semester/IOT/Image IOT2ESONERO/27k.png",
-    "2Semester/IOT/Image IOT2ESONERO/26k.png",
-    "2Semester/IOT/Image IOT2ESONERO/25k.png",
-    "2Semester/IOT/Image IOT2ESONERO/24k.png",
-    "2Semester/IOT/Image IOT2ESONERO/23k.png",
-    "2Semester/IOT/Image IOT2ESONERO/22k.png",
-    "2Semester/IOT/Image IOT2ESONERO/21k.png",
-    "2Semester/IOT/Image IOT2ESONERO/20k.png",
-    "2Semester/IOT/Image IOT2ESONERO/19k.png",
-    "2Semester/IOT/Image IOT2ESONERO/18k.png",
-    "2Semester/IOT/Image IOT2ESONERO/17k.png",
-    "2Semester/IOT/9) Lesson 31 March 2025.md",
+    "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
+    "2Semester/ETH/Images/Rainbow Tables.pdf",
+    "2Semester/ETH/Rainbow Tables.pdf",
+    "2Semester/ETH/4.1) Hacking Windows.md",
+    "2Semester/ETH/Images/66.png",
+    "2Semester/ETH/Images/65.png",
+    "2Semester/ETH/Images/64.png",
+    "2Semester/ETH/Images/63.png",
+    "2Semester/ETH/Images/62.png",
+    "2Semester/ETH/Images/61.png",
+    "2Semester/ETH/Images/60.png",
+    "2Semester/ETH/Images/59.png",
+    "2Semester/ETH/Images/58.png",
+    "2Semester/ETH/Images/57.png",
+    "2Semester/ETH/Hacking_Exposed_Chapter4_Formatted.md",
+    "2Semester/ETH/1) Intro and Footprinting.md",
+    "2Semester/ETH/Hacking_Exposed_Chapter4.md",
+    "2Semester/ETH/3) Enumeration.md",
+    "2Semester/ETH/2) Scanning.md",
+    "2Semester/PND/Kathara Commands.md",
     "2Semester/IOT/11) Mesh Networking.md",
+    "2Semester/IOT/9) Lesson 31 March 2025.md",
     "2Semester/IOT/10) Communication Wireless MAC.md",
     "2Semester/IOT/Image IOT2ESONERO",
     "2Semester/IOT/Untitled",
@@ -213,16 +221,6 @@
     "2Semester/IOT/7) Information Theory.md",
     "2Semester/IOT/4) Embedded Systems (PDF4).md",
     "2Semester/IOT/3) IOT (Sensors and Actuators).md",
-    "2Semester/IOT/1-2) IOT.md",
-    "2Semester/IOT/8) InfTheoryNotes_IoT.pdf",
-    "2Semester/IOT/PDF/RadioFrequencyCommunications.pdf",
-    "1 Semester/Statistic/Riemann and Lesbegue Integral.md",
-    "1 Semester/Statistic/Lesson 7 (28 novembre).md",
-    "1 Semester/Statistic/Lesson 6 (14 novembre).md",
-    "1 Semester/Statistic/Lesson 5.md",
-    "1 Semester/Statistic/Lesson 4.md",
-    "1 Semester/Statistic/Lesson 3.md",
-    "1 Semester/Statistic/Lesson 2.md",
-    "1 Semester/Statistic/Lesson 1.md"
+    "2Semester/IOT/1-2) IOT.md"
   ]
 }
