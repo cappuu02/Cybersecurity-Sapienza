@@ -209,6 +209,7 @@ ICMPv6 Neighbor Discovery defines 5 different packet types:
 
 **Router Advertisement: 3 Options**
 ![[83a.png]]
+
 ![[84a.png]]
 
 
