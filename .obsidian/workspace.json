@@ -4,73 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "b3f67209c2e55cff",
+        "id": "b1b01cc24c46df90",
         "type": "tabs",
         "children": [
           {
-            "id": "9922057da84a7926",
+            "id": "7f6e364796e4d390",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/1) Intro and Footprinting.md",
+                "file": "2Semester/ETH/4.1) Hacking Windows.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "1) Intro and Footprinting"
+              "title": "4.1) Hacking Windows"
             }
           },
           {
-            "id": "ffd29f32bd5b3248",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/ETH/2) Scanning.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "2) Scanning"
-            }
-          },
-          {
-            "id": "a8ec0c95ddefcb8e",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/ETH/3) Enumeration.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "3) Enumeration"
-            }
-          },
-          {
-            "id": "636fea82460add13",
+            "id": "5c185b758a067b8e",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
-                "mode": "source",
-                "source": false
+                "file": "2Semester/ETH/Images/Pasted image 20250519105211.png"
               },
-              "icon": "lucide-file",
-              "title": "7) Remote Connectivity and VoIP Hacking"
+              "icon": "lucide-image",
+              "title": "Pasted image 20250519105211"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -139,7 +105,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5004348754883
+    "width": 279.5004348754883,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -224,12 +191,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "636fea82460add13",
+  "active": "5c185b758a067b8e",
   "lastOpenFiles": [
+    "2Semester/ETH/Images/Pasted image 20250518180459.png",
+    "2Semester/ETH/4.1) Hacking Windows.md",
+    "2Semester/ETH/1) Intro and Footprinting.md",
+    "Windows Hacking.md",
     "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+    "2Semester/ETH/Images/Pasted image 20250519105211.png",
+    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
+    "2Semester/ETH/3) Enumeration.md",
+    "2Semester/ETH/2) Scanning.md",
+    "2Semester/ETH/11) Mobile Hacking.md",
+    "README.md",
+    "2Semester/IOT/Information Theory Latex.md",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch3.pdf",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch2.pdf",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch1.pdf",
+    "2Semester/ETH/PDF",
+    "2Semester/ETH/Lesson 4 (Hacking Windows).md",
+    "2Semester/ETH/Lesson 3.md",
+    "2Semester/ETH/Lesson 2.md",
     "2Semester/ETH/5) Hacking Unix (part 1).md",
     "2Semester/ETH/5) Hacking Unix (part 2).md",
-    "2Semester/ETH/3) Enumeration.md",
     "2Semester/ETH/immagini/Pasted image 20250518162624.png",
     "2Semester/ETH/immagini/Pasted image 20250518162611.png",
     "2Semester/ETH/immagini/Pasted image 20250518162249.png",
@@ -239,37 +223,21 @@
     "2Semester/ETH/immagini/Pasted image 20250518162056.png",
     "2Semester/ETH/immagini/Pasted image 20250518162043.png",
     "2Semester/ETH/immagini/Pasted image 20250518161757.png",
-    "2Semester/ETH/immagini/Pasted image 20250518161744.png",
     "2Semester/ETH/immagini",
-    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
-    "2Semester/ETH/2) Scanning.md",
-    "2Semester/ETH/1) Intro and Footprinting.md",
-    "2Semester/ETH/4.1) Hacking Windows.md",
-    "2Semester/ETH/11) Mobile Hacking.md",
     "2Semester/PND/Proxies.md",
     "2Semester/PND/Kathara Commands (Lab Activity).md",
     "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
     "2Semester/PND/9)VPN, SSL, TLS and IPSec.md",
     "2Semester/IOT/14) Security.md",
     "2Semester/IOT/13) APPUNTARE.md",
-    "2Semester/IOT/Information Theory Latex.md",
     "2Semester/PND/8) Link-local attacks.md",
     "2Semester/PND/3) IPV6 Addressing.md",
     "2Semester/PND/5) IPv6 Security.md",
     "2Semester/PND/4) IPv6 Protocol Overview.md",
-    "2Semester/PND/7) NAT.md",
-    "2Semester/PND/6) Network traffic regulation with firewalls.md",
     "2Semester/PND/08-NewIPv6Security-Slides.pdf",
-    "2Semester/PND/2) Network traffic monitoring and Wire shark lab.md",
-    "2Semester/PND/1) Lesson.md",
     "2Semester/ETH/Images/Rainbow Tables.pdf",
     "2Semester/ETH/Rainbow Tables.pdf",
-    "2Semester/ETH/Hacking_Exposed_Chapter4_Formatted.md",
     "2Semester/IOT/Image IOT2ESONERO",
-    "2Semester/IOT/Untitled",
-    "2Semester/Cyber Law",
-    "2Semester/IOT/images IOT",
-    "2Semester/PND/images PND",
-    "2Semester/PND"
+    "2Semester/IOT/Untitled"
   ]
 }
