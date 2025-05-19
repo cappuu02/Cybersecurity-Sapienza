@@ -19,7 +19,7 @@ Safety: C2, C3, C4
 ![[187.png]]
 
 This is not correct because they decide a value that is not proposed yet! (violate the validity)
-![[199.png]]
+![[1 Semester/Distributed System/Images/199.png]]
 
 **Violated run 1**
 È stata violata la proprietà di agreement (p4 correct)
@@ -80,7 +80,7 @@ since to decide you have to go to the new round, if you go to the new round you 
 
 
 
-![[198.png]]
+![[1 Semester/Distributed System/Images/198.png]]
 
 
 ### Hierarchial Consensus Algorithm

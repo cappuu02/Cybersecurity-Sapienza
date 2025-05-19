@@ -1,21 +1,38 @@
 
-- Service fingerprinting
-- Vulnerability scanners
-- Basic banner grabbing
-- Enumerating common network services
+1. Service fingerprinting
+2. Vulnerability scanners
+3. Basic banner grabbing
+4. Enumerating common network services
 
 # Enumeration in Network Security
-
 ```ad-abstract
 title: Enumeration Definition
 
-==Enumeration== is an essential phase in penetration testing, involving the active extraction of information from a target system. Unlike scanning, which is more passive, enumeration establishes active connections to gather details such as user accounts, network resources, and service configurations. The process can be generic, like basic banner grabbing, or platform-specific, leveraging port scans and OS detection techniques.
+==Enumeration== is an **essential phase in penetration testing**, involving the active **extraction of information from a target system**. Enumeration establishes active connections to gather details such as user accounts, network resources, and service configurations. The process can be generic, like basic banner grabbing, or platform-specific, leveraging port scans and OS detection techniques.
 ```
 
-One of the primary goals of enumeration is to retrieve user account names, discover misconfigured shared files, and identify outdated software versions that may have known vulnerabilities. Certain network services are particularly valuable for enumeration, including FTP (port 21), Telnet (port 23), and SMTP (port 25). By linking ports, services, and protocols to specific software, attackers can better understand a system’s configuration and potential weaknesses.
+```ad-attention
+title: Scanning vs Enumeration
+**Scanning** serve a capire **quali computer e servizi sono attivi**, mentre **Enumeration** entra più nel dettaglio per scoprire **informazioni specifiche** come utenti, nomi di risorse condivise o versioni precise dei servizi.
 
-## Service Fingerprinting
-Service fingerprinting helps determine the revision and patch level of software running on a target system. This can be done manually or automatically (Tools), balancing stealth and efficiency. Tools like Nmap use version scanning to match known service responses with specific protocols and versions. The `nmap-services` database maps ports to services, while `nmap-service-probe` identifies services based on their responses. Hidden services may use unexpected ports, such as Timbuktu using TCP port 1417 instead of a standard SSH port. `Amap` provides an alternative method for fingerprinting, using pattern-matching techniques to validate service versions.
+```
+
+Uno degli **obiettivi principali** dell'enumerazione è:
+1. ==recuperare i nomi degli account utente==
+2. ==individuare file condivisi== non configurati correttamente
+3. ==identificare versioni software obsolete== che potrebbero presentare vulnerabilità note.
+
+Certain network services are particularly valuable for enumeration, including FTP (port 21), Telnet (port 23), and SMTP (port 25). By linking ports, services, and protocols to specific software, attackers can better understand a system’s configuration and potential weaknesses.
+
+
+## 1) Service Fingerprinting
+Il **Service Fingerprinting** è il processo di identificazione **precisa del software** in esecuzione su una porta aperta. Questa operazione può essere eseguita manualmente o automaticamente (Strumenti), bilanciando discrezione ed efficienza.
+
+Tools like `Nmap` use version scanning to match known service responses with specific protocols and versions. 
+- The `nmap-services database` maps ports to services,
+- while `nmap-service-probe` identifies services based on their responses.
+
+Hidden services may use unexpected ports, such as Timbuktu using TCP port 1417 instead of a standard SSH port. `Amap` provides an alternative method for fingerprinting, using pattern-matching techniques to validate service versions.
 
 ```ad-example
 
@@ -25,30 +42,47 @@ An example of service fingerprinting with Nmap involves scanning a target on por
 
 ```
 
+## 2) Vulnerability Scanners
+Un **vulnerability scanner** è uno strumento automatico che analizza un sistema, host o rete alla ricerca di vulnerabilità note, servizi non aggiornati, configurazioni errate, porte aperte con software pericoloso.
 
-## Vulnerability Scanners
-Vulnerability scanners operate by referencing databases of known exploits. Free options like `Nessus` and `OpenVAS` contrast with commercial solutions from vendors like McAfee, Qualys, and Tenable. Nessus, developed by Tenable, is widely used for exhaustive scanning and allows the use of custom plugins through its Nessus Attack Scripting Language (NASL). While initially open-source, Nessus became a proprietary tool after version 3.
+Questi strumenti **confrontano le informazioni raccolte** con un **database di vulnerabilità note**, come:
+- CVE (Common Vulnerabilities and Exposures)
+- Security advisories (di Microsoft, RedHat, ecc.)
 
-Countermeasures against vulnerability scanning include conducting regular self-audits, maintaining effective patch management, and using intrusion detection systems (IDS) or intrusion prevention systems (IPS) to slow down automated scans. `Nessus` can be compared to `Nmap`, where Nessus focuses on deeper vulnerability scanning, while Nmap, with its Nmap Scripting Engine (NSE), is more versatile for general network discovery, version detection, and backdoor identification.
+==Strumenti di Vulnerability Scanning (Open Source)==
 
-## Basic Banner Grabbing
-Banner grabbing is a technique used to collect service banners that reveal software version information. This can be done manually using tools like Telnet (`telnet www.example.com 80`) or automatically with Netcat (`nc -nv target.com 80`). Banner grabbing helps identify potential vulnerabilities based on software versions but can be countered by restricting access to unnecessary services, implementing access control lists, and disabling software version details in banners.
+| OpenVAS | open-source |
+| ------- | ----------- |
+| Nessus  | fino v2/v3  |
+
+==Strumenti di Vulnerability Scanning (Commerciali)== 
+
+| Nessus         | ultima versione |
+| -------------- | --------------- |
+| QualysGuard    | Tenable         |
+| McAfee         | Qualys          |
+| Rapid7 Nexpose | McAfee          |
+
+## 3) Basic Banner Grabbing
+==Basic Banner grabbing== is a technique used to collect service banners that reveal software version information. This can be done manually using tools like Telnet (`telnet www.example.com 80`) or automatically with Netcat (`nc -nv target.com 80`). Banner grabbing helps identify potential vulnerabilities based on software versions but can be countered by restricting access to unnecessary services, implementing access control lists, and disabling software version details in banners.
 
 ![[ETH/Images/15.png|700]]
 ![[ETH/Images/16.png|700]]
 
-## Enumerating Common Network Services
+## 4) Enumerating Common Network Services
 Several common network services provide valuable information for enumeration. 
+
+### File Transfer Protocol (FTP 21)
 ==FTP (port 21)== is widely used for web content uploads but transmits passwords in cleartext, making it susceptible to interception. 
 We can googling for FTP server, by searching: `Index of ftp://`. Here's the corresponding overly informative FTP banner:
 
 ![[ETH/Images/17.png]]
 
 There are differents alternatives such:
--  SFTP (over SSH) 
-- FTPS (over SSL)
+- SFTP (over SSH) , Secure file transfer protocol
+- FTPS (over SSL) , File Transfer Protocol Secure
 
- 
+### Telnet (23)
  ==Telnet (port 23)== presents similar risks, allowing attackers to gather system and account information based on login error messages.  Telnet has banners, and allows bruteforce username enumeration:
 - **System enumeration**: display a system banner prior to login: host’s OS and version, or vendor, explicitly or implicitly 
 - **Account enumeration**: attempt login with a particular user and observe error messages
@@ -56,21 +90,20 @@ There are differents alternatives such:
  >It sends passwords+data in cleartext
  
  Countermeasures for Telnet include replacing it with SSH, restricting access by IP address, and modifying system banners. (Don't Use Telnet)
- 
 
-
+### Simple Mail Transfer Protocol (SMTP 25)
 ==SMTP (port 25)== allows attackers to verify usernames through commands like VRFY and EXPN. Organizations can mitigate this risk by disabling these commands or restricting them to authenticated users.
 
->automatic tool `vrfy.pl `specify SMTP server and username to test
+>automatic tool `vrfy.pl `specify SMTP server and username to test.
 
 **Countermeasures**
-Disable the EXPN and VRFY commands, or restrict them to authenticated users 
+**Disable the EXPN and VRFY commands**, or restrict them to authenticated users 
 Sendmail and Exchange both allow that in modern versions
 
 ![[ETH/Images/18.png]]
 
-
-==DNS (port 53 TCP)== can be exploited through zone transfers if misconfigured, revealing an organization’s internal structure. Attackers use tools like `dig` or `nslookup` to perform zone transfers, and defenses include restricting DNS queries and using separate internal and external DNS servers.
+### Domain Name System (DNS 53 TCP)
+==DNS (port 53 TCP)== can be exploited through **zone transfers** if misconfigured, **revealing an organization’s internal structure**. **Attackers** use tools like `dig` or `nslookup` to perform **zone transfers**, and defenses include restricting DNS queries and using separate internal and external DNS servers.
 
 >Normally on UDP 53; TCP 53 for zone transfer
 
@@ -96,7 +129,7 @@ Use separate internal and external DNS servers (do not expose internal targets) 
 Block or restrict DNS zone transfers 
 Restrict DNS queries to limit cache snooping
 
-
+### Trivial File Transfer Protocol (TFTP 69)
 ==TFTP (port 69)== is an inherently insecure protocol that lacks authentication, making it possible for attackers to retrieve files. Organizations should wrap TFTP within security layers like TCP Wrappers and restrict access to its root directory. 
 
 **Countermeasure**
@@ -106,10 +139,10 @@ Wrap it to restrict access
 Limit access to the /tftpboot directory 
 Make sure it's blocked at the border firewall
 
-
+### Finger (TCP/UDP 79)
 The ==Finger protocol (port 79)== provides user information that can be exploited for social engineering attacks; disabling remote access is a recommended countermeasure.
 
-
+### HTTP (TCP 80)
 ==HTTP (port 80)== can be enumerated using banner grabbing techniques or automated crawlers like Grendel-Scan, which analyze website structures, comments, and hidden directories. Microsoft RPC Endpoint Mapper (port 135) exposes services running on a system and can be queried using tools like `epdump`. To mitigate risks, organizations should block this port at the firewall and consider alternatives like VPNs or Outlook Web Access (OWA) for secure remote access.
 
 >`Sam Spade` for Windows is free
@@ -153,8 +186,8 @@ Block port 135 at the firewall, if you can
 - Outlook Web Access (OWA) which works over HTTPS 
 - Exchange 2003 and later implements RPC over HTTP
 
-
-- ==NetBIOS services (ports 137 UDP)== allow attackers to list domain members, services, and user accounts. Tools like `NBTSTAT` and `NET VIEW` facilitate this enumeration, while countermeasures include disabling unnecessary NetBIOS services and blocking related ports. SMB (port 445) is particularly dangerous due to null session vulnerabilities, which allow unauthorized users to extract sensitive data. Restricting anonymous access and auditing security policies are essential defenses.
+### NetBios (UDP 137)
+==NetBIOS services (ports 137 UDP)== allow attackers to list domain members, services, and user accounts. Tools like `NBTSTAT` and `NET VIEW` facilitate this enumeration, while countermeasures include disabling unnecessary NetBIOS services and blocking related ports. SMB (port 445) is particularly dangerous due to null session vulnerabilities, which allow unauthorized users to extract sensitive data. Restricting anonymous access and auditing security policies are essential defenses.
 
 Windows needs to change a computer name to an IP address to send data packets Windows uses two naming systems: 
 - DNS (the preferred method) 
@@ -163,11 +196,10 @@ Windows needs to change a computer name to an IP address to send data packets Wi
 ![[ETH/Images/24.png]]
 ![[ETH/Images/25.png|665]]
 
-**NET VIEW**
 NET VIEW can list the domains, or the computers in each domain
 ![[ETH/Images/26.png]]
 
-**NBNS over TCP/IP**
+### NetBios Name System (NBNS Over TCP/IP)
 Normally NBNS only works on the local network segment.
 It is possible to route NBNS over TCP/IP, allowing enumeration from a remote system.
 
@@ -181,16 +213,16 @@ It is possible to route NBNS over TCP/IP, allowing enumeration from a remote sys
 **NBTSCAN**
 ![[2Semester/ETH/Images/44.png]]
 
-### Stopping NetBIOS Name Services Enumeration
+**Stopping NetBIOS Name Services Enumeration**
 All the preceding techniques operate over the NetBIOS Naming Service, UDP 137. Block UDP 137 at the firewall, or restrict it to only certain hosts. To prevent user data from appearing in NetBIOS name table dumps, disable the Alerter and Messenger services on individual hosts. Blocking UDP 137 will disable NBNS name authentication, and stop some applications.
 
-### NetBIOS Session, TCP 139
+#### NetBIOS Session, TCP 139
 These are the notorious Null Sessions. The Windows Server Message Block (SMB) protocol hands out a wealth of information freely. Null Sessions are turned off by default in Win XP and later versions, but open in Win 2000 and NT. They are NOT available in Win 95, 98, or Me.
 
-### Null Session Against Win 2000
+**Null Session Against Win 2000**
 ![[2Semester/ETH/Images/45.png]]
 
-### Information Available
+**Information Available**
 Null sessions on Win 2000 and NT provide information about:
 - Shares
 - User accounts
@@ -200,12 +232,12 @@ Null sessions on Win 2000 and NT provide information about:
 Enumerate file permission, services, ecc.
 ![[2Semester/ETH/Images/46.png]]
 
-### Enumerate file permission, services, ecc.
+### Registry Enumeration
 The Registry can be viewed remotely with reg (MS built-in) or DumpSec. This requires Administrator privileges by default on Windows servers - you can NOT do it with null sessions. Gary McKinnon used remote registry access to hack into the Pentagon.
 
 ![[2Semester/ETH/Images/47.png]]
 
-## Security Identifier (SID)
+### Security Identifier (SID)
 SID is a unique, immutable identifier of security principal: a user, user group,...
 -  S-1-5-21-1180699209-877415012- 3182924384-1004
 -  Relative Identifier (RID)
@@ -230,8 +262,8 @@ These utilities can get user account names and SID remotely, even if blocking an
 ### SMB Null Session Countermeasures
 Block TCP 139 and 445 at the network perimeter. Set the RestrictAnonymous registry key to 1 (or 2 on Win 2000 and later) using regedt32. The key is located at HKLM\SYSTEM\CurrentControlSet\Control\LSA. This can be bypassed by querying NetUserGetInfo API call at Level 3 - tools like NBTEnum and Userinfo bypass it. Anonymous Access settings do not apply to remote Registry access, so ensure the Registry is locked down (reference: [http://support.microsoft.com/kb/153183](http://support.microsoft.com/kb/153183)). Finally, audit yourself with dumpsec.
 
-### SNMP, UDP 161
-Simple Network Management Protocol (Security Not My Problem). SNMP is intended for network management and monitoring It provides inside information on net devices,
+### Simple Network Management Protocol (SNMP, UDP 161)
+==SNMP== is intended for network management and monitoring It provides inside information on net devices,
 software and systems.
 
 > Administrators use SNMP to remotely manage routers and other network devices
@@ -241,6 +273,8 @@ SNMP has a minimal security system called SNMP Community Strings. Community stri
 
 ### Management Information Bases (MIBs)
 The MIB contains a SNMP device's data in a tree-structured form, like the Windows Registry. Vendors add data to the MIB. Microsoft stores Windows user account names in the MIB.
+
+![[Pasted image 20250518180459.png]]
 
 ### Data Available Via SNMP Enumeration
 - Running services

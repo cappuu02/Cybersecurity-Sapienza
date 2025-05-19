@@ -275,4 +275,215 @@ Quando `addr_gen_mode = 2` o `3` (vedi sotto), cioè quando vuoi indirizzi IPv6 
 ```
 
 
+## Lab 2 Ex 3
+
+## Lab 2 Ex 4
+
+
+## Lab 2 Ex 7
+on pc3 run `scapy` command and follow the guide in the security PDF.
+After that, activate the `radvd` on r1 and check if pc1 and pc2 receive the GUA.
+
+In pc1 i do:
+`cp /shared/shared/thc-ipv6-3.6.zip  .`
+`unzip thc-ipv6-3.6.zip`
+`cd thc-ipv6-3.6`
+`make`
+
+in pc2 i do:
+`cp shared/master.zip .`
+`unzip master.zip `
+`cd ipv6toolkit-master/`
+`make instal`
+
+Now i have all the tools that are required for comleting our exercise.
+
+in r1:
+`tcpdump -nt -i eth0`
+in pc1:
+`./alive6 eth0`
+
+other tool to use is this
+in pc2:
+`./scan6 -L -i eth0`
+
+
+
+```ad-seealso
+Exercise 2.2: IPv6 Network Scanning
+In this exercise we introduce two new toolsets:
+1. THC-IPV6 [3]: Complete tool set to attack the inherent protocol
+weaknesses of IPv6 and ICMPv6, and includes an easy to use packet
+factory library.
+
+2. The IPv6 Toolkit [4]: Set of IPv6 security assessment and trouble-
+shooting tools. It can be leveraged to perform security assessments of
+
+IPv6 networks, assess the resiliency of IPv6 devices by performing real-
+world attacks against them, and to troubleshoot IPv6 networking
+
+problems.
+Both toolsets have many different tools (i.e. binaries). In this exercise we will
+use the ones available to find out IPv6 addresses on the network.
+a) THC-IPV6 has a tool called alive6
+To scan your network, go to Host C terminal and type:
+# alive6 eth0
+#
+
+Optional: You can capture packets from another host, A or B, to see how
+alive6 tries to discover hosts on the subnet. You can use Scapy’s sniff()
+function or tcpdump.
+NOTE: All THC-IPV6 tools are in the folder /usr/local/bin/. You can take a
+look at what other commands are available.
+
+b) The IPv6 toolkit has a tool called scan6
+To scan your network, go to Host C terminal and type:
+# scan6 -L -i eth0
+#
+Optional: You can capture packets from another host, A or B, to see how
+alive6 tries to discover hosts on the subnet. You can use Scapy’s sniff()
+function or tcpdump.
+July 2024 9
+
+IPv6 Security Training Course
+
+NOTE: All The IPv6 Toolkit tools are in the folder /usr/local/sbin/. You can
+take a look at what other commands are available.
+
+```
+
+## Lab 4 Ex 1 (iptables)
+![[2Semester/PND/images PND/188.png]]
+
+
+```ad-question
+title: Cos'è `connect-lab.sh`?
+
+È uno **script fornito insieme al laboratorio Kathará** (di solito dai docenti) che fa quanto segue:
+
+1. **Crea un’interfaccia virtuale (`veth`)** sul tuo sistema reale.
+    
+2. La collega alla rete **esterna** del lab Kathará (quella a cui è collegata `r1[eth1]`).
+    
+3. Assegna all’interfaccia del tuo host l’IP `192.168.10.2/24`.
+    
+4. Imposta il nome dell'interfaccia come `external` (in questo caso).
+    
+5. Permette al tuo host di comunicare con `r1` sulla sua interfaccia `192.168.10.1`.
+
+```
+
+1. esegui `./connect-lab.sh 192.168.10.2/24 external`
+2. prova a pingare r1 `192.168.10.1` (gateway for the internal network)
+3. Bisogna aggiungere una nuova route per far arrivare il nostro pc fino alla rete interna `192.168.100.0/24`
+	- ip route add `192.168.100.0/24` via `192.168.10.1` 
+	- Ora dal nostro terminale host possiamo pingare eth0 ed anche la rete interna!
+4. Vogliamo ora che il nostro router lavori come un firewall (filtering traffic from the external to internal)
+
+**Objective 1: block any ping to our pc1**
+![[2Semester/PND/images PND/189.png]]
+
+`tcpdump -nt` on pc1
+`iptables -A INPUT -p icmp --icmp-type echo-request -j DROP` on pc1
+Se proviamo a pingare da s1 a r1 i pacchetti arrivano al router ma poi non arrivano al pc1!
+L'unico host su cui non arriva nulla, è il pc1.
+`iptables -F` per fare il clean delle regole iptables.
+
+>PC1 block any ICMP direct to ourself! `INPUT` in the command say:"Questo comando iptables blocca tutte le richieste di ping (ICMP echo-request) in entrata sul server, impedendo così agli altri di verificare se la macchina è online."
+
+**Objective 2: Exclude any service but HTTP on s1**
+![[2Semester/PND/images PND/190.png]]
+
+Nel server s1 sta girando un webserver con apache2 in locale, che risponde alle richieste.
+se applico le regole di iptables e dal mio pc host provo a pingare il server s1 ottengo: "destination port unreachable". È diverso da prima in quanto, ora abbiamo una risposta dal server mentre prima non avevamo alcuna risposta da pc1! La differenza nei comandi sta che:
+- Ora utilizziamo il `reject` (sending an answer)
+- Prima utilizzavamo il `Drop` (drop the packet without an answer)
+
+```ad-abstract
+title: Iptables Definition
+It is the implementation of a packet filtering firewall for Linux that runs in kernel space .It is the evolution of ipchains and ipfw. Coming successor will be nftables
+- iptables tool inserts and deletes rules from the kernel’s packet filtering table
+- It can also operate at the Transport layer (TCP/UDP)
+
+```
+
+>We are changing the rule inside our kernel!
+
+## Iptables fundamantals
+The rules are grouped in tables (For now, we focus on the FILTER table)
+Each table has different CHAINS of rules
+Each packet is subject to each rule of a table
+Packet fates depend on the first matching rule
+To see chains and rules of the filter table: `iptables -L` or `iptables -L -n -v --line-numbers`
+
+## Filter table
+Three built-in rule chains:
+-  INPUT
+- OUTPUT
+-  FORWARD
+
+If a packet reaches the end of a chain, then is the chain policy to determine the fate of the packet (DROP/ACCEPT)
+
+![[2Semester/PND/images PND/191.png]]
+
+## Create and save a rule set
+You can save in a shell script the sequence of the iptables commands. Typical structure of iptables_rules.sh:
+``` bash
+#!/bin/bash
+
+# flush (clean) the filter table
+iptables -t filter -F
+# allow only service XX
+iptables ...
+```
+
+Or you can use the built in commands
+- `iptables-save > iptables_rules.bk`
+- `iptables-restore < iptables_rules.bk`
+
+## Useful iptables command switches
+![[2Semester/PND/images PND/192.png]]
+
+
+## Review the rulesets of demos
+`iptables -A INPUT -p icmp –icmp-type echo-request -j DROP`
+`iptables -A INPUT -p tcp –-destination-port 80 -j ACCEPT`
+`iptables -A INPUT -j REJECT`
+
+We can specify different “targets” (this is a subset):
+- ==ACCEPT==: the packet is handed over to the end application or the operating system for processing.
+- ==DROP==: the packet is blocked.
+- ==REJECT==: the packet is blocket, but it also sends an error message to the source host of the blocked packet.
+- LOG: the packet is sent to the syslog daemon for logging.
+	-  iptables continues processing with the next rule in the table.
+	- You can't log and drop at the same time use two rules ( → --log-prefix ”reason" )
+
+## Other useful iptables command switches
+![[2Semester/PND/images PND/193.png]]
+
+```ad-example
+title: Modules examples
+![[2Semester/PND/images PND/194.png]]
+
+
+```
+
+## More on the conntrack module
+Clever use of logic to recognize connections, even with connection-less protocols (UDP, ICMP...).
+![[2Semester/PND/images PND/195.png]]
+
+
+
+
+---
+
+## Lab 5 Ex 1 (VPN first)
+https://chatgpt.com/share/6825cdb5-9070-8006-a03a-fd9d358eff4f
+
+## Lab 5 Ex 2 (Openvpn)
+
+![[2Semester/PND/images PND/199.png]]
+
+## IPvSec
+
 
