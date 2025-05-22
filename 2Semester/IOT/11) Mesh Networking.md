@@ -10,7 +10,7 @@
 ```ad-abstract
 title: Definition
 
-Mesh networking consists in managing connections between networking elements in a dynamic way to forward data   Dynamically self-organise and self-configure. 
+==Mesh networking== consists in managing connections between networking elements in a dynamic way to forward data  Dynamically self-organise and self-configure. 
 ```
 
 We use distributed algorithms that need to solve key challenges:  
@@ -35,29 +35,26 @@ We add an Addresses based on location!
 ![[7k.png]]
 
 
-## Hierarchical Addressing (1)
-
-==Idea==: Impose a tree on top of our topology and constrain addresses accordingly  
-- Select a node as the root of the tree (usually reliable, powered and wired)  
-- Assign a set of addresses to the root  
-  - The root keeps one address and assigns the rest to its children 
+## Hierarchical Addressing 
+==Idea==: Imporre un albero in cima alla nostra topologia e limitare gli indirizzi di conseguenza.
+- Selezionare un nodo come radice dell'albero (solitamente affidabile, alimentato e cablato)
+- Assegnare un insieme di indirizzi alla radice
+- La radice mantiene un indirizzo e assegna il resto ai suoi figli
 
 ![[8k.png]]
 
- 
-## Hierarchical Addressing (2)
 
-- Uses a simple distributed protocol to do so, simply each node allocates a bunch of addresses for their children.
-- **Benefit**: Easier routing on addresses  
-- **Downside**: Requires a tree-like organisation.   If many new nodes join the network, you do not want to re-allocate addresses. Better to predict a worst case scenario for pre-allocation, but this requires some advance knowledge of future arrival patterns.
+Uses a simple distributed protocol to do so, simply each node allocates a bunch of addresses for their children.
+
+**Benefit**: Easier routing on addresses  
+**Downside**: Richiede un'organizzazione ad albero. Se molti nuovi nodi si uniscono alla rete, non è consigliabile riassegnare gli indirizzi. È meglio prevedere lo scenario peggiore per la pre-allocazione, ma ciò richiede una certa conoscenza preventiva dei futuri modelli di arrivo.
 
 
 ![[9k.png|400]]
 
 
----
 
-## Zigbee’s Distributed Addressing Scheme (1)
+### Zigbee’s Distributed Addressing Scheme 
 This is a Distributed addressing scheme with hierarchical paradigm which assigns each node a unique 16-bit address and makes the following assumptions: 
   - Tree has maximum depth $L$  
   - Max children per parent: $C$  
@@ -66,22 +63,33 @@ This is a Distributed addressing scheme with hierarchical paradigm which assigns
   $A_{r,n}^{d+1} = A_{par} + S(d) \cdot (n - 1) + 1$  
 - Address of the $l$-th non-router child at level $d+1$:  
   $A_{e,l}^{d+1} = A_{par} + S(d) \cdot R + l$  
-- $S(d)$ is the number of nodes in each subtree rooted at level $d$
-## Zigbee’s Distributed Addressing Scheme (2)
+- $S(d)$ indica **quanti indirizzi servono** per coprire **tutti i nodi nel sottoalbero** di un router al livello $d$, incluso il router stesso.
+
 
 $$S(d) =\begin{cases} 0 \hspace{0.5cm} R=0 \\ 1 + C(L - d - 1) \hspace{0.5cm} R=1 \\  CR^{L - d - 1} - 1 - C + R \hspace{0.5cm} R > 1   \end{cases}$$  
-## Zigbee’s Distributed Addressing Scheme (3)
 
 ![[10k.png]]
 
 ## Stochastic Addressing
+È un metodo **casuale** per assegnare gli indirizzi ai nodi della rete.
+- Ogni nuovo nodo, quando si unisce alla rete, **sceglie un numero a caso** come indirizzo (ad esempio un numero a 16 bit).
+- **Non esiste una struttura ad albero**, né una gerarchia tra nodi.
 
-- Nodes choose random numbers as their address  
-- Simple to implement, but needs conflict resolution  
-  - A new node broadcasts its address  
-  - If a match occurs, a conflict is detected, and the node retries  
-- More common than expected (birthday paradox)  
-- Addresses are location-independent and harder to route  
+```ad-danger
+title: Problem
+Poiché l’indirizzo è scelto a caso, **due nodi potrebbero scegliere lo stesso indirizzo**. Questo è un conflitto.
+
+```
+
+```ad-success
+title: Solution
+Per risolverlo:
+1. Il nodo appena connesso **trasmette il suo indirizzo scelto** alla rete.
+2. Se **qualcuno ha già quell’indirizzo**, risponde con un messaggio di conflitto.
+3. Il nuovo nodo **ripete la scelta** finché trova un indirizzo non in uso
+
+```
+
 
 ![[11k.png]]
 
@@ -89,26 +97,62 @@ $$S(d) =\begin{cases} 0 \hspace{0.5cm} R=0 \\ 1 + C(L - d - 1) \hspace{0.5cm} R=
 
 
 # Mesh Routing
-
-Key approaches:
-1) “We should always have routes available to everyone, at all times” proactive routing.
-	- better for fixed/static environments, frequent communication.
-	- lower route acquisition time.
-	- Requires more control overhead, memory, power.
-2) “We should create routes only when we need them” - reactive routing.
-	- Better for dynamic environments, rare communication.
-	- higher route acquisition time.
-	- Requires less control overhead, memory and power.
+Approcci chiave:
+1) "Dovremmo avere percorsi sempre disponibili a tutti, in ogni momento" routing proattivo.
+- migliore per ambienti fissi/statici, comunicazioni frequenti.
+- tempo di acquisizione dei percorsi inferiore.
+- richiede maggiore overhead di controllo, memoria e potenza.
+2) "Dovremmo creare percorsi solo quando ne abbiamo bisogno" - routing reattivo.
+- migliore per ambienti dinamici, comunicazioni rare.
+- tempo di acquisizione dei percorsi superiore.
+- richiede minore overhead di controllo, memoria e potenza.
 ## Link State Routing 
+È un tipo di algoritmo di routing in cui **ogni nodo costruisce una mappa completa della rete** (chiamata **topology database**) e calcola il percorso più breve verso ogni altro nodo.
+
+- **Scoperta dei vicini**
+    - Ogni nodo scopre chi sono i suoi vicini diretti usando un protocollo tipo **"hello"**.
+    - Esempio: il nodo A scopre che è collegato a B e C.
+- **Link State Advertisement (LSA)**:
+    - Ogni nodo invia un messaggio (LSA) con le **informazioni sui suoi link** ai vicini (es. “sono il nodo A e sono connesso a B e C”).
+    - Queste informazioni vengono **floodate** nella rete → tutti i nodi ricevono la stessa informazione.
+- **Costruzione della topologia**:
+    - Ogni nodo raccoglie tutte le LSA e costruisce la **mappa completa della rete**.
+- **Calcolo dei percorsi**:
+    - Una volta che un nodo ha la mappa, **esegue l’algoritmo di Dijkstra** per calcolare il **percorso più breve** verso ogni altro nodo (ogni nodo crea la sua routing table)
+- **Aggiornamenti dinamici**:
+    - Se un nodo si unisce o si guasta, il processo ricomincia → si inviano nuove LSA e si aggiornano le mappe.
 
 ![[12k.png]]
 
+```ad-important
+Per evutare flooding dei pacchetti LSA infiniti potrebbe potenzialmente propagarsi all’infinito, ma viene **controllato tramite un numero di sequenza** (ogni LSA ha un sequence number).
+
+- Se ha già visto un LSA con quel sequence number $\Rightarrow$ scarta
+- Se è nuovo $\Rightarrow$ scartalo
+
+```
+
+```ad-question
+title: Nodo nuovo nella rete?
+Il nuovo nodo **non ha la topologia della rete**, quindi:
+1. Manda un messaggio ai vicini (che conosce tramite il protocollo hello)
+2. I vicini gli inviano un **dump (copia)** della loro **topology database**
+3. Il nuovo nodo **invia un LSA** che annuncia la sua **esistenza e i suoi link**
+4. Il processo di flooding si riattiva solo per questi nuovi aggiornamenti
+
+```
+
+
 ## Distance Vector Routing 
-Each router knows the links to its neighbours (does not flood this information
-to the whole network). Each router has provisional “shortest path” to every other router (e.g., node A knows the cost of getting to router B). Nodes exchange this distance vector information with their neighbouring
-routers. Routers look over the set of options offered by their neighbours and select the best one (that is, the one with smallest cost/weight). Iterative process, converges to set of shortest paths.
+Ogni router conosce i collegamenti con i propri vicini (non diffonde queste informazioni all'intera rete). Ogni router ha un "percorso più breve" provvisorio verso ogni altro router (ad esempio, il nodo A conosce il costo per raggiungere il router B). I nodi scambiano queste informazioni sul vettore di distanza con i router vicini. I router esaminano l'insieme delle opzioni offerte dai vicini e selezionano la migliore (ovvero quella con il costo/peso minore). Processo iterativo, converge all'insieme dei percorsi più brevi.
 
 ![[13k.png]]
+
+```ad-danger
+title: Problem
+Slow convergence to new best path after link failures
+
+```
 
 ### Convergence
 ![[14k.png]]
@@ -116,134 +160,190 @@ routers. Routers look over the set of options offered by their neighbours and se
 
 
 ## Mesh Routing
-Link state and distance vector are not optimised for battery and bandwidth:
-- in wireless communication, you get local broadcast “for free” (signal propagates out in all directions). No need do unicast all the neighbours.
-- not always need all routes to all nodes.
-In Mesh Networking, used in wireless environments, these factors need to be accounted for.
--  Node cooperate to efficiently route data
-- Nodes can act as relays, enabling multi-hop forwarding
-- Mesh networks dynamically self-organise and self-configure
-	- reduce management and configuration overhead
-	- improves fault-tolerance
-	- dynamically distributes workloads
+Il **Mesh Routing** è una tecnica utilizzata nelle reti wireless in cui **i nodi collaborano tra loro per trasmettere i dati**, anche quando non esiste un collegamento diretto tra sorgente e destinazione. A differenza dei protocolli tradizionali come **Link State** o **Distance Vector**, che non sono pensati per reti a bassa potenza o con topologie variabili, il mesh routing è progettato per essere più efficiente in termini di consumo energetico e uso di banda.
 
-## Mesh Networking ALgorithms
+In una rete wireless, quando un nodo trasmette un pacchetto, **tutti i vicini lo ricevono automaticamente** grazie alla natura “broadcast” del segnale radio. Questo significa che non è necessario inviare un messaggio a ogni vicino singolarmente, risparmiando così energia e risorse. Inoltre, in molti scenari non è necessario conoscere la rotta verso ogni singolo nodo: è sufficiente sapere come inoltrare i pacchetti nella direzione corretta.
 
-### Optimised Link STate Routing (OLSR)
-This is a distributed, proactive link-state routing protocol that minimizes unnecessary updates. Nodes broadcast messages to all neighbors, and each node selects specific neighbors—called multipoint relays (MPRs)—to forward packets. MPRs are chosen based on their ability to reach two-hop neighbors, ensuring full coverage. Only MPRs transmit routing updates, while other nodes remain silent.
+Le reti mesh hanno alcune caratteristiche fondamentali:
 
-1. Each node discovers its two-hop neighbours proactively by sending “hello” packets with a list of the sender’s neighbour set
+- Ogni nodo può agire come **relay**, cioè può ricevere e ritrasmettere pacchetti per conto di altri.
+- Il traffico può viaggiare su più **hop** (passaggi intermedi), anche se la sorgente e la destinazione non sono direttamente connesse.
+- La rete è **auto-organizzante**: i nodi scoprono i vicini automaticamente e si collegano senza configurazione manuale.
+- È anche **auto-configurante**, perché adatta i percorsi dinamicamente se un nodo viene aggiunto, si sposta o si guasta.
+- Questo comportamento migliora la **tolleranza ai guasti** e riduce il bisogno di interventi di gestione.
+
+### Mesh Networking Algorithms
+
+#### Optimised Link State Routing (OLSR)
+Si tratta di un ==protocollo di routing link-state distribuito e proattivo== che **riduce al minimo gli aggiornamenti non necessari**. I nodi trasmettono messaggi a tutti i vicini e ogni nodo seleziona vicini specifici, chiamati ==multipoint relay (MPR)==, per l'inoltro dei pacchetti. Gli MPR vengono scelti in base alla loro capacità di raggiungere i vicini a due hop, garantendo una copertura completa. Solo gli MPR trasmettono gli aggiornamenti di routing, mentre gli altri nodi rimangono in silenzio.
+
+1. Ogni nodo scopre i suoi vicini a due salti in modo proattivo inviando pacchetti "hello" con un elenco del set di vicini del mittente
 
 ![[16k.png]]
+
 ![[17k.png]]
+
 ![[18k.png]]
 ![[19k.png]]![[20k.png]]
 
-2. Each node selects a subset of its 1-hop neighbours to forward its link states (Multipoint Relays, MPRs). Each node maintains information about the set of neighbours that have selected it as MPR.
+2. Ogni nodo seleziona un sottoinsieme dei suoi vicini a 1 hop per inoltrare gli stati dei suoi collegamenti (Multipoint Relay, MPR). Ogni nodo conserva informazioni sull'insieme dei vicini che lo hanno selezionato come MPR.
 
 ![[21k.png]]
 
-The ==goal== is to select the smallest possible set of one-hop neighbors N1(H) of node $H$ that can cover all two-hop neighbors $N2(H)$. The procedure works as follows:
+```ad-important
+
+The ==goal== is to select the smallest possible set of one-hop neighbors $N1(H)$ of node $H$ that can cover all two-hop neighbors $N2(H)$.
+```
+ The procedure works as follows:
+
+##### MPR Selection Algorithm
+Procedura euristica utilizzata in OLSR per selezionare i Multipoint Relay (MPR).
 
 **Procedure**
-First, include any one-hop neighbors that are the sole connection to isolated two-hop nodes (i.e., nodes in $N2(H)$ reachable through only one node in N1(H)). Next, iteratively select the remaining one-hop neighbor that covers the most uncovered two-hop nodes until all nodes in $N2(H)$ are reached.
+Innanzitutto, includi tutti i vicini a un salto che costituiscono l'unica connessione con nodi isolati a due salti (ovvero, nodi in $N2(H)$ raggiungibili tramite un solo nodo in N1(H)). Quindi, seleziona iterativamente il vicino a un salto rimanente che copre il maggior numero di nodi a due salti scoperti fino a raggiungere tutti i nodi in $N2(H)$.
 
->This heuristic provides an efficient solution, as finding the optimal multipoint relay (MPR) set is an NP-complete problem.
+>Questa euristica fornisce una soluzione efficiente, poiché trovare il set di relè multipunto (MPR) ottimale è un problema NP-completo.
 
-```ad-missing
-Missimg Image slide scorrevole!
 
+![[194K.png]]
+![[195K.png]]
+
+
+
+##### forwarding
+Una volta che **ogni nodo ha selezionato il proprio insieme di MPR (Multipoint Relay)**, si procede come in un normale protocollo **link-state**: i nodi raccolgono informazioni sulla topologia e costruiscono un **database topologico**.
+
+A questo punto, ogni nodo:
+- esegue l’algoritmo di **Dijkstra** per calcolare il **percorso più breve verso ogni destinazione** nella rete;
+- memorizza solo **il prossimo nodo (next-hop)** del percorso ottimale, sufficiente per l'inoltro dei pacchetti;
+- utilizza **i propri MPR** per inoltrare i pacchetti in modo efficiente, riducendo al minimo i messaggi inutili.
+
+> In questo modo, l’instradamento resta proattivo (le rotte sono calcolate in anticipo), ma molto più leggero rispetto ai protocolli link-state classici.
+
+> ==Risparmio Energetico==: Solo un piccolo sottoinsieme della rete deve restare attivo in ogni momento.
+
+> Svantaggio: I nodi MPR sono molto più attivi (devono ricevere e inoltrare i messaggi di routing), quindi **consumano batteria più velocemente** rispetto agli altri nodi.
+
+##### downsides
+Mantiene i percorsi verso tutti i nodi, in ogni momento
+- utile se la maggior parte dei nodi deve comunicare tra loro
+- causa sovraccarico se la comunicazione è più scarsa/rara
+- rivela l'intera topologia a tutti i nodi (negativo per la privacy)
+
+```ad-question
+
+Cosa succederebbe se creassimo percorsi "su richiesta" proprio quando ne abbiamo bisogno? Avremmo un routing reattivo!
 ```
 
-#### forwarding
-Once each node selected its MPRs, the topology database is built as in regular link-state routing. Having done that, nodes perform forwarding by running Dijkstra, store shortest path next-hop for each destination, through their MPRs. Observe that nodes tend to select highly connected nodes as MPRs, i.e., some nodes are MPRs of several nodes.
+#### Dynamic Source Routing (DSR) 
+DSR è un **protocollo di routing reattivo** utilizzato in reti wireless ad hoc.  
+"Reattivo" significa che **non costruisce tabelle di routing all'avvio della rete**, ma **scopre le rotte solo quando servono**, ovvero quando un nodo deve inviare dei dati.
 
-![[22k.png]]
+Quando un nodo sorgente vuole inviare dati a un nodo di destinazione **di cui non conosce la rotta**, avvia un processo di **route discovery**, seguendo questi passaggi:
 
-#### downsides
-Maintains routes to all nodes, all the time
-- good if most nodes need to talk to each other
-- causes overhead if communication is more sparse/rare
-- reveals entire topology to all nodes (bad for privacy)
-
-Solution: what if we build routes “on demand” just when we need them? (Reactive routing)
-
-
-### Dynamic Source Routing (DSR) 
-This is a Reactive Algorithm of routing!
-
-==Reactive protocol==: no proactive network discovery when the network is
-initialised. Nodes perform a discovery process only when data needs to be sent.
-Route to a destination is discovered and stored by the source node and
-embedded in the data packet.
-
-**Main Idea**:
-When a source node generates data to send to a destination node of which it
-does not know the route to, it floods a route request message (RREQ).
-Intermediate nodes append their ID.
-When the RREQ reaches the destination, it sends back a route reply message
-(RREP) along reverse of path contained in RREQ.
-When the source gets the RREP, it sends the data along the path written in the header of the RREP (called “source route”)
+1. **Flooding del Route Request (RREQ)**  
+    Il nodo sorgente invia un messaggio RREQ in broadcast nella rete.  
+    Ogni nodo che riceve questo messaggio:
+    - **controlla se è il destinatario**; se sì, risponde;
+    - altrimenti, **aggiunge il proprio identificatore (ID)** al messaggio e lo ritrasmette.
+2. **Route Reply (RREP)**  
+    Quando il messaggio RREQ arriva al nodo di destinazione:
+    - questo genera un messaggio RREP;
+    - il RREP torna indietro lungo **il percorso inverso** (tracciato grazie agli ID nel RREQ);
+    - il messaggio RREP arriva infine al nodo sorgente.
+3. **Trasmissione dati**  
+    Il nodo sorgente ora conosce l’intero percorso fino alla destinazione, che è chiamato **"source route"**.  
+    A questo punto:
+    - il percorso viene **inserito direttamente nell’header del pacchetto dati**;
+    - ogni nodo intermedio **non ha bisogno di calcolare nulla**, ma semplicemente **segue le istruzioni** del source route.
 
 ![[23k.png]]
 
-```ad-missing
-Missimg Image slide scorrevole!
-```
 
-To improve efficiency, we can implement caching, i.e., source will cache
-route for some period of time, in case it wants to send more packets to
-that same destination later. 
+**Funzionamento**
 
-Intermediate nodes and other nodes overhearing RREQs and RREPs may
-also cache they see. Entries are deleted after timeout (tunable parameter).
-- highly dynamic network -> set a low timeout,
-- mostly static network -> set a high timeout
+**STEP 1**
+![[196K.png]]
+![[197K.png]]
+![[198K.png]]
+![[199K.png]]
+![[200K.png]]
+![[210K.png]]
+![[202K.png]]
 
-Route cache size can be limited (tunable parameter).
 
-```ad-missing
-Missimg Image slide scorrevole!
+**STEP 2**: Il nodo di destinazione risponde con RREP, che non è flooded ma piuttosto unicast per
+efficienza lungo il percorso inverso contenuto nell'RREQ ricevuto
 
-```
+![[203K.png]]
 
-The ==idea== behind source routing has been around for decades. In fact, the
-Internet technically supports source routing (there are fields in the IPv4
-specification that allow source routing of packets). But it is deprecated.
-Can be good for IoT applications.
-**Downsides**:
-- as the network gets big, source routes get long - packet overhead
-- caches can get stale (outages not discovered until packets are sent - reactive routing is “lazy”)
-==Idea==: distribute information more in the network (more like link state,
-embed the path in the network rather than on the packets)
+**STEP 3**: Source can send data through the RTE
+![[205K.png]]
 
-### Ad Hoc On-demand Distance Vector (AODV)
 
-Reactive routing algorithm (no route discovery process until data has
-to be sent) with Route Request messages (RREQ) to discover a route.
+Per **migliorare l'efficienza**, possiamo implementare il ==caching==, ovvero la sorgente memorizzerà nella cache il percorso per un certo periodo di tempo, nel caso in cui desideri inviare altri pacchetti alla stessa destinazione in seguito.
 
-RREQ creates distance-vector entries at each hop pointing back to
-source.
-- Nodes on active path maintain routing information.
-- Convergence issues typical in distance Vector can be restrained by introducing a destination-controlled sequence number stored with each route.
-The destination increments the value of the sequence number every time there is an event (like a failure or a new node coming up)
+I **nodi intermedi** e gli altri nodi che ascoltano RREQ e RREP **possono anche memorizzare nella cache** ciò che vedono. Le voci vengono eliminate dopo il timeout (parametro configurabile).
+
+
+**I messaggi di errore di percorso vengono inviati in modo reattivo quando viene rilevato un errore.**
+![[206K.png]]
+![[207K.png]]
+![[208K.png]]
+
+
+Il concetto di **source routing** esiste da decenni e, in realtà, è supportato a livello tecnico anche dall’**IPv4**: esistono campi nell’header del pacchetto che permettono di specificare il percorso da seguire.
+
+Tuttavia, **il source routing è oggi deprecato** in Internet perché presenta diversi limiti, anche se può risultare utile in contesti come le applicazioni IoT, dove le reti sono più piccole e con nodi a basso consumo.
+
+#### Ad Hoc On-demand Distance Vector (AODV)
+AODV è un **protocollo di routing reattivo**, cioè **non costruisce tabelle di routing finché non è necessario inviare dati**.  
+È progettato per reti **dinamiche** (es. dispositivi mobili, IoT, droni) dove i collegamenti cambiano frequentemente.
+
+**Come Funziona?**
+Quando un nodo ha bisogno di inviare dati a un altro nodo, ma **non conosce il percorso**, attiva un processo chiamato ==Route Discovery==, che si svolge così:
+
+1. **Invio di RREQ (Route Request)**  
+    Il nodo sorgente **invia un messaggio RREQ in broadcast** nella rete.  
+    Ogni nodo che lo riceve:
+    - crea una **voce nella sua tabella di routing** che punta **indietro verso il mittente** (cioè verso il nodo che gli ha trasmesso il messaggio);
+    - inoltra il RREQ se non lo ha già visto prima.
+2. **Arrivo al nodo di destinazione**
+    - Quando il RREQ arriva alla destinazione (o a un nodo che ha una rotta valida per la destinazione), questo risponde con un **RREP (Route Reply)**.
+    - Il RREP segue il **cammino inverso** tracciato dai messaggi RREQ.
+3. **Invio dei dati**
+    - A questo punto, il nodo sorgente **conosce la rotta** e inizia a inviare i pacchetti.
+
+>I nodi che **fanno parte di un percorso attivo** (cioè tra sorgente e destinazione) **mantengono informazioni sul percorso** nella loro tabella di routing.
 
 ![[24k.png]]
 
-```ad-missing
-Missimg Image slide scorrevole!
-```
+**STEP 1**: La sorgente invia RREQ per trovare un percorso verso la destinazione. I nodi intermedi mantengono tabelle, create come nel distance-vector, ovvero punti di ingresso che rimandano alla sorgente del messaggio.
+![[209K.png]]
+![[211K.png]]
+![[212K.png]]
+![[213K.png]]
+![[214K.png]]
+![[215K.png]]
 
-The protocol uses withdraw messages (RERR) for error handling, differing from DSR. An RERR is triggered in three cases: (1) a node detects a broken link for the next hop in its routing table, (2) it receives a data packet with no valid route, or (3) it gets an RERR for one of its active routes.
+![[216K.png]]
 
-Nodes can attempt local repair instead of propagating the RERR. They broadcast a new RREQ to find an alternative path around the failure. While this avoids immediate route invalidation, repeated repairs may gradually increase path lengths over time.
+**STEP 2**: La destinazione aggiorna il suo numero di sequenza e risponde attraverso il percorso delle voci della tabella di routing create dall'RREQ. A differenza del classico distance-vector, in cui tutti i nodi hanno tutti i percorsi da tutti a tutti, la destinazione risponde in modalità unicast.
+![[217K.png]]
+![[218K.png]]
 
-Every route table entry at every node must include the latest information
-available about the destination sequence number. it is updated every time a node receives new information about the sequence number from RREQ, RREP or RERR messages. Each node owns and maintains its sequence number to guarantee loop-freedom of all routes towards it. A node increases its sequence number:
-1. Before beginning a route discovery (i.e., before sending a RREQ message)
-2. Before originating a RREP.
 
-### Hierarchical/Tree Routing
+In AODV, **i nodi possono tentare una riparazione locale** del percorso, inviando un nuovo RREQ per trovare un'alternativa invece di propagare subito un messaggio di errore (RERR). Questo evita l'invalidazione immediata della rotta, ma **riparazioni ripetute possono allungare progressivamente il percorso**.
+
+Ogni nodo mantiene nella sua tabella di routing **il numero di sequenza più aggiornato** della destinazione, che viene aggiornato quando riceve messaggi RREQ, RREP o RERR.  
+Ogni nodo gestisce **il proprio numero di sequenza**, incrementandolo:
+
+1. Prima di avviare una discovery (RREQ);
+2. Prima di inviare un RREP.
+
+Questo meccanismo garantisce **l’assenza di loop** nei percorsi.
+
+#### Hierarchical/Tree Routing
 Each node knows subrange of addresses for each children and is responsible for
 that block of addresses. A node getting a packet to send to some other nodes just needs to check if the address is in its children’s subranges
 - if yes, sends to appropriate child
@@ -253,54 +353,73 @@ that block of addresses. A node getting a packet to send to some other nodes jus
 
 ![[25k.png]]
 
-### Geographic Routing 
-Uses geographic address: uses geographic position information to make
-progress to destination. The source sends messages towards the geographic location of the destination. Each node keeps track of geographic location of neighbours, so it knows which neighbour makes most progress to destination.
+#### Geographic Routing 
+Uses **geographic address:** uses geographic position information to make progress to destination. 
+
+The source sends messages towards the geographic location of the destination. Each node keeps track of geographic location of neighbours, so it knows which neighbour makes most progress to destination.
 
 More complex than you might think
 - can get stuck in dead ends (“voids”, i.e., a node has no neighbours towards the destination)
 - can get stuck in loops (two neighbours think each other makes the most progress to the destination)
 
-#### Greedy Forwarding
+##### Greedy Forwarding
+![[219K.png]]
+![[220K.png]]
+![[221K.png]]
+![[222K.png]]
+![[223K.png]]
+![[224K.png]]
 
-```ad-missing
-Missimg Image slide scorrevole!
-```
 
-#### Different distance metrics for Greedy Forwarding
+##### Different distance metrics for Greedy Forwarding
 ![[26k.png]]
 
-#### Greedy routing does not guarantee delivery
-
 ```ad-missing
-Missimg Image slide scorrevole!
+title: Problem
+![[Pasted image 20250522164915.png]]
+
 ```
 
+```ad-success
+title: Solution
+![[Pasted image 20250522164945.png]]
 
-### Delay-Tolerant networking: Gossip Algorithms 
-==Idea==: there is new rumor, people start gossiping about that. Initially they
-gossip a lot and the rumor spreads out very quickly, then people get
-bored about the rumor and mention it more rarely. If a node has data to send, it waits a random amount of time, picks a random target direction and broadcasts to nodes towards that direction. Such nodes apply the same mechanism.
-
-```ad-missing
-Missimg Image slide scorrevole!
 ```
 
-- If all link failures are transient and reoccurring, message will eventually reach the destination.
-- Very simple algorithm, easy to implement, will likely reach all other nodes too (good for broadcasting).
-- Slow propagation.
-- Variant: Rumor mongering
-	- When nodes get new update, it becomes a “hot rumor” (probability of sending out packets is higher)
-	- When a node hears the packet many times, it propagates it less frequently.
+#### Delay-Tolerant networking: Gossip Algorithms 
+==Idea==: c'è una nuova voce, la gente inizia a spettegolare al riguardo. Inizialmente si spettegola molto e la voce si diffonde molto rapidamente, poi la gente si annoia e la menziona più raramente. Se un nodo ha dati da inviare, attende un tempo casuale, sceglie una direzione di destinazione casuale e trasmette ai nodi in quella direzione. Questi nodi applicano lo stesso meccanismo.
+
+![[227K.png]]
+
+![[228K.png]]
+
+![[229K.png]]
+
+![[230K.png]]
+
+Ogni nodo attende un tempo casuale dopo aver ricevuto i dati, sceglie target casuali e li invia.
+​​Alcuni nodi potrebbero ricevere gli stessi dati più volte e decidere di inviarli nuovamente.
+![[231K.png]]
+![[232K.png]]
+![[233K.png]]
+![[234K.png]]
+![[235K.png]]
+
+...
+
+![[236K.png]]
+
+
+- Se tutti i guasti dei collegamenti sono transitori e ricorrenti, il messaggio alla fine raggiungerà la destinazione.
+- Algoritmo molto semplice, facile da implementare, probabilmente raggiungerà anche tutti gli altri nodi (ottimo per la trasmissione).
+- Propagazione lenta.
+- Variante: Indiscrezione
+- Quando i nodi ricevono un nuovo aggiornamento, si diffonde una "indiscrezione" (la probabilità di invio dei pacchetti è maggiore)
+- Quando un nodo riceve il pacchetto più volte, lo propaga meno frequentemente.
 
 ## Back to our Motivation
-We have been assuming that the network is not partitioned. This is not always realistic in IoT.
-- occasionally connected networks: sensors mounted on animals, floating in
-sea, space satellites that “pass” occasionally.
-- Highly unreliable environments: military networks suffering from jamming, acoustic links in air/water, free-space optical communications
-- Low-power environments: low-duty cycle sensors/actuators
-
-## Delay-Tolerant Networking
-![[27k.png]]
-
+Abbiamo dato per scontato che la rete non sia partizionata. Questo non è sempre realistico nell'IoT.
+- reti connesse occasionalmente: sensori montati su animali, galleggianti in mare, satelliti spaziali che "passano" occasionalmente.
+- ambienti altamente inaffidabili: reti militari soggette a interferenze, collegamenti acustici in aria/acqua, comunicazioni ottiche nello spazio libero.
+- ambienti a bassa potenza: sensori/attuatori a basso duty cycle.
 

@@ -4,24 +4,43 @@
     "type": "split",
     "children": [
       {
-        "id": "be1d290122aa18b0",
+        "id": "93dcd8a52d2c5d86",
         "type": "tabs",
         "children": [
           {
-            "id": "f99461d0f35a22fb",
+            "id": "3653722ac3ef32c6",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CheatSheet CTF Live.md",
+                "file": "2Semester/IOT/10) Communication Wireless MAC.md",
                 "mode": "source",
                 "source": false
               },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "CheatSheet CTF Live"
+              "title": "10) Communication Wireless MAC"
+            }
+          },
+          {
+            "id": "1293a3cb6f441d2b",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/IOT/11) Mesh Networking.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "11) Mesh Networking"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -179,30 +198,31 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f99461d0f35a22fb",
+  "active": "1293a3cb6f441d2b",
   "lastOpenFiles": [
-    "2Semester/IOT/Image IOT2ESONERO/150K.png",
-    "2Semester/IOT/Image IOT2ESONERO/146K.png",
-    "2Semester/IOT/Image IOT2ESONERO/145K.png",
-    "2Semester/IOT/Image IOT2ESONERO/126K.png",
-    "2Semester/IOT/Image IOT2ESONERO/110K.png",
-    "2Semester/IOT/Image IOT2ESONERO/122K.png",
-    "2Semester/IOT/Image IOT2ESONERO/101K.png",
-    "2Semester/IOT/Image IOT2ESONERO/100K.png",
-    "2Semester/IOT/10) Communication Wireless MAC.md",
-    "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
-    "2Semester/IOT/14) Security.md",
-    "2Semester/IOT/13) APPUNTARE.md",
-    "2Semester/IOT/12) Standards and Protocols in IoT.md",
+    "2Semester/IOT/Image IOT2ESONERO/236K.png",
     "2Semester/IOT/11) Mesh Networking.md",
-    "2Semester/IOT/Image IOT2ESONERO/149K.png",
-    "2Semester/IOT/Image IOT2ESONERO/148K.png",
-    "2Semester/IOT/Image IOT2ESONERO/147K.png",
+    "2Semester/IOT/Image IOT2ESONERO/221K.png",
+    "2Semester/IOT/Image IOT2ESONERO/235K.png",
+    "2Semester/IOT/Image IOT2ESONERO/234K.png",
+    "2Semester/IOT/Image IOT2ESONERO/233K.png",
+    "2Semester/IOT/Image IOT2ESONERO/232K.png",
+    "2Semester/IOT/Image IOT2ESONERO/231K.png",
+    "2Semester/IOT/Image IOT2ESONERO/230K.png",
+    "2Semester/IOT/Image IOT2ESONERO/229K.png",
+    "2Semester/IOT/Image IOT2ESONERO/228K.png",
+    "2Semester/IOT/13) Cellulari.md",
+    "2Semester/IOT/14) Security.md",
+    "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+    "2Semester/IOT/12) Standards and Protocols in IoT.md",
+    "2Semester/IOT/10) Communication Wireless MAC.md",
+    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "2Semester/IOT/1-2) IOT.md",
+    "CheatSheet CTF Live.md",
     "2Semester/ETH/8) Wireless Hacking.md",
     "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
     "2Semester/ETH/3) Enumeration.md",
     "2Semester/IOT/8) Electromagnetism Theory.md",
-    "CheatSheet CTF Live.md",
     "2Semester/ETH/2) Scanning.md",
     "2Semester/ETH/1) Intro and Footprinting.md",
     "2Semester/ETH/4.1) Hacking Windows.md",
@@ -215,12 +235,10 @@
     "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
     "Windows Hacking.md",
     "README.md",
-    "2Semester/IOT/Information Theory Latex.md",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch3.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch2.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch1.pdf",
     "2Semester/ETH/PDF",
-    "2Semester/ETH/Lesson 4 (Hacking Windows).md",
     "2Semester/ETH/immagini",
     "2Semester/PND/08-NewIPv6Security-Slides.pdf",
     "2Semester/ETH/Images/Rainbow Tables.pdf",
