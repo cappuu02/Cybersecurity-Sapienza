@@ -83,13 +83,14 @@ There are differents alternatives such:
 - FTPS (over SSL) , File Transfer Protocol Secure
 
 ### Telnet (23)
- ==Telnet (port 23)== presents similar risks, allowing attackers to gather system and account information based on login error messages.  Telnet has banners, and allows bruteforce username enumeration:
-- **System enumeration**: display a system banner prior to login: host’s OS and version, or vendor, explicitly or implicitly 
-- **Account enumeration**: attempt login with a particular user and observe error messages
+ ==Telnet (porta 23)== presenta rischi simili, consentendo agli aggressori di raccogliere informazioni sul sistema e sull'account in base ai messaggi di errore di login.  Telnet dispone di banner e consente l'enumerazione bruteforce dei nomi utente:
+- **Enumerazione del sistema**: visualizza un banner di sistema prima del login: sistema operativo e versione dell'host o fornitore, in modo esplicito o implicito. 
+- **Enumerazione dell'account**: tenta il login con un particolare utente e osserva i messaggi di errore.
  
- >It sends passwords+data in cleartext
+ >Invia password+dati in chiaro
  
- Countermeasures for Telnet include replacing it with SSH, restricting access by IP address, and modifying system banners. (Don't Use Telnet)
+ Le contromisure per Telnet includono la sostituzione con SSH, la restrizione dell'accesso per indirizzo IP e la modifica dei banner di sistema. (Non utilizzare Telnet)
+
 
 ### Simple Mail Transfer Protocol (SMTP 25)
 ==SMTP (port 25)== allows attackers to verify usernames through commands like VRFY and EXPN. Organizations can mitigate this risk by disabling these commands or restricting them to authenticated users.
@@ -102,8 +103,10 @@ Sendmail and Exchange both allow that in modern versions
 
 ![[ETH/Images/18.png]]
 
+
+
 ### Domain Name System (DNS 53 TCP)
-==DNS (port 53 TCP)== can be exploited through **zone transfers** if misconfigured, **revealing an organization’s internal structure**. **Attackers** use tools like `dig` or `nslookup` to perform **zone transfers**, and defenses include restricting DNS queries and using separate internal and external DNS servers.
+==DNS (porta 53 TCP)== può essere sfruttato attraverso **trasferimenti di zone** se mal configurato, **rivelando la struttura interna di un'organizzazione**. Gli **attaccanti** utilizzano strumenti come `dig` o `nslookup` per eseguire i **trasferimenti di zone** e le difese includono la limitazione delle query DNS e l'utilizzo di server DNS interni ed esterni separati.
 
 >Normally on UDP 53; TCP 53 for zone transfer
 
@@ -130,94 +133,106 @@ Block or restrict DNS zone transfers
 Restrict DNS queries to limit cache snooping
 
 ### Trivial File Transfer Protocol (TFTP 69)
-==TFTP (port 69)== is an inherently insecure protocol that lacks authentication, making it possible for attackers to retrieve files. Organizations should wrap TFTP within security layers like TCP Wrappers and restrict access to its root directory. 
+==TFTP (porta 69)== è un protocollo  insicuro che manca di autenticazione, rendendo possibile agli aggressori il recupero dei file. Le organizzazioni dovrebbero avvolgere TFTP in livelli di sicurezza come i TCP Wrapper e limitare l'accesso alla sua directory principale. 
 
-**Countermeasure**
-Wrap it to restrict access 
-- Using a tool such as TCP Wrappers 
-- TCP Wrappers is like a software firewall, only allowing certain clients to access a service
-Limit access to the /tftpboot directory 
-Make sure it's blocked at the border firewall
+**Contromisure**
+Avvolgerlo per limitare l'accesso 
+- Utilizzo di uno strumento come TCP Wrappers 
+- TCP Wrappers è come un firewall software, che consente solo a determinati client di accedere a un servizio.
+Limitare l'accesso alla directory /tftpboot 
+Assicurarsi che sia bloccata dal firewall di confine
 
 ### Finger (TCP/UDP 79)
 The ==Finger protocol (port 79)== provides user information that can be exploited for social engineering attacks; disabling remote access is a recommended countermeasure.
 
-### HTTP (TCP 80)
-==HTTP (port 80)== can be enumerated using banner grabbing techniques or automated crawlers like Grendel-Scan, which analyze website structures, comments, and hidden directories. Microsoft RPC Endpoint Mapper (port 135) exposes services running on a system and can be queried using tools like `epdump`. To mitigate risks, organizations should block this port at the firewall and consider alternatives like VPNs or Outlook Web Access (OWA) for secure remote access.
+### 🧭 HTTP (TCP 80) - Enumerazione
 
->`Sam Spade` for Windows is free
+#### 🔍 Tecniche di enumerazione
+- **Banner Grabbing**: Recupero dell’intestazione del server HTTP per identificare software e versione.
+- **Web Crawler automatici** (es. **Grendel-Scan**, **Sam Spade**):
+    - Analizzano:
+        - Struttura del sito
+        - Commenti HTML
+        - File `robots.txt`
+        - Directory nascoste
 
-- Crawls sites and reports on vulnerabilities 
-- Look for comments, robots.txt file, directories, etc.
+#### 🛠️ Strumenti
 
-**Countermeasure**
-Change the banner on your web servers (may fool automated malware).
-- Download MS URLScan for IIS v 4 and later 
-- Microsoft Internet Information Services has many exploits ready for use.
+| Strumento               | Descrizione                                            |
+| ----------------------- | ------------------------------------------------------ |
+| **Grendel-Scan**        | Crawler automatico per l’analisi delle vulnerabilità   |
+| **Sam Spade** (Windows) | Gratuito; cerca commenti, file sospetti, directory     |
+| **MS URLScan** (IIS)    | Filtra e blocca richieste HTTP potenzialmente malevole |
 
-```ad-info
-title: Win Tool
-Microsoft RPC Endpoint Mapper (MSRPC), TCP 135 
-- Remote Procedure Call (RPC) endpoint mapper (or portmapper) service on TCP 135 - Querying this service can yield information about applications and services available on the target machine
+#### 🛡️ Contromisure HTTP
+- **Modifica del banner** del server web (es. Apache, IIS) per ostacolare tool automatici.
+- **MS URLScan**: utile per IIS v4 e successive, aiuta a limitare richieste HTTP anomale.
+- Monitorare accessi a file come `robots.txt` e directory non linkate.
 
-```
 
-```ad-info
-title: epdump
-- From Microsoft's Windows Resource Kit 
-- Shows services bound to IP addresses 
-- It takes some research to interpret the results
+#### 🧭 Microsoft RPC Endpoint Mapper (MSRPC, TCP 135)
+##### 🔍 Funzione
+- Fornisce informazioni sui servizi/applicazioni in esecuzione.
+- Espone endpoint RPC che possono essere interrogati da remoto.
 
-![[ETH/Images/22.png]]
+#### 🛠️ Strumenti
 
-```
+| Strumento                         | Descrizione                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------- |
+| **epdump** (Windows Resource Kit) | Elenca i servizi RPC associati agli indirizzi IP. Risultati complessi da interpretare. |
+| **Tool Linux (es. Backtrack)**    | Fornisce output simile a `epdump`                                                      |
+#### 🛡️ Contromisure MSRPC
+- **Bloccare la porta TCP 135** a livello di firewall (quando possibile).
+- **Utilizzare VPN** per accesso remoto sicuro.
+- **Preferire Outlook Web Access (OWA)** tramite HTTPS, invece di RPC diretto.
+- **Exchange 2003+** supporta **RPC-over-HTTP**, evitando l’esposizione diretta della porta 135.
 
-```ad-info
-title: LInux tool
-In Backtrack, similar results
-![[ETH/Images/23.png]]
-
-```
-
-**MSRPC Enumeration Countermeasures**
-Block port 135 at the firewall, if you can 
-- But some Microsoft Exchange Server configurations require access to the endpoint mapper by remote user 
-- You can avoid that by using Virtual Private Networks to internal network, or 
-- Outlook Web Access (OWA) which works over HTTPS 
-- Exchange 2003 and later implements RPC over HTTP
 
 ### NetBios (UDP 137)
-==NetBIOS services (ports 137 UDP)== allow attackers to list domain members, services, and user accounts. Tools like `NBTSTAT` and `NET VIEW` facilitate this enumeration, while countermeasures include disabling unnecessary NetBIOS services and blocking related ports. SMB (port 445) is particularly dangerous due to null session vulnerabilities, which allow unauthorized users to extract sensitive data. Restricting anonymous access and auditing security policies are essential defenses.
+==NetBIOS (Network Basic Input/Output System)== è un'interfaccia software che consente la **comunicazione** tra computer all'interno di una rete locale (LAN). Viene utilizzata per condividere file, stampanti e per identificare dispositivi sulla rete tramite nomi NetBIOS, piuttosto che indirizzi IP.
 
-Windows needs to change a computer name to an IP address to send data packets Windows uses two naming systems: 
-- DNS (the preferred method) 
-- NetBIOS Name Resolution (still used by all versions of Windows)
+In ambiente Windows, quando un computer deve inviare pacchetti a un altro dispositivo in rete, deve prima tradurre il **nome del computer nell'indirizzo IP** corrispondente. Questo processo può avvenire attraverso due metodi principali:
+- **DNS (Domain Name System)**, che è il metodo preferito e più moderno;
+- **Risoluzione dei nomi NetBIOS** (==NBNS==), ancora supportata da tutte le versioni di Windows, soprattutto nelle reti locali più datate o miste.
 
-![[ETH/Images/24.png]]
-![[ETH/Images/25.png|665]]
+I **servizi NetBIOS (porta UDP 137)** possono rappresentare un rischio per la sicurezza, poiché permettono agli attaccanti di enumerare (ovvero ottenere un elenco di) membri del dominio, servizi attivi e account utente. Strumenti come **NBTSTAT** e **NET VIEW** sono comunemente usati per questa attività di enumerazione.
 
-NET VIEW can list the domains, or the computers in each domain
-![[ETH/Images/26.png]]
+Per ridurre questi rischi, è consigliabile:
+- Disabilitare i servizi NetBIOS non necessari;
+- Bloccare le porte associate (come la 137 UDP);
+- Limitare l'accesso anonimo;
+- Controllare e rafforzare le policy di sicurezza.
 
-### NetBios Name System (NBNS Over TCP/IP)
-Normally NBNS only works on the local network segment.
+Particolare attenzione va data al servizio **SMB (porta TCP 445)**, che può essere sfruttato tramite **null session** (sessioni anonime) per accedere a dati sensibili senza autenticazione. Monitorare e limitare questo tipo di accessi è fondamentale per la sicurezza della rete.
+
+>SMB usava **NetBIOS over TCP/IP** per stabilire connessioni tra dispositivi Windows.
+
+#### NetBios Name System (NBNS Over TCP/IP)
+```ad-abstract
+title: Definition
+È un **protocollo specifico** usato da NetBIOS (è un servizio di NetBios) per **risolvere i nomi NetBIOS in indirizzi IP**, simile al ruolo del DNS per i nomi di dominio. Funziona su **UDP 137**.
+
+```
+
+Normally ==NBNS== only works on the local network segment.
 It is possible to route NBNS over TCP/IP, allowing enumeration from a remote system.
 
-**Other Tools to Enumerate NBNS**
-- NLTEST and NETDOM can find domain controllers
-- NETVIEWX finds specific services
-- NBTSTAT collects information from a single system
-- NBTSCAN scans a whole range of addresses, and dumps the whole NetBIOS name table
-- NMBscan in Kali Linux
 
-**NBTSCAN**
-![[2Semester/ETH/Images/44.png]]
+**Other Tools to Enumerate NBNS**
+- `NLTEST` and `NETDOM` can find domain controllers
+- `NETVIEWX` finds specific services
+- `NBTSTAT` collects information from a single system
+- `NBTSCAN` scans a whole range of addresses, and dumps the whole NetBIOS name table
+- `NMBscan` in Kali Linux
+
 
 **Stopping NetBIOS Name Services Enumeration**
-All the preceding techniques operate over the NetBIOS Naming Service, UDP 137. Block UDP 137 at the firewall, or restrict it to only certain hosts. To prevent user data from appearing in NetBIOS name table dumps, disable the Alerter and Messenger services on individual hosts. Blocking UDP 137 will disable NBNS name authentication, and stop some applications.
+All the preceding techniques operate over the NetBIOS Naming Service, UDP 137. **Block UDP 137 at the firewall, or restrict it to only certain hosts**. To prevent user data from appearing in NetBIOS name table dumps, disable the Alerter and Messenger services on individual hosts. Blocking UDP 137 will disable NBNS name authentication, and stop some applications.
 
-#### NetBIOS Session, TCP 139
-These are the notorious Null Sessions. The Windows Server Message Block (SMB) protocol hands out a wealth of information freely. Null Sessions are turned off by default in Win XP and later versions, but open in Win 2000 and NT. They are NOT available in Win 95, 98, or Me.
+#### NetBIOS NULL Session, TCP 139
+Le ==sessioni nulle (null sessions)== sono un meccanismo di comunicazione non autenticata utilizzato dal protocollo **SMB (Server Message Block)**, che gira su **NetBIOS** tramite **porta TCP 139**.
+
+Una **sessione nulla** è una connessione SMB fatta senza fornire credenziali (username e password). In pratica, l'attaccante si autentica come utente anonimo. Su alcuni sistemi Windows più vecchi (come **Windows NT e 2000**), questa connessione anonima consente comunque di accedere a molte informazioni di sistema.
 
 **Null Session Against Win 2000**
 ![[2Semester/ETH/Images/45.png]]
@@ -228,17 +243,22 @@ Null sessions on Win 2000 and NT provide information about:
 - User accounts
 - Password policies
 
-### DumpSec – free tool
-Enumerate file permission, services, ecc.
+#### DumpSec – free tool
+```ad-abstract
+title: Definition
+
+==DumpSec== is a security tool that generates detailed reports on system users, file systems, registry, permissions, password policies, and services, aiding in security audits and vulnerability assessments
+```
+
 ![[2Semester/ETH/Images/46.png]]
 
-### Registry Enumeration
-The Registry can be viewed remotely with reg (MS built-in) or DumpSec. This requires Administrator privileges by default on Windows servers - you can NOT do it with null sessions. Gary McKinnon used remote registry access to hack into the Pentagon.
+#### Registry Enumeration
+The Registry can be viewed remotely with reg (MS built-in) or DumpSec. This requires Administrator privileges by default on Windows servers - you can NOT do it with null sessions. 
 
 ![[2Semester/ETH/Images/47.png]]
 
-### Security Identifier (SID)
-SID is a unique, immutable identifier of security principal: a user, user group,...
+#### Security Identifier (SID)
+I **SID (Security Identifier)** servono in Windows per **identificare in modo univoco** utenti, gruppi e altri soggetti di sicurezza (security principals).
 -  S-1-5-21-1180699209-877415012- 3182924384-1004
 -  Relative Identifier (RID)
 
@@ -246,37 +266,44 @@ SID is a unique, immutable identifier of security principal: a user, user group,
 
 >Changing the last 3 numbers of another account's SID to 500 for Admin.
 
-### User Enum - user2sid/sid2user
-These utilities can get user account names and SID remotely, even if blocking anonymous connections (the registry key RestrictAnonymous is set to 1). They can find the Administrator's account name, even if it's renamed. This works against NT family OS, but not Win XP SP2.
+#### User Enum - user2sid/sid2user
+Queste utilità possono ottenere nomi di account utente e SID da remoto, anche bloccando le connessioni anonime (la chiave di registro RestrictAnonymous è impostata su 1). Possono trovare il nome dell'account dell'amministratore, anche se rinominato. Funziona con i sistemi operativi della famiglia NT, ma non con Win XP SP2.
 
 ![[2Semester/ETH/Images/49.png]]
 
-### All-in-One Null Session Enumeration Tools
-- Winfingerprint
-- Through Active Directory and WMI
--  Winfo
-- NBTEnum 3.3
+#### All-in-One Null Session Enumeration Tools
+- `Winfingerprint`
+- `Through Active Directory and WMI`
+-  `Winfo`
+- `NBTEnum 3.3`
 
 ![[2Semester/ETH/Images/50.png]]
 
-### SMB Null Session Countermeasures
-Block TCP 139 and 445 at the network perimeter. Set the RestrictAnonymous registry key to 1 (or 2 on Win 2000 and later) using regedt32. The key is located at HKLM\SYSTEM\CurrentControlSet\Control\LSA. This can be bypassed by querying NetUserGetInfo API call at Level 3 - tools like NBTEnum and Userinfo bypass it. Anonymous Access settings do not apply to remote Registry access, so ensure the Registry is locked down (reference: [http://support.microsoft.com/kb/153183](http://support.microsoft.com/kb/153183)). Finally, audit yourself with dumpsec.
+#### SMB Null Session Countermeasures
+**Block TCP 139 and 445 at the network perimeter.** 
+Set the RestrictAnonymous registry key to 1 (or 2 on Win 2000 and later) using regedt32. The key is located at HKLM\SYSTEM\CurrentControlSet\Control\LSA. This can be bypassed by querying NetUserGetInfo API call at Level 3 - tools like NBTEnum and Userinfo bypass it. Anonymous Access settings do not apply to remote Registry access, so ensure the Registry is locked down (reference: [http://support.microsoft.com/kb/153183](http://support.microsoft.com/kb/153183)). Finally, audit yourself with dumpsec.
 
 ### Simple Network Management Protocol (SNMP, UDP 161)
-==SNMP== is intended for network management and monitoring It provides inside information on net devices,
-software and systems.
+==SNMP== is intended for network management and monitoring It provides inside information on network, devices, software and systems.
 
 > Administrators use SNMP to remotely manage routers and other network devices
 
-### Community Strings
-SNMP has a minimal security system called SNMP Community Strings. Community strings act like passwords. There are three kinds of SNMP Community strings: Read-Only, Read-Write, and Trap (Trap is rarely used). But the community strings are often left at obvious defaults like 'public' and 'private'. Attackers often use Wireshark to obtain the community string by packet inspection.
+#### Community Strings
+SNMP has a minimal **security system** called ==SNMP Community Strings==. Community strings act like passwords. There are three kinds of SNMP Community strings: 
+- **Read-Only**, 
+- **Read-Write**,
+- **Trap** (Trap is rarely used).
 
-### Management Information Bases (MIBs)
-The MIB contains a SNMP device's data in a tree-structured form, like the Windows Registry. Vendors add data to the MIB. Microsoft stores Windows user account names in the MIB.
+But the community strings are often left at obvious defaults like 'public' and 'private'. 
+Attackers often use **Wireshark** to obtain the community string by packet inspection.
+
+#### Management Information Bases (MIBs)
+The ==MIB== contains a **SNMP device's data in a tree-structured form**. 
+Vendors add data to the MIB. Microsoft stores Windows user account names in the MIB.
 
 ![[Pasted image 20250518180459.png]]
 
-### Data Available Via SNMP Enumeration
+#### Data Available Via SNMP Enumeration
 - Running services
 - Share names
 - Share paths
@@ -284,20 +311,23 @@ The MIB contains a SNMP device's data in a tree-structured form, like the Window
 - Usernames
 - Domain name
 
-## SNMP Enumeration Tools
-- **snmputil** from the Windows NT Resource Kit
-- **snmpget** or snmpwalk for Linux (netsnmp suite)
-- **IP Network Browser** graphical tool by Solarwinds
+#### SNMP Enumeration Tools
+- `snmputil` from the Windows NT Resource Kit
+- `snmpget` or snmpwalk for Linux (netsnmp suite)
+- `IP Network Browser` graphical tool by Solarwinds
 
 ![[2Semester/ETH/Images/51.png]]
 
 
-## Worse than Enumeration
-Attackers who guess the SNMP community string may be able to remotely control your network devices
+```ad-danger
 
-## SNMP Enumeration Countermeasures
-Remove or disable unneeded SNMP agents. Change the community strings to non-default values. Block access to TCP and UDP ports 161 (SNMP GET/SET) at the network perimeter devices. Restrict access to SNMP agents to the appropriate management console IP address.
+Attackers who guess the SNMP community string may be able to remotely control your network devices!
+```
 
+#### SNMP Enumeration Countermeasures
+Remove or disable unneeded SNMP agents. 
+Change the community strings to non-default values.
+Block access to TCP and UDP ports 161 (SNMP GET/SET) at the network perimeter devices. Restrict access to SNMP agents to the appropriate management console IP address.
 Use SNMP V3—much more secure than V1 or 2—as it provides enhanced encryption and authentication mechanisms. Adjust Win NT registry keys to make SNMP less dangerous.
 
 ## BGP, TCP 179
@@ -309,13 +339,22 @@ Border Gateway Protocol (BGP) is the de facto routing protocol among Autonomous 
 -  That may give more targets to attack
 - No countermeasure, BGP cannot be blocked
 
-## Windows Active Directory LDAP TCP/UDP 389 and 3268
-Active Directory contains all user accounts, groups, and other information on Windows domain controllers. If the domain is made compatible with earlier versions of Windows, such as Win NT4 Server, any domain member can enumerate Active Directory. The MS tool ldp.exe can be used for this purpose.
+### Windows Active Directory LDAP TCP/UDP 389 and 3268
+- **Active Directory (AD)** è il sistema di gestione centralizzata delle identità e risorse nei domini Windows. Contiene:
+    - Utenti
+    - Gruppi
+    - Computer
+    - Policy di sicurezza
+- **LDAP (Lightweight Directory Access Protocol)** è il protocollo standard con cui si interroga e si modifica un directory service come Active Directory.
 
-## Active Directory Enumeration Countermeasures
-Filter access to ports 389 and 3268 at the net perimeter devices
--  Legacy-compatible mode vs. Native Win 2000
-- If possible use "Native" domains - do NOT allow Win NT4 Domain Controllers
+### Active Directory Enumeration Countermeasures
+- **TCP/UDP 389** → LDAP standard
+- **TCP 3268** → Global Catalog (LDAP su Global Catalog per cercare oggetti in tutta la foresta AD)
 
-## Enumerating Common Network Services
-Other services include: Microsoft RPC endpoint mapper on TCP 135 (tools: epdump, rpcdump.py); NetBIOS name service on UDP 137 (tools: net view, nltest, nbtstat, nbtscan, nmbscan); NetBIOS session on TCP 139/445 (commands: net use, net view); SNMP on UDP 161 (tools: snmputil, snmpget, snmpwalk); BGP on TCP 179 (access via telnet); LDAP on TCP/UDP 389/3268 (used by Active Directory Administration Tool); UNIX RPC on TCP/UDP 111/32771 (tool: rpcinfo); rwho and rusers services; SQL resolution service on UDP 1434 (tool: SQLPing); Oracle TNS (Transparent Network Substrate) on TCP 1521/2483; NFS on TCP/UDP 2049; and IPsec/IKE on UDP 500.
+L’**enumerazione LDAP** permette a un attaccante di raccogliere informazioni su utenti, gruppi e altre risorse presenti nell’AD **senza autenticazione completa**, se le configurazioni sono deboli.
+
+Un esempio di tool Microsoft per l’enumerazione LDAP è:
+- **ldp.exe** → Un client LDAP GUI incluso in Windows Server. Permette di:
+    - Eseguire query LDAP
+    - Esplorare l’intero schema e i contenuti di AD
+    - Verificare permessi

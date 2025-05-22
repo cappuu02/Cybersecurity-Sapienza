@@ -293,7 +293,7 @@ Each operation should appear to take effect instantaneously at some moment betwe
 
 >The horizontal line is the linearisation point of each operation.
 
-![[134.png]]
+![[1 Semester/Distributed System/Images/134.png]]
 This is sequential consistent? Yes
 Atomic? Yes, LP are horizontal lines
 ![[Distributed System/Images/117.png]]

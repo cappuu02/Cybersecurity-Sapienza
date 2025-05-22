@@ -102,7 +102,6 @@ What to footprint?
 - **Internet**: nomi di dominio, indirizzi IP, servizi TCP/UDP attivi, sottodomini, configurazioni DNS, architetture hardware/software.
 - **Intranet** (se accessibile): nomi di rete interni, protocolli usati, accessi, IDS (sistemi di rilevamento intrusione).
 - **Accessi remoti**: VPN, meccanismi di autenticazione, numeri di telefono.
-    
 - **Extranet**: partner esterni, connessioni business-to-business.
 
 ## Internet Footprinting
@@ -289,6 +288,6 @@ title: Definizione
 - **TTL (Time To Live)**: viene decrementato ad ogni salto; quando arriva a zero, il nodo intermedio invia un messaggio di errore, rivelandosi.
 - **ICMP (Internet Control Message Protocol)**: usato per i messaggi di rete, come gli errori o le risposte dei router nei traceroute.
 
-Gli amministratori di rete possono **limitare o ostacolare la ricognizione** con strumenti tipo `snort`, `siabilitare ICMP`, `Firewall e rate limiting`
+Gli amministratori di rete possono **limitare o ostacolare la ricognizione** con strumenti tipo `snort`, `disabilitare ICMP`, `Firewall e rate limiting`
 
 ![[2Semester/ETH/Images/43.png]]
