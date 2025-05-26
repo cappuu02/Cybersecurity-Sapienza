@@ -43,7 +43,6 @@ We add an Addresses based on location!
 
 ![[8k.png]]
 
-
 Uses a simple distributed protocol to do so, simply each node allocates a bunch of addresses for their children.
 
 **Benefit**: Easier routing on addresses  
@@ -53,9 +52,8 @@ Uses a simple distributed protocol to do so, simply each node allocates a bunch 
 ![[9k.png|400]]
 
 
-
 ### Zigbee’s Distributed Addressing Scheme 
-This is a Distributed addressing scheme with hierarchical paradigm which assigns each node a unique 16-bit address and makes the following assumptions: 
+This is a ==Distributed addressing scheme with hierarchical paradigm== which assigns each node a unique 16-bit address and makes the following assumptions: 
   - Tree has maximum depth $L$  
   - Max children per parent: $C$  
   - Max forwarding (router) nodes per parent: $R$ where $R \leq C$  
@@ -125,7 +123,7 @@ Approcci chiave:
 ![[12k.png]]
 
 ```ad-important
-Per evutare flooding dei pacchetti LSA infiniti potrebbe potenzialmente propagarsi all’infinito, ma viene **controllato tramite un numero di sequenza** (ogni LSA ha un sequence number).
+Per evitare il flooding dei pacchetti LSA infiniti potrebbe potenzialmente propagarsi all’infinito, ma viene **controllato tramite un numero di sequenza** (ogni LSA ha un sequence number).
 
 - Se ha già visto un LSA con quel sequence number $\Rightarrow$ scarta
 - Se è nuovo $\Rightarrow$ scartalo
@@ -165,7 +163,6 @@ Il **Mesh Routing** è una tecnica utilizzata nelle reti wireless in cui **i nod
 In una rete wireless, quando un nodo trasmette un pacchetto, **tutti i vicini lo ricevono automaticamente** grazie alla natura “broadcast” del segnale radio. Questo significa che non è necessario inviare un messaggio a ogni vicino singolarmente, risparmiando così energia e risorse. Inoltre, in molti scenari non è necessario conoscere la rotta verso ogni singolo nodo: è sufficiente sapere come inoltrare i pacchetti nella direzione corretta.
 
 Le reti mesh hanno alcune caratteristiche fondamentali:
-
 - Ogni nodo può agire come **relay**, cioè può ricevere e ritrasmettere pacchetti per conto di altri.
 - Il traffico può viaggiare su più **hop** (passaggi intermedi), anche se la sorgente e la destinazione non sono direttamente connesse.
 - La rete è **auto-organizzante**: i nodi scoprono i vicini automaticamente e si collegano senza configurazione manuale.
@@ -186,7 +183,7 @@ Si tratta di un ==protocollo di routing link-state distribuito e proattivo== che
 ![[18k.png]]
 ![[19k.png]]![[20k.png]]
 
-2. Ogni nodo seleziona un sottoinsieme dei suoi vicini a 1 hop per inoltrare gli stati dei suoi collegamenti (Multipoint Relay, MPR). Ogni nodo conserva informazioni sull'insieme dei vicini che lo hanno selezionato come MPR.
+2. Ogni nodo seleziona un **sottoinsieme dei suoi vicini a 1 hop per inoltrare gli stati dei suoi collegamenti (Multipoint Relay, MPR)**. Ogni nodo conserva informazioni sull'insieme dei vicini che lo hanno selezionato come MPR.
 
 ![[21k.png]]
 
@@ -196,7 +193,7 @@ The ==goal== is to select the smallest possible set of one-hop neighbors $N1(H)$
 ```
  The procedure works as follows:
 
-##### MPR Selection Algorithm
+##### ==MPR Selection Algorithm==
 Procedura euristica utilizzata in OLSR per selezionare i Multipoint Relay (MPR).
 
 **Procedure**
@@ -207,8 +204,6 @@ Innanzitutto, includi tutti i vicini a un salto che costituiscono l'unica connes
 
 ![[194K.png]]
 ![[195K.png]]
-
-
 
 ##### forwarding
 Una volta che **ogni nodo ha selezionato il proprio insieme di MPR (Multipoint Relay)**, si procede come in un normale protocollo **link-state**: i nodi raccolgono informazioni sulla topologia e costruiscono un **database topologico**.
@@ -236,7 +231,7 @@ Cosa succederebbe se creassimo percorsi "su richiesta" proprio quando ne abbiamo
 ```
 
 #### Dynamic Source Routing (DSR) 
-DSR è un **protocollo di routing reattivo** utilizzato in reti wireless ad hoc.  
+==DSR== è un **protocollo di routing reattivo** utilizzato in reti wireless ad hoc.  
 "Reattivo" significa che **non costruisce tabelle di routing all'avvio della rete**, ma **scopre le rotte solo quando servono**, ovvero quando un nodo deve inviare dei dati.
 
 Quando un nodo sorgente vuole inviare dati a un nodo di destinazione **di cui non conosce la rotta**, avvia un processo di **route discovery**, seguendo questi passaggi:
@@ -272,8 +267,7 @@ Quando un nodo sorgente vuole inviare dati a un nodo di destinazione **di cui no
 ![[202K.png]]
 
 
-**STEP 2**: Il nodo di destinazione risponde con RREP, che non è flooded ma piuttosto unicast per
-efficienza lungo il percorso inverso contenuto nell'RREQ ricevuto
+**STEP 2**: Il nodo di destinazione risponde con RREP, che non è flooded ma piuttosto unicast per efficienza lungo il percorso inverso contenuto nell'RREQ ricevuto
 
 ![[203K.png]]
 
@@ -281,7 +275,7 @@ efficienza lungo il percorso inverso contenuto nell'RREQ ricevuto
 ![[205K.png]]
 
 
-Per **migliorare l'efficienza**, possiamo implementare il ==caching==, ovvero la sorgente memorizzerà nella cache il percorso per un certo periodo di tempo, nel caso in cui desideri inviare altri pacchetti alla stessa destinazione in seguito.
+Per **migliorare l'efficienza**, possiamo implementare il ==caching==, ovvero la **sorgente memorizzerà nella cache il percorso per un certo periodo di tempo**, nel caso in cui desideri inviare altri pacchetti alla stessa destinazione in seguito.
 
 I **nodi intermedi** e gli altri nodi che ascoltano RREQ e RREP **possono anche memorizzare nella cache** ciò che vedono. Le voci vengono eliminate dopo il timeout (parametro configurabile).
 
@@ -297,8 +291,7 @@ Il concetto di **source routing** esiste da decenni e, in realtà, è supportato
 Tuttavia, **il source routing è oggi deprecato** in Internet perché presenta diversi limiti, anche se può risultare utile in contesti come le applicazioni IoT, dove le reti sono più piccole e con nodi a basso consumo.
 
 #### Ad Hoc On-demand Distance Vector (AODV)
-AODV è un **protocollo di routing reattivo**, cioè **non costruisce tabelle di routing finché non è necessario inviare dati**.  
-È progettato per reti **dinamiche** (es. dispositivi mobili, IoT, droni) dove i collegamenti cambiano frequentemente.
+AODV è un **protocollo di routing reattivo**. È progettato per reti **dinamiche** dove i collegamenti cambiano frequentemente.
 
 **Come Funziona?**
 Quando un nodo ha bisogno di inviare dati a un altro nodo, ma **non conosce il percorso**, attiva un processo chiamato ==Route Discovery==, che si svolge così:
@@ -344,19 +337,18 @@ Ogni nodo gestisce **il proprio numero di sequenza**, incrementandolo:
 Questo meccanismo garantisce **l’assenza di loop** nei percorsi.
 
 #### Hierarchical/Tree Routing
-Each node knows subrange of addresses for each children and is responsible for
-that block of addresses. A node getting a packet to send to some other nodes just needs to check if the address is in its children’s subranges
-- if yes, sends to appropriate child
-- if no, sends to parent.
+Ogni nodo conosce un sottointervallo di indirizzi per ogni nodo figlio ed è responsabile di quel blocco di indirizzi. Un nodo che riceve un pacchetto da inviare ad altri nodi deve solo verificare se l'indirizzo si trova nei sottointervalli dei suoi nodi figlio:
+- in caso affermativo, lo invia al nodo figlio appropriato;
+- in caso negativo, lo invia al nodo padre.
 
->Simple routing.
+> Routing semplice.
 
 ![[25k.png]]
 
 #### Geographic Routing 
-Uses **geographic address:** uses geographic position information to make progress to destination. 
+Utilizza **indirizzo geografico:** utilizza le informazioni sulla posizione geografica per avanzare verso la destinazione.
 
-The source sends messages towards the geographic location of the destination. Each node keeps track of geographic location of neighbours, so it knows which neighbour makes most progress to destination.
+La sorgente invia messaggi verso la posizione geografica della destinazione. Ogni nodo tiene traccia della posizione geografica dei vicini, in modo da sapere quale vicino percorre la maggior parte del percorso verso la destinazione.
 
 More complex than you might think
 - can get stuck in dead ends (“voids”, i.e., a node has no neighbours towards the destination)
@@ -376,13 +368,14 @@ More complex than you might think
 
 ```ad-missing
 title: Problem
-![[Pasted image 20250522164915.png]]
+![[Pasted image 20250525112401.png]]
 
 ```
 
 ```ad-success
 title: Solution
-![[Pasted image 20250522164945.png]]
+Invia lungo il primo bordo che vedi partendo dal bordo da cui hai ricevuto il pacchetto in senso antiorario
+![[Pasted image 20250525112413.png]]
 
 ```
 
@@ -418,8 +411,8 @@ Ogni nodo attende un tempo casuale dopo aver ricevuto i dati, sceglie target cas
 - Quando un nodo riceve il pacchetto più volte, lo propaga meno frequentemente.
 
 ## Back to our Motivation
-Abbiamo dato per scontato che la rete non sia partizionata. Questo non è sempre realistico nell'IoT.
-- reti connesse occasionalmente: sensori montati su animali, galleggianti in mare, satelliti spaziali che "passano" occasionalmente.
-- ambienti altamente inaffidabili: reti militari soggette a interferenze, collegamenti acustici in aria/acqua, comunicazioni ottiche nello spazio libero.
-- ambienti a bassa potenza: sensori/attuatori a basso duty cycle.
+```ad-important
+
+Nel contesto IoT, la connettività continua non può essere data per scontata. Reti intermittenti, ambienti inaffidabili e dispositivi a basso consumo rendono difficile mantenere comunicazioni stabili, richiedendo protocolli adatti a gestire disconnessioni frequenti e ritardi nella trasmissione dei dati.
+```
 

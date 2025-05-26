@@ -1,4 +1,4 @@
-
+ 
 # Tecniche di Accesso Multiplo nelle Reti Wireless
 Quando più dispositivi trasmettono simultaneamente sullo stesso canale wireless, i segnali possono interferire generando **collisioni**. Esistono tre approcci principali per gestire questo problema:
 
@@ -22,7 +22,7 @@ Do we need different Media Access Control mechanisms for channel sharing in wire
 
 
 ## Collision Detection nelle Reti Wireless
-Le reti wireless rendono la collision detection molto più difficile, a causa di:
+Le ==reti wireless rendono la collision detection molto più difficile==, a causa di:
 - **Attenuazione** del segnale (soprattutto oltre i 70 dB)
 - **Degrado (attenuation)** del segnale con la distanza
 - Impossibilità di rilevare la collisione in tempo reale
@@ -87,7 +87,6 @@ Ogni sottobanda è assegnata a un singolo utente che la controlla per l'intero p
 
 Different bands are used for uplink and downlink. 
 
-No need for synchronisation among users.
 
 Non è necessaria sincronizzazione temporale, ma si usano **guard band** per prevenire interferenze tra canali adiacenti. (Anche se vengono assegnate frequenze diverse a ciascun utente, a causa di imperfezioni nei trasmettitori, nei ricevitori e nei filtri, i segnali possono riversarsi nelle bande di frequenza adiacenti.)
 
@@ -163,11 +162,8 @@ Un'altra evoluzione è il **DAMA – Demand Assigned Multiple Access**, chiamato
 Il problema del **nodo nascosto** può essere risolto tramite **sincronizzazione** con un **coordinatore**, tipicamente rappresentato da un **Access Point (AP)** o una **stazione base**.
 
 - **ALOHA** e **Slotted ALOHA** sono protocolli molto semplici e flessibili, ma altamente soggetti a **collisioni**.
-    
 - I metodi basati su **Carrier Sensing** migliorano la gestione delle collisioni, ma **non risolvono** il problema del nodo nascosto. Un dispositivo può rilevare il canale come libero anche se altri dispositivi stanno trasmettendo, semplicemente perché non riesce a "sentirli".
-    
 - **MACA (Multiple Access with Collision Avoidance)** propone un meccanismo semplice per **evitare le collisioni** e affrontare efficacemente il problema del nodo nascosto.
-    
 - A differenza di altri approcci, **non richiede un coordinatore** centrale: è un **protocollo ad accesso casuale**, come ALOHA, ma introduce un meccanismo di **prenotazione dinamica** per le trasmissioni, riducendo così il rischio di collisioni.
 
 
@@ -176,10 +172,8 @@ Il problema del **nodo nascosto** può essere risolto tramite **sincronizzazione
 ![[171k.png]]
 
 
-
  ✅ ==Vantaggi==
 - Risolve il problema del nodo nascosto
-- Più equo rispetto ad ALOHA
 - Riduce le collisioni in reti dense
 
 ❌ ==Svantaggi==
@@ -237,10 +231,10 @@ L'unità fondamentale è il **BSS (Basic Service Set)**:
 ![[175k.png]]
 
 ## Cellular Network
-Cellular network are wireless networks consisting of both stationary and mobile nodes.
+**Cellular network are wireless networks** consisting of both stationary and mobile nodes.
 
-- **Stationary nodes** are base stations (BS) connected by wired links, forming a fixed infrastructure.
-- Il numero di **nodi mobili** è molto maggiore del numero di BS. (Ogni nodo mobile si trova a un singolo salto di distanza dalla stazione base più vicina.)
+- ==Stationary nodes== are base stations (BS) connected by wired links, forming a fixed infrastructure.
+- Il numero di ==nodi mobili== è molto maggiore del numero di BS. (Ogni nodo mobile si trova a un singolo salto di distanza dalla stazione base più vicina.)
 
 Ogni BS copre un'ampia regione con poca sovrapposizione e serve decine o centinaia di nodi mobili nella regione. Le BS dispongono di un'alimentazione elettrica sufficiente e gli utenti mobili possono ricaricare comodamente le batterie dei loro telefoni.
 
@@ -262,8 +256,7 @@ Una ==rete di sensori wireless== è costituita da un gran numero di nodi sensore
 I nodi sensore sono solitamente **alimentati a batterie** (capacità di alimentazione limitata). Spesso è difficile o impossibile sostituire o ricaricare le batterie per questi nodi.
 Il **consumo energetico è una preoccupazione primaria**.
 
-I nodi sono spesso distribuiti in modo ad **hoc**. Devono essere in grado di organizzarsi in una rete di comunicazione. La topologia di una rete di sensori cambia più frequentemente a causa
-sia dei guasti dei nodi che della mobilità. I ​​nodi sensore sono soggetti a guasti. I nodi sensore hanno capacità di calcolo e memoria molto limitate.
+I nodi sono spesso distribuiti in modo ad **hoc**. Devono essere in grado di organizzarsi in una rete di comunicazione. La topologia di una rete di sensori cambia più frequentemente a causa sia dei guasti dei nodi che della mobilità. I ​​nodi sensore sono soggetti a guasti. I nodi sensore hanno capacità di calcolo e memoria molto limitate.
 > Require specific MAC protocols to ensure long life to nodes.
 
 ### Energy Draw
@@ -272,8 +265,7 @@ All sensors’ activities consume energy:
 - data processing
 - communication
 
-Communication is the major source of energy consumption, for this reason it must be reduced
-as much as possible in a sensor network. During **communication**, the major sources of energy waste are:
+Communication is the major source of energy consumption, for this reason it must be reduced as much as possible in a sensor network. During **communication**, the major sources of energy waste are:
 
 - **Collisions** (retransmissions of packets)
 - **Overhearing** (sensor node receives packets that are destined for other nodes)
@@ -282,51 +274,48 @@ as much as possible in a sensor network. During **communication**, the major sou
 
 # ⚡ Power Saving nei Sistemi IoT
 
-Ogni componente ha un **profilo di consumo** diverso.
+Nei dispositivi IoT, ogni componente consuma energia in modo diverso. Per ridurre i consumi, è importante **disattivare o mettere in "sleep"** i moduli che non sono necessari in un certo momento.
 
-> 🧠 Idea: mettere in **sleep** o **idle** i moduli non necessari  
-> ⚠️ Ma... lo sleep mode **riduce la reattività** del sistema.
+> ✅ **Vantaggio:** Riduzione del consumo energetico  
+> ⚠️ **Svantaggio:** Riduzione della **reattività** del sistema (cioè può rispondere più lentamente)
 
+Alcuni componenti consumano molto anche in **idle** (attivi ma non operativi). Per questo si usano le **modalità sleep**, che riducono il consumo ma anche le funzionalità e la prontezza del dispositivo
 
-Some components are very power consuming even in idle mode. Some components have a sleep mode that can greatly reduce the power consumption, but reduces the functionality and the promptness of the device to carry out tasks.
+È stato progettato un algoritmo per il risparmio energetico in un dispositivo IoT chiamato _cold tracker_, che:
 
-> Protocols that use the sleep mode for energy saving must do it carefully.
+- Rileva parametri ambientali
+- Trasmette dati periodicamente
+- Traccia la posizione GPS
 
+### 🔧 **Problema: comunicazione tra dispositivi**
+Se un dispositivo invia dati mentre gli altri sono in **modalità sleep**, quei dati **vanno persi**.
 
-We have designed a nice power saving “algorithm” for our cold tracker device that sensors the environment, transmits data every once in a while and tracks its GPS position periodically.
-
-- Challenge: this device should be able to communicate with other similar devices.
-- If a device sends data when all the other devices are in sleep mode, the data goes lost.
-
-	## Idea: Sincronizzazione degli Orari di Sleep/Wake
+**First Solution: Sincronizzazione dei Tempi di Sleep/Wake**
 ![[177k.png]]
+I nodi (es. A, B, C, D) si **sincronizzano** su periodi comuni in cui:
+- Tutti sono **attivi** (per comunicare)
+- Tutti sono in **sleep** (per risparmiare energia)
 
-I nodi (A, B, C, D) concordano su periodi predefiniti di attività ("active") e di sospensione ("sleep").- Questi periodi sono altamente configurabili
+🔁 Questi periodi sono **configurabili**.
 
->Durante i periodi "active" i nodi possono scambiare dati
+> ✅ Durante i periodi "active", i nodi possono scambiarsi i dati.
 
-```ad-danger
-title: Problems
-Clock drifts, delays and interferences that interfere with synchronisation messages, topology changes etc
+⚠️ **Problemi possibili:**
+- Deriva dell’orologio (clock drift)
+- Ritardi o interferenze nei messaggi di sincronizzazione
+- Cambiamenti nella topologia (es. dispositivi che si spostano)
 
-```
-
-## Idea:  Notificare gli Altri Nodi quando si è Svegli
+**Second Solution:  Notificare gli Altri Nodi quando si è Svegli**
 ![[178k.png]]
+Ogni nodo, quando si **sveglia**, invia un **beacon** (segnale di presenza) agli altri dispositivi.
+- Il nodo rimane attivo per un certo periodo dopo l’invio.
+- Questo approccio è **più flessibile**, perché non richiede sincronizzazione rigida.
 
-ogni nodo informa gli altri quando è attivo tramite "beacon" (segnali di presenza)
-- Protocollo: quando un nodo si sveglia, invia un beacon e rimane attivo per un certo tempo dopo
-- Questo permette una comunicazione più flessibile
-
-```ad-danger
-title: Problem
-Se altri nodi sono addormentati quando il beacon viene inviato, potrebbero non riceverlo
-
-```
+> ⚠️ **Problema:** Se gli altri nodi sono **addormentati** quando il beacon viene inviato, potrebbero **non riceverlo**.
 
 
 ## MAC-power saving algorithms
-Gli algoritmi di risparmio energetico a livello MAC (Medium Access Control) sono fondamentali per le applicazioni IoT basate su reti di sensori wireless (WSN) e sono utilizzati da molti protocolli IoT, come ZigBee e Bluetooth.
+Gli ==algoritmi di risparmio energetico a livello MAC== (Medium Access Control) sono fondamentali per le **applicazioni IoT basate su reti di sensori wireless (WSN)** e sono utilizzati da molti protocolli IoT, come ZigBee e Bluetooth.
 
 Questi algoritmi possono funzionare in due modalità principali:
 - ==Modalità con beacon==:
@@ -344,7 +333,7 @@ Questi algoritmi possono funzionare in due modalità principali:
 
 Una delle ==principali problematiche== è legata alla durata dei cicli attivo/riposo. **Occorre infatti decidere quanto tempo un nodo debba rimanere sveglio e per quanto debba dormire**. Inoltre, il nodo trasmittente deve restare in ascolto potenzialmente per molto tempo prima di trovare l’occasione di trasmettere. Se consideriamo che l’intervallo medio tra due beacon è $t_{bi}$, il tempo medio di attesa per una trasmissione è circa $t_{bi}/2$, comportando un certo overhead.
 
-Un ulteriore problema riguarda le possibili collisioni tra beacon. Se due nodi adottano un programma di beaconing identico, potrebbero trasmettere i beacon nello stesso istante, causando interferenze continue. Per ridurre questo rischio, si può introdurre un ritardo casuale nel caso in cui vengano rilevate collisioni. Tuttavia, anche questa soluzione non è perfetta, poiché non garantisce l’eliminazione completa delle sovrapposizioni.
+Un ulteriore problema riguarda le ==possibili collisioni tra beacon==. Se due nodi adottano un programma di beaconing identico, potrebbero trasmettere i beacon nello stesso istante, causando interferenze continue. Per ridurre questo rischio, si può introdurre un **ritardo casuale nel caso in cui vengano rilevate collisioni**. Tuttavia, anche questa soluzione non è perfetta, poiché non garantisce l’eliminazione completa delle sovrapposizioni.
 
 ![[190K.png]]
 
@@ -386,7 +375,7 @@ Quando un nodo vuole trasmettere dati, inizia a inviare una serie di segnali chi
 
 ```ad-danger
 title: Problema
-NOtevole spreco di energia a causa di trasmissioni attive per molto.
+Notevole spreco di energia a causa di trasmissioni attive per molto.
 
 ```
 
@@ -408,11 +397,11 @@ Permette di **ridurre ulteriormente la durata del preambolo**, migliorando l’e
 ## Contention-based and contention-free
 I protocolli MAC (Medium Access Control) per le reti di sensori wireless (WSN) si dividono in due categorie principali: **a contesa** e **senza contesa**.
 
-I protocolli ==a contesa== prevedono che i dispositivi competano per l’accesso al canale di comunicazione, utilizzando tecniche come ALOHA, CSMA o MACA. Un esempio specifico in ambito WSN è il **Sensor MAC (S-MAC)**, progettato per ridurre il consumo energetico attraverso periodi di sonno e attività.
+I protocolli ==a contesa== prevedono che i dispositivi competano per l’accesso al canale di comunicazione, utilizzando tecniche come ALOHA, CSMA o MACA.
 
 I protocolli ==senza contesa==, invece, organizzano l’accesso al canale in modo centralizzato o pianificato per evitare collisioni. Utilizzano tecniche come TDMA, FDMA o CDMA. Un esempio è **TRAMA (Traffic Adaptive Medium Access)**, che adatta l’accesso al mezzo in base al traffico per migliorare l’efficienza.
 
-# Sensor MAC (S-MAC) (1)
+# Sensor MAC (S-MAC) 
 ==Sensor-MAC (S-MAC)== protocol is an **energy efficient protocol** specifically designed for **WSNs**. Sensor network scenario:
 - most **communication** occurs between **nodes as peers**, rather than to a single base station.
 - Suitable for applications that are **latency-tolerant**.
@@ -434,36 +423,40 @@ Periodic listen and sleep mechanism to establish a low-duty-cycle operation on e
 # Sensor MAC (S-MAC) - collision avoidance
 ![[1K.png]]
 
-# Traffic Adaptive Medium Access (TRAMA) (1)
-TRAMA utilizza uno schema di elezione distribuita adattivo al traffico per decidere le schedulazioni di trasmissione. TRAMA è costituito da tre componenti:
-- **Neighbour protocol (NP)**.
-- **Schedule Exchange Protocol (SEP)**.
-- ==Algoritmo di elezione adattivo (AEA)==, che utilizza le informazioni sui vicini e sulle schedulazioni per selezionare i trasmettitori e i ricevitori per l'ora corrente.
+# ⚙️ **Traffic Adaptive Medium Access (TRAMA)**
 
->consente ai nodi di scambiare informazioni sui vicini a due hop e le loro schedulazioni.
+**TRAMA** è un protocollo MAC (**Medium Access Control**) progettato per reti di sensori wireless (WSN). Il suo obiettivo principale è **decidere in modo efficiente chi può trasmettere** su un canale radio in un determinato momento, **evitando collisioni** e **risparmiando energia**.
+
+È un protocollo **adattivo al traffico**: i nodi che devono trasmettere più dati ricevono più slot temporali. Il funzionamento è **distribuito**, quindi ogni nodo prende decisioni basate sulle informazioni locali, senza bisogno di un coordinatore centrale.
 
 
+## Componenti principali
 
-**TRAMA** assumes a single, time-slotted channel for both data and signaling transmissions.
-![[2k.png]]
+### 1. **Neighbour Protocol (NP)**
 
-Each node transmits by selecting a slot randomly
-- Nodes can access the network during this period
-- All nodes must be in transmitting or listening mode
-- Nodes share neighbourhood information
-- Nodes share schedules for transmission slots
-- Time syncronization
+Responsabile della scoperta e gestione dei nodi vicini
+- I nodi scambiano pacchetti di segnalazione con aggiornamenti incrementali sui **vicini a 1 hop**.
+- In assenza di aggiornamenti, vengono inviati **beacon keep-alive**
+- Se un nodo non riceve segnali da un vicino per un certo periodo, lo considera **non attivo**.
+- Conoscendo i vicini dei vicini, ogni nodo ottiene la **topologia a 2 hop**.
 
-Nodes share information with the` ==node protocol NP==:
-- Signaling packets carry incremental 1-hop neighbour updates.
-- If no updates, signaling packets are sent as “keep-alive” beacons.
-- A node times out a neighbour if it does not hear from it for a certain amount of time.
-- knowing 1-hop neighbours of a node’s neighbours allows 2- hop neighbourhood knowledge.
--  Nodes share schedule messages containing their traffic needs (who they wants to talk to, and when).
-- Nodes listen to their neighbours' schedules and build a conflict-free schedule using a priority function
-- Conflicts (multiple nodes wanting the same slot) are resolved using the Adaptive Election Algorithm
+### 2. **Schedule Exchange Protocol (SEP)**
+Gestisce lo scambio delle pianificazioni:
+- I nodi condividono i **messaggi di schedulazione**, che indicano:
+    - Chi vogliono contattare.
+    - In quale slot temporale.
+- Ogni nodo **ascolta le pianificazioni dei vicini** per costruire una **schedulazione senza conflitti**, usando una **funzione di priorità**.
 
-> Se conosco il vicino del vicino conosco due hop!
+### 3. **Algoritmo di Elezione Adattivo (AEA)**
+Risolve eventuali conflitti:
+- Se più nodi vogliono trasmettere nello stesso slot, l’**AEA elegge un solo trasmettitore**.
+- Solo il nodo eletto trasmette; gli altri ricevono o entrano in **modalità sleep** per risparmiare energia.
+
+## Funzionamento a slot
+TRAMA utilizza un **canale radio a slot temporali fissi**, condiviso per dati e segnalazioni:
+- Ogni nodo **seleziona uno slot casualmente** per comunicare.
+- Durante uno slot, i nodi devono essere **attivi** per trasmettere o ascoltare.
+- È necessaria una **sincronizzazione temporale** tra tutti i nodi.
 
 # Adaptive Election Algorithm - TRAMA
 Ogni slot di trasmissione può essere utilizzato da un solo nodo in un vicinato a due salti per evitare interferenze. La priorità di un nodo per un dato slot temporale viene calcolata come una funzione hash pubblica e deterministica.
@@ -473,7 +466,7 @@ Tutti i nodi calcolano gli stessi valori di priorità per i loro vicini a due sa
 # Association and neighbour discovery in IEEE 802.11 (WiFi)
 
 ## Neighbour discovery in Wired Networks: Link-Layer Discovery Protocol (LLDP) (1)
-==LLDP== è un protocollo utilizzato dai dispositivi di rete per **pubblicizzare la propria identità**, le proprie **capacità** e i propri **vicini** su una rete locale connessa tramite Ethernet. Periodicamente (ad esempio, ogni 30 secondi) switch/router scambiano messaggi LLDP con i propri vicini fisici. Simili ai messaggi di benvenuto, utilizzati per "presentarsi", contengono record come ID chassis, nome del sistema, descrizione del sistema, ecc.
+==LLDP== è un protocollo utilizzato dai dispositivi di rete per **pubblicizzare la propria identità**, le proprie **capacità** e i propri **vicini** su una rete locale connessa tramite Ethernet. **Periodicamente (ad esempio, ogni 30 secondi) switch/router scambiano messaggi LLDP con i propri vicini fisici**. Simili ai messaggi di benvenuto, utilizzati per "presentarsi", contengono record come ID chassis, nome del sistema, descrizione del sistema, ecc.
 
 
 ![[3k.png]]
