@@ -4,101 +4,103 @@
     "type": "split",
     "children": [
       {
-        "id": "fd694fff96059a49",
+        "id": "869005626548beb8",
         "type": "tabs",
         "children": [
           {
-            "id": "5fc1286a07c678f9",
+            "id": "85ccbb03cae3438e",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/10) Communication Wireless MAC.md",
+                "file": "2Semester/ETH/1) Intro and Footprinting.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "10) Communication Wireless MAC"
+              "title": "1) Intro and Footprinting"
             }
           },
           {
-            "id": "b128b5c57fb50856",
+            "id": "82a2996b0ad1a8fb",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/11) Mesh Networking.md",
+                "file": "2Semester/ETH/2) Scanning.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "11) Mesh Networking"
+              "title": "2) Scanning"
             }
           },
           {
-            "id": "16eaef64f913b6ea",
+            "id": "bc09467ed14b53c6",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/12) Standards and Protocols in IoT.md",
+                "file": "2Semester/ETH/3) Enumeration.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "12) Standards and Protocols in IoT"
+              "title": "3) Enumeration"
             }
           },
           {
-            "id": "adf36850a8fdcacd",
+            "id": "609ae35f1cf9c6e9",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/13) Cellular Networks.md",
+                "file": "2Semester/ETH/4.1) Hacking Windows.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "13) Cellular Networks"
+              "title": "4.1) Hacking Windows"
             }
           },
           {
-            "id": "cc3df17db997e758",
+            "id": "01100640fc2da1a5",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/IOT/14) Security.md",
+                "file": "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "14) Security"
+              "title": "6) Cybercrime and Advanced Persistent Threats"
             }
           },
           {
-            "id": "4e36cee780d7f7c3",
+            "id": "12dce9de5c4bc7ef",
             "type": "leaf",
+            "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CheatSheet CTF Live.md",
+                "file": "2Semester/ETH/8) Wireless Hacking.md",
                 "mode": "source",
                 "source": false
               },
+              "pinned": true,
               "icon": "lucide-file",
-              "title": "CheatSheet CTF Live"
+              "title": "8) Wireless Hacking"
             }
           }
         ],
@@ -260,43 +262,44 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "4e36cee780d7f7c3",
+  "active": "12dce9de5c4bc7ef",
   "lastOpenFiles": [
-    "2Semester/IOT/Image IOT2ESONERO/255k.png",
-    "2Semester/IOT/Image IOT2ESONERO/248k.png",
-    "2Semester/IOT/14) Security.md",
-    "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+    "README.md",
     "2Semester/IOT/13) Cellular Networks.md",
+    "Untitled.md",
+    "2Semester/IOT/Image IOT2ESONERO/278k.png",
+    "2Semester/IOT/Image IOT2ESONERO/264k.png",
+    "2Semester/ETH/Images/73.png",
+    "2Semester/IOT/Image IOT2ESONERO/256k.png",
+    "2Semester/IOT/Image IOT2ESONERO/257k.png",
+    "2Semester/IOT/Image IOT2ESONERO/258k.png",
+    "2Semester/ETH/Images/75.png",
+    "2Semester/ETH/Images/74.png",
+    "2Semester/ETH/4.1) Hacking Windows.md",
+    "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+    "2Semester/ETH/8) Wireless Hacking.md",
+    "2Semester/ETH/3) Enumeration.md",
+    "2Semester/ETH/2) Scanning.md",
+    "2Semester/ETH/1) Intro and Footprinting.md",
+    "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
+    "2Semester/ETH/11) Mobile Hacking.md",
+    "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+    "2Semester/ETH/5) Hacking Unix (part 1).md",
+    "2Semester/IOT/12) Standards and Protocols in IoT.md",
+    "2Semester/IOT/Image IOT2ESONERO/277k.png",
+    "2Semester/IOT/Image IOT2ESONERO/276k.png",
+    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
+    "CheatSheet CTF Live.md",
+    "2Semester/IOT/14) Security.md",
     "2Semester/IOT/11) Mesh Networking.md",
     "2Semester/IOT/10) Communication Wireless MAC.md",
-    "2Semester/IOT/12) Standards and Protocols in IoT.md",
-    "2Semester/IOT/Image IOT2ESONERO/254k.png",
-    "2Semester/IOT/Image IOT2ESONERO/253k.png",
-    "2Semester/IOT/Image IOT2ESONERO/252k.png",
-    "2Semester/IOT/Image IOT2ESONERO/251k.png",
-    "2Semester/IOT/Image IOT2ESONERO/250k.png",
-    "2Semester/IOT/Image IOT2ESONERO/249k.png",
-    "2Semester/IOT/Image IOT2ESONERO/247k.png",
-    "2Semester/IOT/Image IOT2ESONERO/246k.png",
     "2Semester/PND/IDS (Intrusion Detection System).md",
     "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
     "2Semester/IOT/1-2) IOT.md",
-    "CheatSheet CTF Live.md",
-    "2Semester/ETH/8) Wireless Hacking.md",
-    "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
-    "2Semester/ETH/3) Enumeration.md",
     "2Semester/IOT/8) Electromagnetism Theory.md",
-    "2Semester/ETH/2) Scanning.md",
-    "2Semester/ETH/1) Intro and Footprinting.md",
-    "2Semester/ETH/4.1) Hacking Windows.md",
     "2Semester/ETH/8) Network Security Secrets & Solutions.md",
     "2Semester/ETH/Untitled.md",
-    "2Semester/ETH/11) Mobile Hacking.md",
-    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
     "2Semester/ETH/8. Wireless Hacking.md",
-    "2Semester/ETH/5) Hacking Unix (part 1).md",
-    "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
-    "Windows Hacking.md",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch3.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch2.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch1.pdf",

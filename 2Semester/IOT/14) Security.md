@@ -1,141 +1,112 @@
-# Mirai Botnet Attack
-In August 2016, the **Mirai Botnet** targeted **Dyn**, a major provider of **DNS infrastructure**, disrupting large portions of the internet.
-- The attackers **exploited vulnerable IoT devices** (e.g., cameras, DVRs) by scanning for systems with:
-    - Open ports
-    - Default factory settings
-    - Preinstalled usernames and passwords
+#  Mirai Botnet Attack
+Nel mese di agosto 2016 è stato lanciato un attacco informatico tramite la botnet Mirai contro Dyn, un'azienda che gestisce una parte significativa dell'infrastruttura del sistema dei nomi di dominio (DNS) su Internet. L’attacco prendeva di mira dispositivi IoT come videocamere di sorveglianza e videoregistratori digitali (DVR), sfruttando le loro vulnerabilità: porte aperte, impostazioni di fabbrica predefinite e credenziali di accesso preinstallate.
 
-Once infected, these devices became part of the botnet, allowing attackers to **remotely control them** and launch a massive **DDoS attack**
-- The attack generated **1.2 terabits per second** of traffic.
-- Major websites like **Twitter, Reddit, Netflix, and Airbnb** went down across **North America and Europe**.
-- It remains one of the **largest DDoS attacks in history**.
+Una volta infettati, questi dispositivi entravano a far parte della botnet Mirai, consentendo agli attaccanti di controllarli da remoto tramite un server centrale di comando e controllo (C2), dal quale venivano impartiti gli ordini per coordinare l’attacco su larga scala.
 
-#### **Related IoT Security Failures**
-In **2017**, researchers discovered critical vulnerabilities in:
-1. **Implanted medical devices** (pacemakers, defibrillators by St. Jude Medical):
-    - No authentication, allowing attackers to:
-        - Extract patient data
-        - Drain batteries by flooding devices with messages
-2. **Owlet baby monitors** (a Wi-Fi-connected sock sensor):    
-    - No authentication in the interface, enabling attackers to:
-        - Disrupt Wi-Fi connections
-        - Disable critical alerts
+> I dispositivi IoT corrotti stavano invadendo internet
+
+
+Nel **2017**, i ricercatori hanno scoperto vulnerabilità critiche in:
+1. **Dispositivi medici impiantati** (pacemaker, defibrillatori di St. Jude Medical):
+    - Nessuna autenticazione, che consente agli aggressori di:
+        - Estrarre i dati dei pazienti
+        - Scaricare le batterie inondando i dispositivi di messaggi
+2. Monitor per bambini **Owlet** (un sensore a calzino connesso via Wi-Fi):    
+    - Nessuna autenticazione nell'interfaccia, che consente agli aggressori di:
+        - Interrompere le connessioni Wi-Fi
+        - Disattivare gli avvisi critici
 
 # Jeep Cherokees hack
-In 2016, Charlie Miller and Chris Valasek, had discovered and exploited a
-replicable security vulnerability in Jeep Cherokees
-- The hack impacted 1.4 million vehicles and required a product recall
-- YouTube video
-- Paper: Miller, Charlie, and Chris Valasek. "Remote exploitation of an unaltered passenger vehicle." Black Hat USA 2015.S 91 (2015): 1-91.
+Nel 2016, i ricercatori di sicurezza Charlie Miller e Chris Valasek scoprirono e dimostrarono l'esistenza di una vulnerabilità replicabile nei veicoli Jeep Cherokee, con un impatto tale da costringere il produttore a richiamare 1,4 milioni di automobili.
 
-Scanned the Sprint network and found thousands of exposed vehicles
-online.
-- Allowed them to connect to the Uconnect (an in-vehicle connectivity platform) head unit, where they found a remote code execution vulnerability, which let them run arbitrary commands
-- .From there, they were able to pivot into the vehicle’s internal network — the CAN (Controller Area Network) bus — which controls vehicle functions.
-- Once there, they could send messages to Electronic Control Units (ECUs) that controlling steering, breaking, transmission, speed
+Analizzando la rete Sprint, riuscirono a individuare migliaia di veicoli esposti online. Attraverso questa rete, furono in grado di connettersi all’unità centrale Uconnect, la piattaforma di connettività a bordo del veicolo, dove scoprirono una vulnerabilità di esecuzione di codice da remoto. Questa falla consentiva loro di eseguire comandi arbitrari all’interno del sistema.
+
+A partire da lì, riuscirono a penetrare nella rete interna del veicolo che gestisce le funzioni critiche dell’automobile. Una volta dentro, poterono inviare comandi direttamente alle centraline elettroniche (ECU), controllando così componenti fondamentali come lo sterzo, la frenata, la trasmissione e la velocità del veicolo.
 
 # IoT environments
-Tens of billions of devices are now connected to the internet, with **smart objects** becoming increasingly **ubiquitous**. These technologies enable critical applications in:
+Decine di miliardi di dispositivi sono ormai connessi a Internet. Gli oggetti smart stanno diventando sempre più diffusi, con applicazioni che spaziano dalle smart city alle case intelligenti, passando per la sanità e la videosorveglianza.
 
-- Smart cities
-- Smart homes
-- Healthcare
-- Surveillance
-- And more
+Molti di questi servizi intelligenti richiedono agli utenti di condividere volontariamente informazioni personali, a volte anche sensibili, in cambio di funzionalità avanzate e più personalizzate.
 
-Many of these services require users to **share personal (and sometimes private) data** in exchange for **personalized or advanced functionality**. As a result, **security and privacy must be a top priority** in IoT design.
+In questo contesto, la sicurezza e la tutela della privacy dovrebbero essere priorità fondamentali nella progettazione delle tecnologie e dei servizi dell’Internet of Things (IoT). Tuttavia, la realtà è ben diversa: molti prodotti IoT presenti sul mercato sono caratterizzati da meccanismi di sicurezza inadeguati, incompleti o mal progettati. Spesso i produttori di questi dispositivi provengono da settori legati a sensori e attuatori a basso costo, come l'automazione domestica, il controllo dell’illuminazione o la videosorveglianza, dove inizialmente i dispositivi erano pensati per operare in ambienti isolati e quindi senza particolari minacce alla sicurezza.
 
-## **The Security Gap in IoT Devices**
-Despite growing reliance on IoT, **many commercial products suffer from weak or poorly designed security mechanisms**. Key issues include:
+A peggiorare la situazione, gli utenti raramente possiedono una formazione adeguata sulle pratiche di sicurezza informatica e spesso non adottano nemmeno le misure più basilari di protezione, come cambiare la password preinstallata nei dispositivi.
 
-1. **Manufacturer Background**
-    - Many IoT vendors originate from **low-cost sensor/actuator markets** (e.g., home automation, lighting, surveillance).
-    - Devices were often **designed for isolated systems**, where security was not a primary concern.
-2. **User Awareness & Practices**
-    - Users frequently **lack security education**.
-    - Many fail to implement **basic protections**, such as changing **default passwords**.
-3. **Systemic Vulnerabilities**
-    - Inadequate authentication/encryption.
-    - Lack of secure update mechanisms.
-    - Exposure to remote exploits due to poor network configurations.
 
-# Vulnerabilities of the Thing Layer
-==Node capturing==: An attacker can steal or replace a node in a IoT system with a malicious one.
+## Vulnerabilities of the Thing Layer
+**Compromissione del nodo:** Un attaccante può sottrarre fisicamente un nodo dell’architettura IoT o sostituirlo con uno malevolo, compromettendo così l’intero sistema.
 
-==Malicious code injecting==: An attacker can inject some malicious code in the memory of the node. Firmware and software updates are done on the air.
-If the process is not encrypted an attacker can intercept the communication and inject malicious firmware.
+**Iniezione di codice malevolo:** Poiché gli aggiornamenti di firmware e software nei dispositivi IoT spesso avvengono via OTA (Over-The-Air), se la comunicazione non è cifrata, un attaccante può intercettare il flusso e iniettare codice dannoso o firmware modificato direttamente nella memoria del dispositivo.
 
-==False Data Injection Attack==: The attacker may use a malicious node to inject erroneous data onto the IoT system. This may lead to false results and may result in malfunctioning of IoT applications.
+**Attacco con iniezione di dati falsi:** Un nodo compromesso può essere utilizzato per introdurre dati errati nel sistema IoT, causando analisi distorte, risultati fuorvianti o il malfunzionamento delle applicazioni che si basano su quei dati.
 
-==Eavesdropping and Interference==
-• IoT nodes are often deployed in open environments,
-easily exposed to eavesdropping. The attackers may
-eavesdrop and capture the data during transmission
-and/or authentication.
+**Intercettazione e interferenza:** Poiché i nodi IoT sono spesso installati in ambienti aperti, sono facilmente esposti all’intercettazione. Un attaccante può ascoltare le comunicazioni, catturare dati trasmessi o intercettare i processi di autenticazione.
 
-==Sleep Deprivation Attacks==
-• The attacker tries to drain the battery of the low-
-powered IoT devices. This leads to a denial of service
-from the nodes in the IoT application
+**Attacchi di privazione del sonno (Sleep Deprivation):** Alcuni attacchi mirano a esaurire la batteria dei dispositivi IoT a basso consumo, forzandoli a restare attivi in modo continuo. Questo provoca l’esclusione dei nodi dal sistema e, di fatto, una negazione del servizio.
 
-# Vulnerabilities of the Network Layer
-==DoS/DDoS attacks==
-- The attacker floods the target servers with a large number of unwanted requests. This incapacitates the target server, thereby disrupting services to genuine users.
-- IoT applications are very susceptible to Distributed DoS attacks, if an attacker is able to control many IoT devices
+## Vulnerabilities of the Network Layer
+==Attacchi DoS/DDoS:== L’attaccante sovraccarica i server con richieste indesiderate, bloccando i servizi per gli utenti legittimi. Gli attacchi DDoS sono particolarmente efficaci se l’attaccante controlla numerosi dispositivi IoT.
 
-==Routing attacks==
-- Malicious nodes try to redirect the routing paths during data transfer.
-- Sinkhole attack: the adversary advertises a better routing path and attracts nodes to route traffic through it.
-- Warm-hole attack: An attacker can create a warm-hole (out of band connection) between a compromised node and a device, bypassing the basic security protocols.
+![[2Semester/ETH/Images/73.png|300]]
 
-# Vulnerabilities of the middleware and gateway layers
+==Attacchi di routing:== Nodi malevoli manipolano i percorsi dei dati durante la trasmissione.
+- _Sinkhole:_ il nodo attaccante finge di offrire il miglior percorso, attirando il traffico.
+- _Wormhole:_ l’attaccante crea un collegamento nascosto tra due nodi per aggirare le misure di sicurezza.
 
-==Man-in-the-Middle Attack==
-The MQTT protocol uses a publish-subscribe model of communication between clients and subscribers using the MQTT broker. If the attacker can control the broker and become a man-in-the-middle, then he/she can get complete control of all communication without any knowledge of the clients.
+![[2Semester/ETH/Images/74.png]]
 
-==End-to-end encryption==
-- To ensure the confidentiality of the data, the IoT application should not let anyone other than the unique recipient to decrypt the encrypted messages.
-- To perform protocol translation, gateways are required to decrypt and re-encrypt the messages.
-- Data becomes susceptible to breaches.
+## Vulnerabilities of the middleware and gateway layers
+**Man-in-the-Middle (MitM):** Nei protocolli come MQTT (protocollo di messaggistica leggero), un attaccante che prende il controllo del broker può intercettare, manipolare o bloccare le comunicazioni tra client e sottoscrittori, senza che questi se ne accorgano.
+
+![[2Semester/ETH/Images/75.png|400]]
+
+**Crittografia end-to-end:**  
+Per garantire la riservatezza, solo il destinatario deve poter decifrare i messaggi. Tuttavia, i gateway, durante la traduzione dei protocolli, devono decifrare e ricifrare i dati, rendendoli vulnerabili a possibili violazioni.
 
 # Security measures/vulnerabilities/ attacks of popular IoT Protocols 8.1 Zigbee
 
 ## ZigBee recap
-PHY and MAC layer taken from IEEE 802.15.4 standard.
-The NWK provides functionalities such as routing, security, and configuration of new devices, managed by the network coordinator that also acts as trust center.
+Il livello PHY e MAC sono tratti dallo standard IEEE 802.15.4.
+La NWK fornisce funzionalità quali l'instradamento, la sicurezza e la configurazione di nuovi dispositivi, gestite dal coordinatore della rete che funge anche da trust center.
 
-The trust center is responsible for
-1) authenticating the devices that require to join the network;
-2) deciding whether to accept or deny the join request;
-3) maintaining and distributing network keys;
-4) enabling end-to-end security between devices
+Il trust center è responsabile di
+1) autenticare i dispositivi che richiedono di unirsi alla rete;
+2) decidere se accettare o rifiutare la richiesta di adesione;
+3) mantenere e distribuire le chiavi di rete;
+4) abilitare la sicurezza end-to-end tra i dispositivi
 
 ![[2Semester/PND/images PND/196.png]]
 
 ## Cryptographic keys
-The cryptographic routines used in ZigBee employ two 128 bit keys:
-- link key, used to secure unicast communications between the application and the device.
-- network key is needed for broadcast communications: it is shared among the same network.
-Vendors also provide device-specific keys called master keys
+ZigBee usa due tipi principali di chiavi a 128 bit per proteggere le comunicazioni:
+- **Link Key:** Serve a proteggere le comunicazioni unicast (da un dispositivo a un altro) tra l’applicazione e il dispositivo.
+- **Network Key:** Serve per le comunicazioni broadcast (inviate a tutti i dispositivi della rete) ed è condivisa tra tutti i dispositivi della stessa rete.
+
+Inoltre, i produttori possono fornire chiavi specifiche per ogni dispositivo, chiamate **Master Keys**.
 
 ## Key acquisition
-There are different ways for a device to acquire the required link or
-network key:
-- ==Preinstallation==: The link or network key is installed in the device during the manufacturing process
-- ==Key Transport==: The link or network key is generated elsewhere (usually by the Trust Center) and then communicated to the device. (Often sent unencrypted over-the-air)
-- ==Key Establishment==: Uses asymmetric cryptography (public/private key pairs) to establish a shared secret that both devices can compute independently, which can then be used as a Link Key.
-
->Uses a protocol based on Elliptic Curve Diffie-Hellman.
+Ci sono vari modi per ottenere le chiavi necessarie:
+- **Preinstallazione:** Le chiavi vengono caricate direttamente sul dispositivo durante la produzione.
+- **Key Transport:** La chiave viene generata altrove (di solito dal Trust Center) e poi inviata al dispositivo, spesso senza cifratura, cioè trasmessa in chiaro via radio (Over-The-Air).
+- **Key Establishment:** Viene usata la crittografia asimmetrica (coppie di chiavi pubblica/privata) per creare una chiave condivisa. Questo processo usa un protocollo basato su Elliptic Curve Diffie-Hellman, che consente a entrambi i dispositivi di calcolare indipendentemente la stessa chiave senza trasmetterla direttamente.
 
 ## ZigBee Network Key Sniffing Attack
-The attack can be as easy as follows:
+attacco di sniffing per ottenere la chiave di rete ZigBee.
 ![[2Semester/PND/images PND/197.png]]
 
+```ad-info
+title: How it work
+1. **Sniffing del traffico**: Un attaccante utilizza un dongle economico (es. CC2531) per intercettare i pacchetti ZigBee trasmessi tra i dispositivi (es. sensori e coordinatori).
+    
+2. **Analisi con software**: Usando tool come _SmartRF Packet Sniffer_ o _KillerBee_ (`zbdsniff`), estrae la chiave di rete dai dati catturati (es. da un file `.pcap`).
+    
+3. **Compromissione**: Una volta ottenuta la chiave (es. `0d:0c:0a:08:...`), l’attaccante può decifrare le comunicazioni, inviare comandi falsi o aggiungere dispositivi non autorizzati alla rete.
+
+```
+
+
 ## Sinkhole attack
-Sinkhole attack: very common attack in Wireless Sensor Networks.
-A compromised node in the network starts spreading false information
-about his routing capabilities, pretending to have a really good route to the Base Station. All other nodes in the network will start forwarding packets directed to the Base Station through the malicious node.
-The attacker can drop or simply modify data inside packets and then forward them to the coordinator, making it difficult to detect the attack
+Il ==sinkhole attack== è un attacco comune nelle Wireless Sensor Networks. Un nodo compromesso diffonde informazioni false sulle proprie capacità di instradamento, fingendo di avere una rotta molto efficiente verso la Base Station. Di conseguenza, gli altri nodi instradano i pacchetti verso questo nodo malevolo, che può modificarli, eliminarli o inoltrarli al coordinatore, rendendo difficile rilevare l’attacco.
 
 ```ad-example
 ![[82k.png]]
@@ -143,11 +114,11 @@ The attacker can drop or simply modify data inside packets and then forward them
 
 ```
 
-… because ZigBee supports two possible topologies: hierarchical trees and mesh networks.
-In hierarchical trees, the routing is fixed. But in mesh networks, ZigBees uses a weighted AODV routing protocol where link weights are defined as follows:
+ZigBee supporta due topologie di rete: **alberi gerarchici** e **mesh**.  
+Negli ==alberi gerarchici== il **routing è fisso**, mentre nelle ==reti mesh ZigBee== usa un protocollo di routing **AODV pesato**, in cui il peso di un link $l$ è definito come:
 $$C(l) = min(7, [\frac{1}{p^4_l}])$$
-where $p_l$ is the probability of successful packet delivery over link $l$.
-This is not specified by the ZigBee Alliance, but by individual developers and vendors. A reasonable way to define $p_l$ is to make it grow with the transmission power of the devices connected to $l$.
+dove $p_l$ è la probabilità di consegna corretta dei pacchetti sul link $l$.  
+Questa probabilità può essere stimata dagli sviluppatori.
 
 ```ad-example
 ![[83k.png]]
@@ -156,44 +127,46 @@ This is not specified by the ZigBee Alliance, but by individual developers and v
 
 
 # Security measures/vulnerabilities/ attacks of popular IoT Protocols 8.2 BLE
-Central and peripheral nodes. Peripheral broadcast advertisements,
-central listens to the advertisements of the devices it
-wants to interact with, and they connect.
 
-BLE operated in the unlicensed 2.4 GHz ISM band and
-uses 40 channels with a 2 MHz spacing.
-The BLE MAC layer is split into two parts:
-- advertising, using 3 channels to broadcast device information and establish connections
-- data transfer, using 37 of the available channels are used during the transmission of data.
+==BLE== prevede ==due tipi di nodi==: **central** e **peripheral**.
+-  I nodi **peripheral** trasmettono periodicamente degli **advertisements** (pubblicità) su canali dedicati.
+- I nodi **central** ascoltano questi advertisements e si connettono ai dispositivi periferici di interesse.
 
-In the data communication phase, data is normally sent in bursts to save energy. -> In this way, peripherals can remain in sleep mode for long periods, waking up periodically to listen to the channel for possible messages from the master. The central decides the rendezvous instants with the peripherals, according to a time division multiple access (TDMA) scheme with frequency hopping (different from CDMA, cos each device uses the channel with FH, but one at the time following TDMA).
+BLE opera nella banda ISM unlicensed a 2.4 GHz, utilizzando **40 canali** con spaziatura di 2 MHz ciascuno:
+- **3 canali** sono dedicati agli advertising.
+- **37 canali** sono usati per il trasferimento dati.
+ 
+Durante la comunicazione dati, BLE trasmette in **burst** per risparmiare energia:
+- I dispositivi periferici possono rimanere a lungo in modalità **sleep**, svegliandosi solo a intervalli prestabiliti per ascoltare eventuali messaggi dal nodo centrale.
+- La sincronizzazione tra central e peripheral avviene secondo uno schema **TDMA** (Time Division Multiple Access) con **frequency hopping** (FH).
+    -  Questo significa che i dispositivi usano un singolo canale per volta, cambiando canale nel tempo secondo un ordine predefinito, per migliorare la robustezza delle comunicazioni e ridurre interferenze.
 
 ## BLE addresses
-BLE MAC address is hidden, whereas a random address which changes frequently is advertised. 
-- BLE can choose one of three following types of random addresses:
-- Random Static Address - Generate a random address per power cycle. The address cannot be regenerated at any other time.
-- Resolvable Private Address (RPA) - Generate a random address within a given time interval. Generated using a Identity Resolving Key (IRK) and a random number.
-- Trusted devices that know the random key can resolve it, and recover the real identity of the device.
-- Non-resolvable Private Address - Randomly generated address with a given time interval.
-- No device can resolve it and recover the true identity. Used to achieve full anonymity.
+L’indirizzo MAC BLE **non è esposto direttamente**; viene invece pubblicizzato un indirizzo **random** che cambia frequentemente.
+BLE può scegliere tra tre tipi di indirizzi random:
+    1. **Random Static Address**
+		- Generato una volta per ogni accensione (power cycle).
+		- Rimane fisso durante la sessione di accensione, non può essere rigenerato in altri momenti.
+    2. **Resolvable Private Address (RPA)**
+        - Cambia a intervalli regolari.
+        - Generato usando una chiave chiamata **Identity Resolving Key (IRK)** e un numero random.
+        - Solo dispositivi “trusted” che conoscono l’IRK possono risolvere questo indirizzo e risalire alla vera identità del dispositivo.
+    3. **Non-resolvable Private Address**
+        - Indirizzo random che cambia periodicamente.
+        - Nessun dispositivo può risolverlo per risalire all’identità reale.
+        - Usato per garantire **anonimato totale**
 
 ## BLE encryption and authentication
-BLE encryption and authentication processes are based on AES with 128 bit keys. The
-symmetric key for link is generated during the pairing procedure, which is executed as
-follows.
-1. Feature exchange. Clients and servers exchange IO capabilities, authentication
-requirements, Long Term Keys (LTK) entropy proposal (KeySize, from 7 to 16 bytes -
-negotiation) etc. None of this is encrypted.
-2. Key establishment
-- The devices generate or exchange a temporary key (TK) using one of the available
-pairing methods (next slide).
-- After that, a short term key (STK) is generated from the TK.
-3. Key distribution phase
-Using the STK-encrypted link, both devices send selected long-term keys, used to derive
-session keys for future encrypted connections
-4. Bonding phase
-- Devices exchange and store common link keys (LTK) that can be reused when a link
-between the two devices is re-established at a later time.
+Il processo di **Pairing** in **Bluetooth Low Energy (BLE)** serve per **stabilire una connessione sicura** tra due dispositivi, consentendo **cifratura e autenticazione** delle comunicazioni. Questo processo si basa sull’uso dell’**algoritmo AES a 128 bit** e si articola in **4 fasi principali**:
+    1. **Feature exchange**
+	    - Scambio non cifrato delle capacità di IO, requisiti di autenticazione, e proposta della lunghezza della chiave (7-16 byte).
+    2. **Key establishment**
+        - I dispositivi generano o scambiano una **Temporary Key (TK)** usando il metodo scelto.
+		- La **TK** viene poi usata per calcolare una **Short Term Key (STK)** con cui cifrare temporaneamente la connessione.
+    3. **Key distribution**
+        - Usando la connessione cifrata con STK, i dispositivi si scambiano le **long-term keys (LTK)**, chiavi usate per derivare le sessioni future.
+    4. **Bonding**
+        - I dispositivi scambiano e memorizzano le LTK per poter riconnettersi in futuro senza rifare il pairing.
 
 ## Pairing methods in authentication - just works
 ![[84k.png]]
@@ -201,100 +174,90 @@ between the two devices is re-established at a later time.
 ## Pairing methods in authentication -numeric comparison
 ![[85k.png]]
 
-## Pairing methods in authentication - passkey
-One of the two devices generates a k bit long secret
-passkey.
-- The user inserts it in the other device.
-• Both devices:
-• Generate a nonce and compute a commitment
-value, which is function the nonce, the passkey
-and the public keys.
-• Exchange commitments and nonces.
-• Each device recalculates the commitments as
-before, but changing the order of the two public
-keys and using the nonce of the other device.
-• If the passkey is the same, the new commitment
-value must match the one sent by the other device
+## Pairing methods in authentication – Passkey Entry (dettaglio della fase 2)
+Uno dei due dispositivi genera una **passkey segreta** lunga $k$ bit.
+L’utente inserisce questa passkey nell’altro dispositivo.
 
-![[86k.png]]
+### Procedura:
+- Entrambi i dispositivi generano un **nonce** (numero casuale unico).
+- Calcolano un **valore di commitment**, funzione della **passkey (TK)**, del **nonce locale** e delle **chiavi pubbliche**.
+- Si scambiano i **commitment** e i **nonce**.
+- Ogni dispositivo verifica il commitment dell’altro ricalcolandolo con i dati ricevuti (invertendo l’ordine delle chiavi pubbliche).
+- Se i commitment corrispondono → la passkey coincide → si procede con la generazione della STK.
 
-## Network traffic sniffing - fitness tracking case study (1)
-Exploited vulnerability: frequent advertisement BLE packets and poor address management
-- Listening to BLE traffic in a gym.
-- BLE traffic traces collected for 8 consecutive days, with each trace being two hours in duration. 6 fitness trackers (servers), 1 IPhone, 1 Nexus (clients).
+![[86k.png|350]]
 
->$7.5$ million packets, $3.5$GB.
+## Network traffic sniffing - fitness tracking case study 
+Durante uno studio in palestra sono stati catturati oltre 7,5 milioni di pacchetti BLE in 8 giorni.   I fitness tracker (server) trasmettono frequentemente pacchetti di advertising, mentre i dispositivi client (smartphone iOS e Android) lo fanno raramente e cambiano spesso indirizzo per proteggere la privacy.
 
-Most of the advertisement packets come from the servers (fit trackers),
-while clients (iOS and Android mobiles) do not advertise continuously and change their address often. Why do fitness trackers advertise so
-frequently?
+### Perché i fitness tracker pubblicizzano così spesso?
+Devono essere sempre pronti a connettersi agli smartphone, inviando advertising continui per farsi trovare rapidamente.  Hanno batterie più grandi o sono progettati per trasmettere costantemente, quindi il risparmio energetico è meno prioritario. Usano spesso indirizzi statici o che non cambiano, esponendo la loro identità e facilitando il tracking.
 
-![[87k.png]]
+I client si disconnettono spesso per risparmiare energia. Il fitness tracker comunica attivamente solo quando l’app dello smartphone è aperta, per sincronizzare i dati. Quando l’app è chiusa, il tracker resta in stato di advertising. Questo comportamento è stato osservato in tutti i tracker studiati.
 
-… Because the client device frequently disconnects the fitness trackers in order to reduce its own energy consumption.
-- The fitness trackers are only connected to the smartphone when the corresponding smartphone application on the smartphone is running
-- In this phase, the tracker actively communicates and synchronizes the activity data (e.g. steps, calories etc.).
-- When the app is not running, the connection is terminated, leaving the fitness tracker in advertising state.
-- This behaviour was observed in all six fitness trackers in the study
-
-… We saw that BLE devices can change their addresses to prevent these
-situations.
-- Reality: none of the trackers did that.
-- Most used static addresses and a few resolvable private addresses. Both kinds did not even change after complete battery discharge.
-- This makes it easy to be used to activity detection.
-- The tracking vulnerability stays.
-
-> An attacker can sniff the BLE traffic and track the users as they move around in public places.
-
-==Activity detection==
-- The tracking vulnerability can be exploited to perform additional inference in a person’s activity.
--  Observation: the amount of BLE data traffic between the Fitbit and the smartphone is proportional to the (motion) intensity of user’s activity.
-
-![[88k.png]]
+Anche se i dispositivi BLE possono cambiare indirizzo per aumentare la privacy, nessuno dei tracker lo fa. Usano prevalentemente indirizzi statici o risolvibili che non cambiano nemmeno dopo la scarica completa della batteria, rendendo facile il tracciamento.
 
 
-People identification.
-- Fit trackers use accelerometers to get statistics like number of steps walked, total calories burnt, total distance covered, flights of stairs climbed.
-- BLE data exhibits different patterns when different users are walking
+### Vulnerabilità e rischi
+Un attaccante può intercettare il traffico BLE e tracciare gli utenti in luoghi pubblici.
 
-![[89k.png]]
+==Rilevamento attività:== la quantità di traffico BLE tra tracker e smartphone varia in base all’intensità del movimento dell’utente.
 
-- People identification.
-- Fit trackers use accelerometers to get statistics like number of steps walked, total calories burnt, total distance covered, flights of stairs climbed.
-- BLE data exhibits different patterns when different users are walking
+![[256k.png]]
 
-![[90k.png]]
+==Identificazione persone:== i dati BLE mostrano pattern diversi in base all’attività rilevata dagli accelerometri dei tracker (passi, calorie, distanza, scale). Questi pattern possono identificare persone diverse mentre camminano.
 
-## KNOB attack
-Exploited Vulnerability: unencrypted feature exchanges.
-An attacker can downgrade the entropy of any BLE LTK and session key to 7 bytes (Key Negotiation of BLE - KNOB) through a Man-in-the-Middle (MitM) attack
-- 7 byte keys can be brute-forced.
+![[257k.png|400]]
 
-![[91k.png]]
+
+## KNOB (Key negotiation of Bluethoot) Attack
+ **Vulnerabilità sfruttata:** lo scambio delle funzionalità (feature exchange) durante il pairing BLE non è cifrato.
+
+Un attaccante può eseguire un **attacco Man-in-the-Middle (MitM)** per ridurre la lunghezza della chiave di cifratura (Long Term Key, LTK) e della chiave di sessione a soli **7 byte** (56 bit), invece dei normali 16 byte (128 bit).
+
+```ad-info
+title: How it Work?
+- L’attaccante (Charlie) si inserisce tra Alice e Bob che stanno comunicando via BLE.
+    
+- Charlie intercetta e rilancia i messaggi tra i due, facendoli credere di parlare direttamente tra loro.
+    
+- Durante questo, manipola la negoziazione della chiave per forzare l’uso di una chiave più debole.
+    
+- In wireless, può anche usare segnali di disturbo per impedire che Alice e Bob si sentano direttamente, costringendoli a passare per lui.
+
+```
+
+
 ![[92k.png]]
 
 # Security measures/vulnerabilities/ attacks of popular IoT Protocols 8.2 LoRaWAN
 
 ## Eavesdropping LoRa
-Eavesdropping attacks occur when a hacker intercepts, deletes, or
-modifies data that is transmitted between two devices. Recall that LoRa uses AES-CTR as encryption scheme.
+Gli attacchi di intercettazione avvengono quando un hacker **intercetta, modifica o cancella** i dati trasmessi tra due dispositivi.
 
-![[93k.png]]
+## Crittografia in LoRa
+- LoRa usa **AES in modalità CTR** (Counter Mode) per cifrare i dati.
+	![[260k.png]]
+- La chiave usata è **AppSKey**, condivisa tra dispositivo e server.
+- Il **contatore** usato è il **frame counter** del protocollo LoRa, che però **si resetta a 0** dopo ogni sessione.
+  
+```ad-missing
+title: Problem
 
-AppSKey is the key used for end-to-end encryption and the counter is the frame counter in LoRa’s MAC frame, not really a nonce.
+In AES-CTR, usare lo **stesso key stream** (cioè la stessa chiave + contatore) per cifrare più messaggi è pericoloso.
+$$\text{C1} \oplus \text{C2} = \text{P1} \oplus \text{P2}$$
 
-What is the problem with using the same key stream multiple times?
-![[94k.png]]
 
-What is the problem with using the same key stream multiple times?
-The XOR of the two cipher texts is equal to the XOR of the plain texts
+![[Pasted image 20250526154323.png]]
 
-![[95k.png]]
+(XOR tra i due testi cifrati è uguale allo XOR dei testi in chiaro)
 
-Since LoRa uses AppSKey as a key, the counter must be always different
-in order to obtain a different stream key. This is not the case, as LoRa uses the frame counter as a counter, which is reset to 0 after a transmission session. This means that the same key stream is used multiple times.
+![[Pasted image 20250526154426.png]]
 
-Why is it dangerous?
-- The XOR of the plain text still does not reveal the original messages. Nevertheless, an attacker may know or guess part of the plain text.
-- For instance, if LoRa is used by a temperature sensor, the attacker might guess that part of the original massage is “temperature: “
-- Crib-dragging: guess possible words and XOR those against the XORedd cipher text to possibly reveal parts of the original message.
+```
+
+>Poiché LoRa utilizza AppSKey come chiave, il contatore deve essere sempre diverso per ottenere una chiave di flusso diversa. ma non è questo il caso dato che lo stesso flusso di chiavi viene utilizzato più volte.
+
+## Perché è pericoloso?
+Lo XOR del testo in chiaro non rivela comunque i messaggi originali.
+Tuttavia, un aggressore può conoscere o indovinare parte del testo in chiaro.

@@ -50,7 +50,7 @@ I client possono inviare richieste di probe **senza specificare un SSID** (broad
 
 
 ## 🔐 WPA, WPA2 e WPA3
-Lo standard **802.11i** definisce i meccanismi avanzati di sicurezza. Da questo derivano:
+Lo standard **802.11i** definisce i meccanismi avanzati di sicurezza. Da questi derivano:
 
 - **WPA**: implementa solo una parte dello standard e utilizza **TKIP** (Temporal Key Integrity Protocol) per cifrare i dati, anche se oggi è considerato obsoleto e vulnerabile.
 - **WPA2 e WPA3**: implementano lo standard completo e supportano sia TKIP che **AES** (Advanced Encryption Standard), molto più sicuro.
@@ -150,7 +150,7 @@ Il ==wardriving== è **l’attività di ricerca di reti wireless effettuata da u
 - Utilizzo di GPS per mappare la posizione delle reti
 - **WiGLE**: una piattaforma che raccoglie dati da wardriver in tutto il mondo (oltre 16 milioni di record)
 
-
+>Evil Twin
 ## 🛰️ Sniffing del Traffico Wireless
 Sniffare il traffico Wi-Fi è semplice se non viene cifrato. È un’operazione spesso associata ad attacchi **man-in-the-middle (MITM)** e può violare leggi sulla privacy come il **Wiretap Act**.
 
@@ -185,8 +185,6 @@ Alcune reti usano filtri MAC per permettere l’accesso solo a determinati indir
 
 - È un metodo **laborioso da gestire**
 - Non garantisce sicurezza reale: l'attaccante può sniffare un MAC legittimo e **spoofarlo**
-
-
 # Gaining Access (Hacking 802.11)
 
 ## Specificare SSID Nascosto
@@ -199,13 +197,12 @@ Cambiare il proprio indirizzo MAC è utile per bypassare filtri MAC. Può essere
 - Nativamente tramite **Device Manager** su Windows
 
 ## 🔓 Attacchi alla Cifratura WEP
-Il WEP (Wired Equivalent Privacy) è facilmente compromettibile. Gli attacchi si basano sul **raccolto di IV (Initialization Vectors)**, che vengono trasmessi in chiaro e possono essere correlati con i primi byte del testo cifrato per dedurre la chiave.
+Il ==WEP (Wired Equivalent Privacy)== è facilmente compromettibile. Gli attacchi si basano sul **raccolto di IV (Initialization Vectors)**, che vengono trasmessi in chiaro e possono essere correlati con i primi byte del testo cifrato per dedurre la chiave.
 
 > 🔍 **Definizione – WEP**: Protocollo di sicurezza wireless ormai deprecato. Usa cifratura RC4 con IV pseudocasuali. Vulnerabile a molteplici attacchi passivi e attivi.
 >![[Pasted image 20250520163343.png]]
 
 ### Strumenti per violare WEP
-
 - **AirSnort**, **WEPAttack**, **DWEPCrack**
 - **aircrack-ng** (analisi statistica su pacchetti sniffati)
 - **aireplay-ng** (attacco ARP replay)
@@ -230,7 +227,7 @@ Il WPA (Wi-Fi Protected Access) è molto più robusto, ma se la **Pre-Shared Key
 ### Dettagli tecnici
 - PSK da 8 a 63 caratteri, hashed **4096 volte** con l’SSID
 - Il processo di autenticazione usa un **four-way handshake**
-- È possibile catturare il handshake e tentare l’attacco offline
+- È possibile catturare l' handshake e tentare l’attacco offline
 
 ### Strumenti utilizzati
 - **aircrack-ng** (analisi su file PCAP)
@@ -248,7 +245,6 @@ Il WPA (Wi-Fi Protected Access) è molto più robusto, ma se la **Pre-Shared Key
 ==LEAP== (Lightweight Extensible Authentication Protocol) è un protocollo proprietario sviluppato da Cisco nel 2000 per **migliorare la sicurezza delle reti wireless, in particolare rispetto alle debolezze del WEP**. Utilizza il **sistema 802.1X e un server RADIUS** per gestire l'autenticazione.
 
 ## Debolezze del LEAP
-
 Il problema principale del LEAP è che non protegge contro gli **attacchi dizionario offline**. Si basa su **MS-CHAPv2**, un protocollo di autenticazione di Microsoft che presenta gravi falle di sicurezza.
 
 ## Perché MS-CHAPv2 è debole

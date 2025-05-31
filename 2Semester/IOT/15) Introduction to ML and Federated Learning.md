@@ -1,13 +1,13 @@
 
 # ML/AI
-==Artificial Intelligence== is the field of developing computers and robots that are capable of behaving in ways that mimic human capabilities without human interference.
+==Artificial Intelligence== è il campo che si occupa dello sviluppo di computer e robot capaci di comportarsi in modi che imitano le capacità umane, senza interferenza umana.
 
 ==Machine Learning== is a sub-field of AI that uses algorithms to automatically learn insights and recognize patterns from data.
 
 ![[96k.png]]
 
 ## Classification and regression 
-In machine Learning, there are two main types of task:
+In machine Learning, there are ==two main types of task==:
 - **Classification**: involves predicting a category or class label. The output is discrete, meaning the model tries to classify data into predefined labels or groups.
 - **Regression**: involves predicting a (possibly continuous) value or quantity (dependent variable) on a numerical scale by observing variables (features - independent variables) that influence prediction
 
@@ -27,12 +27,14 @@ Data is preprocessed to identify features, i.e., characteristics of the input wh
 # Basics of Regression
 
 ## Linear Regression
-Consider a dataset as a set of data point, characterised by an independent variable (feature) and a dependent variable (to predict), for instance:
+Consider a ==dataset==, characterised by an independent variable (features) and a dependent variable (to predict), for instance:
 • **Independent variable** = size
 • **Dependent variable** = cost
-• **Each data point is a house**.
+• **Each data point is a house** (ossernavzione del dataset, ogni record e dunque coppia dimensione e costo indica un data point che rappresenterebbe in questo esempio una casa)
 
 By observing the distribution of the data points, we can notice a linear relationship between the two variables.
+
+>La regressione lineare serve a prevedere il valore della variabile dipendente, dati i valori di quella indipendente
 
 ```ad-example
 
@@ -48,7 +50,40 @@ find the line that better “fits” the data point.
 The line that better “fits” the data point is the line that better represents the relationship between the two variables, given a set of data points. By finding such a line, given the size of a
 house, we can predict how much it costs with some confidence
 
+```ad-example
+
 ![[100K.png]]
+
+
+- L'**asse X** è la **variabile indipendente** (es. dimensione della casa).
+- L'**asse Y** è la **variabile dipendente** (es. costo della casa).
+- Ogni **punto blu** è un **punto dati**, cioè una casa, con una certa dimensione e un certo costo.
+
+
+**Secondo Grafico**
+- La **retta viola** è la **retta di regressione**, ovvero il modello che stima il prezzo di una casa in base alla sua dimensione.
+-data la dimensione di una casa (asse X), la retta prevede il suo prezzo (asse Y).
+- La **freccia verticale rossa** mostra la **differenza tra il prezzo reale e quello stimato** → questo è **l’errore (residuo)**.
+
+**Terzo Grafico**
+- La retta è descritta con l’equazione:
+    
+  $$\hat{y} = \theta_1 x + \theta_0$$
+    
+    Dove:
+    
+    - $\theta_1$​ è il coefficiente angolare (quanto cresce il prezzo al crescere della dimensione),
+        
+    - $\theta_0$​ è l'intercetta (valore iniziale, cioè il costo base).
+        
+- Il punto $(x_i, y_i)$ è un punto reale del dataset.
+    
+- Il punto $(x_i, \hat{y}_i)$ è il valore **predetto** dal modello per quella stessa dimensione.
+    
+- La differenza verticale tra $y_i$​ e $\hat{y}_i$​ è il **residuo**, ovvero l'**errore** del modello su quel punto.
+
+```
+
 
 We can fit many lines, non of them is perfect, since data points are not aligned. How to we find the “best” one? And how do we decide if a line is “better” than the other?
 Recall that the function of a line is:
@@ -57,12 +92,11 @@ where:
 - $\theta_1$ is the slope (pendenza)
 - $\theta_0$ is the intercept
 
-Given the function of a line, for each point , we can compute the residual, i.e., the difference
-between (real value) and (predicted value).
+Given the function of a line, for each point , we can compute the residual, i.e., the difference between (real value) and (predicted value).
 
 To define how good a line fits the data, we can define different loss functions, that are functions of the residuals of the data points in the dataset.
 
-- L1 loss $= \Sigma_{i=1}^n \mid \hat y_i - y_i \mid$
+- $L1$ loss $= \Sigma_{i=1}^n \mid \hat y_i - y_i \mid$
 - Mean Absolute Error(MAE) $= \frac{1}{n} \Sigma_{i=1}^n \mid \hat y_i - y_i \mid$ (When data set contains many outliers)
 - $L2$ loss $= \Sigma_{i=1}^n ( \hat y_i - y_i )^2$
 - Mean Square Error (MSE)  $= \frac{1}{n} \Sigma_{i=1}^n ( \hat y_i - y_i )^2$ (When data set contains many outliers)
@@ -77,35 +111,32 @@ Choose one of these loss functions, and find the line that minimises it.
 
 ```
 
-```ad-example
-![[Pasted image 20250521154219.png]]
-![[Pasted image 20250521154243.png]]
-![[Pasted image 20250521154257.png]]
+```ad-important
+> Anche quando abbiamo **più di una variabile indipendente** (cioè più fattori che influenzano il risultato), possiamo comunque usare la **regressione lineare**.
+
+In particolare:
+
+- Non cerchiamo più una **retta** che si adatti ai dati, ma un **piano** (o un **iperpiano**, se le variabili sono molte).
+    
+- L'obiettivo è sempre lo stesso: **trovare i coefficienti** (θ₀, θ₁, θ₂, ...) che **minimizzano una funzione di perdita** (come l’MSE).
+    
+- Anche se la matrice non è invertibile (un problema matematico), possiamo comunque risolvere il sistema usando il **pseudoinverso**.
+    
+
+👉 In sintesi: la regressione lineare si può estendere facilmente anche a più variabili, e l’approccio geometrico (retta → piano → iperpiano) resta valido per trovare la miglior soluzione.
 
 ```
 
-If the matrix is not invertible, linear regression can still be used by computing its pseudo-inverse. The geometrical approach is very powerful because it gives a closed-form
-formula to perform linear regression for MSE minimisation! Very often, we do not have just one independent variable, but multiple ones. For instance, the price of a house does not only depend on its size, but also on other factors, e.g., on the proximity to the city center. Assume that also the relationship between the proximity to the city center and the price is also linear.
-
-Each data point has $3$ coordinates, $(x,y,z)$ , that are (size, proximity, price).
-We can still perform linear regression! In this case, we are searching for the plane that minimises a loss function. The equation of the plane is:
-$$\hat z = \theta_2y + \theta_1x + \theta_0$$
-In general, if data points have coordinates: $(x_1, \cdots, x_d, y)$, then we want to find the hyperplane, which has general equation $\hat y = \theta_0 + \theta_1x_1 + \cdots + \theta_dx_d$ that minimises a loss function
-
-```ad-question
-title: Can we still use the normal equations approach to solve this?
-![[Pasted image 20250521154634.png]]
-```
 
 ## Polynomial Regression
-What if the data points do not exhibit a linear behaviour, but rather a polynomial
-one? In this case, we can **search for the best polynomial that fits the data**!
+What if the data points do not exhibit a linear behaviour, but rather a polynomial one? In this case, we can **search for the best polynomial that fits the data**!
 $\hat y = \theta_0 + \theta_1x + \theta_2x^2 + \cdots + \theta_mx^m$
-As before, we can do that by searching for the coefficients $(\theta_0, \theta_1, \cdots, \theta_m)$ that minimise a loss of function. Notice that, in the scenario that we are considering now, the dependent variable
-only depends on one independent variable, but it depends also on its powers.
 
-If we want to find the polynomial that minimises the Mean Square Error, can we still use the
-normal equation? Yes! Given $n$ data points $(x_i, y_i)$, we define:
+>As before, we can do that by searching for the coefficients $(\theta_0, \theta_1, \cdots, \theta_m)$ that minimise a loss of function. 
+
+Notice that, in the scenario that we are considering now, the dependent variable only depends on one independent variable, but it depends also on its powers.
+
+If we want to find the polynomial that minimises the Mean Square Error, can we still use the normal equation? Yes! Given $n$ data points $(x_i, y_i)$, we define:
 
 ![[106K.png]]
 
@@ -114,7 +145,7 @@ What if the polynomial behaviour occurs over multiple variables? We can still us
 ![[107K.png]]
 
 ```ad-example
-![[Pasted image 20250521155104.png]]
+![[Pasted image 20250528153259.png]]
 
 ```
 
@@ -127,13 +158,13 @@ The problem with this approach are:
 ### Chain Rule
 ```ad-example
 title:  Example 1
-![[Pasted image 20250521155506.png]]
+![[Pasted image 20250528153315.png]]
 
 ```
 
 ```ad-example
 title:  Example 2
-![[Pasted image 20250521155516.png]]
+![[Pasted image 20250528153324.png]]
 
 ```
 
@@ -142,52 +173,93 @@ title:  Example 2
 ## Gradient
 
 ```ad-abstract
-title: Gradient Definition
-The gradient of a function is the vector of its partial derivates:
+title: Definizione di gradiente
+Il ==gradiente di una funzione== è il vettore delle sue derivate parziali:
 $$\bigtriangledown f(x_1, \cdots, x_n) = [\frac{\partial f}{\partial x_1}, \cdots, \frac{\partial f}{\partial x_n}]$$
 
-If $n=1$ the gradient is simply the derivate of $f$
+Se $n=1$ il gradiente è semplicemente la derivata di $f$
 ```
 
->The gradient generalises the concept of derivative in a multi-dimensional space.
+>Il gradiente generalizza il concetto di derivata in uno spazio multidimensionale.
 
-In each point of the domain $(x_1, \cdots, x_n)$, it represent the slope of the surface $f(x_1, \cdots, x_n)$ in the direction of the steepest ascent.
+In ogni punto del dominio $(x_1, \cdots, x_n)$, rappresenta la pendenza della superficie $f(x_1, \cdots, x_n)$ nella direzione della massima pendenza.
 
 ## Gradient Descent
-The gradient descent is an iterative algorithm to find the minimum of a function .
-It can be applied to if:
-- $f$ is differentiable
-- if $f: D \subseteq R \to R$ then it is differentiable if its derivative is defined in each point of $D$.
+```ad-abstract
+title: Definition
+La ==discesa del gradiente== è un **algoritmo iterativo** che serve a trovare il minimo di una funzione, cioè il punto in cui la funzione assume il valore più basso possibile.
+
+```
+
+Può essere applicato se:
+- $f$ è differenziabile 
+- se $f: D \subseteq R → R$ allora è differenziabile (se la sua derivata è definita in ogni punto di $D$ ovvero Dominio)
 
 ![[111K.png]]
 
-- if $f: D \subseteq R^n \to R$, saying whether it is differentiable or not is more complicated.
+- se $f: D \subseteq R^n \to R$, dire se è differenziabile o meno, è più complicato.
 
-Sufficient condition: if for each point $a \in D$, all partial derivatives exist and are continuous in a neighbourhood of $a$, then the function is differentiable.
+==Condizione sufficiente==: se per ogni punto $a \in D$, tutte le derivate parziali esistono e sono continue in un intorno di $a$, allora la funzione è differenziabile.
 
 ![[112K.png]]
 
-The gradient descent is an iterative algorithm to find the minimum of a function . It always finds the point of minimum if:
-- $f$ is convex.
+
+La discesa del gradiente è un algoritmo **iterativo**. Partendo da un punto iniziale $x_0$​, si calcola il gradiente della funzione $\nabla f(x_0)$, che è un vettore che indica la direzione di massima crescita della funzione.
+
+Per trovare il minimo, si procede spostandosi in direzione opposta al gradiente, cioè verso la direzione di massima discesa.
+
+>Se la funzione $f$ è **convessa**, allora la discesa del gradiente **converge sempre al minimo globale**.
 
 ![[113K.png]]
 
-==Idea==: given a function, choose an initial point.
-Compute the gradient of the function, and see what is its value at the initial point.
-Move of one step towards the opposite direction. You will land in another point.
-Repeat for a maximum number iterations, or until the improvement is smaller than the tolerance.
+```ad-info
+title: Procedimento
+Scegli un punto iniziale da cui partire
+Calcla il radiente della funzione in quel punto
+Osserva il valore del gradiente nel punto iniziale
+Sposta il punto di un passo nella direzione opposta al gradiente
+Ora mi trovo in un nuovo punto.
+**Ripeti** questi passi per un certo numero massimo di iterazioni, oppure fino a quando il miglioramento diventa più piccolo di una certa **tolleranza**
+
+```
 
 ![[115K.png]]
 
-The step is known as “==learning rate==”
-**Large learning rate**: move fast towards the opposite direction of the gradient
-**Small learning rate**: move slowly towards the opposite direction of the gradient
+Lo step è definito “==learning rate==”
+**Velocità di apprendimento elevata**: muoversi rapidamente nella direzione opposta al gradiente
+**Velocità di apprendimento ridotta**: muoversi lentamente nella direzione opposta al gradiente
 
 ![[116K.png]]
 
 ```ad-example
-![[Pasted image 20250521161340.png]]
+title: Example 
+Funzione:
+$$
+f(x, y) = x^2 + y^2
+$$
 
+Gradiente:
+$$
+\nabla f(x,y) = (2x, 2y)
+$$
+
+Punto iniziale:
+$$
+(x_0, y_0) = (2, 3)
+$$
+
+Learning rate:
+$$
+\alpha = 0.1
+$$
+
+|Iterazione|xx|yy|f(x,y)=x2+y2f(x,y) = x^2 + y^2|
+|---|---|---|---|
+|0|2.00|3.00|4+9=134 + 9 = 13|
+|1|1.60|2.40|2.56+5.76=8.322.56 + 5.76 = 8.32|
+|2|1.28|1.92|1.64+3.69=5.331.64 + 3.69 = 5.33|
+
+Si avvicina sempre di più al punto $(0,0)$!
 ```
 
 
@@ -196,13 +268,13 @@ The step is known as “==learning rate==”
 ```ad-abstract
 title: Introduzione
 
-Molto spesso, i dati sono rappresentati con numerose caratteristiche e presentano complessi pattern non lineari difficili da individuare con la regressione.
-Le reti neurali sono una famiglia di architetture di modelli progettate per individuare pattern non lineari nei dati.
+Molto spesso, i dati sono rappresentati con numerose caratteristiche (features) e presentano complessi pattern non lineari difficili da individuare con la regressione.
+Le **reti neurali** sono una famiglia di architetture di modelli progettate per individuare pattern non lineari nei dati.
 La loro struttura e i loro componenti si ispirano alla struttura biologica dei neuroni umani.
 ```
 
 ## Perceptron
-he perception is the building block of a neural network. The number of input nodes is given by the number of features of the data points.
+The perception is the building block of a neural network. The number of input nodes is given by the number of features of the data points.
 
 ![[118K.png]]
 
@@ -210,17 +282,20 @@ he perception is the building block of a neural network. The number of input nod
 
 Given an input data point with $d$ features $x_1, \cdots, x_d$, the neuron:
 Computes a linear combination of the input and the synapses weights, possibly adding the bias: 
-$$b + \sum_{i=1}^d w_i x_i$$ or in a matrix form: $b+ w^T \cdot x$ where $w = [w_1, \cdots, w_d]^T$ and $x = [x_1, cdots, x_d]^T$
+$$b + \sum_{i=1}^d w_i x_i$$
+
+>Il **bias** permette al modello di **spostare** la funzione di attivazione **verso l’alto o verso il basso**, rendendola più flessibile.
+
+or in a matrix form: $b+ w^T \cdot x$ where $w = [w_1, \cdots, w_d]^T$ and $x = [x_1, \cdots, x_d]^T$
 Applies the activation function to the combination
 
 ## Activation functions
-Activation functions enables a perceptron to learn non-linear and complex relationships between features and label.
+==Activation functions== enables a perceptron to learn non-linear and complex relationships between features and label.
 
 ![[119K.png]]
 
 ## Single layer Perceptron
-Neurons and Synopsis are organised in layers: the input layer, one or more
-hidden layers, and the output layer.
+Neurons and Synopsis are organised in layers: the input layer, one or more hidden layers, and the output layer.
 
 ![[120K.png]]
 
@@ -229,52 +304,82 @@ Neurons and Synopsis are organised in layers: the input layer, one or more hidde
 
 ![[121K.png]]
 
-**Deep learning**: È un sottocampo dell'apprendimento automatico basato su reti neurali multistrato (almeno un livello nascosto) per eseguire regressione e classificazione. Il percettrone multistrato è un esempio di rete neurale feed-forward, ovvero i collegamenti diretti nella rete non formano cicli. Questo è in contrasto con le reti neurali ricorrenti, in cui l'output di un nodo nel livello nascosto j può essere inviato a un nodo in un livello nascosto $< j$.
-
-Weights and biases are the model parameters, and learnt during the training process.
-The structure of the neural network, the number of layers, the activation functions, the number of nodes per hidden layers, are hyperparameters, which are defined before training and influence the performance of a neural network. They are not learnt during the training process.
-
-```ad-missing
-Aggiungere Esempi
+```ad-abstract
+title: Deep Learning 
+Il **deep learning** è un ramo del **machine learning** che utilizza **reti neurali con più strati** (reti profonde) per apprendere automaticamente **rappresentazioni complesse dai dati**.  
+È particolarmente efficace in compiti come **classificazione, regressione, visione artificiale, elaborazione del linguaggio naturale** e riconoscimento vocale.  
+Le reti vengono **allenate** attraverso algoritmi come **backpropagation** e **gradient descent**, modificando i **pesi e i bias** per minimizzare l'errore.
 
 ```
 
+>**impara automaticamente** a trasformare i **dati grezzi** (come pixel, parole o numeri) in **informazioni utili** per svolgere un compito
+
+
+
+Un ==MLP (Multi Layer Perceptron)== è un esempio di rete neurale **feed-forward**, cioè:
+- I **dati corrono in avanti**: dagli input → ai layer nascosti → all’output.
+- **Non ci sono cicli** o feedback (nessuna informazione torna indietro nel tempo o ai layer precedenti).
+
+Contrasto con le ==reti neurali ricorrenti==:
+- In una **RNN**, l'output di un nodo può andare **indietro** a un nodo in un layer precedente o allo stesso nodo in un momento successivo.
+- Sono usate per dati **sequenziali** (come testi, audio, serie temporali).
+
+==Weight e bias==  Sono i **parametri del modello**, cioè i numeri che determinano come ogni neurone combina i suoi input. Vengono aggiornati automaticamente durante il processo di **training** usando algoritmi come **backpropagation + gradient descent**.
+
+Gli ==iperparametri== sono **scelte progettuali** che fai **prima ndell'addestramento**.
+
+Esempi:
+- Quanti **layer nascosti** usare
+- Quanti **neuroni per layer**
+- Quale **funzione di attivazione** usare (ReLU, sigmoid, ecc.)
+- Quale **learning rate** usare
+- Quanti **epoch** (giri di addestramento)
+
+Gli iperparametri
+- **Non si aggiornano automaticamente**
+- Vanno scelti **a mano** o usando tecniche come **grid search** o **random search**
 
 ## Backpropagation
 ```ad-abstract
 title: Definition
 
-Backpropagation is an algorithm to train feedforward neural networks. Training a neural network means to find the optimal parameters (weights and bias) that model the behaviour of a phenomenon (e.g., how the dosage of a drug influence its efficacy).
+==Backpropagation== is an algorithm to train feedforward neural networks. Training a neural network means to find the optimal parameters (weights and bias) that model the behaviour of a phenomenon (e.g., how the dosage of a drug influence its efficacy).
 ```
 
 
-The phenomenon is not described by a mathematical model (e.g., differential equations modelling the body’s response to the chemicals in the drug), but only by observed data (data points, e.g., couples (dosage, efficacy)).
+The phenomenon is not described by a mathematical model  but only by observed data.
 
-Hence, to find the optimal parameters means to find the parameters that minimise the error with respect to the input data. To train a neural network, we need to feed it with many data points or samples, that are the training set- supervised learning.
+Quindi, trovare i parametri ottimali significa trovare i parametri che minimizzano l'errore rispetto ai dati di input. Per addestrare una rete neurale, è necessario alimentarla con molti punti dati o campioni, che costituiscono il training set - apprendimento supervisionato.
 
 ![[122K.png]]
 
 ### high level idea
-- **Initialisation**: initialise weights and biases at random.
-- **Forward step**: feed the network with a data point $(x_1, \cdots, x_d, y)$ and get the expressions of the parameters layer by layer, by writing each parameter as a function of the parameters in the previous layers.
-
-- **Backward step**: Compute the gradients of a loss function with respect to each parameter, using the chain rule from the rightmost layer.
+- **Initialisation**: I **pesi (weights)** e i **bias** della rete vengono inizializzati **a caso**.
+- **Forward step**: Prendi un esempio di addestramento:   $(x_1, \cdots, x_d, y)$vdove $x_i$​ sono gli input e $y$ è il risultato corretto (etichetta).
+	- Passi gli input **strato per strato** attraverso la rete:
+    - Ogni neurone calcola:  
+        $z = w \cdot x + b$
+        e poi applica una **funzione di attivazione**.
+	- Alla fine, ottieni l'**output della rete**.
+- **Backward step**: La rete ha prodotto un output. Questo sarà lontano dal vero valore di $y$. Poi calcoli **quanto ogni peso e bias ha contribuito all’errore**, usando:  La regola della catena. Questo è chiamato **backpropagation**.
+	- Una volta ottenuto tutti i gradienti, aggiorni i pesi ed i bias nella direzione che riduce l'errore.
 	- Update the parameters with the gradient descent step: 
 		![[124K.png]]
-	- Repeat the updates as in the gradient descent until stopping criteria.
+	- Ripeti tutto questo ciclo **per ogni esempio e per più epoche** (giri sull’intero dataset) finché:
+		- L’errore scende abbastanza
+		- Oppure raggiungi un numero massimo di iterazioni
 
-```ad-missing
-Aggiungere Esempi
 
-```
+> Si sottrae una piccola parte ($η$) del gradiente ($∂$) della funzione di errore rispetto a $w$ o $b$.
+
+
 
 
 Possiamo allenare la rete neurale su un dataset di $N$ campioni $(x_{i,1}, \ldots, x_{i,d}, y_i)$.
 Il processo funziona come segue:
   - Inizializzare pesi e bias in modo casuale.
   - Per ogni batch di $n$ elementi:
-    - Fornire alla rete ogni campione (dato), ottenere la predizione $\hat{y}_i$ e calcolare i corrispondenti valori della funzione di loss:
-      $$
+    - Fornire alla rete ogni campione (dato), ottenere la predizione $\hat{y}_i$ e calcolare i corrispondenti valori della funzione di loss:$$
       \mathcal{L}(x_{i,1}, \ldots, x_{i,d}, y_i) = \mathcal{L}_i = \frac{1}{2} (\hat{y}_i - y_i)^2
       $$
     - Considerare la media dei valori delle funzioni di loss:
@@ -286,49 +391,75 @@ Il processo funziona come segue:
 > 💡 Questo è **un'epoca (epoch)**. (dal per ogni fino alla fine)
 
 
-Durante l'addestramento di una rete neurale, l'intero dataset viene suddiviso in tre parti: un insieme di addestramento (training set), un insieme di validazione (validation set) e un insieme di test (test set). L'addestramento della rete viene eseguito in più epoche (epochs), dove un'epoca corrisponde all'elaborazione completa di tutti i dati di addestramento, divisi in sottoinsiemi chiamati batch.
+Durante **l'addestramento di una rete neurale**, l'intero ==dataset viene suddiviso in tre parti==: 
+- **insieme di addestramento** (training set), 
+- **insieme di validazione** (validation set) 
+- **insieme di test** (test set). 
+L'addestramento della rete viene eseguito in più ==epoche== (epochs), dove **un'epoca corrisponde all'elaborazione completa di tutti i dati di addestramento, divisi in sottoinsiemi chiamati batch.**
 
-All'inizio della prima epoca, i pesi e i bias della rete neurale vengono inizializzati in modo casuale. Successivamente, la rete viene addestrata su ciascun batch uno alla volta. Per ogni batch, si effettua una propagazione in avanti (forward pass) per ottenere le predizioni, si calcola la funzione di perdita (loss function), e si esegue una retropropagazione (backward pass) per aggiornare i parametri tramite il calcolo dei gradienti.
-
-A partire dalla seconda epoca (e per tutte le epoche successive), l’addestramento riprende utilizzando i parametri aggiornati nell’epoca precedente. Questo processo continua fino al raggiungimento di un numero massimo di epoche definito in anticipo.
-
-Quando l'aggiornamento dei parametri non avviene sull'intero dataset, ma su singoli campioni o piccoli gruppi (batch), parliamo di **stochastic gradient descent (SGD)**. In questo caso, i batch vengono solitamente selezionati in modo casuale e uniforme dal dataset di addestramento.
-
-Al termine di ogni epoca, viene valutata la performance della rete neurale su un insieme di validazione indipendente. Una volta completate tutte le epoche, si selezionano i parametri che hanno fornito le migliori prestazioni su questo validation set.
-
-Infine, per verificare la capacità della rete neurale di generalizzare, si effettua una valutazione sull'insieme di test, che non è mai stato usato durante l’addestramento né nella validazione. La modalità di valutazione dipende dal tipo di problema affrontato. Se il compito è di **regressione**, si utilizzano metriche come l’errore assoluto medio (MAE) o l’errore quadratico medio (MSE). Se invece si tratta di un problema di **classificazione**, si usano metriche come accuratezza, precisione, richiamo (recall) e F1-score.
-
-Parametri come il tasso di apprendimento (learning rate), la dimensione dei batch (batch size) e il numero di epoche (epochs) non vengono appresi dalla rete, ma devono essere impostati manualmente prima dell’inizio dell’addestramento. Questi vengono chiamati **iperparametri** e hanno un'influenza significativa sull'efficacia dell’addestramento.
+ 3. Inizio dell’addestramento
+- All’inizio della prima epoca, i pesi e i bias della rete sono inizializzati **casualmente**.
+- La rete viene allenata **batch dopo batch**:
+    - Per ogni batch, si fa un **forward pass** (propagazione in avanti) 
+    - Si calcola la **loss function** (funzione di perdita), che misura quanto le predizioni si discostano dal risultato vero.
+    - Si fa il **backward pass** (retropropagazione) per calcolare i gradienti della loss rispetto ai pesi.
+    - Si aggiornano i pesi e bias usando questi gradienti (ad esempio con gradient descent).
 
 
-## NN for classification
-Neural network for binary classification, where the samples belong to one of two possible classes (e.g., spam detection, disease detection).
+3. Addestramento nelle epoche successive
+- A partire dalla seconda epoca, il processo continua usando i pesi aggiornati dell’epoca precedente.
+- Questo ciclo si ripete finché non si raggiunge un numero massimo di epoche prestabilito o finché la rete non migliora più.
 
-- One output node with sigmoid activation function.
+
+ 3. Stochastic Gradient Descent (SGD)
+- Quando l’aggiornamento dei parametri non si fa sull’intero dataset contemporaneamente, ma su **piccoli batch o singoli esempi**, parliamo di **SGD**.
+- I batch vengono spesso scelti in modo casuale da tutto il training set, per evitare di far imparare alla rete un ordine fisso dei dati.
+
+
+3. Valutazione su validation set
+- Alla fine di ogni epoca, la rete viene valutata sul **validation set**.
+- Serve per monitorare se la rete sta imparando bene o se sta iniziando a **overfittare** (cioè imparare troppo bene i dati di training senza generalizzare).
+- I parametri migliori vengono scelti in base alle prestazioni sul validation set.
+
+
+
+3. Valutazione finale su test set
+- Quando l’addestramento è completato, la rete viene testata sull’insieme di test.
+- Questo serve per misurare la **capacità di generalizzazione** della rete su dati completamente nuovi.
+- Le metriche usate dipendono dal problema:
+    - **Regressione:** MAE (errore assoluto medio), MSE (errore quadratico medio).
+    - **Classificazione:** accuratezza, precisione, recall, F1-score.
+
+
+## NN for Binary classification
+==Neural network for binary classification==, where the samples belong to one of two possible classes (e.g., spam detection, disease detection).
+
+- One output node with sigmoid activation function (trasforma il riultato in un numero tra $0$ ed $1$.
 
 ![[125K.png]]
 
-Neural network for classification, where the samples belong to one of K >2 possible classes (e.g., image classification, sentiment analysis, etc). Number of output nodes = number of classes, each with softmax activation function.
+Quando ci sono più di due classi, La rete ha **tanti nodi di output quanti sono le classi** (ad esempio 3 nodi se ci sono 3 classi). Per attivazione si usa la **softmax**, che trasforma gli output in probabilità (tutti tra 0 e 1, sommate a 1).
 
 ![[126K.png]]
 
-Se le classi non sono numeriche (ad esempio, riconoscimento di animali, presenza o assenza di una malattia), si utilizza il **label encoding**, ovvero si assegna un valore numerico a ciascuna classe (ad esempio: gatti = 0, cani = 1, topi = 2, ecc.).
+Le classi spesso non sono numeri, Per lavorare con la rete, si assegna a ogni classe un numero intero. QUesto procedimento è chiamato ==label Econding==.
 
-Tecniche simili vengono utilizzate anche per rappresentare caratteristiche non numeriche.
+### Loss function for classification
+```ad-question
 Quale funzione di perdita (loss function) usare per i compiti di classificazione?
 
-**Per la classificazione binaria:**  
-**Binary Cross Entropy**
+```
 
-  Per un singolo campione:
+==Binary Cross Entropy==
+Si usa quando ci sono **due classi**. - La rete dà in output una probabilità $p$ che il campione appartenga alla classe positiva. Il valore vero $y$ è $0$ o $1$.
 $$-y \log_2(p) - (1 - y) \log(1 - p) $$
-  Per $n$ campioni: 
-  $$ -\frac{1}{n} \sum_{i=1}^{n} \left[y_i \log_2(p_i) + (1 - y_i) \log(1 - p_i)\right] $$
+  Per $n$ campioni: $$ -\frac{1}{n} \sum_{i=1}^{n} \left[y_i \log_2(p_i) + (1 - y_i) \log(1 - p_i)\right] $$
 
-  **Per la classificazione multi-classe:**  
-  **Categorical Cross-Entropy**
-  Per un singolo campione:
-  $$-\sum_{k=1}^{K} y_k \log_2(p_k) $$
+  
+ ==Categorical Cross-Entropy==
+- Si usa quando ci sono **più di due classi** (esempio: riconoscere tra gatto, cane, topo).
+- La rete dà in output un vettore di probabilità $\mathbf{p} = [p_1, p_2, \dots, p_K]$, dove $K$ è il numero di classi.
+$$-\sum_{k=1}^{K} y_k \log_2(p_k) $$
   Per $n$ campioni:
 $$-\frac{1}{n} \sum_{i=1}^{n} \sum_{k=1}^{K} y_{i,k} \log_2(p_{i,k})$$
 - $p$ è la probabilità stimata e corrisponde a $\hat{y}$.
@@ -341,15 +472,15 @@ Binary classification, two classes, $C1$ and $C2$.
 ![[129K.png]]
 
 ```ad-example
-![[Pasted image 20250521171015.png]]
-![[Pasted image 20250521171119.png]]
+![[Pasted image 20250529110748.png]]
+![[Pasted image 20250529110759.png]]
 
 
 ```
 
 ```ad-example
-![[Pasted image 20250521171046.png]]
-![[Pasted image 20250521171145.png]]
+![[Pasted image 20250529110809.png]]
+![[Pasted image 20250529110819.png]]
 
 Possible metric for unbalanced datasets:
 - Balanced accuracy
@@ -365,19 +496,19 @@ Multi-class classification, three classes, $C_1$, $C_2$ and $C_3$
 
 ```ad-example
 
-![[Pasted image 20250521171419.png]]
-![[Pasted image 20250521171429.png]]
-![[Pasted image 20250521171437.png]]
-![[Pasted image 20250521171447.png]]
-![[Pasted image 20250521171511.png]]
-
+![[Pasted image 20250529110903.png]]
+![[Pasted image 20250529110913.png]]
+![[Pasted image 20250529110921.png]]
+![[Pasted image 20250529110932.png]]
+![[Pasted image 20250529110943.png]]
 
 ```
 
 ## Bias (dataset)
-I Machine Learning Model (ML) non sono intrinsecamente oggettivi.
-- Il bias di selezione si verifica quando la selezione del campione del training set non riflette accuratamente la popolazione target.
-- Il bias storico si verifica quando la distribuzione dei dati cambia nel tempo e il modello non viene adattato per gestire la nuova distribuzione.
+Nei modelli di Machine Learning, il bias non è solo un “errore” casuale, ma un tipo di **distorsione sistematica** nei dati o nel modo in cui i dati vengono raccolti o usati. Questo può portare il modello a fare previsioni sbagliate o ingiuste.
+
+- Il ==bias di selezione== si verifica quando la selezione del campione del training set non riflette accuratamente la popolazione target.
+- Il ==bias storico== si verifica quando la distribuzione dei dati cambia nel tempo e il modello non viene adattato per gestire la nuova distribuzione.
 
 ```ad-example
 
@@ -386,11 +517,9 @@ Esempio: un sensore IoT per la qualità dell'aria viene installato all'esterno e
 
 
 ### Bias-Variance Tradeoff
-The bias–variance tradeoff describes the relationship between a model's complexity (i.e., number of hidden layers, number of nodes), the accuracy of its predictions, and how well it can make predictions on previously unseen data.
+The bias–variance tradeoff describes the relationship between a model's complexity , the accuracy of its predictions, and how well it can make predictions on previously unseen data.
 
 ![[140K.png]]
-
-The bias–variance tradeoff describes the relationship between a model's complexity (i.e., number of hidden layers, number of nodes), the accuracy of its predictions, and how well it can make predictions on previously unseen data.
 
 ![[141K.png]]
 
@@ -417,30 +546,26 @@ In **non-local learning**, end points send data to a central server/multiple cen
 In **local learning**, each device stores, trains and maintains its own ML model and trains it on its local data.
 
 ## Problems with non local Learning in IoT
-Inviare dati al cloud può essere troppo costoso, soprattutto in applicazioni come i veicoli autonomi, dove decisioni critiche (velocità, frenata, sterzata, ecc.) devono essere prese in tempo reale. Se la rete neurale risiede nel cloud, la risposta può essere troppo lenta o del tutto assente in mancanza di connessione. Inoltre, i dati da elaborare possono essere flussi video, che richiedono molta banda.
+Inviare dati al cloud è spesso inefficiente per applicazioni IoT critiche (es. veicoli autonomi) a causa di latenza, consumo di banda e rischi di privacy. I dati sensibili (es. sanitari) possono essere intercettati, e l’elevato volume di informazioni può sovraccaricare i server.  
+Una soluzione è usare modelli **locali**, addestrati direttamente sui dispositivi. Tuttavia, se i dati locali sono limitati o poco rappresentativi, il modello può risultare **poco accurato**.  
 
-Un altro problema riguarda la privacy: dispositivi sanitari, ad esempio, raccolgono dati sensibili come pressione, battito cardiaco o assunzione di farmaci. Inviando questi dati a un server cloud, c'è il rischio che vengano intercettati, con gravi conseguenze come furto di identità o discriminazioni assicurative.
+```ad-example
 
-Anche la quantità di dati può essere problematica: i dispositivi IoT generano grandi volumi di informazioni che possono sovraccaricare i server. Inoltre, molti di questi dispositivi hanno risorse limitate (energia, connettività) e non possono trasmettere tutto.
-
-Per ovviare a questi problemi, i dispositivi IoT o i coordinatori locali possono eseguire modelli di machine learning direttamente in loco, addestrandoli sui propri dati e usandoli per prendere decisioni. Tuttavia, se i dati locali sono scarsi o poco vari, i modelli risultano deboli o distorti.
-
-Un esempio è l'agricoltura: sensori in una fattoria possono raccogliere dati e addestrare un modello locale per decidere quando irrigare o segnalare malattie. Ma se il campo non ha mai avuto un certo fungo o infestante, il modello locale non lo riconoscerà e prenderà decisioni sbagliate.
-
+In agricoltura, un modello locale potrebbe non riconoscere malattie mai viste nel proprio campo.
+```
 
 ## Federated Learning
-Federated Learning (FL) represents a valuable alternative to combine the advantages of non-local training (i.e., more data storage availability, less computation at the edge, more accurate NN) and local training (data privacy, low latency inference).
-For these reasons, FL is widely used for IoT applications. Main idea:
-- Several devices share the same NN architecture.
-- Each device trains the NN on its own data.
-- Devices share some parameters of the NN (e.g., weights and biases, or gradients)
-- Each device aggregates the parameters of the other devices, advantaging from the training and the data of other devices, but without its local data ever being shared.
+Il **Federated Learning** è un approccio che combina i vantaggi dell’**addestramento locale** (privacy, bassa latenza) con quelli dell’**addestramento centralizzato** (modelli più accurati grazie a più dati).
+- Più dispositivi (es. smartphone, sensori IoT) usano **la stessa rete neurale**.
+- Ogni dispositivo **addestra localmente** il modello sui propri dati.
+- Poi **condivide solo i parametri del modello** (pesi, bias, gradienti) e **non i dati grezzi**.
+- I dispositivi si **scambiano e aggregano** i parametri ricevuti dagli altri, migliorando il proprio modello sfruttando l’esperienza altrui.
 
->Devices form a “federation” and collaborate while keeping data decentralised
+> I dispositivi formano una **“federazione”**: collaborano senza mai centralizzare i dati.
 
-==Ideal scenario==: the model of each device performs as good as a centralised model trained on the entire union of each local dataset would.
+====Scenario ideale==: il modello di ciascun dispositivo offre prestazioni pari a quelle di un modello centralizzato addestrato sull'intera unione di ciascun dataset locale.
 
-==Realistic objective==: the ML model on each device in the federation performs better than it would if trained only on the local data.
+==Obiettivo realistico==: il modello di ML su ciascun dispositivo della federazione offre prestazioni migliori rispetto a quelle che otterrebbe se addestrato solo sui dati locali.
 
 ## Federated Learning vs Distributed Learning
 In distributed learning, data is usually centrally stored.
@@ -452,19 +577,14 @@ In distributed learning, data is usually centrally stored.
 In ==federated learning==, data is stored on each device (usually non powerful end nodes).
 Devices train the model in parallel, each on its own chunk of data.
 
-**Objective**: train a more accurate and generalised model than each device would on its
-own data while keeping data privacy, preserving computing resources.
+**Objective**: train a more accurate and generalised model than each device would on its own data while keeping data privacy, preserving computing resources.
 
 **Challenges**:
-local datasets are not iid (Independent and identically distributed - different datasets exhibit different probability distributions), and may be imbalanced. -> need for intelligent model aggregation solution.
+I dati locali sui dispositivi **non sono distribuiti in modo uniforme** (non IID), cioè ogni dispositivo può avere dati con caratteristiche molto diverse.Inoltre, alcuni dispositivi hanno molti dati, altri pochissimi (**dataset sbilanciati**).  Serve un'**aggregazione intelligente** dei modelli per ottenere un buon modello globale.
 
-**Vulnerable to attacks**: some attacks show that the original raw data can be retrieved
-by observing the model’s parameters exchanged between parties. Some attackers
-can participate in the federation and share wrong parameters, preventing the other
-parties’ models to converge.
+**Vulnerable to attacks**: Attori malevoli possono partecipare alla federazione e **inviare parametri falsi**, compromettendo l'addestramento degli altri.
 
-**Node availability**: some nodes are not always available for training, since they might
-be power-constrained.
+**Node availability**: I dispositivi (come smartphone o sensori) **non sono sempre attivi**: possono essere spenti, offline o a corto di batteria.
 
 ## FL applications in IoT
 FL finds many applications in IoT, for example:
@@ -476,20 +596,13 @@ FL finds many applications in IoT, for example:
 - And many others
 
 ### Challenges
-IoT systems are characterised by low power, low computational capabilities of possibly hundreds of nodes. It is hard to train complex models on them, and communication must be optimised.
-
-Nodes are not reliable, they want to be in idle mode as much as possible. 
-
-Nodes are heterogeneous in hardware, geographically distributed. They do not share a common standard to represent processed data. The data they collect is not iid (independent and identically distributed).
-
-Nodes live in low bandwidth networks.
-Nodes want to participate in the federation, and client selection can favour more powerful nodes, leaving the less powerful ones in starvation.
-
+Nei sistemi IoT, il federated learning è complicato da risorse limitate, nodi poco affidabili e eterogenei, dati non uniformi (non IID), reti a bassa banda e disparità nella partecipazione, che favorisce i dispositivi più potenti a scapito di quelli più deboli.
 ## Taxonomy
 ![[144K.png]]
 
 ## Centralised FL
-A central server orchestrates the training process. Participants train local models on their data.
+A ==central server== orchestrates the training process. 
+Participants train local models on their data.
 Participants’ send the updated model parameters to the central server.
 The server aggregates these parameters to update the global model, which is then distributed back to the clients.
 The central server coordinates the training, aggregation, and distribution processes.
@@ -499,7 +612,7 @@ Model updates are aggregated at a single point, simplifying the update process.
 
 
 ## Decentralised FL
-In decentralized Federated Learning participants communicate directly with each other to share and aggregate model updates (peer-to-peer).
+In ==decentralized Federated Learning== participants communicate directly with each other to share and aggregate model updates (peer-to-peer).
 
 Each party keeps a mixing matrix, that weighs the contribution of each other party of the aggregation. Can have 0 entries, can vary over time.
 
@@ -508,6 +621,9 @@ This peer-to-peer communication ensures that There is no single point of failure
 ![[146K.png]]
 
 ## FedAvg
+
+>Centralised FL, first to share model's parameters, weighted average aggregation.
+
 - **Fundamental algorithm for centralised FL [McMahan 2017].**
 - Consider a set of $K$ parties (devices).
 - Each party $k$ stores a local dataset $D_k$ of $n_k$ points, on which it trains a neural network.

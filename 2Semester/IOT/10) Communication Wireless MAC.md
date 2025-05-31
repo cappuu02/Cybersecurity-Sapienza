@@ -325,23 +325,52 @@ Questi algoritmi possono funzionare in due modalità principali:
     - **Long Preamble Emulation (LPE)** – Si utilizza un preambolo lungo per garantire che il ricevitore sia attivo al momento della trasmissione, anche senza sincronizzazione tramite beacon.
 
 ### Non-Beacon Tracking (NBT)
-==Asynchronous wakeup algorithm== è una tecnica utilizzata nelle reti IoT che si basa **sull’uso dei beacon**, ma senza costringere i nodi a rimanere costantemente in ascolto. **Ogni nodo si risveglia periodicamente, trasmette un beacon e rimane attivo per un breve intervallo di tempo**. In questo modo, il consumo energetico si riduce, mantenendo comunque la possibilità di comunicazione tra nodi.
+L’**Asynchronous Wakeup Algorithm** è una tecnica utilizzata nelle reti IoT che si basa sull’**uso dei beacon**, ma **senza obbligare i nodi a rimanere costantemente in ascolto**.
 
-**Quando un nodo ha dati da inviare, non trasmette subito: rimane invece in stato attivo finché non riceve il beacon dal nodo destinatario. Appena lo riceve, trasmette i dati**. 
+### Funzionamento
+- **Ogni nodo si risveglia periodicamente**, trasmette un beacon e **rimane attivo per un breve intervallo di tempo**, per poi tornare in stato di riposo.
+- In questo modo, si ottiene un **consumo energetico ridotto**, mantenendo comunque la possibilità di comunicazione tra i nodi.
 
->Questo meccanismo evita la necessità di sincronizzazione continua, ma introduce alcune sfide.
+Quando un nodo deve inviare dei dati:
+- Non trasmette immediatamente.
+- Rimane **in stato attivo finché non riceve il beacon dal nodo destinatario**.
+- **Appena riceve il beacon, trasmette i dati**.
 
-Una delle ==principali problematiche== è legata alla durata dei cicli attivo/riposo. **Occorre infatti decidere quanto tempo un nodo debba rimanere sveglio e per quanto debba dormire**. Inoltre, il nodo trasmittente deve restare in ascolto potenzialmente per molto tempo prima di trovare l’occasione di trasmettere. Se consideriamo che l’intervallo medio tra due beacon è $t_{bi}$, il tempo medio di attesa per una trasmissione è circa $t_{bi}/2$, comportando un certo overhead.
+> Questo approccio elimina la necessità di una sincronizzazione continua, ma introduce alcune sfide tecniche.
 
-Un ulteriore problema riguarda le ==possibili collisioni tra beacon==. Se due nodi adottano un programma di beaconing identico, potrebbero trasmettere i beacon nello stesso istante, causando interferenze continue. Per ridurre questo rischio, si può introdurre un **ritardo casuale nel caso in cui vengano rilevate collisioni**. Tuttavia, anche questa soluzione non è perfetta, poiché non garantisce l’eliminazione completa delle sovrapposizioni.
+
+```ad-danger
+title: Problematica 1
+**Durata dei cicli attivo/riposo**
+Occorre stabilire quanto tempo un nodo debba restare sveglio e per quanto debba dormire. 
+Il nodo trasmittente deve restare in ascolto anche per lunghi periodi prima di trovare l’occasione per trasmettere.
+
+Se l’intervallo medio tra due beacon è $t_{bi}$, il tempo medio di attesa per una trasmissione è circa $t_{bi}/2$, generando un certo overhead.
+ 
+
+
+```
+
+```ad-danger
+title: Problematica 2
+**Collisioni tra beacon**
+    
+Se due nodi utilizzano un programma di beaconing identico, potrebbero trasmettere i beacon nello stesso istante, causando interferenze continue.
+        
+Per ridurre questo rischio, è possibile introdurre un **ritardo casuale** nei beacon in caso di collisione rilevata.
+        
+Tuttavia, questa soluzione **non garantisce l’eliminazione completa delle sovrapposizioni**.
+
+```
+
 
 ![[190K.png]]
 
 
 
 ### Beacon Tracking (BT)
-- **Un nodo viene eletto coordinatore**, indipendentemente dal protocollo (può essere il più affidabile o eletto con un algoritmo).
-- **Il coordinatore invia una struttura temporale (frame)**:
+**Un nodo viene eletto coordinatore**, indipendentemente dal protocollo (può essere il più affidabile o eletto con un algoritmo).
+**Il coordinatore invia una struttura temporale (frame)**:
     - Il primo elemento è un **beacon** (burst di riferimento in TDMA).
     - Il resto del frame definisce il **programma di sonno/attività** che gli altri nodi seguono.
 - Durante i periodi attivi, i nodi possono **trasmettere e ricevere dati**.
@@ -402,33 +431,59 @@ I protocolli ==a contesa== prevedono che i dispositivi competano per l’accesso
 I protocolli ==senza contesa==, invece, organizzano l’accesso al canale in modo centralizzato o pianificato per evitare collisioni. Utilizzano tecniche come TDMA, FDMA o CDMA. Un esempio è **TRAMA (Traffic Adaptive Medium Access)**, che adatta l’accesso al mezzo in base al traffico per migliorare l’efficienza.
 
 # Sensor MAC (S-MAC) 
-==Sensor-MAC (S-MAC)== protocol is an **energy efficient protocol** specifically designed for **WSNs**. Sensor network scenario:
-- most **communication** occurs between **nodes as peers**, rather than to a single base station.
-- Suitable for applications that are **latency-tolerant**.
-- Main goal: i**mprove energy efficiency** while **maintaining good scalability** and **collision avoidance**.
+Il **Sensor-MAC (S-MAC)** è un protocollo progettato per le **Wireless Sensor Networks (WSN)**, con l’obiettivo principale di **ottimizzare il consumo energetico** mantenendo **scalabilità** ed evitando **collisioni**.
 
-# Sensor MAC (S-MAC) - frame
-Periodic listen and sleep mechanism to establish a low-duty-cycle operation on each node.
-- Frame: complete cycle of listen and sleep periods.
--  Frame begins with a Listen period, further divided into smaller intervals for sending or receiving SYNC, RTS, CTS packets.
+- Ottimizzato per **applicazioni tolleranti alla latenza**.
+- Favorisce comunicazioni **peer-to-peer** tra nodi, piuttosto che con una singola stazione base.
+- Utilizza tecniche di risparmio energetico basate su **cicli di ascolto e sospensione**.
+
+## frame
+Ogni nodo segue un ciclo periodico chiamato **frame**, composto da:
+- *Periodo di ascolto**, suddiviso in:
+    - Invio/ricezione di pacchetti **SYNC** (sincronizzazione)
+    - Scambio di pacchetti **RTS/CTS** (controllo dell’accesso al canale)
+- **Periodo di sonno**, in cui il nodo spegne la radio per risparmiare energia.
 
 ![[191K.png]]
-# Sensor MAC (S-MAC) - neighbour coordination
-**Tutti i nodi sono liberi di scegliere i propri orari di ascolto e di sospensione**.
-- Per ridurre il sovraccarico di controllo, tuttavia,**i nodi vicini coordinano i propri orari di sospensione e cercano di adottare gli stessi orari**, anziché sospendere casualmente i propri orari.
-- Per stabilire orari di sospensione coordinati o sincronizzati, **ogni nodo scambia il proprio orario con tutti i suoi vicini immediati trasmettendo periodicamente un pacchetto SYNC**.
+## neighbour coordination
+Anche se ogni nodo può scegliere autonomamente i propri orari, i nodi **coordinano i cicli di attività con i vicini** per ridurre il traffico di controllo:
+
+I nodi **condividono periodicamente il proprio orario** tramite pacchetti **SYNC**, permettendo una sincronizzazione efficiente all’interno del vicinato.
 
 ![[192K.png]]
 
-# Sensor MAC (S-MAC) - collision avoidance
-![[1K.png]]
+## Sensor MAC - collision avoidance
+Il protocollo **S-MAC** adotta diversi meccanismi per **evitare collisioni** durante la trasmissione dei dati.
+
+### 1. 📡 Carrier Sense (CS)
+
+- **Fisico**: il canale è considerato **occupato** se l'energia rilevata supera una soglia predefinita, altrimenti è **libero**.
+- **Virtuale**: viene usato il meccanismo **RTS/CTS (Request to Send / Clear to Send)** per prenotare il canale ed evitare interferenze tra trasmissioni multiple.
+
+### 2. 🕓 Durata della trasmissione
+
+- Ogni pacchetto include un **campo "duration"**, che specifica la durata stimata della trasmissione.
+- Gli altri nodi utilizzano questa informazione per sapere quanto tempo il canale sarà occupato.
+
+### 3. ⏳ Network Allocation Vector (NAV)
+- Quando un nodo riceve un pacchetto **non destinato a sé**, legge il campo duration e imposta un **timer NAV**.
+- Durante il periodo indicato dal NAV, il nodo **rimane in silenzio**, evitando collisioni sul canale.
+
+### 4. 📤 Processo di invio di un pacchetto
+1. Attendere il **tempo di backoff** (casuale)
+2. Verificare se il canale è **libero**
+3. Se libero, inviare un pacchetto **RTS**
+4. Se viene ricevuto un pacchetto **CTS**, procedere con la **trasmissione dei dati**
 
 # ⚙️ **Traffic Adaptive Medium Access (TRAMA)**
+**TRAMA** è un protocollo MAC (Medium Access Control) progettato per **reti di sensori wireless (WSN)**, con l’obiettivo di:
+- **Gestire l’accesso al canale radio in modo efficiente**
+- **Evitare collisioni**
+- **Risparmiare energia**
 
-**TRAMA** è un protocollo MAC (**Medium Access Control**) progettato per reti di sensori wireless (WSN). Il suo obiettivo principale è **decidere in modo efficiente chi può trasmettere** su un canale radio in un determinato momento, **evitando collisioni** e **risparmiando energia**.
-
-È un protocollo **adattivo al traffico**: i nodi che devono trasmettere più dati ricevono più slot temporali. Il funzionamento è **distribuito**, quindi ogni nodo prende decisioni basate sulle informazioni locali, senza bisogno di un coordinatore centrale.
-
+Con le seguenti caratteristiche:
+- **Adattivo al traffico**: i nodi con maggior traffico ricevono più **slot temporali** per la trasmissione.
+- **Funzionamento distribuito**: ogni nodo prende decisioni autonomamente, basandosi su **informazioni locali**, senza richiedere un coordinatore centrale.
 
 ## Componenti principali
 
@@ -459,7 +514,7 @@ TRAMA utilizza un **canale radio a slot temporali fissi**, condiviso per dati e 
 - È necessaria una **sincronizzazione temporale** tra tutti i nodi.
 
 # Adaptive Election Algorithm - TRAMA
-Ogni slot di trasmissione può essere utilizzato da un solo nodo in un vicinato a due salti per evitare interferenze. La priorità di un nodo per un dato slot temporale viene calcolata come una funzione hash pubblica e deterministica.
+Ogni ==slot di trasmissione può essere utilizzato da un solo nodo in un vicinato a due salti per evitare interferenze==. La priorità di un nodo per un dato slot temporale viene calcolata come una funzione hash pubblica e deterministica.
 
 Tutti i nodi calcolano gli stessi valori di priorità per i loro vicini a due salti, in modo che tutti concordino su chi ha la priorità più alta per un dato slot. Solo i nodi che hanno pacchetti di dati da inviare possono avere uno slot temporale assegnato. Il nodo con la priorità più alta si aggiudica lo slot e può trasmettere. Gli altri nodi vanno in modalità sleep o si preparano a ricevere se sono i destinatari previsti.
 
@@ -492,7 +547,7 @@ listens for beacon frames from nearby APs.
 >Access points periodically (default 100ms) send beacons with personal information (supported rates, transmission parameters) and what SSID they support (e.g., eduroam)
 
 **What AP to choose?** 
-.Select it manually, or the ones with highest SNR
+Select it manually, or the ones with highest SNR
 
 ## AP Association process
 ![[4k.png]]

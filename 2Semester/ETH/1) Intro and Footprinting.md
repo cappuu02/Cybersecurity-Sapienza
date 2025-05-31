@@ -41,7 +41,6 @@ Immagina di usare un browser per visitare un sito. Senza Privoxy, la richiesta v
 
 >Protegge la privacy utente, filtra contenuti web e fa da ponte tra browser HTTP e un proxy SOCKS come TOR.
 
-
 ## Tor-resolve
 **tor-resolve** is a simple script to connect to a SOCKS proxy that knows about the SOCKS RESOLVE command, hand it a hostname, and return an IP address. https://linux.die.net/man/1/tor-resolve.
 
@@ -240,10 +239,10 @@ Un'operazione che trasferisce l’intera zona DNS (contenente tutti i record DNS
 
 ```ad-abstract
 title: Definition
-
+`nslookup` (Tool da riga di comando) permette di interrogare server DNS manualmente.
 
 ```
-`nslookup` (Tool da riga di comando) permette di interrogare server DNS manualmente.
+
 
 ```ad-example
 Si sta interrogando il server `ns1.example.com`. Viene cercato l'host `192.168.1.1`, che risponde con il nome `gate.example.com`.

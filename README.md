@@ -9,7 +9,7 @@
 
 For the best experience, it is recommended to:  
 1. **📥 Download [Obsidian](https://obsidian.md/)** (a Markdown-based note-taking app).  
-2. **⚙️ Install the [Ammonition](https://github.com/valentine195/obsidian-ammonition) plugin** for proper callouts and admonitions rendering.  
+2. **⚙️ Install the [Admonition](https://github.com/valentine195/obsidian-ammonition) plugin** for proper callouts and admonitions rendering.  
 
 ---
 

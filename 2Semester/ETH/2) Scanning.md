@@ -278,7 +278,7 @@ Sono le **stesse** previste per il rilevamento attivo:
 
 ## 4) Processing and Storing Scan Data
 **Efficienza nella gestione dei dati di scansione** → **velocità nell'attaccare un gran numero di sistemi**
-Metasploit è una piattaforma potente che include **strumenti**, **payload** ed **exploit** per testare la sicurezza dei sistemi e lanciare attacchi. Una delle sue caratteristiche più utili è la gestione e l'analisi dei dati di scansione, che può essere utilizzata per velocizzare la compromissione di un ampio numero di sistemi.
+==Metasploit== è una piattaforma potente che include **strumenti**, **payload** ed **exploit** per testare la sicurezza dei sistemi e lanciare attacchi. Una delle sue caratteristiche più utili è la gestione e l'analisi dei dati di scansione, che può essere utilizzata per velocizzare la compromissione di un ampio numero di sistemi.
 - Metasploit utilizza **PostgreSQL** come database per gestire e archiviare i dati delle scansioni e degli attacchi.
 - **db_connect**: tells metasploit how to connect to database and which database to use `msf > db connect postgres:<password>@localhost: <port>/msf3 `
 - **db_nmap** (root required): run Nmap scans 

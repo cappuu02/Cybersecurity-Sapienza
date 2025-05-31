@@ -84,7 +84,7 @@ title: Definition
 
 ## ZigBee
 Le soluzioni ==ZigBee== sono pensate per **oggetti intelligenti con bassa larghezza di banda e basso consumo energetico**. I prodotti conformi a ZigBee possono interagire anche se prodotti da fornitori diversi.
-- **400 companies** are members of the ZigBee Alliance, an industry group to certify interoperability between vendors.
+- **$400$ aziende** sono membri della ZigBee Alliance, un gruppo industriale che certifica l'interoperabilità tra i fornitori.
 - Mostly used in **industrial automation** (measuring temperature and humidity, tracking assets) and home applications (lighting thermostats and security control).
 
 ### ZigBee stack
@@ -295,7 +295,9 @@ Consiste nel suddividere diverse aree in settori (divisione spaziale), ciascuno 
 # Layer 1 and 2 Protocols, LoRaWAN
 
 ## LPWA
-In recent years, a new set of wireless technologies known as ==Low-Power Wide-Area (LPWA)== has received a lot of attention from the industry. **Particularly well adapted for long-range and battery-powered endpoints**. LoRaWAN (Long-Range Wide-Area Network) is an **unlicensed band LPWA technology**. NB-IoT (Narrow-Band IoT) and LTE are LPWA-based licensed band protocols using cellular networks.
+In recent years, a new set of wireless technologies known as ==Low-Power Wide-Area (LPWA)== has received a lot of attention from the industry. **Particularly well adapted for long-range and battery-powered endpoints**. LoRaWAN (Long-Range Wide-Area Network) is an **unlicensed band LPWA technology**. 
+
+>NB-IoT (Narrow-Band IoT) and LTE are LPWA-based licensed band protocols using cellular networks.
 
 ## LoRaWAN standardisation
 LoRa è stata inizialmente sviluppata come tecnologia di modulazione del livello fisico (PHY) da Cycleo, un'azienda francese. Progettata per comunicazioni bidirezionali a lungo raggio con basso consumo energetico, la tecnologia si è espansa oltre il livello 1.
@@ -339,7 +341,7 @@ In questa modulazione, i dati vengono codificati usando **chirp**, cioè segnali
 - la **fase** del segnale
 - o la **direzione** del chirp (verso l'alto o verso il basso).
 
-Essendo una tecnica a **spettro diffuso**, ogni simbolo sfrutta **l'intera larghezza di banda disponibile**, rendendo la trasmissione robusta alle interferenze.
+Ogni simbolo sfrutta **l'intera larghezza di banda disponibile**, rendendo la trasmissione robusta alle interferenze.
 
 ![[43k.png]]
 
@@ -381,7 +383,9 @@ Ogni dispositivo LoRaWAN è **univocamente identificabile** tramite diversi tipi
 
 
 ## LoRaWAN topology
-The infrastructure consists of endpoints exchanging packets through gateways acting as bridges, with a central LoRaWAN network server. Gateways connect to the backend network using standard IP connections, and endpoints communicate directly with one or more gateways.
+The infrastructure consists of endpoints exchanging packets through gateways acting as bridges, with a central LoRaWAN network server. 
+
+Gateways connect to the backend network using standard IP connections, and endpoints communicate directly with one or more gateways.
 
 ![[45k.png]]
 
@@ -391,12 +395,12 @@ The infrastructure consists of endpoints exchanging packets through gateways act
 1. ==il livello di rete== **autentica** i dispositivi e **cripta i messaggi di controllo a livello MAC usando AES con una chiave condivisa chiamata NwkSKey**, assicurando l’integrità tramite controlli crittografici; 
 2. ==il livello applicativo== **cripta** separatamente i dati utente end-to-end **con una chiave AppSKey generata dinamicamente**. 
 
-Entrambe le chiavi derivano da una chiave radice unica,** l’AppKey**, valida per ogni sessione, evitando il riutilizzo e garantendo la segretezza in avanti. Questa architettura applica il principio di difesa in profondità, isolando le funzioni di rete dai contenuti dell’utente per una sicurezza multilivello.
+Entrambe le chiavi derivano da una chiave radice unica,**l’AppKey**, valida per ogni sessione, evitando il riutilizzo e garantendo la segretezza in avanti. Questa architettura applica il principio di difesa in profondità, isolando le funzioni di rete dai contenuti dell’utente per una sicurezza multilivello.
 
 ![[46k.png|400]]
 
 ## AES Counter mode (AES-CTR)
-- LoRaWAN usa **AES-CMAC** per garantire l’integrità dei messaggi.
+- ==LoRaWAN usa AES-CTR== per garantire l’integrità dei messaggi.
 - AES-CMAC genera un codice chiamato **MIC (Message Integrity Code)**, che verifica che il messaggio non sia stato modificato e provenga da una fonte affidabile.
 - Per calcolare il MIC:
     - Si parte dalla chiave di rete (**NwkSKey**), da cui si ricavano due sottochiavi, **K1** e **K2**.
@@ -414,8 +418,6 @@ Entrambe le chiavi derivano da una chiave radice unica,** l’AppKey**, valida p
     - Non si cifra direttamente il messaggio.
     - Si genera una **keystream** da 128 bit cifrando un **contatore** con AES.
     - La keystream viene combinata col messaggio tramite un’operazione **XOR** per ottenere il testo cifrato.
-- Se il messaggio è lungo, il contatore viene incrementato per ogni blocco successivo.
-- Il valore iniziale del contatore è basato sul **frame counter** del messaggio, mantenendo la sincronizzazione tra dispositivo e gateway.
 - Questa tecnica è sicura perché:
     - Lo stesso contatore non viene mai riutilizzato con la stessa chiave.
     - L’operazione XOR è veloce ed efficiente.
@@ -439,7 +441,7 @@ different devices share the channel to communicate. Its operation can be describ
 The ==host controller interface== (HCI) layer is a standard protocol that **transports commands and events between the host and controller elements**. L2CAP offers segmentation and
 reassembly services for large packets.
 
-The ==attribute== protocol defines **how data is represented in a BLE server database and the methods by which that data can be read or written**.
+The **attribute protocol** (==ATT==) defines how data is represented in a BLE server database and the methods by which that data can be read or written
 
 The ==GATT== layer is used by the application for **data communication between two connected devices**
 
@@ -501,7 +503,7 @@ The just seen GAP layer defines communication modes (connection- oriented/broadc
 
 In connection-oriented communication mode, after the bi-directional communication is established, the ==Attribute protocol (ATT)== and the ==Generic Attribute Profile (GATT)== layers **define how data is represented and exchanged between BLE devices**.
 
-si occupano della fase successiva allo stabilimento della connessione, a differenza del livello GAP che si occupa del processo di pubblicità che si verifica prima che la connessione venga stabilita.
+si occupano della fase successiva allo stabilimento della connessione, a differenza del livello ==GAP che si occupa del processo di pubblicità che si verifica prima che la connessione venga stabilita==.
 
 ### ATT Protocol 
 The ==ATT protocol== is used to **discover, read and write attributes on a peer device**.
@@ -516,29 +518,69 @@ Most of the times, the mobile phone (central) acts as client, reading data adver
 ![[55k.png]]
 
 #### ATT Protocol - Attributes
-Attributes is a ==standardised data representation format==. Attributes are composed of four fields:
-- **Type**, defined by a Universally Unique Identifier (UUID), 128-bit value.
-- **Handle**, unique unsigned 16-bit identifier that is used by the client to reference an attribute on the server. It makes the attribute “addressable,” and it does not change during a single connection.
--  **Permissions**, defines the level of access control for a resource (read/ write/notify).
-- **Value**, the attribute data.
+Gli attributi sono composti da quattro campi:
+- **Tipo**, definito da un identificatore univoco universale (UUID), valore a 128 bit.
+- **Handle**, identificatore univoco senza segno a 16 bit utilizzato dal client per fare riferimento a un attributo sul server. Rende l'attributo "indirizzabile" e non cambia durante una singola connessione.
+- **Permessi**, definisce il livello di controllo di accesso per una risorsa (lettura/scrittura/notifica).
+- **Valore**, i dati dell'attributo.
 
 #### ATT Protocol - operations
 Il ==protocollo ATT definisce sei metodi== per leggere o scrivere gli attributi. Definiscono diverse unità dati di protocollo (PDU), ovvero diversi pacchetti da incapsulare e inviare sul collegamento fisico.
 
-- **Request**: sent to a server by a client to perform an operation (i.e., clients need to read a value).
-- **Response**: sent to a client in response to a request.
-- **Command**: sent to a server by a client (does not require acknowledgement).
-- **Indication**: unsolicited PDUs sent to a client by a server, used when the server needs to sent critical data reliably.
-- **Confirmation**: PDUs sent to confirm receipt of an indication by a client.
-- **Notification**: unsolicited PDUs sent to a client by a server for frequent, low-latency updates (do not require acknowledgement).
+##### 🔹 **Request (Richiesta)**
+Messaggio inviato dal **client** al **server** per richiedere un'operazione, ad esempio leggere un valore.
+> 💬 Esempio: "Server, qual è il valore della temperatura?"
+##### 🔹 **Response (Risposta)**
+Messaggio inviato dal **server** al **client** come risposta a una richiesta (Request).
+> 💬 Esempio: "La temperatura è 22°C."
+
+##### 🔹 **Command (Comando)**
+Messaggio inviato dal **client** al **server** per eseguire un’azione. **Non richiede risposta**.
+> 💬 Esempio: "Imposta la velocità della ventola su 3." (il client non aspetta conferma)
+
+##### 🔹 **Indication (Indicazione)**
+Messaggio inviato dal **server** al **client** senza che venga richiesto. Serve per inviare **dati critici in modo affidabile**, cioè richiedendo conferma.
+
+> 💬 Esempio: "Attenzione: la temperatura ha superato i 70°C."  
+> → Il client **deve confermare** di averlo ricevuto.
+
+##### 🔹 **Confirmation (Conferma)**
+Messaggio inviato dal **client** al **server** per confermare di aver ricevuto un'**Indication**.
+> 💬 Esempio: "Messaggio ricevuto correttamente."
+
+
+##### 🔹 **Notification (Notifica)**
+Messaggio inviato dal **server** al **client** **senza richiesta e senza conferma**. Usato per aggiornamenti **rapidi e frequenti**, quando non è necessario garantire la ricezione.
+
+> 💬 Esempio: "Il battito cardiaco attuale è 78 bpm."  
+> → Non serve risposta dal client.
 
 ## GATT Layer
 Il ==GATT Layer== è uno strato del protocollo BLE che si appoggia all’**ATT Layer** (Attribute Protocol) e definisce **come** i dati vengono organizzati e scambiati tra dispositivi Bluetooth Low Energy. Componenti:
-- **profiles**: È un insieme predefinito di **servizi**. I profili garantiscono interoperabilità tra dispositivi di produttori diversi. Ogni profilo rappresenta un caso d’uso (es. cardiofrequenzimetro, tastiera BLE, ecc.).
--  **services**: Organizza i dati in gruppi logici. Ogni servizio ha un **UUID univoco** e contiene una o più **caratteristiche**.
-- **characteristics**: Rappresenta un singolo dato e può avere diverse proprietà come read, write, notify.
+### 🧩 **Profiles (Profili)**
+- Un **profilo** è un insieme predefinito di **servizi** che descrive un caso d’uso specifico.
+- I profili garantiscono che dispositivi di marche diverse possano comunicare correttamente se seguono lo stesso profilo.
+- **Esempi:** profilo cardiofrequenzimetro, tastiera BLE, termometro.
 
->It uses these concepts to govern the data transfer between BLE devices.
+> Un profilo dice "cosa" serve per un certo tipo di dispositivo.
+
+#### 🧱 **Services (Servizi)**
+- Ogni **servizio** rappresenta un gruppo logico di dati.
+- Contiene una o più **characteristics** (caratteristiche).
+- È identificato da un **UUID (Universal Unique Identifier)**, che può essere standard o personalizzato.
+
+> Un servizio organizza le caratteristiche relative a una funzionalità (es. misurazione della frequenza cardiaca).
+
+
+#### 🔢 **Characteristics (Caratteristiche)**
+- Una **caratteristica** rappresenta un singolo **dato** (es. valore della temperatura, frequenza cardiaca).
+- Ogni caratteristica può avere diverse **proprietà**, come:
+    - `read` (lettura),
+    - `write` (scrittura),
+    - `notify` (notifiche automatiche),
+    - `indicate` (notifiche affidabili).
+
+> È l'elemento base con cui il client interagisce per leggere o scrivere dati.
 
 ```ad-example
 ![[56k.png]]
@@ -638,7 +680,7 @@ There are three **IPv6 address types**:
 
 An **IPv6 network interface** has multiple addresses:
 - ==Link local address==: Valido **solo all'interno del collegamento locale**, si calcola spesso partendo dall’**indirizzo MAC** del dispositivo (È usato per comunicazioni a **1 hop di distanza**.). Serve per:
-	-  **coperta dei vicini** (neighbor discovery)
+	-  **scoperta dei vicini** (neighbor discovery)
 	- **Scoperta dei router**
 	- Comunicazioni interne al link (non passa da router)
 - ==Site-local address==: Simile a un **indirizzo IPv4 privato** (192.168.XX.XX), valido **solo all'interno della rete aziendale o domestica**, non è instradabile su Internet.
@@ -655,7 +697,7 @@ title: ICMP Ipv4 vs ICMP Ipv6
 ICMPv6 rappresenta un'evoluzione significativa rispetto all'ICMP di IPv4. Se l'ICMP tradizionale si limitava principalmente alla segnalazione di errori e alla diagnostica come il ping, ICMPv6 incorpora funzionalità molto più ampie che includono la scoperta dei dispositivi vicini, dei router e dei prefissi, oltre al rilevamento di indirizzi duplicati e ai reindirizzamenti. Queste capacità aggiuntive sono essenziali per permettere la configurazione automatica che caratterizza IPv6.
 ```
 
-Il funzionamento di NDP si basa sui messaggi ICMPv6 Neighbor Solicitation per risolvere gli indirizzi MAC, utilizzando come fondamento gli indirizzi link-local. Questi indirizzi speciali sono limitati a un singolo segmento di rete e permettono ai dispositivi di comunicare tra loro per configurazione e manutenzione anche prima di ottenere indirizzi globali. Questa architettura consente ai nodi IPv6 di eseguire operazioni di rete essenziali in modo completamente autonomo, senza dipendere da meccanismi esterni di assegnazione degli indirizzi.
+Il funzionamento di NDP si basa sui messaggi ICMPv6 Neighbor Solicitation per risolvere gli indirizzi MAC, utilizzando come fondamento gli indirizzi link-local. Questi indirizzi  permettono ai dispositivi di comunicare tra loro per configurazione e manutenzione anche prima di ottenere indirizzi globali. Questa architettura consente ai nodi IPv6 di eseguire operazioni di rete essenziali in modo completamente autonomo, senza dipendere da meccanismi esterni di assegnazione degli indirizzi.
 
 ## 6LoWPAN networks
 La rete ==6LoWPAN== è **collegata alla rete IPv6 tramite un router edge**.
@@ -707,9 +749,9 @@ Il modo in cui le intestazioni possono essere compresse è uno dei fattori che h
 	- È adatto a **reti locali piccole**, dove esiste **un solo router IP** (l'**edge router**).
 - ==Route-over==.
 	- Il **routing avviene al livello IP**, come in una rete IPv6 tradizionale.
-	- Ogni nodo che instrada pacchetti deve essere in grado di gestire l’**intero stack IP* 
+	- Ogni nodo che instrada pacchetti deve essere in grado di gestire l’**intero stack IP** 
 	- È usato in **reti più grandi e complesse**, più **scalabili e potenti**
-	- gni router è responsabile del forwarding a livello IP tra segmenti della rete.
+	- Ogni router è responsabile del forwarding a livello IP tra segmenti della rete.
 
 ![[77k.png]]
 
@@ -772,14 +814,14 @@ I client e broker MQTT iniziano a comunicare usando una connessione MQTT.
 - I client non si connettono mai tra loro, solo con il broker.
 - I broker possono essere:
 	- broker gestiti, cioè servizi che permettono di usare i loro broker ospitati
-- Broker self-hosted richiedono l'installazione su un server con IP statico. Implementazioni open source includono Mosquitto e HiveMQ
+	- Broker self-hosted richiedono l'installazione su un server con IP statico. Implementazioni open source includono Mosquitto e HiveMQ
 
-## MQTT continua
-Caratteristica chiave di MQTT sono i topic. I topic MQTT sono parole chiave che il broker usa per filtrare i messaggi. Supporta un approccio architetturale stateful, mantenendo sessioni persistenti. In scenari IoT con connettività instabile, MQTT permette ai client di riconnettersi e riprendere le comunicazioni senza perdere contesto.
+### MQTT continua
+Caratteristica chiave di MQTT sono i ==topic==. I topic MQTT sono **parole chiave che il broker usa per filtrare i messaggi**. Supporta un approccio architetturale stateful, mantenendo sessioni persistenti. In scenari IoT con connettività instabile, MQTT permette ai client di riconnettersi e riprendere le comunicazioni senza perdere contesto.
 
 ![[78k.png]]
 
-## Pacchetti di controllo MQTT
+### Pacchetti di controllo MQTT
 Il protocollo MQTT usa tipi di pacchetto distinti per diverse operazioni, ciascuno con struttura consistente:
 
 **Pacchetto CONNECT**
@@ -797,10 +839,10 @@ Il protocollo MQTT usa tipi di pacchetto distinti per diverse operazioni, ciascu
 - _Intestazione variabile_: Contiene identificatore univoco pacchetto
 - _Payload_: Elenca topic a cui iscriversi con relativi livelli QoS richiesti
 
-Questa struttura assicura comunicazione efficiente e standardizzata tra client e broker MQTT.
+> Questa struttura assicura comunicazione efficiente e standardizzata tra client e broker MQTT.
 
 ## CoAP
-CoAP (Constrained Application Protocol) segue un modello client-server dove i client richiedono servizi e i server rispondono. Progettato per efficienza, include:  
+==CoAP (Constrained Application Protocol)== segue un modello client-server dove i client richiedono servizi e i server rispondono. Progettato per efficienza, include:  
 
 **Architettura Orientata alle Risorse**  
 - Ogni risorsa (dati come immagini, testo o letture sensori) è identificata da un URI  

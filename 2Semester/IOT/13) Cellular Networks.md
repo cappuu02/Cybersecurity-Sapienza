@@ -43,7 +43,7 @@ Le celle sono **aree geografiche** servite da una BS.
 title: Honeycomb grid
 is the model typically used for for theoretical representation of area division in cellular networks. In reality, the coverage area looks more like this:
 
-![[Pasted image 20250524163953.png]]
+![[Pasted image 20250528095225.png]]
 
 ```
 
@@ -74,7 +74,7 @@ Il numero totale di canali radio disponibili in un cluster è dato da $S = kN$, 
 ![[243k.png|400]]
 
 ## Cell Sectoring
-Se la distanza di riutilizzo D non è sufficientemente grande, due co-canali possono interferire tra loro. Una possibile soluzione è quella di posizionare antenne direzionali in ogni cella. Queste dividono virtualmente la cella in settori.
+Se la distanza di riutilizzo $D$ non è sufficientemente grande, due co-canali possono interferire tra loro. Una possibile soluzione è quella di posizionare antenne direzionali in ogni cella. Queste dividono virtualmente la cella in settori.
 
 Nel settore a 3 celle, la banda di frequenza della cella è divisa in 3 sottobande. Un'antenna direzionale utilizza una di queste sottobande e dirige i segnali verso la sua direzione.
 
@@ -102,7 +102,7 @@ Suddividere le celle esistenti aggiungendo più stazioni base per fornire una ma
 ## Elements of the 4G LTE Architecture
 ![[245k.png]]
 
-4G is based on the LTE (Long Term Standard) that is entirely IP-based, even for voice use Orthogonal Frequency Division Multiple Access (OFDMA) and Multiple Input Multiple Output (MIMO). It support Higher data rates, IoT applications and LPWA-based licensed band technology. 
+4G is based on the LTE (Long Term Evolution) that is entirely IP-based, even for voice use Orthogonal Frequency Division Multiple Access (OFDMA) and Multiple Input Multiple Output (MIMO). It support Higher data rates, IoT applications and LPWA-based licensed band technology. 
 
 ### Dispositivi Mobili
 - dispositivi mobili si connettono alle reti cellulari ed eseguono diverse operazioni. 
@@ -160,20 +160,16 @@ Le operazioni principali avvengono nel **Device Link Layer**:
 Il livello Device Link è suddiviso in tre sottolivelli:
 
 1. ==Sottolivello Packet Data Convergence==.
-	-  Si trova appena sotto il protocollo IP.
-	- Il protocollo Packet Data Convergence (PDCP)
-	esegue:
-	- Compressione dell'intestazione IP, per ridurre il numero di bit inviati sul collegamento wireless.
-	- Crittografia/decifratura del datagramma IP.
+	- **Compressione dell’intestazione IP**: per ridurre la quantità di dati da trasmettere, ottimizzando l’uso della banda su collegamenti wireless.
+	- **Crittografia e decifratura** dei pacchetti IP: per garantire la **sicurezza** dei dati trasmessi.
 
 2. ==Radio Link Control sublayer==.
-	- The Radio Link Control Protocol (RLCP) performs:
-	- Fragmenting and reassembly of IP datagrams that are too large to fit into the underlying link-layer frames.
-	- Link-layer reliable data transfer.
+	- **Frammentazione e riassemblaggio** dei datagrammi IP troppo grandi per essere inviati in un singolo frame del livello link.
+	- **Trasferimento affidabile dei dati** a livello di collegamento, con ritrasmissioni se necessario.
 	
 3. ==Medium Access Control (MAC). The MAC layer performs==:
-	- Transmission scheduling (assignment of transmission slots)
-	- Error detection/correction functions
+	- **Pianificazione della trasmissione**: assegna gli slot temporali ai vari dispositivi, evitando conflitti.
+	- **Rilevamento e correzione degli errori**: per migliorare l'affidabilità della trasmissione.
 
 ## 📡 LTE Radio Access Network
 

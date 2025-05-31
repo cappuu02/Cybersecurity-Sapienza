@@ -96,11 +96,11 @@ Per risolverlo:
 
 # Mesh Routing
 Approcci chiave:
-1) "Dovremmo avere percorsi sempre disponibili a tutti, in ogni momento" routing proattivo.
+1) "Dovremmo avere percorsi sempre disponibili a tutti, in ogni momento" ==routing proattivo==.
 - migliore per ambienti fissi/statici, comunicazioni frequenti.
 - tempo di acquisizione dei percorsi inferiore.
 - richiede maggiore overhead di controllo, memoria e potenza.
-2) "Dovremmo creare percorsi solo quando ne abbiamo bisogno" - routing reattivo.
+1) "Dovremmo creare percorsi solo quando ne abbiamo bisogno" - ==routing reattivo==.
 - migliore per ambienti dinamici, comunicazioni rare.
 - tempo di acquisizione dei percorsi superiore.
 - richiede minore overhead di controllo, memoria e potenza.
