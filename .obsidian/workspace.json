@@ -1,106 +1,106 @@
 {
   "main": {
-    "id": "fdac770160069464",
+    "id": "b725d8f9e07ca60e",
     "type": "split",
     "children": [
       {
-        "id": "8fb02502f790ccc9",
+        "id": "869005626548beb8",
         "type": "tabs",
         "children": [
           {
-            "id": "72b6be5b0b2deb0b",
+            "id": "85ccbb03cae3438e",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/10) Communication Wireless MAC.md",
+                "file": "2Semester/ETH/1) Intro and Footprinting.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "10) Communication Wireless MAC"
+              "title": "1) Intro and Footprinting"
             }
           },
           {
-            "id": "dcdef19b04c2df37",
+            "id": "82a2996b0ad1a8fb",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/11) Mesh Networking.md",
+                "file": "2Semester/ETH/2) Scanning.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "11) Mesh Networking"
+              "title": "2) Scanning"
             }
           },
           {
-            "id": "9d58d819ec72b1e8",
+            "id": "bc09467ed14b53c6",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/12) Standards and Protocols in IoT.md",
+                "file": "2Semester/ETH/3) Enumeration.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "12) Standards and Protocols in IoT"
+              "title": "3) Enumeration"
             }
           },
           {
-            "id": "80f20b4fb1c818e7",
+            "id": "609ae35f1cf9c6e9",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/13) Cellular Networks.md",
+                "file": "2Semester/ETH/4.1) Hacking Windows.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "13) Cellular Networks"
+              "title": "4.1) Hacking Windows"
             }
           },
           {
-            "id": "a23ab2405c5ae9cc",
+            "id": "01100640fc2da1a5",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/14) Security.md",
+                "file": "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "14) Security"
+              "title": "6) Cybercrime and Advanced Persistent Threats"
             }
           },
           {
-            "id": "3375d42ca0356dbd",
+            "id": "12dce9de5c4bc7ef",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+                "file": "2Semester/ETH/8) Wireless Hacking.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "15) Introduction to ML and Federated Learning"
+              "title": "8) Wireless Hacking"
             }
           }
         ],
@@ -110,15 +110,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "f5545f733d551e5e",
+    "id": "999727cc09e64e9b",
     "type": "split",
     "children": [
       {
-        "id": "24ae19d218a6fbc9",
+        "id": "963c9b11ed59d3f3",
         "type": "tabs",
         "children": [
           {
-            "id": "65f83f98fa08bc35",
+            "id": "3920457694d24424",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -131,7 +131,7 @@
             }
           },
           {
-            "id": "f9d9d91876b2320e",
+            "id": "428ec3c929adf386",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -148,7 +148,7 @@
             }
           },
           {
-            "id": "1028788ac2d3dcce",
+            "id": "091594751c0eb07f",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -156,28 +156,40 @@
               "icon": "lucide-bookmark",
               "title": "Bookmarks"
             }
+          },
+          {
+            "id": "6a78226fb5fc9918",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Cryptography/Cryptography Notes.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Cryptography Notes"
+            }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 279.5004348754883
   },
   "right": {
-    "id": "501197a78a2b6222",
+    "id": "05bd6b815e2aa124",
     "type": "split",
     "children": [
       {
-        "id": "f5fb0abf013bf0e5",
+        "id": "f75dc212f91cd8ea",
         "type": "tabs",
         "children": [
           {
-            "id": "31d738bb550ea683",
+            "id": "38fd50882566ef3e",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+                "file": "2Semester/IOT/15).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -187,54 +199,53 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 15) Introduction to ML and Federated Learning"
+              "title": "Backlinks for 15)"
             }
           },
           {
-            "id": "e3fbf2fda4838077",
+            "id": "4aadc0b2a77f6702",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/11) Mesh Networking.md",
+                "file": "Network Infrastructures/Network Infrastructures (PDF 2).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from 11) Mesh Networking"
+              "title": "Outgoing links from Network Infrastructures (PDF 2)"
             }
           },
           {
-            "id": "74f0511fa55d4ec8",
+            "id": "d407f01a97a5d679",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
-                "showSearch": false,
-                "searchQuery": ""
+                "useHierarchy": true
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "2fc4b18432a8f81f",
+            "id": "a781fd0b5cf18bab",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Cybersecurity-Sapienza-main/2Semester/IOT/11) Mesh Networking.md",
+                "file": "2Semester/IOT/15).md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 11) Mesh Networking"
+              "title": "Outline of 15)"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -251,27 +262,53 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3375d42ca0356dbd",
+  "active": "12dce9de5c4bc7ef",
   "lastOpenFiles": [
-    "Pasted image 20250602122957.png",
-    "Pasted image 20250602122705.png",
+    "README.md",
+    "2Semester/IOT/13) Cellular Networks.md",
     "Untitled.md",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/15) Introduction to ML and Federated Learning.md",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/14) Security.md",
-    "FedZero.md",
-    "Pasted image 20250602121044.png",
-    "Pasted image 20250601225824.png",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/13) Cellular Networks.md",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/12) Standards and Protocols in IoT.md",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/11) Mesh Networking.md",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/10) Communication Wireless MAC.md",
-    "Pasted image 20250601122812.png",
-    "Pasted image 20250601122807.png",
-    "Pasted image 20250601122751.png",
-    "Pasted image 20250601122746.png",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/Image IOT2ESONERO/example.png",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/Image IOT2ESONERO/Example2.png",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/Image IOT2ESONERO/Example3.png",
-    "Cybersecurity-Sapienza-main/2Semester/IOT/1-2) IOT.md"
+    "2Semester/IOT/Image IOT2ESONERO/278k.png",
+    "2Semester/IOT/Image IOT2ESONERO/264k.png",
+    "2Semester/ETH/Images/73.png",
+    "2Semester/IOT/Image IOT2ESONERO/256k.png",
+    "2Semester/IOT/Image IOT2ESONERO/257k.png",
+    "2Semester/IOT/Image IOT2ESONERO/258k.png",
+    "2Semester/ETH/Images/75.png",
+    "2Semester/ETH/Images/74.png",
+    "2Semester/ETH/4.1) Hacking Windows.md",
+    "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+    "2Semester/ETH/8) Wireless Hacking.md",
+    "2Semester/ETH/3) Enumeration.md",
+    "2Semester/ETH/2) Scanning.md",
+    "2Semester/ETH/1) Intro and Footprinting.md",
+    "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
+    "2Semester/ETH/11) Mobile Hacking.md",
+    "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
+    "2Semester/ETH/5) Hacking Unix (part 1).md",
+    "2Semester/IOT/12) Standards and Protocols in IoT.md",
+    "2Semester/IOT/Image IOT2ESONERO/277k.png",
+    "2Semester/IOT/Image IOT2ESONERO/276k.png",
+    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
+    "CheatSheet CTF Live.md",
+    "2Semester/IOT/14) Security.md",
+    "2Semester/IOT/11) Mesh Networking.md",
+    "2Semester/IOT/10) Communication Wireless MAC.md",
+    "2Semester/PND/IDS (Intrusion Detection System).md",
+    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
+    "2Semester/IOT/1-2) IOT.md",
+    "2Semester/IOT/8) Electromagnetism Theory.md",
+    "2Semester/ETH/8) Network Security Secrets & Solutions.md",
+    "2Semester/ETH/Untitled.md",
+    "2Semester/ETH/8. Wireless Hacking.md",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch3.pdf",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch2.pdf",
+    "2Semester/ETH/PDF/Hacking_Exposed_7_ch1.pdf",
+    "2Semester/ETH/PDF",
+    "2Semester/ETH/immagini",
+    "2Semester/PND/08-NewIPv6Security-Slides.pdf",
+    "2Semester/ETH/Images/Rainbow Tables.pdf",
+    "2Semester/ETH/Rainbow Tables.pdf",
+    "2Semester/IOT/Image IOT2ESONERO",
+    "2Semester/IOT/Untitled"
   ]
 }
