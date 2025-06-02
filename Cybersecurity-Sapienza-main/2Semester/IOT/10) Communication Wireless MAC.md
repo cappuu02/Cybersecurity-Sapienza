@@ -431,7 +431,7 @@ I protocolli ==a contesa== prevedono che i dispositivi competano per l’accesso
 I protocolli ==senza contesa==, invece, organizzano l’accesso al canale in modo centralizzato o pianificato per evitare collisioni. Utilizzano tecniche come TDMA, FDMA o CDMA. Un esempio è **TRAMA (Traffic Adaptive Medium Access)**, che adatta l’accesso al mezzo in base al traffico per migliorare l’efficienza.
 
 # Sensor MAC (S-MAC) 
-Il **Sensor-MAC (S-MAC)** è un protocollo progettato per le **Wireless Sensor Networks (WSN)**, con l’obiettivo principale di **ottimizzare il consumo energetico** mantenendo **scalabilità** ed evitando **collisioni**.
+Il ==Sensor-MAC (S-MAC)== è un protocollo progettato per le **Wireless Sensor Networks (WSN)**, con l’obiettivo principale di **ottimizzare il consumo energetico** mantenendo **scalabilità** ed evitando **collisioni**.
 
 - Ottimizzato per **applicazioni tolleranti alla latenza**.
 - Favorisce comunicazioni **peer-to-peer** tra nodi, piuttosto che con una singola stazione base.
@@ -456,12 +456,10 @@ I nodi **condividono periodicamente il proprio orario** tramite pacchetti **SYNC
 Il protocollo **S-MAC** adotta diversi meccanismi per **evitare collisioni** durante la trasmissione dei dati.
 
 ### 1. 📡 Carrier Sense (CS)
-
 - **Fisico**: il canale è considerato **occupato** se l'energia rilevata supera una soglia predefinita, altrimenti è **libero**.
 - **Virtuale**: viene usato il meccanismo **RTS/CTS (Request to Send / Clear to Send)** per prenotare il canale ed evitare interferenze tra trasmissioni multiple.
 
 ### 2. 🕓 Durata della trasmissione
-
 - Ogni pacchetto include un **campo "duration"**, che specifica la durata stimata della trasmissione.
 - Gli altri nodi utilizzano questa informazione per sapere quanto tempo il canale sarà occupato.
 
@@ -476,7 +474,7 @@ Il protocollo **S-MAC** adotta diversi meccanismi per **evitare collisioni** dur
 4. Se viene ricevuto un pacchetto **CTS**, procedere con la **trasmissione dei dati**
 
 # ⚙️ **Traffic Adaptive Medium Access (TRAMA)**
-**TRAMA** è un protocollo MAC (Medium Access Control) progettato per **reti di sensori wireless (WSN)**, con l’obiettivo di:
+==TRAMA== è un protocollo MAC (Medium Access Control) progettato per **reti di sensori wireless (WSN)**, con l’obiettivo di:
 - **Gestire l’accesso al canale radio in modo efficiente**
 - **Evitare collisioni**
 - **Risparmiare energia**
@@ -488,7 +486,6 @@ Con le seguenti caratteristiche:
 ## Componenti principali
 
 ### 1. **Neighbour Protocol (NP)**
-
 Responsabile della scoperta e gestione dei nodi vicini
 - I nodi scambiano pacchetti di segnalazione con aggiornamenti incrementali sui **vicini a 1 hop**.
 - In assenza di aggiornamenti, vengono inviati **beacon keep-alive**

@@ -1,12 +1,8 @@
 {
-  "alwaysUpdateLinks": true,
   "pdfExportSettings": {
-    "includeName": false,
-    "pageSize": "A4",
-    "landscape": true,
-    "margin": "2",
+    "pageSize": "Letter",
+    "landscape": false,
+    "margin": "0",
     "downscalePercent": 100
-  },
-  "promptDelete": false,
-  "spellcheck": false
+  }
 }

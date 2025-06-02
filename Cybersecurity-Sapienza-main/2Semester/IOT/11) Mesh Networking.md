@@ -146,6 +146,15 @@ Ogni router conosce i collegamenti con i propri vicini (non diffonde queste info
 
 ![[13k.png]]
 
+1. **Inizializzazione**: Ogni router conosce solo i vicini diretti con i relativi costi
+2. **Scambio locale**: Ogni router condivide la propria tabella solo con i vicini adiacenti (non broadcast globale)
+3. **Calcolo distribuito**: Ogni router applica Bellman-Ford per aggiornare i percorsi più brevi usando le informazioni ricevute
+4. **Iterazione**: Il processo si ripete finché non c'è convergenza
+
+La chiave è che l'informazione si propaga gradualmente attraverso la rete: un router può scoprire destinazioni a 3 hop solo dopo che l'informazione è passata attraverso i nodi intermedi.
+
+>ogni router "dice ai vicini cosa sa" e tutti collaborano per costruire una vista globale della rete.
+
 ```ad-danger
 title: Problem
 Slow convergence to new best path after link failures
@@ -310,6 +319,16 @@ Quando un nodo ha bisogno di inviare dati a un altro nodo, ma **non conosce il p
 >I nodi che **fanno parte di un percorso attivo** (cioè tra sorgente e destinazione) **mantengono informazioni sul percorso** nella loro tabella di routing.
 
 ![[24k.png]]
+
+**RREQ ID** - Request ID
+- Identificatore univoco della richiesta di route (Broadcast ID)
+- Garantisce che ogni messaggio non venga trasmesso più di una volta dallo stesso nodo
+- Previene i loop infiniti nella propagazione del messaggio
+
+**SRC SEQ N** - Originator Sequence Number
+- Numero di sequenza corrente del nodo sorgente
+- Permette ai nodi intermedi di distinguere richieste più recenti da quelle vecchie
+
 
 **STEP 1**: La sorgente invia RREQ per trovare un percorso verso la destinazione. I nodi intermedi mantengono tabelle, create come nel distance-vector, ovvero punti di ingresso che rimandano alla sorgente del messaggio.
 ![[209K.png]]

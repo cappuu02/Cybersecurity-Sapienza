@@ -30,7 +30,7 @@ Data is preprocessed to identify features, i.e., characteristics of the input wh
 Consider a ==dataset==, characterised by an independent variable (features) and a dependent variable (to predict), for instance:
 • **Independent variable** = size
 • **Dependent variable** = cost
-• **Each data point is a house** (ossernavzione del dataset, ogni record e dunque coppia dimensione e costo indica un data point che rappresenterebbe in questo esempio una casa)
+• **Each data point is a house** (osservazione del dataset, ogni record e dunque coppia dimensione e costo indica un data point che rappresenterebbe in questo esempio una casa)
 
 By observing the distribution of the data points, we can notice a linear relationship between the two variables.
 
@@ -101,7 +101,6 @@ To define how good a line fits the data, we can define different loss functions,
 - $L2$ loss $= \Sigma_{i=1}^n ( \hat y_i - y_i )^2$
 - Mean Square Error (MSE)  $= \frac{1}{n} \Sigma_{i=1}^n ( \hat y_i - y_i )^2$ (When data set contains many outliers)
 
->Where is the number of data points
 
 ![[101K.png]]
 
@@ -134,7 +133,7 @@ $\hat y = \theta_0 + \theta_1x + \theta_2x^2 + \cdots + \theta_mx^m$
 
 >As before, we can do that by searching for the coefficients $(\theta_0, \theta_1, \cdots, \theta_m)$ that minimise a loss of function. 
 
-Notice that, in the scenario that we are considering now, the dependent variable only depends on one independent variable, but it depends also on its powers.
+Nota che, nello scenario che stiamo considerando adesso, la variabile dipendente dipende da una sola variabile indipendente, ma dipende anche dalle sue potenze
 
 If we want to find the polynomial that minimises the Mean Square Error, can we still use the normal equation? Yes! Given $n$ data points $(x_i, y_i)$, we define:
 
@@ -145,7 +144,7 @@ What if the polynomial behaviour occurs over multiple variables? We can still us
 ![[107K.png]]
 
 ```ad-example
-![[Pasted image 20250528153259.png]]
+![[example.png]]
 
 ```
 
@@ -158,13 +157,13 @@ The problem with this approach are:
 ### Chain Rule
 ```ad-example
 title:  Example 1
-![[Pasted image 20250528153315.png]]
+![[Example2.png]]
 
 ```
 
 ```ad-example
 title:  Example 2
-![[Pasted image 20250528153324.png]]
+![[Example3.png]]
 
 ```
 
@@ -180,9 +179,11 @@ $$\bigtriangledown f(x_1, \cdots, x_n) = [\frac{\partial f}{\partial x_1}, \cdot
 Se $n=1$ il gradiente è semplicemente la derivata di $f$
 ```
 
->Il gradiente generalizza il concetto di derivata in uno spazio multidimensionale.
+In più dimensioni, **la derivata non è più solo un numero**, ma un vettore che indica:
+- **La direzione** in cui la funzione cresce più rapidamente
+- **La velocità di crescita** nella direzione della massima salita
 
-In ogni punto del dominio $(x_1, \cdots, x_n)$, rappresenta la pendenza della superficie $f(x_1, \cdots, x_n)$ nella direzione della massima pendenza.
+>se sei su una "superficie" definita da $f(x_1, \cdots, x_n)$, il gradiente ti dice **in che direzione salire per aumentare più velocemente**.
 
 ## Gradient Descent
 ```ad-abstract
@@ -193,7 +194,7 @@ La ==discesa del gradiente== è un **algoritmo iterativo** che serve a trovare i
 
 Può essere applicato se:
 - $f$ è differenziabile 
-- se $f: D \subseteq R → R$ allora è differenziabile (se la sua derivata è definita in ogni punto di $D$ ovvero Dominio)
+- se $f: D \subseteq R → R$ allora è differenziabile (se la sua derivata, per ogni variabile, è definita in ogni punto di $D$ ovvero Dominio)
 
 ![[111K.png]]
 
@@ -215,7 +216,7 @@ Per trovare il minimo, si procede spostandosi in direzione opposta al gradiente,
 ```ad-info
 title: Procedimento
 Scegli un punto iniziale da cui partire
-Calcla il radiente della funzione in quel punto
+Calcola il gradiente della funzione in quel punto
 Osserva il valore del gradiente nel punto iniziale
 Sposta il punto di un passo nella direzione opposta al gradiente
 Ora mi trovo in un nuovo punto.
@@ -253,7 +254,7 @@ $$
 \alpha = 0.1
 $$
 
-|Iterazione|xx|yy|f(x,y)=x2+y2f(x,y) = x^2 + y^2|
+|Iterazione|$x$|$y$|$f(x,y) = x^2 + y^2$|
 |---|---|---|---|
 |0|2.00|3.00|4+9=134 + 9 = 13|
 |1|1.60|2.40|2.56+5.76=8.322.56 + 5.76 = 8.32|
@@ -293,7 +294,6 @@ Applies the activation function to the combination
 ==Activation functions== enables a perceptron to learn non-linear and complex relationships between features and label.
 
 ![[119K.png]]
-
 ## Single layer Perceptron
 Neurons and Synopsis are organised in layers: the input layer, one or more hidden layers, and the output layer.
 
@@ -326,7 +326,7 @@ Contrasto con le ==reti neurali ricorrenti==:
 
 ==Weight e bias==  Sono i **parametri del modello**, cioè i numeri che determinano come ogni neurone combina i suoi input. Vengono aggiornati automaticamente durante il processo di **training** usando algoritmi come **backpropagation + gradient descent**.
 
-Gli ==iperparametri== sono **scelte progettuali** che fai **prima ndell'addestramento**.
+Gli ==iperparametri== sono **scelte progettuali** che fai **prima dell'addestramento**.
 
 Esempi:
 - Quanti **layer nascosti** usare
@@ -353,30 +353,88 @@ Quindi, trovare i parametri ottimali significa trovare i parametri che minimizza
 
 ![[122K.png]]
 
-### high level idea
-- **Initialisation**: I **pesi (weights)** e i **bias** della rete vengono inizializzati **a caso**.
-- **Forward step**: Prendi un esempio di addestramento:   $(x_1, \cdots, x_d, y)$vdove $x_i$​ sono gli input e $y$ è il risultato corretto (etichetta).
-	- Passi gli input **strato per strato** attraverso la rete:
-    - Ogni neurone calcola:  
-        $z = w \cdot x + b$
-        e poi applica una **funzione di attivazione**.
-	- Alla fine, ottieni l'**output della rete**.
-- **Backward step**: La rete ha prodotto un output. Questo sarà lontano dal vero valore di $y$. Poi calcoli **quanto ogni peso e bias ha contribuito all’errore**, usando:  La regola della catena. Questo è chiamato **backpropagation**.
-	- Una volta ottenuto tutti i gradienti, aggiorni i pesi ed i bias nella direzione che riduce l'errore.
-	- Update the parameters with the gradient descent step: 
-		![[124K.png]]
-	- Ripeti tutto questo ciclo **per ogni esempio e per più epoche** (giri sull’intero dataset) finché:
-		- L’errore scende abbastanza
-		- Oppure raggiungi un numero massimo di iterazioni
 
+```ad-note
+title: Procedimento ==concettuale==
+
+### 🔹 1. Inizializzazione
+I **pesi** (`weights`) e i **bias** della rete neurale vengono inizializzati **a caso**.
+
+- Ogni collegamento tra neuroni ha un **peso** \( w \)
+- Ogni neurone ha un **bias** \( b \)
+- I valori iniziali sono di solito **piccoli e casuali**
+
+
+### 🔹 2. Forward Step (Passaggio in avanti)
+
+Si prende un esempio dal dataset di addestramento:
+
+$$
+(x_1, \cdots, x_d, y)
+$$
+
+- Dove \( $x_1, ..., x_d$ \) sono gli **input**
+- \($y$ \) è l’**output corretto** (etichetta)
+
+#### Passaggi:
+- Gli input vengono **passati strato per strato** attraverso la rete
+- Ogni **neurone** calcola:
+
+$$
+z = w \cdot x + b
+$$
+
+e applica una **funzione di attivazione** (es. ReLU, Sigmoid)
+
+- Alla fine otteniamo l'**output della rete** \( $\hat{y}$ \)
+
+---
+
+### 🔹 3. Backward Step (Passaggio all’indietro)
+
+L’output della rete è diverso dal valore atteso \( $y$ \).  
+Ora calcoliamo **quanto ogni peso e bias ha contribuito all’errore**.
+
+#### Tecnica usata:
+- Si utilizza la **regola della catena** per derivare l’errore
+- Questo processo si chiama **backpropagation**
+- Si calcola il **gradiente** dell’errore rispetto a ciascun peso e bias
+
+### 🔧 Aggiornamento dei parametri (Gradient Descent)
+Dopo aver calcolato i gradienti, si aggiornano i pesi e i bias:
+
+$$
+w_{i,j}^{(l)} \leftarrow w_{i,j}^{(l)} - \eta \frac{\partial \mathcal{L}}{\partial w_{i,j}^{(l)}}
+$$
+
+$$
+b_{j}^{(l)} \leftarrow b_{j}^{(l)} - \eta \frac{\partial \mathcal{L}}{\partial b_{j}^{(l)}}
+$$
+
+- \( $\mathcal{L}$ \) è la **funzione di perdita** (loss)
+- \( $\eta$ \) è il **learning rate**
+- Si **sottrae una parte del gradiente**: così ci si muove nella direzione in cui l’errore diminuisce
+
+
+### 🔁 Ripetizione del ciclo
+
+Il processo (forward → backward → aggiornamento) si ripete:
+- Per **ogni esempio** del dataset
+- Per **più epoche** (più giri sull’intero dataset)
+
+Fino a quando:
+- L’**errore è sufficientemente basso**
+- Oppure si raggiunge il **numero massimo di iterazioni**
+```
 
 > Si sottrae una piccola parte ($η$) del gradiente ($∂$) della funzione di errore rispetto a $w$ o $b$.
 
-
-
+```ad-seealso
+title: Procedimento ==Matematico== e ==Dettagliato==
 
 Possiamo allenare la rete neurale su un dataset di $N$ campioni $(x_{i,1}, \ldots, x_{i,d}, y_i)$.
 Il processo funziona come segue:
+  - dataset di $N$ esempi
   - Inizializzare pesi e bias in modo casuale.
   - Per ogni batch di $n$ elementi:
     - Fornire alla rete ogni campione (dato), ottenere la predizione $\hat{y}_i$ e calcolare i corrispondenti valori della funzione di loss:$$
@@ -386,9 +444,21 @@ Il processo funziona come segue:
       $$
       \mathcal{L} = \frac{1}{n} \sum_{i=1}^{n} \mathcal{L}_i
       $$
-    - Calcolare i gradienti di $\mathcal{L} = \frac{1}{n} \sum_{i=1}^{n} \mathcal{L}_i$ rispetto a ciascun parametro e proseguire fino allo stop.
+    - Calcolare i gradienti di $\mathcal{L} = \frac{1}{n} \sum_{i=1}^{n} \mathcal{L}_i$ rispetto a ciascun parametro e proseguire fino allo stop (backpropagation).
+
+Con i gradienti calcolati, si aggiornano i parametri del modello nella direzione opposta al gradiente (da cui il termine "discesa del gradiente") per minimizzare la perdita.
 
 > 💡 Questo è **un'epoca (epoch)**. (dal per ogni fino alla fine)
+```
+
+
+
+```ad-todo
+title: Per ricordare
+Arrivo all'output, calcolo la funzione di attivazione ed ottengo un output. con questo output calcolo la funzione di perdita per fare backpropagation.
+
+```
+
 
 
 Durante **l'addestramento di una rete neurale**, l'intero ==dataset viene suddiviso in tre parti==: 
@@ -397,7 +467,7 @@ Durante **l'addestramento di una rete neurale**, l'intero ==dataset viene suddiv
 - **insieme di test** (test set). 
 L'addestramento della rete viene eseguito in più ==epoche== (epochs), dove **un'epoca corrisponde all'elaborazione completa di tutti i dati di addestramento, divisi in sottoinsiemi chiamati batch.**
 
- 3. Inizio dell’addestramento
+**Inizio dell’addestramento**
 - All’inizio della prima epoca, i pesi e i bias della rete sono inizializzati **casualmente**.
 - La rete viene allenata **batch dopo batch**:
     - Per ogni batch, si fa un **forward pass** (propagazione in avanti) 
@@ -406,24 +476,24 @@ L'addestramento della rete viene eseguito in più ==epoche== (epochs), dove **un
     - Si aggiornano i pesi e bias usando questi gradienti (ad esempio con gradient descent).
 
 
-3. Addestramento nelle epoche successive
+**Addestramento nelle epoche successive**
 - A partire dalla seconda epoca, il processo continua usando i pesi aggiornati dell’epoca precedente.
 - Questo ciclo si ripete finché non si raggiunge un numero massimo di epoche prestabilito o finché la rete non migliora più.
 
 
- 3. Stochastic Gradient Descent (SGD)
+**Stochastic Gradient Descent (SGD)**
 - Quando l’aggiornamento dei parametri non si fa sull’intero dataset contemporaneamente, ma su **piccoli batch o singoli esempi**, parliamo di **SGD**.
 - I batch vengono spesso scelti in modo casuale da tutto il training set, per evitare di far imparare alla rete un ordine fisso dei dati.
 
 
-3. Valutazione su validation set
+**Valutazione su validation set**
 - Alla fine di ogni epoca, la rete viene valutata sul **validation set**.
 - Serve per monitorare se la rete sta imparando bene o se sta iniziando a **overfittare** (cioè imparare troppo bene i dati di training senza generalizzare).
 - I parametri migliori vengono scelti in base alle prestazioni sul validation set.
 
 
 
-3. Valutazione finale su test set
+**Valutazione finale su test set**
 - Quando l’addestramento è completato, la rete viene testata sull’insieme di test.
 - Questo serve per misurare la **capacità di generalizzazione** della rete su dati completamente nuovi.
 - Le metriche usate dipendono dal problema:
@@ -434,7 +504,7 @@ L'addestramento della rete viene eseguito in più ==epoche== (epochs), dove **un
 ## NN for Binary classification
 ==Neural network for binary classification==, where the samples belong to one of two possible classes (e.g., spam detection, disease detection).
 
-- One output node with sigmoid activation function (trasforma il riultato in un numero tra $0$ ed $1$.
+- One output node with sigmoid activation function (trasforma il riultato in un numero tra $0$ ed $1$.)
 
 ![[125K.png]]
 
@@ -442,7 +512,7 @@ Quando ci sono più di due classi, La rete ha **tanti nodi di output quanti sono
 
 ![[126K.png]]
 
-Le classi spesso non sono numeri, Per lavorare con la rete, si assegna a ogni classe un numero intero. QUesto procedimento è chiamato ==label Econding==.
+Le classi spesso non sono numeri, Per lavorare con la rete, si assegna a ogni classe un numero intero.  Questo procedimento è chiamato ==label Enconding==.
 
 ### Loss function for classification
 ```ad-question
@@ -472,15 +542,15 @@ Binary classification, two classes, $C1$ and $C2$.
 ![[129K.png]]
 
 ```ad-example
-![[Pasted image 20250529110748.png]]
-![[Pasted image 20250529110759.png]]
+![[Pasted image 20250601122746.png]]
+![[Pasted image 20250601122751.png]]
 
 
 ```
 
 ```ad-example
-![[Pasted image 20250529110809.png]]
-![[Pasted image 20250529110819.png]]
+![[Pasted image 20250601122807.png]]
+![[Pasted image 20250601122812.png]]
 
 Possible metric for unbalanced datasets:
 - Balanced accuracy
@@ -494,27 +564,20 @@ Balanced accuracy equal to 0.5 means either that the model is just guessing, or 
 Multi-class classification, three classes, $C_1$, $C_2$ and $C_3$ 
 ![[2Semester/IOT/Image IOT2ESONERO/134.png]]
 
-```ad-example
-
-![[Pasted image 20250529110903.png]]
-![[Pasted image 20250529110913.png]]
-![[Pasted image 20250529110921.png]]
-![[Pasted image 20250529110932.png]]
-![[Pasted image 20250529110943.png]]
-
-```
-
 ## Bias (dataset)
 Nei modelli di Machine Learning, il bias non è solo un “errore” casuale, ma un tipo di **distorsione sistematica** nei dati o nel modo in cui i dati vengono raccolti o usati. Questo può portare il modello a fare previsioni sbagliate o ingiuste.
 
-- Il ==bias di selezione== si verifica quando la selezione del campione del training set non riflette accuratamente la popolazione target.
+- Il ==bias di selezione== si verifica quando la selezione del campione del training set non riflette accuratamente la popolazione target (esempio aereo militare (il mio dataset sono solo quelli tornati)).
 - Il ==bias storico== si verifica quando la distribuzione dei dati cambia nel tempo e il modello non viene adattato per gestire la nuova distribuzione.
+
+(esempio aereo è un bias di selezione)
+![[Pasted image 20250601225824.png|300]]
+
 
 ```ad-example
 
-Esempio: un sensore IoT per la qualità dell'aria viene installato all'esterno e addestra un modello locale per prevedere i picchi di inquinamento. Il modello viene addestrato in estate, quando la maggior parte delle attività cittadine sono chiuse. Quando in inverno le attività riaprono, la qualità dell'aria ha una distribuzione diversa, ma il modello non riesce a gestirla.
+Esempio: un sensore IoT per la qualità dell'aria viene installato all'esterno e addestra un modello locale per prevedere i picchi di inquinamento. Il modello viene addestrato in estate, quando la maggior parte delle attività cittadine sono chiuse. Quando in inverno le attività riaprono, la qualità dell'aria ha una distribuzione diversa, ma il modello non riesce a gestirla. (bias storico)
 ```
-
 
 ### Bias-Variance Tradeoff
 The bias–variance tradeoff describes the relationship between a model's complexity , the accuracy of its predictions, and how well it can make predictions on previously unseen data.
@@ -527,27 +590,32 @@ The bias–variance tradeoff describes the relationship between a model's comple
 # Federated Learning
 
 ## Can data live at the edge?
-Billions of phones and IoT devices constantly generate data. Data processing is moving on the device:
-- Improved latency
--  Work offline
-- Privacy advantages
+Miliardi di telefoni e dispositivi IoT generano costantemente dati. L'elaborazione dei dati avviene sul dispositivo:
+- Latenza migliorata
+- Lavora offline
+- Vantaggi per la privacy
 
-```ad-example
-On-device inference for next word/emoji prediction in mobile phones.
+## Non local/Local Learning
+![[142K.png]]
+
+In ==non-local learning==, end points send data to a central server/multiple central servers that train a NN on the data collected by the end points. Users can access the model to query inference tasks (MLaaS).
+
+In ==local learning==, each device stores, trains and maintains its own ML model and trains it on its local data.
+
+### Problems with non local Learning in IoT
+```ad-failure
+title: Problem
+
+Inviare dati al cloud è spesso inefficiente e costoso per applicazioni IoT critiche (es. veicoli autonomi) a causa di latenza, consumo di banda e rischi di privacy. I dati sensibili (es. sanitari) possono essere intercettati, e l’elevato volume di informazioni può sovraccaricare i server.  
 
 ```
 
-## Non local/Local Learning
+```ad-success
+title: Solution
+Una soluzione è usare modelli **locali**, addestrati direttamente sui dispositivi. 
+```
 
-![[142K.png]]
-
-In **non-local learning**, end points send data to a central server/multiple central servers that train a NN on the data collected by the end points. Users can access the model to query inference tasks (MLaaS).
-
-In **local learning**, each device stores, trains and maintains its own ML model and trains it on its local data.
-
-## Problems with non local Learning in IoT
-Inviare dati al cloud è spesso inefficiente per applicazioni IoT critiche (es. veicoli autonomi) a causa di latenza, consumo di banda e rischi di privacy. I dati sensibili (es. sanitari) possono essere intercettati, e l’elevato volume di informazioni può sovraccaricare i server.  
-Una soluzione è usare modelli **locali**, addestrati direttamente sui dispositivi. Tuttavia, se i dati locali sono limitati o poco rappresentativi, il modello può risultare **poco accurato**.  
+>Tuttavia, se i dati locali sono limitati o poco rappresentativi, il modello può risultare **poco accurato**.  
 
 ```ad-example
 
@@ -555,7 +623,7 @@ In agricoltura, un modello locale potrebbe non riconoscere malattie mai viste ne
 ```
 
 ## Federated Learning
-Il **Federated Learning** è un approccio che combina i vantaggi dell’**addestramento locale** (privacy, bassa latenza) con quelli dell’**addestramento centralizzato** (modelli più accurati grazie a più dati).
+Il ==Federated Learning== è un approccio che combina i vantaggi dell’**addestramento locale** (privacy, bassa latenza) con quelli dell’**addestramento centralizzato** (modelli più accurati grazie a più dati).
 - Più dispositivi (es. smartphone, sensori IoT) usano **la stessa rete neurale**.
 - Ogni dispositivo **addestra localmente** il modello sui propri dati.
 - Poi **condivide solo i parametri del modello** (pesi, bias, gradienti) e **non i dati grezzi**.
@@ -563,11 +631,11 @@ Il **Federated Learning** è un approccio che combina i vantaggi dell’**addest
 
 > I dispositivi formano una **“federazione”**: collaborano senza mai centralizzare i dati.
 
-====Scenario ideale==: il modello di ciascun dispositivo offre prestazioni pari a quelle di un modello centralizzato addestrato sull'intera unione di ciascun dataset locale.
+**Scenario ideale**: il modello di ciascun dispositivo offre prestazioni pari a quelle di un modello centralizzato addestrato sull'intera unione di ciascun dataset locale.
 
-==Obiettivo realistico==: il modello di ML su ciascun dispositivo della federazione offre prestazioni migliori rispetto a quelle che otterrebbe se addestrato solo sui dati locali.
+**Obiettivo realistico**: il modello di ML su ciascun dispositivo della federazione offre prestazioni migliori rispetto a quelle che otterrebbe se addestrato solo sui dati locali.
 
-## Federated Learning vs Distributed Learning
+### Federated Learning vs Distributed Learning
 In distributed learning, data is usually centrally stored.
 - Multiple devices (usually powerful servers) train the model in parallel.
 - Different kinds of parallelism can be implemented.
@@ -577,16 +645,21 @@ In distributed learning, data is usually centrally stored.
 In ==federated learning==, data is stored on each device (usually non powerful end nodes).
 Devices train the model in parallel, each on its own chunk of data.
 
-**Objective**: train a more accurate and generalised model than each device would on its own data while keeping data privacy, preserving computing resources.
+```ad-success
+title: Obiettivo
+
+Addestrare un modello più accurato e generalizzato rispetto a quello che ogni dispositivo utilizzerebbe sui propri dati, mantenendo al contempo la riservatezza dei dati e preservando le risorse di elaborazione.
+```
+
 
 **Challenges**:
-I dati locali sui dispositivi **non sono distribuiti in modo uniforme** (non IID), cioè ogni dispositivo può avere dati con caratteristiche molto diverse.Inoltre, alcuni dispositivi hanno molti dati, altri pochissimi (**dataset sbilanciati**).  Serve un'**aggregazione intelligente** dei modelli per ottenere un buon modello globale.
+I dati locali sui dispositivi **non sono distribuiti in modo uniforme** (non IID), cioè ogni dispositivo può avere dati con caratteristiche molto diverse. Inoltre, alcuni dispositivi hanno molti dati, altri pochissimi (**dataset sbilanciati**).  Serve un'**aggregazione intelligente** dei modelli per ottenere un buon modello globale.
 
 **Vulnerable to attacks**: Attori malevoli possono partecipare alla federazione e **inviare parametri falsi**, compromettendo l'addestramento degli altri.
 
 **Node availability**: I dispositivi (come smartphone o sensori) **non sono sempre attivi**: possono essere spenti, offline o a corto di batteria.
 
-## FL applications in IoT
+### FL applications in IoT
 FL finds many applications in IoT, for example:
 - Smart Robotics
 - Smart Object Detection
@@ -596,89 +669,253 @@ FL finds many applications in IoT, for example:
 - And many others
 
 ### Challenges
-Nei sistemi IoT, il federated learning è complicato da risorse limitate, nodi poco affidabili e eterogenei, dati non uniformi (non IID), reti a bassa banda e disparità nella partecipazione, che favorisce i dispositivi più potenti a scapito di quelli più deboli.
+Nei sistemi IoT, il federated learning è complicato da **risorse limitate**, **nodi poco affidabili** e eterogenei, **dati non uniformi** (non IID), **reti a bassa banda** e disparità nella partecipazione, che favorisce i dispositivi più potenti a scapito di quelli più deboli.
 ## Taxonomy
-![[144K.png]]
+==Tassonomia (classificazione)== del **Federated Learning (FL)**, suddividendo i vari tipi di scenari in cui può essere applicato.
 
-## Centralised FL
+- **Horizontal FL**: stessi tipi di dati (feature), ma utenti diversi (sample diversi).  
+    _Esempio: due ospedali con le stesse analisi mediche ma su pazienti diversi._
+- **Vertical FL**: stessi utenti, ma dati diversi (feature diverse).  
+    _Esempio: una banca e un ospedale che hanno info diverse sugli stessi clienti._
+- **Cross-device FL**: molti dispositivi (es. smartphone, IoT) poco affidabili, con potenza e connessione variabile.  
+    _Esempio: app mobile che impara dal comportamento degli utenti._
+- **Cross-silo FL**: pochi partecipanti (es. aziende, istituzioni) affidabili con buone risorse e rete stabile.  
+    _Esempio: collaborazione tra aziende per addestrare un modello condiviso._
+- **Centralised vs Decentralised FL**: si riferisce all'architettura usata per coordinare il processo.
+    - _Centralised_: c’è un server centrale.
+    - _Decentralised_: i partecipanti collaborano tra loro senza un server centrale.
+
+### Centralised FL
 A ==central server== orchestrates the training process. 
 Participants train local models on their data.
 Participants’ send the updated model parameters to the central server.
 The server aggregates these parameters to update the global model, which is then distributed back to the clients.
+
 The central server coordinates the training, aggregation, and distribution processes.
 Model updates are aggregated at a single point, simplifying the update process.
 
 ![[145K.png]]
 
 
-## Decentralised FL
+### Decentralised FL
 In ==decentralized Federated Learning== participants communicate directly with each other to share and aggregate model updates (peer-to-peer).
 
-Each party keeps a mixing matrix, that weighs the contribution of each other party of the aggregation. Can have 0 entries, can vary over time.
-
-This peer-to-peer communication ensures that There is no single point of failure and enhances privacy by distributing the aggregation process.
+Ogni nodo decide **con chi collaborare** e **quanto fidarsi** degli altri tramite la mixing matrix, rendendo il sistema più **flessibile**, **resiliente** e **privacy-friendly**.
 
 ![[146K.png]]
 
 ## FedAvg
+FedAvg è un **algoritmo fondamentale per il Federated Learning (FL) centralizzato**.
 
->Centralised FL, first to share model's parameters, weighted average aggregation.
+Consideriamo un insieme di $K$ dispositivi (chiamati *parti* o *client*).  
+Ogni dispositivo $k$ possiede un **dataset locale** $D_k$ composto da $n_k$ punti, su cui allena una rete neurale.
 
-- **Fundamental algorithm for centralised FL [McMahan 2017].**
-- Consider a set of $K$ parties (devices).
-- Each party $k$ stores a local dataset $D_k$ of $n_k$ points, on which it trains a neural network.
-- Let $D = D_1 \cup \ldots \cup D_K$ be the joint dataset and $n = \sum_k n_k$ the total number of points.
-- **Goal**: minimising the average loss function $\mathcal{L}(\theta, D)$, i.e., solve the problem:
+Definiamo:
+- Il dataset globale come $D = D_1 \cup \ldots \cup D_K$  
+- Il numero totale di dati come $n = \sum_k n_k$
+
+```ad-success
+title: Solution
+Minimizzare la **funzione di perdita media** globale $\mathcal{L}(\theta, D)$, cioè risolvere il seguente problema di ottimizzazione:
 $$\min_{\theta \in \mathbb{R}^p} \mathcal{L}(\theta, D)$$
-where
-  - $\theta = (\theta_1, \ldots, \theta_p)$ is the set of parameters of the neural network,
-  - $\mathcal{L}(\theta, D) = \sum_{k=1}^{K} \frac{n_k}{n} \mathcal{L}_k(\theta_k, D_k)$ is the average of the loss function of the parties, weighted by their training set sizes,
-  - $\mathcal{L}_k(\theta_k, D_k) = \sum_{d \in D_k} \mathcal{L}(\theta, d)$ is the average loss function achieved by party $k$ on all points of its training set.
+
+```
+dove:
+- $\theta = (\theta_1, \ldots, \theta_p)$ è il vettore dei parametri del modello neurale (i "pesi" da apprendere),
+- $\mathcal{L}(\theta, D) = \sum_{k=1}^{K} \frac{n_k}{n} \mathcal{L}_k(\theta_k, D_k)$ è la **perdita media pesata** dei partecipanti, dove il peso di ciascun partecipante è proporzionale alla dimensione del suo dataset,
+- $\mathcal{L}_k(\theta_k, D_k) = \sum_{d \in D_k} \mathcal{L}(\theta, d)$ è la **perdita media locale** calcolata dal partecipante $k$ sul proprio dataset $D_k$.
+
+🔁 In pratica, ogni dispositivo allena localmente un modello sui suoi dati, poi il server centrale raccoglie i parametri del modello allenato localmente e ne calcola una **media pesata**, tenendo conto della quantità di dati usata da ciascun dispositivo. Poi il server invia il nuovo modello globale a tutti i dispositivi. Il processo si ripete.
+
+
 
 ![[147K.png]]
 ![[148K.png]]
 
 ## Decentralised FedAvg
+Possiamo derivare un algoritmo basato su FedAvg ma per impostazioni completamente decentralizzate, in cui le parti agiscono come pari e non interagiscono con un server centrale per l'aggregazione.
 
-* We can derive an algorithm based on FedAvg but for fully decentralised settings, where parties act as peers and do not interact with a central server for aggregation.
+Let $G=(V=\{1,\ldots,K\},E)$ be an ==undirected graph== where **nodes are parties** and an **edge** $(k,l)$ exists if $k$ and $l$ can exchange messages.
 
-* Let $G=(V=\{1,\ldots,K\},E)$ be an undirected graph where nodes are parties and an edge $(k,l)$ exists if $k$ and $l$ can exchange messages.
 
-* Let $W\in[0,1]^{K\times K}$ be a symmetric, bistochastic matrix such that if $\exists l(k,l)$ then $W_{k,l}=W_{l,k}=0$ (mixing matrix).
+Sia   $W \in [0,1]^{K \times K}$  una ==matrice quadrata== che ha alcune proprietà importanti:
+ 
+- **È simmetrica:** il peso che il nodo \(k\) assegna al nodo \(l\) è uguale al peso che \(l\) assegna a \(k\), cioè  $W_{k,l} = W_{l,k}.$
+- **È bistocastica:** ogni riga e ogni colonna sommano a 1. Questo significa che i pesi sono distribuiti in modo equilibrato tra i vicini.
+- Se due nodi non sono collegati nella rete (cioè non possono comunicare direttamente), allora i pesi corrispondenti devono essere zero:  $W_{k,l} = W_{l,k} = 0.$
 
-* Given parties' parameters $\Theta=[\theta_{1},\ldots,\theta_{K}]$, $W\Theta$ is a weighted aggregation between neighbouring nodes in $G$:
-  $[W\Theta]_{k}=\sum_{l\in\mathcal{N}_{k}}W_{k,l}\theta_{l}$
-  
-  Each party $k$ only cares about the $k$-th row of the matrix, which says how much weight it must give to the parameters of each of its neighbours in $l\in\mathcal{N}_{k}$. Each $\theta_{k}$ is the vector of the parameters of party $k$.
-![[150K.png]]
+Questa matrice si chiama ==matrice di mescolamento (mixing matrix)==, perché serve a combinare le informazioni tra nodi vicini.
 
+
+Hai un insieme di nodi (computer o dispositivi) in una rete, ciascuno con il proprio modello locale, che chiamiamo $\theta_k$ per il nodo $k$. Dato un insieme di modelli locali dei partecipanti, indicati con  
+$$\Theta = [\theta_1, \dots, \theta_K]$$
+Ora, vuoi che ogni nodo migliori il suo modello locale _scambiando informazioni_ con i nodi vicini a lui nella rete. La matrice $W$ ti dice **quanto un nodo si "fida"** o quanto pesa il modello di ogni altro nodo nel processo di aggiornamento.
+- La riga $k$ di $W$ contiene i pesi che il nodo $k$ dà a tutti gli altri nodi (compresi eventualmente sé stesso).
+- Se un nodo $l$ non è vicino a $k$, il peso $W_{k,l}$​ sarà zero (cioè non si considera il modello di $l$ nel calcolo di $k$).
+
+L’aggregazione avviene così:  
+$$
+[W\Theta]_k = \sum_{l \in N_k} W_{k,l} \cdot \theta_l
+$$
+Questo significa che il nodo ($k$) aggiorna il proprio modello facendo una media pesata dei modelli dei suoi vicini, e i pesi sono presi dalla riga ($k$) della matrice ($W$).
+
+```ad-info
+Immagina che ogni nodo abbia un modello diverso. Per migliorare il proprio modello, ciascun nodo guarda i modelli dei suoi vicini e li combina, ma non tutti allo stesso modo: quelli di cui si fida di più pesano di più.
+
+Così si diffondono informazioni e modelli migliori tra i nodi, senza che ci sia un "centro" che fa tutto da solo.
+
+```
+
+processo ==aggiornamento== avviene alternando:
+- Aggiornamenti locali
+- Aggiornamenti aggregazione
+La ==matrice di mescolamento== $W^{(t)}$) può cambiare nel tempo (cioè ad ogni step $t$):
+La ==velocità di convergenza== dipende dalla topologia: più connessioni significano una convergenza più rapida, ma anche un maggiore utilizzo di risorse.
+Si può scegliere di aggiornare i modelli scambiando informazioni tra nodi **solo ogni $\tau$ aggiornamenti locali**.
+
+```ad-question
+How do we set $\tau$
+
+```
 ### Resource optimisation in decentralised FedAvg
-* $\tau$: numero di aggiornamenti locali per ogni round
-* $I'$: numero totale di aggiornamenti locali eseguiti da ogni parte, $I' = \tau \cdot I_{max}$, dove $I_{max}$ è il numero massimo di round
-* Ogni parte ha $M$ diversi tipi di risorse (tempo, energia, banda, ecc.)
+* $\tau$: numero di aggiornamenti locali eseguiti da ogni nodo prima di un’aggregazione
+- $I_{max}$​: numero massimo di round (cioè di aggregazioni)
+- $I' = \tau \cdot I_{max}$​: numero totale di aggiornamenti locali fatti da ogni nodo
+* Ogni nodo ha $M$ diversi tipi di risorse (tempo, energia, banda, ecc.)
 
-Consumo di Risorse:
+**Consumo di Risorse**:
 * Per ogni parte e ogni risorsa $m \in M$:
   - Un aggiornamento locale consuma $c_{m}$ risorse
   - Un aggiornamento globale (aggregazione) consuma $b_{m}$ risorse
   - Budget massimo di risorse per ogni $m$ è $K_{m}$
 
- Problema di Ottimizzazione:
-**Obiettivo**: Determinare $\tau$ e $I_{max}$ per:
+**Problema di Ottimizzazione**:
+Determinare $\tau$ e $I_{max}$ per:
 1. Minimizzare la funzione di perdita media $F(\mathbf{w}^{t})$
 2. Rispettare i vincoli di budget delle risorse
 
-$\min_{\tau,K\in\{1,2,3,...\}} F(\mathbf{w}^{t})$
+Formalmente:
+$$\min_{\tau, K \in \{1,2,3,\dots\}} F(\mathbf{w}^t)$$
 
-**Vincoli**:
-$(T+1)c_{m} + (K+1)b_{m} \leq R_{m}, \forall m\in\{1,...,M\}$
-$T = K\tau$
+soggetto a
+$$(T+1)c_m + (K+1)b_m \leq R_m, \quad \forall m \in \{1, \dots, M\}$$
 
-## Non i.i.d. data
-One of the greatest challenges in FL comes from the fact that the local datasets of the parties might follow very different probability distributions, causing client drifts. Local model updates toward local optimal solutions, resulting in performance degradation of the global model. Averaging the parameters in these cases does not guarantee the convergence to the optimal model. More sophisticated ways to aggregate models are needed.
+dove
+$$T = K \tau$$
+### Non i.i.d. data
+Uno dei maggiori problemi nel Federated Learning (FL) è che i dati locali di ciascun partecipante possono essere molto diversi tra loro, cioè seguire distribuzioni diverse. Questo provoca il fenomeno chiamato **client drift**, dove ogni nodo aggiorna il proprio modello puntando a trovare la soluzione migliore solo per i suoi dati locali.
+Di conseguenza, quando si combinano (in media) tutti questi modelli locali, il modello globale risultante può peggiorare perché la media semplice non riesce a trovare un buon compromesso tra modelli così diversi.
+## FedZero
 
-## FedZero (riprendere da 124 compresa)
+```ad-abstract
+title: Definizione
+
+==FedZero== è un **framework centralizzato di Federated Learning (FL)** progettato per ottimizzare l’addestramento dei modelli in maniera **carbon neutral**, assicurando al contempo **equità nell’uso delle risorse** computazionali ed energetiche.
+```
+
+Ogni **client** che partecipa al sistema FedZero fornisce:
+- Capacità computazionale massima $mc$ (espressa in batch per unità di tempo).
+- Efficienza energetica $\delta_c$ (energia richiesta per batch).
+- Dominio energetico di appartenenza (power domain), che identifica l'accesso a una fonte rinnovabile condivisa.
+
+Alcuni **power domain** possono avere energia rinnovabile in eccesso. Per sfruttare al meglio queste risorse, si utilizzano:
+- Previsioni di energia in eccesso nel dominio $p$ al tempo $t$:  $r_{p,t}$
+- Previsioni della capacità computazionale residua del client $c$ al tempo $t$:   $m^{\text{spare}}_{c,t}$
+
+La selezione dei client per ogni round tiene conto di questi due fattori per **evitare di coinvolgere client con risorse insufficienti**.
 
 
+### Utilità statistica dei Client
+FedZero assegna a ogni client una **utilità statistica $\sigma_c$** che rappresenta la sua rilevanza nell’addestramento:
+
+Un client ha **alta rilevanza statistica** se:
+- Ha **una grande quantità di dati** ($|B_c|$).
+- Ha **una loss elevata** sui suoi dati.
+
+### Equità e Blacklist
+Per evitare che gli stessi client vengano selezionati troppe volte (specializzando il modello globale sui loro dati), FedZero implementa:
+
+1. **Blacklist**: dopo ogni round, i client selezionati vengono messi in blacklist.
+2. **Rilascio dalla blacklist** con una certa probabilità, in funzione della loro partecipazione storica $p(c)$ rispetto alla media $\omega$.
+
+La probabilità di rilascio dalla blacklist è:
+![[Pasted image 20250602122705.png]]
+Dove:
+- $p(c)$ = numero di round in cui il client $c$ ha partecipato.
+- $\omega$ = media dei $p(c)$ di tutti i client:  
+    $\omega \leftarrow \text{mean}{p(c), \forall c \in C}$
+- $\alpha$ = parametro di controllo (più alto = blacklist più lunga).
+
+```ad-success
+title: Obiettivi
+1. **Minimizzare l’errore del modello**.
+2. **Garantire zero emissioni di carbonio** (utilizzando solo energia rinnovabile disponibile).
+3. **Assicurare equità** tra i client in termini di partecipazione e specializzazione del modello.
+
+```
 
 ## ProxyFL
+Nella Federated Learning (FL), è stato dimostrato che **parametri e gradienti condivisi** durante l’addestramento possono potenzialmente rivelare **dati originali degli utenti**.
+
+### ✅ Soluzione: ProxyFL
+==ProxyFL== è un **framework decentralizzato** che **preserva la privacy** grazie all'uso di **due modelli per ogni client**:
+
+- **Modello Privato** $f_{\phi_k}$
+    - Architettura libera
+    - **Non condiviso**
+    - Usato per l'inferenza
+    - I suoi parametri $\phi_k$ vengono aggiornati localmente
+- **Modello Proxy** $h_{\theta_k}$
+    - Architettura comune a tutti
+    - **Condiviso con gli altri peer**
+    - Parametri $\theta_k$ soggetti a **Differential Privacy**
+
+
+### Funzionamento Algoritmo
+Ogni round segue questi passi:
+1. **Ogni client allena localmente** i suoi due modelli:
+    - $f_{\phi_k}$ (privato)
+    - $h_{\theta_k}$ (proxy, con training **differentially private**)
+2. I client **scambiano i modelli proxy** con i peer definiti da un **grafo di comunicazione** (mixing matrix).
+3. Ogni client **aggrega** i proxy ricevuti dai vicini per aggiornare il proprio:
+    ![[Pasted image 20250602122957.png]]
+    Dove $w_{k,j}$ sono i pesi della media (es. pesi della mixing matrix) e $\mathcal{N}(k)$ è il set dei vicini del nodo $k$.
+4. Il **modello privato $f_{\phi_k}$** viene poi aggiornato anche usando informazioni dal proxy aggiornato.
+
+
+```ad-todo
+title: Differencial privacy
+**Differential privacy** è una tecnica che serve a **proteggere la privacy dei dati individuali**, anche quando i risultati di un’analisi (o l'addestramento di un modello) vengono condivisi o pubblicati.
+
+> L’idea chiave è: **un singolo dato nel tuo dataset non deve influenzare troppo il risultato finale**.  
+> In altre parole, **non si deve capire se un certo individuo è presente o no nei dati.**
+
+```
+
+Ogni round (cioè un ciclo di addestramento e comunicazione) segue questa sequenza:
+
+1. Ogni **client** (cioè un dispositivo o partecipante alla rete) allena **due modelli**: Privato e pubblico
+2. Tutti i client devono **usare la stessa struttura** (architettura) per il modello **proxy**, così i parametri possono essere combinati tra di loro. Invece, **ognuno è libero** di scegliere l’architettura del proprio **modello privato**.
+3. Ogni client:
+	- **Invia i parametri del suo proxy** ai suoi "out-neighbours" (vicini a cui è connesso in uscita).
+	- **Riceve i proxy** da altri vicini ("in-neighbours") secondo un **grafo di comunicazione** (noto come **mixing matrix**).
+4. Aggregazione dei modelli proxy ricevuti. Una volta ricevuti i proxy dai vicini, ogni client:
+	- Li **combina** (ad esempio facendo una **media pesata**).
+	- **Sostituisce** il proprio modello proxy con l’aggregato.
+
+## Communication Protocol
+In ogni round, **ogni client comunica con altri client a distanze esponenziali**, cioè con quelli a distanza $2^0$, $2^1$, $2^2$, ecc.
+
+🔁 Questo significa che:
+- Nel **round 1** parla con il vicino diretto.
+- Nel **round 2** con quello a 2 passi di distanza.
+- Nel **round 3** con quello a 4 passi, e così via.
+
+✅ In pochi round, le informazioni si **diffondono velocemente** tra tutti i client, senza bisogno che ciascuno parli con tutti ogni volta.
+## KL Divergenza
+La **KL Divergence** è una misura statistica che quantifica quanto due distribuzioni di probabilità, PP e QQ, siano diverse tra loro.
+
+- Valore **0** = distribuzioni identiche.
+- Valore **alto** = differenze marcate.
+
+Nel machine learning, aiuta a ottimizzare i modelli confrontando la distribuzione stimata con quella reale.

@@ -116,7 +116,7 @@ BS è responsabile della gestione delle risorse radio wireless e dei dispositivi
 
 Forniscono la connessione dai dispositivi mobili ai gateway, interagiscono tra loro per gestire la mobilità dei dispositivi tra le celle e ridurre al minimo le interferenze tra le celle. Sono collegate tra loro tramite cavi, non tramite wireless.
 
-### 🗃️ HSS – Home Subscriber Server
+### 🗃️ HSS – Home Subscriber Service
 ==HSS== è un database centrale usato nelle reti mobili contenente tutte le informazioni degli utenti che sono “abbonati” a quella rete, cioè che usano la rete come rete _domestica_ (la loro rete principale).  Le informazioni memorizzate nel HSS includono dati importanti come:
 - L’identità dell’utente (es. IMSI, cioè l’ID unico della SIM)
 - Le chiavi di autenticazione per verificare che l’utente sia autorizzato a usare la rete

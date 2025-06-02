@@ -20,8 +20,7 @@ Nel **2017**, i ricercatori hanno scoperto vulnerabilità critiche in:
 Nel 2016, i ricercatori di sicurezza Charlie Miller e Chris Valasek scoprirono e dimostrarono l'esistenza di una vulnerabilità replicabile nei veicoli Jeep Cherokee, con un impatto tale da costringere il produttore a richiamare 1,4 milioni di automobili.
 
 Analizzando la rete Sprint, riuscirono a individuare migliaia di veicoli esposti online. Attraverso questa rete, furono in grado di connettersi all’unità centrale Uconnect, la piattaforma di connettività a bordo del veicolo, dove scoprirono una vulnerabilità di esecuzione di codice da remoto. Questa falla consentiva loro di eseguire comandi arbitrari all’interno del sistema.
-
-A partire da lì, riuscirono a penetrare nella rete interna del veicolo che gestisce le funzioni critiche dell’automobile. Una volta dentro, poterono inviare comandi direttamente alle centraline elettroniche (ECU), controllando così componenti fondamentali come lo sterzo, la frenata, la trasmissione e la velocità del veicolo.
+Una volta dentro, poterono inviare comandi direttamente alle centraline elettroniche (ECU), controllando così componenti fondamentali come lo sterzo, la frenata, la trasmissione e la velocità del veicolo.
 
 # IoT environments
 Decine di miliardi di dispositivi sono ormai connessi a Internet. Gli oggetti smart stanno diventando sempre più diffusi, con applicazioni che spaziano dalle smart city alle case intelligenti, passando per la sanità e la videosorveglianza.
@@ -67,7 +66,13 @@ Per garantire la riservatezza, solo il destinatario deve poter decifrare i messa
 
 ## ZigBee recap
 Il livello PHY e MAC sono tratti dallo standard IEEE 802.15.4.
-La NWK fornisce funzionalità quali l'instradamento, la sicurezza e la configurazione di nuovi dispositivi, gestite dal coordinatore della rete che funge anche da trust center.
+  
+Il **livello di rete (NWK)** si occupa di:
+- **Instradamento** dei pacchetti nella rete (decidere il percorso che i dati devono seguire);
+- **Sicurezza** (crittografia, autenticazione, ecc.);
+- **Configurazione di nuovi dispositivi**
+
+Tutte queste funzioni sono gestite dal **coordinatore della rete**, che ha anche il ruolo di **trust center**.
 
 Il trust center è responsabile di
 1) autenticare i dispositivi che richiedono di unirsi alla rete;
@@ -168,24 +173,18 @@ Il processo di **Pairing** in **Bluetooth Low Energy (BLE)** serve per **stabili
     4. **Bonding**
         - I dispositivi scambiano e memorizzano le LTK per poter riconnettersi in futuro senza rifare il pairing.
 
-## Pairing methods in authentication - just works
-![[84k.png]]
+## Metodi di autenticazione nel Pairing
+- **Just Works**:  
+    Nessuna interazione utente. È semplice ma **meno sicuro**.
+- **Numeric Comparison**:  
+    Entrambi i dispositivi mostrano un numero. L’utente **conferma che i numeri corrispondano**.
+- **Passkey Entry**:  
+    Un dispositivo genera una **passkey** che l’utente inserisce nell’altro.  
+    Poi:
+    - Entrambi generano **nonce** e **commitment** del nonce locale e delle chiavi pubbliche.
+    - Si scambiano i dati e li **verificano**.
+    - Se coincidono, la passkey è corretta → si genera la STK.
 
-## Pairing methods in authentication -numeric comparison
-![[85k.png]]
-
-## Pairing methods in authentication – Passkey Entry (dettaglio della fase 2)
-Uno dei due dispositivi genera una **passkey segreta** lunga $k$ bit.
-L’utente inserisce questa passkey nell’altro dispositivo.
-
-### Procedura:
-- Entrambi i dispositivi generano un **nonce** (numero casuale unico).
-- Calcolano un **valore di commitment**, funzione della **passkey (TK)**, del **nonce locale** e delle **chiavi pubbliche**.
-- Si scambiano i **commitment** e i **nonce**.
-- Ogni dispositivo verifica il commitment dell’altro ricalcolandolo con i dati ricevuti (invertendo l’ordine delle chiavi pubbliche).
-- Se i commitment corrispondono → la passkey coincide → si procede con la generazione della STK.
-
-![[86k.png|350]]
 
 ## Network traffic sniffing - fitness tracking case study 
 Durante uno studio in palestra sono stati catturati oltre 7,5 milioni di pacchetti BLE in 8 giorni.   I fitness tracker (server) trasmettono frequentemente pacchetti di advertising, mentre i dispositivi client (smartphone iOS e Android) lo fanno raramente e cambiano spesso indirizzo per proteggere la privacy.
@@ -248,11 +247,9 @@ In AES-CTR, usare lo **stesso key stream** (cioè la stessa chiave + contatore) 
 $$\text{C1} \oplus \text{C2} = \text{P1} \oplus \text{P2}$$
 
 
-![[Pasted image 20250526154323.png]]
-
 (XOR tra i due testi cifrati è uguale allo XOR dei testi in chiaro)
 
-![[Pasted image 20250526154426.png]]
+
 
 ```
 

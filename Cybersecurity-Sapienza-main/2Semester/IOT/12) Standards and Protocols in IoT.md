@@ -593,7 +593,7 @@ Il ==GATT Layer== è uno strato del protocollo BLE che si appoggia all’**ATT L
 
 ## Advantages of IP in IoT
 Il protocollo Internet (IP) esiste da oltre 35 anni!
-1. ==Unico (Ubiquitous)== - Tutti i sistemi operativi moderni, dai computer normali ai sistemi embedded leggeri (come TinyOS), hanno uno stack IP integrato che supporta sia IPv4 che IPv6 e che viene costantemente migliorato.
+1. ==Unico (Ubiquitous)== - Tutti i sistemi operativi moderni hanno uno stack IP integrato che supporta sia IPv4 che IPv6 e che viene costantemente migliorato.
 2. ==Gestibile e altamente sicuro== Esistono protocolli, meccanismi e strumenti per la gestione della rete e la sicurezza che sono ampiamente disponibili e consolidati.
 3. ==Scalabile== - Internet ospita milioni di infrastrutture IP private e pubbliche in tutto il mondo, dimostrando la sua capacità di crescere.
 4. ==Stabile== - È stato utilizzato per anni in infrastrutture critiche come reti finanziarie e di difesa. Supporta servizi critici e applicazioni sensibili ai ritardi (come videochiamate e gaming online).
@@ -670,13 +670,13 @@ IPv6 is the latest version of the Internet Protocol and is designed to replace I
 ![[63k.png]]![[64k.png]]
 
 ### IPv6 Addressing 
-IPv6 addresses are 128 bit long, arranged in eight groups written in hexadecimal, each of which is 16 bits (IPv4 addresses are 32 bit long).
+IPv6 addresses are 128 bit long, arranged in 8 groups written in hexadecimal, each of which is 16 bits (IPv4 addresses are 32 bit long).
 `example: 3FFE:085B:1F1F:0000:0000:0000:00A9:1234`
 
 There are three **IPv6 address types**:
 - ==Unicast== (comunicazione uno a uno tra due endpoint specifici).
-- ==Anycast== (un singolo indirizzo IP è condiviso da dispositivi in ​​più sedi. I router indirizzano i pacchetti indirizzati alla destinazione la cui posizione è più vicina al mittente).
-- ==Multicast== (la trasmissione dei dati è indirizzata a un gruppo di computer di destinazione contemporaneamente)
+- ==Anycast== (Un **singolo indirizzo IP** è assegnato a **più dispositivi** in posizioni diverse. Quando un pacchetto è inviato a un indirizzo anycast, viene instradato **al dispositivo più vicino** (in termini di topologia di rete, non di distanza fisica).
+- ==Multicast== (la trasmissione dei dati è indirizzata a un gruppo di computer di destinazione contemporaneamente).
 
 An **IPv6 network interface** has multiple addresses:
 - ==Link local address==: Valido **solo all'interno del collegamento locale**, si calcola spesso partendo dall’**indirizzo MAC** del dispositivo (È usato per comunicazioni a **1 hop di distanza**.). Serve per:
@@ -697,7 +697,7 @@ title: ICMP Ipv4 vs ICMP Ipv6
 ICMPv6 rappresenta un'evoluzione significativa rispetto all'ICMP di IPv4. Se l'ICMP tradizionale si limitava principalmente alla segnalazione di errori e alla diagnostica come il ping, ICMPv6 incorpora funzionalità molto più ampie che includono la scoperta dei dispositivi vicini, dei router e dei prefissi, oltre al rilevamento di indirizzi duplicati e ai reindirizzamenti. Queste capacità aggiuntive sono essenziali per permettere la configurazione automatica che caratterizza IPv6.
 ```
 
-Il funzionamento di NDP si basa sui messaggi ICMPv6 Neighbor Solicitation per risolvere gli indirizzi MAC, utilizzando come fondamento gli indirizzi link-local. Questi indirizzi  permettono ai dispositivi di comunicare tra loro per configurazione e manutenzione anche prima di ottenere indirizzi globali. Questa architettura consente ai nodi IPv6 di eseguire operazioni di rete essenziali in modo completamente autonomo, senza dipendere da meccanismi esterni di assegnazione degli indirizzi.
+Il funzionamento di ==NDP== si basa sui==messaggi ICMPv6 Neighbor Solicitation== per **risolvere gli indirizzi MAC, utilizzando come fondamento gli indirizzi link-local**. Questi indirizzi  permettono ai dispositivi di comunicare tra loro per configurazione e manutenzione anche prima di ottenere indirizzi globali. Questa architettura consente ai nodi IPv6 di eseguire operazioni di rete essenziali in modo completamente autonomo, senza dipendere da meccanismi esterni di assegnazione degli indirizzi.
 
 ## 6LoWPAN networks
 La rete ==6LoWPAN== è **collegata alla rete IPv6 tramite un router edge**.
@@ -874,4 +874,4 @@ Questo design rende CoAP ideale per reti con risorse limitate mantenendo funzion
 - ==Opzioni==: dimensione variabile, includono metadati aggiuntivi (tipo media, durata risorse, ecc)
 - ==Payload==: dimensione variabile. Tipicamente una rappresentazione della risorsa richiesta
 
-![[79k.png|400]]
+![[79k.png|400]]\
