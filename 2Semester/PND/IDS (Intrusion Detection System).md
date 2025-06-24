@@ -1,4 +1,3 @@
-
 ## Intrusion detection/prevention systems
 An Intrusion Detection System (IDS) aims at detecting the presence of
 intruders before serious damage is done.

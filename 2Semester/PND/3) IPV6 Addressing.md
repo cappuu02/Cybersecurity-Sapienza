@@ -4,32 +4,28 @@
 
 ## Introducing IPv6
 - Not a “new” protocol. Developed in the mid to late 1990s.
-- Much learned from IPv4.
 - 128-bit address space, written in hexadecimal.
 - Provides 340 undecillion addresses.
 ![[57a.png]]
 
-340 undecillion is an astronomically large number—equivalent to 10 nonillion addresses per person (that's a 1 followed by 30 zeros). The Internet has become a vastly different space and will keep evolving with trends like mobile devices, video on demand, and the Internet of Everything. It plays a crucial role in how we live, work, play, and learn.
+340 undecillion is an astronomically large number—equivalent to 10 nonillion addresses per person (that's a 1 followed by 30 zeros). 
 
 `10 nonillion = 10,000,000,000,000,000,000,000,000,000,000`
 
 ## IPv6 Addresses Scale
-
 - 3.4×10^38 total addresses.
 - Enough to assign one address to every atom on Earth and still have more.
 - IPv6 exhaustion is extremely unlikely.
 
 ## IPv6 Characteristics
 IPv6 is not just about more addresses:
-- Stateless autoconfiguration.
-- End-to-end reachability without NAT.
-- Better mobility support.
-- Peer-to-peer networking improvements.
-- Enhanced support for VoIP and QoS.
+- **Stateless autoconfiguration**.
+- **End-to-end reachability without NAT**.
+- **Better mobility support**.
+- **Peer-to-peer networking improvements**.
+- **Enhanced support for VoIP and QoS**.
 
-
-
-# Hex and IPv6 Address Representation
+## Hex and IPv6 Address Representation
 ![[58a.png]]
 
 ## IPV6 Address Notation
@@ -42,24 +38,34 @@ IPv6 addresses are 128-bit addresses represented in:
 • Reading and subnetting IPv6 is easier than IPv4…. Almost always!
 
 ## IPv4 vs IPv6 Capacity
-
 - IPv4: 4.3 billion addresses.
 - IPv6: 340 undecillion addresses.
 - Comparison of number scales: thousand, million, billion, ... undecillion.
 
 ## IPv6 Compression Rules
-
+There are two different rules for compressing IPv6 Addresses:
 ### Rule 1: Omit Leading Zeros
-==First rule==: Leading zeroes in any 16-bit segment do not have to be written. Only leading 0s can be excluded, trailing 0s must be included.
+Gli zeri all’inizio di **ogni segmento a 16 bit** possono essere **omessi**.  
+⚠️ Solo quelli **iniziali** (a sinistra), **non quelli finali**!
 
-![[60a.png]]
+```ad-example
+`2001:0db8:1000:0000:0000:0000:0000:0001`
 
+Applichiamo la **Regola 1**:
+- `0db8` → `db8`
+- `0000` → `0`
+- `0001` → `1`
+
+Diventa: `2001:db8:1000:0:0:0:0:1`
+
+```
 
 ### Rule 2: Use Double Colon ::
-The second rule can reduce this address even further. ==Second rule==: Any single, contiguous string of one or more 16-bit segments consisting of all zeroes can be represented with a double colon (::).
+Any single, contiguous string of one or more 16-bit segments consisting of all zeroes can be represented with a double colon (::).
 
-`2001 : 0DB8 : 1000 : 0000 : 0000 : 0000 : 0000 : 0001`
-
+`2001:db8:1000:0:0:0:0:1`
+I quattro zeri consecutivi possono essere compressi con `::`
+`2001:db8:1000::1`
 
 ```ad-important
 title: Rule $1$+ Rule $2$
@@ -84,17 +90,25 @@ If there are multiple possible reductions, RFC 5952 states that the longest stri
 ![[64a.png]]
 
 ## Global Unicast Address
-Global Unicast Address (GUA)
-- 2000::/3 (First hextet: 2000 to 3FFF)
-- Globally unique and routable
-- Similar to public IPv4 addresses
-- 2001:DB8::/32 - RFC 2839 and RFC 6890 reserves this range of addresses for documentation
-- These are the addresses we will be referring to the most.
+Gli indirizzi Global Unicast sono:
+- Univoci a livello globale
+- Routabili su Internet
+- Utilizzati per comunicazioni tra dispositivi su reti diverse tramite internet
 
-**Range**
+I GUA cominciano con i **primi 3 bit `001`** e tutti gli indirizzi IPv6 da `2000::` a `3FFF:FFFF:...` sono GUAs.
+
+>Questi sono gli indirizzi a cui faremo più riferimento. (sono $\frac{1}{8}$ dello spazio totale IPv6)
+
+```ad-example
+![[Pasted image 20250620172620.png]]
+
+```
+
 ![[65a.png]]
+ 
+>IANA ha diviso lo spazio IPv6 in $8$8 parti da $\frac{1}{8}$, per facilitare la gestione e l'assegnazione.
 
-Except under very specific circumstances, all end users will have a global unicast address.
+Salvo circostanze molto specifiche, tutti gli utenti finali avranno un indirizzo unicast globale
 
 >Note: A host (an interface) can potentially have multiple IPv6 addresses on the same or different networks.
 
@@ -103,13 +117,27 @@ Terminology:
 - **Prefix length** equivalent to subnet mask in IPv4
 - **Interface ID** equivalent to host portion of an IPv4 address
 
-![[66a.png]]
+![[Pasted image 20250620173215.png|500]]
+IPv4 è diviso in:
+- **Network Portion**: Identifica la rete (Ex: `192.168.1.0`)
+- **Host Portion**: Identifica il singolo Host (Ex: `.10`)
+- **Subnet Portion**: Dipende dalla maschera (Ex: `/24`)
 
-- 64-bit Interface ID = 18 quintillion (18,446,744,073,709,551,616) devices/subnet
--  16-bit Subnet ID (initially recommended) = 65,536 subnets
+![[Pasted image 20250620173413.png]]
+**128 bit totali**, divisi in:
+- **Global Routing Prefix (/48)**: assegnato da un provider o autorità
+- **Subnet ID (16 bit)**: per creare sottoreti locali
+- **Interface ID (64 bit)**: identifica l'interfaccia fisica/logica (es. MAC address)
 
 ### /64 Global Unicast Address and the 3-1-4 Rule
+Questa regola serve a **visualizzare** e **organizzare** un indirizzo GUA in IPv6:
 ![[67a.png]]
+
+```ad-example
+![[Pasted image 20250620173553.png]]
+
+```
+
 
 ### Subnetting IPv6
 ![[68a.png]]
@@ -132,28 +160,39 @@ R1(config-if)#no shutdown
 R1(config-if)#exit
 ```
 
-## Link-local Unicast
+# Link-local Unicast
 
-### Link-Local Unicast Address
-- ==IPv6 Source== – Always a unicast
+## Link-Local Unicast Address
+```ad-abstract
+title: Definizione
+Un **indirizzo link-local** in IPv6 è un tipo di indirizzo **unicast**, utilizzato **esclusivamente per la comunicazione tra dispositivi appartenenti allo stesso link (rete locale)**, ad esempio all'interno della stessa LAN.
+
+```
+
+Features:
+- Usato solo localmente (non instradabili oltre il link su cui sono stati creati)
+- Devono essere unici nel link
+- Ogni dispositivo IPv6 deve avere almeno un indirizzo link-local (obbligatorio per il funzionamento di IPv6)
+- Non inclusi nella tabella di routing globale
+
+
+- ==IPv6 Source== – Deve sempre essere un **indirizzo unicast**, quindi anche un link-local va bene.
 - ==IPv6 Destination== – Unicast, multicast, or anycast.
 - Unicast, including a link-local address
 
 ![[70a.png]]
-Used to communicate with other devices on the link.
-- Are NOT routable off the link (network).
-- Only have to be unique on the link.
--  Not included in the IPv6 routing table.
-- An IPv6 device must have at least a link-local address.
 
 ![[71a.png]]
- Link-local addresses are created
+ 
+ Gli indirizzi link-local iniziano sempre con `FE80::/10`, cioè i primi $10$ bit sono `1111 1110 10`
+ 
+ Modalità di generazione:
 - Automatically :
 	- FE80 (usually) – First 10 bits
 	- Interface ID
-		- EUI-64 (Cisco routers)
+		- EUI-64 (Deriva dall'indirizzo MAC)
 		- Random 64 bits (many host operating systems)
-- Static (manual) configuration – Common practice for rout
+- Static (manual) configuration – Pratica comune soprattutto sui router per configurare ad es. collegamenti IPv6 statici o tunnel
 
 ### Modified EUI-64 Format (Extended Unique Identifier–64)
 ![[72a.png]]
@@ -174,13 +213,31 @@ Ethernet adapter Local Area Connection:
 ### An Important Role in IPv6
 
 ![[73a.png]]
-Used as a source IPv6 address before a device gets one dynamically
-(SLAAC and DHCPv6).
-- Router’s link-local address is used by devices as the default gateway.
-- Routers exchange routing messages.
-- Router use the link-local address as the next-hop address in the routing table: via link-local address.
+
+Indirizzi Utilizzati:
+- From: Link-local address
+- To: Multicast
+
+Componenti Principali
+1. **ICMPv6 Router Solicitation (RS)**
+	- Inviato da un host quando si collega alla rete
+	- Destinazione: Multicast, tutti i router
+2. **ICMPv6 Router Advertisement (RA)**
+	- Risposta dei router alla RS
+	- Contiene informazioni come:
+		- prefisso di rete
+		- lunghezza del prefisso
+		- Se usare SLAAC
+3. **Uso degli indirizzi link-local**
+	-  Sono usati come indirizzi sorgente prima che un dispositivo ottenga un indirizzo globale
+	- I router usano il loro indirizzo link-local come next-hop nelle tabelle di routing
 
 # SLAAC: stateless Address Autoconfiguration
+```ad-abstract
+title: Definizione
+**SLAAC** è un meccanismo di autoconfigurazione IPv6 che permette a un dispositivo di generare autonomamente il proprio indirizzo IPv6 **senza bisogno di un server DHCPv6**.
+
+```
 
 ## ICMPv6 Neighbor Discover Protocol
 ICMPv6 Neighbor Discovery defines 5 different packet types
@@ -189,88 +246,156 @@ ICMPv6 Neighbor Discovery defines 5 different packet types
 ![[75a.png]]
 ![[76a.png]]
 
+Dispositivo (client), chiede informazioni al router con un messaggio **Router Solicitation** (ICMPv6).
+Il router risponde con un messaggio di **Router Advertisement**, fornendo il prefisso di rete e l'indirizzo del gateway predefinito.
+Il dispositivo crea il suo indirizzo IPv6 combinando:
+- prefisso di rete
+- identificatore generati dall'indirizzo MAC o casuale
+
+✅ **Vantaggio:** Nessun server DHCP necessario, configurazione automatica e veloce.
+❌ **Limite:** Non assegna DNS automaticamente (serve DHCPv6 o impostazione manuale).
+
 ## Address Resolution: IPv4 and IPv6
 ![[77a.png]]
+**IPv4**: Non utilizzo l'IP ma l'indirizzo ARP. Inoltre la mia richiesta è inviata in broadcast dato che non conosco l'indirizzo MAC. Prima controllo nella ARP cache ma non è presente
+
+**IPv6** 
+Prima controllo nel Neighbor Cache ma non è presente. È più efficiente:
+- **Evita il broadcast**: utilizza multicast specifici
+- **Integrazione con ICMPv6**: Non richiede un protocollo separato come ARP
+- **Sicurezza migliorata**: Supporta opzioni crittografiche
+
+>Is ICMPv6 over IPv6 over Ethernet
 
 ## Router Solicitation & Router Advertisement Messages
-ICMPv6 Neighbor Discovery defines 5 different packet types:
+Il protocollo **ICMPv6 Neighbor Discovery (ND)** è fondamentale per il funzionamento delle reti IPv6 e sostituisce funzioni tradizionalmente gestite da ARP, DHCP e ICMP Redirect in IPv4. Definisce 5 tipi principali di messaggi:
+
+- **Router Solicitation message**: inviato da un host in multicast a tutti i router per richiedere di inviare info di configurazione.
+- **Router Advertaisement**: Inviato dal router con destinazione multicast a tutti i nodi con lo scopo di fornire il prefisso IPv6, gateway predefinitio e flag per SLACC/DHCPv6
+- **Neighbor Solicitation**: inviato da un host/router con destinazione multicast per risolvere un indirizzo IPv6 in un indirizzo MAC.
+- **Neighbor Advertisement**: Inviato da un dispositivo target con destinazione un indirizzo Unicast con scopo di rispondere con il proprio MAC o annunciare cambiamenti.
+- **Redirect Message**: Inviato da un ruoter ad un host specifico per indicare un persorso più efficiente verso una destinazione.
+
 
 ![[78a.png]]
 ![[79a.png]]
 
 ## Dynamic IPv6 Address Allocation
+How to assign the IPv6 Addresses (global unicast $\to$ routable addresses)
 ![[80a.png]]
 
-## Dynamic Address Allocation in IPv4
+### Dynamic Address Allocation in IPv4
+In IPv4 to obtain dinamically an IPv4 address we can use the DHCPv4. Is the only way to obtain an IPv4 address in a dynamic way!
 ![[81a.png]]
 
-## Dynamic Address Allocation in IPv6
+### Dynamic Address Allocation in IPv6
+In IPv6 we have two different option to obtain an IPv6 address (GUA): 
+_Stateless_ $\to$ SLACC + DHCPv6
+_Statefull_ $\to$ DHCPv6
+
+Host join inot a new network and said "how can i get my IPV6 address global Unicast for this network?" This packet is sent to a special destination address that is a link local multicast (IPv6 router of this link).
+
+Router send a router advertaisement. In this packet we said how the IP address is supposed to be created. (3 Options: stateless, stateless with DHCPv6 and statefull) 
+
 ![[82a.png]]
 
-**Router Advertisement: 3 Options**
+==Router Advertisement: 3 Options==
 ![[83a.png]]
 
+>Default gateway will be taken directly from router advertaisement
+
+
+#### Stateless (1 option)
 ![[84a.png]]
 
-
-**Obtaining an IPv6 Address Automatically**
-![[85a.png]]
-
-**SLAAC: Stateless Address Autoconfiguration**
 ![[86a.png]]
 
-**SLAAC: Interface ID**
+Host connect into a network with its own MAC address.
+Host send a router solicitation.
+
+Router:
+`FF02::1` send this information to a multicast address (to all devices)
+`FE80::1` from the router (its link local address)
+The Prefix to use is `2002:DB8:CAFE:1::`
+Send the Router Advertaisement to all the host.
+
+>Interface ID can be randomly generated or generated using EUI-$64$
+
+>We don't use DHCPv6
+
+		**SLAAC: ==Interface ID==**
+```ad-abstract
+title: Definizione
+L'**Interface ID** (64 bit) è la parte che identifica univocamente un host all'interno di una rete IPv6. Viene generato automaticamente tramite **SLAAC** (Stateless Address Autoconfiguration)
+
+```
+
+**Metodo EUI-64**
+- Utilizza l'indirizzo MAC per generare un Interface ID
+**Privacy Extension (Randomly Generated Number)**
+- Genera un Interface ID **casuale** (non basato sul MAC) per evitare tracciamento.
+
 ![[87a.png]]
 
 **SLAAC: EUI-64 Option**
 ![[88a.png]]
 
-**Modified EUI-64 Format (Extended Unique Identifier–64)**
-![[89a.png]]
 
-**Verifying SLAAC on the PC Using EUI-64**
+##### Verifying SLAAC on the PC Using EUI-64
 ![[90a.png]]
 
-**Verifying SLAAC on the PC Using Privacy Extension**
+##### Verifying SLAAC on the PC Using Privacy Extension
 ![[91a.png]]
 
-**Ensuring Unique Unicast Addresses**
+## Ensuring Unique Unicast Addresses
+Since we are generating IPv6 address in a random manner. It can happend that we pick the same address of any one else. (very unlucky!)
+To solve we use a mechanism called Duplicate Address Detection (DAD)
+- After sending a Neighbour solicitation, if i don't receive anything i have unique address 
+- If i receive something i have a duplicate address
 ![[92a.png]]
 
-# DHCPv6 (Stateless vs Stateful)
+#### SLACC + DHCPv6 (Stateless + )
 
 ![[93a.png]]
 
-## RA Message
-![[94a.png]]
-
 ## Router as a Stateless DHCPv6 Server
 ![[95a.png]]
+Differences between SLACC configuration is about flags:
+- M Flag (Manage Flag)
+	- 0 is stateless
+	- 1 is statefull
+- O Flag (Option)
+	- Additional Options
 
+I created my own address and have the default gateway, but i need a DNS address...
+So i do DHCPv6 request (solicit packet) $\to$ Advertise from server $\to$ information request $\to$ and reply.
 ## SLAAC for Addressing & DNS for Other Information
 ![[96a.png]]
 
-## RA Message
-![[97a.png]]
+With the Flag equal to $1$ we solicit the DHCPv6 server and we obtain from DHCPv6 server the DNS address for local host (`2001:DB8:CAFE:1::99`) and also the domain of the network (`cafe.com`)
 
-## Router as a Stateful DHCPv6 Server
+#### Router as a Stateful DHCPv6 Server
 ![[98a.png]]
 
-## Stateful DHCPv6
+>Rispetto a prima, i flag sono invertiti!
+
+
 ![[99a.png]]
 
 
 # DHCPv6 Prefix Delegation Process
+```ad-abstract
+title: Definizione
+La **Prefix Delegation (PD)** è un meccanismo del DHCPv6 che permette a un router di ottenere un **prefisso IPv6 pubblico** (es. `/48` o `/56`) da un **ISP** (Internet Service Provider) per assegnare indirizzi alla sua rete locale.
+
+```
 
 ## DHCPv4 and Private Addresses for the Home
-
 ![[100a.png]]
-ISP only has to deliver a public IPv4 address for Home router interface
+Home router connect with the ISP router and receive only one public address for communicating into internet (all the host in the network don't have a public address, they will use NAT)
 
-## DHCPv4 and Private Addresses for the Home
 ![[101a.png]]
 - ISP only has to deliver a public IPv4 address for Home router interface.
-- DHCPv4 and RFC 1918 private address space is used for home network.
 - NAT is used for translation – but has its drawbacks!
 - No NAT between private-public IPv6 (always in debate)
 
@@ -284,6 +409,7 @@ Similar to any IPv6 client it may dynamically get an address using:
 What about the address for the HOME LAN?
 ## DHCPv6 Steps
 ![[103a.png]]
-
+1. Prefix Delegation Request
+2. Router is responsible for that network, send a reply giving an IPv6 prefix for home LAN.
 
 

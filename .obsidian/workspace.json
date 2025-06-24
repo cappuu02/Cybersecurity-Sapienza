@@ -4,107 +4,91 @@
     "type": "split",
     "children": [
       {
-        "id": "869005626548beb8",
+        "id": "1f9b73d53c59aeb1",
         "type": "tabs",
         "children": [
           {
-            "id": "85ccbb03cae3438e",
+            "id": "e479c47adb98a6ce",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/1) Intro and Footprinting.md",
+                "file": "2Semester/PND/1) Lesson.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "1) Intro and Footprinting"
+              "title": "1) Lesson"
             }
           },
           {
-            "id": "82a2996b0ad1a8fb",
+            "id": "46973649828eba44",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/2) Scanning.md",
+                "file": "2Semester/PND/2) Network traffic monitoring and Wire shark lab.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "2) Scanning"
+              "title": "2) Network traffic monitoring and Wire shark lab"
             }
           },
           {
-            "id": "bc09467ed14b53c6",
+            "id": "b676c005aeb0a9ed",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/3) Enumeration.md",
+                "file": "2Semester/PND/3) IPV6 Addressing.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "3) Enumeration"
+              "title": "3) IPV6 Addressing"
             }
           },
           {
-            "id": "609ae35f1cf9c6e9",
+            "id": "92428dc5c7323071",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/4.1) Hacking Windows.md",
+                "file": "2Semester/PND/4) IPv6 Protocol Overview.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "4.1) Hacking Windows"
+              "title": "4) IPv6 Protocol Overview"
             }
           },
           {
-            "id": "01100640fc2da1a5",
+            "id": "d005dd856278984d",
             "type": "leaf",
             "pinned": true,
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+                "file": "2Semester/PND/6) Network traffic regulation with firewalls.md",
                 "mode": "source",
                 "source": false
               },
               "pinned": true,
               "icon": "lucide-file",
-              "title": "6) Cybercrime and Advanced Persistent Threats"
-            }
-          },
-          {
-            "id": "12dce9de5c4bc7ef",
-            "type": "leaf",
-            "pinned": true,
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2Semester/ETH/8) Wireless Hacking.md",
-                "mode": "source",
-                "source": false
-              },
-              "pinned": true,
-              "icon": "lucide-file",
-              "title": "8) Wireless Hacking"
+              "title": "6) Network traffic regulation with firewalls"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -173,7 +157,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 279.5004348754883
+    "width": 397.5
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -262,50 +246,49 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "12dce9de5c4bc7ef",
+  "active": "3920457694d24424",
   "lastOpenFiles": [
+    "2Semester/PND/5) IPv6 Security.md",
+    "2Semester/PND/8) Link-local attacks.md",
+    "2Semester/PND/9)VPN, SSL, TLS and IPSec.md",
+    "2Semester/PND/IDS (Intrusion Detection System).md",
+    "2Semester/PND/Proxies.md",
+    "2Semester/PND/Kathara Commands (Lab Activity).md",
+    "2Semester/PND/images/Pasted image 20250617221903.png",
+    "2Semester/PND/images/Pasted image 20250620165730.png",
+    "2Semester/PND/6) Network traffic regulation with firewalls.md",
+    "2Semester/PND/7) NAT.md",
+    "2Semester/PND/images/Pasted image 20250624142556.png",
+    "2Semester/PND/images/Pasted image 20250624125832.png",
+    "2Semester/PND/5) NewIPv6Security-Slides.pdf",
+    "2Semester/PND/4) IPv6 Protocol Overview.md",
+    "2Semester/PND/images/Pasted image 20250624093648.png",
+    "2Semester/PND/3) IPV6 Addressing.md",
+    "2Semester/PND/images/Pasted image 20250620173553.png",
+    "2Semester/PND/images/Pasted image 20250620173413.png",
+    "2Semester/PND/images/Pasted image 20250620173230.png",
+    "2Semester/PND/images/Pasted image 20250620173215.png",
+    "2Semester/PND/images/Pasted image 20250620172620.png",
+    "2Semester/PND/1) Lesson.md",
+    "2Semester/PND/2) Network traffic monitoring and Wire shark lab.md",
     "README.md",
-    "2Semester/IOT/13) Cellular Networks.md",
-    "Untitled.md",
-    "2Semester/IOT/Image IOT2ESONERO/278k.png",
-    "2Semester/IOT/Image IOT2ESONERO/264k.png",
-    "2Semester/ETH/Images/73.png",
-    "2Semester/IOT/Image IOT2ESONERO/256k.png",
-    "2Semester/IOT/Image IOT2ESONERO/257k.png",
-    "2Semester/IOT/Image IOT2ESONERO/258k.png",
-    "2Semester/ETH/Images/75.png",
-    "2Semester/ETH/Images/74.png",
-    "2Semester/ETH/4.1) Hacking Windows.md",
-    "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+    "Scaletta.md",
     "2Semester/ETH/8) Wireless Hacking.md",
+    "2Semester/ETH/6) Cybercrime and Advanced Persistent Threats.md",
+    "2Semester/ETH/4.1) Hacking Windows.md",
     "2Semester/ETH/3) Enumeration.md",
     "2Semester/ETH/2) Scanning.md",
+    "2Semester/IOT/13) Cellular Networks.md",
     "2Semester/ETH/1) Intro and Footprinting.md",
     "2Semester/ETH/4.2) Rainbow Tables - Hacking Unix.md",
     "2Semester/ETH/11) Mobile Hacking.md",
     "2Semester/IOT/15) Introduction to ML and Federated Learning.md",
     "2Semester/ETH/5) Hacking Unix (part 1).md",
-    "2Semester/IOT/12) Standards and Protocols in IoT.md",
-    "2Semester/IOT/Image IOT2ESONERO/277k.png",
-    "2Semester/IOT/Image IOT2ESONERO/276k.png",
-    "2Semester/ETH/7) Remote Connectivity and VoIP Hacking.md",
-    "CheatSheet CTF Live.md",
-    "2Semester/IOT/14) Security.md",
-    "2Semester/IOT/11) Mesh Networking.md",
-    "2Semester/IOT/10) Communication Wireless MAC.md",
-    "2Semester/PND/IDS (Intrusion Detection System).md",
-    "2Semester/IOT/6) Energy harvesting -Markov Decision Processes (MDP).md",
-    "2Semester/IOT/1-2) IOT.md",
-    "2Semester/IOT/8) Electromagnetism Theory.md",
-    "2Semester/ETH/8) Network Security Secrets & Solutions.md",
-    "2Semester/ETH/Untitled.md",
-    "2Semester/ETH/8. Wireless Hacking.md",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch3.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch2.pdf",
     "2Semester/ETH/PDF/Hacking_Exposed_7_ch1.pdf",
     "2Semester/ETH/PDF",
     "2Semester/ETH/immagini",
-    "2Semester/PND/08-NewIPv6Security-Slides.pdf",
     "2Semester/ETH/Images/Rainbow Tables.pdf",
     "2Semester/ETH/Rainbow Tables.pdf",
     "2Semester/IOT/Image IOT2ESONERO",

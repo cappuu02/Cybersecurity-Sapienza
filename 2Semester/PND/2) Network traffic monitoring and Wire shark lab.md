@@ -1,66 +1,75 @@
 >PDF 04 classroom
 # Layering Concepts
-The communication between the hosts in the network is organized in tasks, each assigned to a layer 
-Each layer: 
-- offers a service (a host of facilities) to the "Users" in the layer above 
-- exploits the services offered the layer below 
-The task of a level involves the exchange of messages that follow a set of rules defined by a protocol. 
+Network communication between hosts is divided into levels, each with a specific task.
+Each layer offers a service to the layer above and uses the services of the layer below.
+The rules that govern how data is handled at a certain level are defined by a protocol.
 
 ```ad-example
-Example: 
-- Layer (N - 1) provides an insecure service in which data can overheard by unauthorized persons. 
-- Protocol of level N specifies that messages sent via (N - 1)-service are encrypted with symmetric encryption. 
-- Layer N offers a secure, confidential service.
+title: Example
+- Il **livello N-1** (es. la rete fisica o IP) **non è sicuro**: i dati possono essere intercettati.
+    
+- Il **protocollo del livello N** (es. TLS sopra TCP/IP) **cripta i messaggi** prima di trasmetterli su N-1.
+    
+- Così, anche se il livello N-1 non è sicuro, **il livello N garantisce la riservatezza**.
 
 ```
 
 >in the header i have information about packet
 # Encapsulation/Decapsulation
-- The data to be transferred from the application layer to application layer over a network. 
-- Each layer adds some protocol information and provides data to the layer below. 
-- The physical layer (bottom) sends data over the physical medium to the destination. 
-- The physical layer in the destination sends the data up the "stack". 
-- Each protocol in the destination reads the appropriate protocol information and forwards the data to the layer above.
+Nel modello a strati (layered model), quando **un'applicazione vuole inviare dati attraverso la rete**, questi dati devono attraversare tutti i livelli della pila (stack) di protocolli, sia nel mittente che nel destinatario.
+
+Encapsulation $\to$ Sender
+1. **_Application Layer_**: genera i dati da inviare (es. messaggio HTTP).
+2.  **_Transport Layer_**: incapsula i dati con un header (es. TCP/UDP).
+3. **_Network Layer_**: aggiunge l’header IP per indirizzamento.
+4. **_Data Link Layer_**: aggiunge un header (e talvolta trailer) per la consegna locale (es. MAC address).
+5. **_Physical Layer_**: converte tutto in segnali elettrici/ottici/bit su un cavo o mezzo fisico.
+
+Decapsulation $\to$ Receiver
+1. **Physical Layer**: riceve i segnali e li converte in bit.
+2. **Data Link Layer**: legge e rimuove il proprio header/trailer, passa i dati al livello superiore.
+3. **Network Layer**: legge l’header IP, decide il routing, rimuove l’header e passa i dati su.
+4. **Transport Layer**: riassembla il messaggio, controlla errori, rimuove header.
+5. **Application Layer**: riceve i dati originali.
 
 # 2 layered architectures
 - ISO/OSI model: based on a reference model with 7 layer. 
-- TCP/IP model: created by the IETF, based on a reference model with 4 layers. – The lower TCP/IP layer is often split in 2 layers. 
+- TCP/IP model: created by the IETF, based on a reference model with 4 layers.
 - Common idea: **packet switched network**
-
-# Architecture comparison
+## Architecture comparison
 ![[134a.png]]
 
 # TCP/IP Model
-- Application layer: Corresponds to the top three layers of the OSI model. 
+- **Application layer**: Corresponds to the top three layers of the OSI model. 
 	- Protocols: SMTP (sending e-mail), HTTP (web), FTP (file transfer), and others 
-- Transport layer: Equivalent to Layer 4 (Transport) of the OSI model 
+- **Transport layer**: Equivalent to Layer 4 (Transport) of the OSI model 
 	- Protocols: TCP, UDP 
-- Internet: Equivalent to layer 3 (network) of the OSI model. 
+- **Internet**: Equivalent to layer 3 (network) of the OSI model. 
 	- Protocols: IP, ICMP, IPSec 
-- Datalink: Equivalent to layer 2 (data link) of the OSI model. 
+- **Datalink**: Equivalent to layer 2 (data link) of the OSI model. 
 	- Protocols: Ethernet, WiFi, ARP, etc. 
-- Physical layer: Equivalent to Layer 1 (Physical) of the OSI model. 
+- **Physical layer**: Equivalent to Layer 1 (Physical) of the OSI model. 
 	- NOTE: Datalink + physical layers are known as Network access layer.
 
 # Client-server communication example
-![[135a.png]]
+![[135a.png|600]]
 
 # Layer ideal representation
-- **Transport**: the illusion of direct end-to-end connection between processes in arbitrary systems. 
-- **Network**: transferring data between arbitrary nodes. (routing mechanism performed thanks to network layer)
-- **Data Link**: transferring data between directly connected systems (via direct cable or shared medium).
+- **Transport**: the illusion of direct end-to-end connection between processes in arbitrary systems. (TCP/UDP)
+- **Network**: transferring data between arbitrary nodes. (routing mechanism performed thanks to network layer) (Ip, ICMP, OSPF)
+- **Data Link**: transferring data between directly connected systems/devices (via direct cable or shared medium).
 
 ![[136a.png]]
 
 # Addresses in the architectures
 Each layer has a type of address: 
-- Application layer: Internet name, egcre. `www.sapienza.it `
-- Transport layer: Port number, in the range `[0..65535]` that identifies the client or server. For example 80 for HTTP server. 
-- Internet layer: IP address that identifies a network card, for example 151.100.17.4 
-- Datalink layer: MAC address, also identifies a network cards, for example `49:bd:d2:c7:56:2a`
+- **Application layer**: Internet name, egcre. `www.sapienza.it `
+- **Transport layer**: Port number, in the range `[0..65535]` that identifies the client or server. For example 80 for HTTP server. 
+- **Internet layer**: IP address that identifies a network card, for example 151.100.17.4 
+- **Datalink layer**: MAC address, also identifies a network cards, for example `49:bd:d2:c7:56:2a`
 
 # Encapsulation in TCP/IP
-![[137a.png|500]]
+![[137a.png|600]]
 
 ## IP Packets
 ![[138a.png]]
@@ -88,23 +97,23 @@ Each layer has a type of address:
 ![[142a.png]]
 
 ## Services relying on TCP
-- FTP on port 20 and 21 
-- SSH on port 22 
-- Telnet on port 23 
-- SMTP on port 25 
-- HTTP on port 80 
-- IMAP on port 143 
-- SSL on port 443
+- **FTP** on port 20 and 21 
+- **SSH** on port 22 
+- **Telnet** on port 23 
+- **SMTP** on port 25 
+- **HTTP** on port 80 
+- **IMAP** on port 143 
+- **SSL** on port 443
 
 ## Services relying on UDP
-- DNS on port 53 
-- DHCP on ports 67 and 68 
-- TFTP on port 69 
-- SNMP on port 161 
-- RIP on port 520
+- **DNS** on port 53 
+- **DHCP** on ports 67 and 68 
+- **TFTP** on port 69 
+- **SNMP** on port 161 
+- **RIP** on port 520
 
 # DNS (Domain Name Service)
-A service to get the IP address from an human-friendly domain name, like` www.sapienza.it`. Hierarchy of entities responsible for domain names.
+Un servizio per ottenere l'indirizzo IP da un nome di dominio di facile comprensione, come `www.sapienza.it`.  Gerarchia di entità responsabili dei nomi di dominio.
 
 ![[143a.png]]
 
@@ -115,28 +124,42 @@ A service to get the IP address from an human-friendly domain name, like` www.sa
 
 # Dive Into Packets
 To capture packets flow in the network we can use different tolls like:
-- dumpcat
-- wireshark/tshark
-- tcpdump
+- **dumpcat**
+- **wireshark/tshark**
+- **tcpdump**
 
-All of them can visualize and save the captured data 
-Wireshark and tcpdump can also analyze (decode) the captured packets
+All of them can visualize and save the captured data.
+Wireshark and tcpdump can also analyze (decode) the captured packets.
 
 ## Wireshark
-Data from a network interface are “dissected” in frames, segments, and packets, understanding where they begin and end 
-Then, they are interpreted and visualized in the context of the recognized protocol Promiscuous mode (also called monitor mode) is required to capture packets not intended for the capturing host.
-Best suited for 
-- Looking for the root cause of a known problem 
-- Searching for a certain protocol or stream between devices 
-- Analyzing specific timing, protocol flags, or bits on the wire 
-- Following a conversation between two devices 
-It shouldn’t be the first tool thought of early on in discovering a problem, but solving a problem...
+Quando si analizzano i dati provenienti da una **network interface** (scheda di rete), il traffico è suddiviso in:
 
-**Logic of Wireshark**
-Frames are collected from the interface and passed to several, consecutive, “dissectors”, one for each layer (Frames pass from bottom layer to upper layer)
+- **Frames** (Data Link Layer – es. Ethernet)
+- **Packets** (Network Layer – es. IP)
+- **Segments** (Transport Layer – es. TCP o UDP)
+
+Ogni unità contiene **intestazioni (header)** e **payload**, e viene "dissezionata" (dissected) per:
+
+- Capire **dove inizia e finisce** ogni livello di protocollo.
+- **Interpretare** il contenuto secondo i protocolli coinvolti (es. HTTP, DNS, TLS).
+- **Visualizzare** questi dati in strumenti come **Wireshark**.
+
+```ad-important
+title: Promiscuous Mode
+
+Permette alla scheda di rete di **catturare tutto il traffico** che passa sul link, **anche se non è destinato al dispositivo locale**.
+```
+
+**Logic of Whireshark**
+🧲 Cattura dei frame
+    - Wireshark riceve i **frame grezzi** direttamente dall’interfaccia di rete (NIC).
+    - Se in modalità **promiscua** o **monitor**, cattura anche quelli non destinati al proprio host.
+**🔬 Processo di dissezione (packet dissection)**
+    - Ogni frame viene **analizzato strato per strato**, dal livello più basso (fisico/link) fino al livello applicativo.
+    - Ogni strato è analizzato da un **“dissezionatore”** (dissector) specifico per quel protocollo.
 
 # Alternative way to capture traffic info
-Traffic represented as “connections”. We can use ==Netflow== for statistics and monitoring or ==Zeek== that is a framework  for traffic inspection and monitoring (Scripting engine to enable immediate processing).
+Traffic represented as “connections”. We can use ==Netflow== for statistics and monitoring or ==Zeek== that is a framework for traffic inspection and monitoring.
 
 ## Netflow
 Suite of tools:
@@ -145,20 +168,21 @@ Suite of tools:
 - **nfsen**: Graphical tool to access captured netflows
 
 # Wireshark Activity
-Use Filters, They allow to only focus on requested packets or certain activity by network devices.
+Capturing is way too easy, too many packets....
+Use Filters! They allow to only focus on requested packets or certain activity by network devices.
+
 Two kinds of filters: ==display filters== and ==capture filters==:
-- Capture filters to limit the amount of network data that goes into processing and is getting saved (really limits crossed by wireshark, used at beginning)
-- Display filters to inspect only the packets you want to analyze once the data has been processed (use only to display captured packets, used at the end of capture)
+- **Capture filters** to limit the amount of network data that goes into processing and is getting saved (really limits crossed by wireshark, used at beginning)
+- **Display filters** to inspect only the packets you want to analyze once the data has been processed (use only to display captured packets, used at the end of capture)
 
 ## Capture filters – wireshark/tcpdump
-Limit the traffic captured and, optionally, analyzed.
-- Packets not captured are lost..
-Berkeley Packet Filter (BPF) syntax (man pcap-filter)
-- Protocol: ether, tcp, udp, ip, ip6, arp 
-- Direction: src, dst 
-- Type: host, port, net, portrange 
-- Other primitives: less, greater, gateway, broadcast 
-- Combinations with operators: and (&&), or (||), not (!)
+Capture filters usati prima della cattura: decidono **quali pacchetti catturare**. Quelli non corrispondenti **non vengono mai registrati** → persi per sempre.
+
+- **Protocol**: ether, tcp, udp, ip, ip6, arp 
+- **Direction**: src, dst 
+- **Type**: host, port, net, portrange 
+- **Other primitives**: less, greater, gateway, broadcast 
+- **Combinations with operators**: and (&&), or (||), not (!)
 
 Display only captured packets matching the filters 
 - Packets are not discarded or lost 
@@ -168,35 +192,45 @@ Easy but refined syntax: only packets evaluating true are displayed
 - Common logical operators 
 Filters can be built interacting with the packets
 
-**The logic of Wireshark**
-- Frames are collected from the interface and passed to several, consecutive, “dissectors”, one for each layer 
-- Frames pass from bottom layer to upper layer 
-- Protocols can be detected in two ways: 
-	- directly, if a frame (e.g. Ethernet) has the field that states which protocol it is encapsulating 
-	- indirectly, with tables of protocol/port combinations and heuristics 
-		- Usually working, troubles when protocols are used in nonstandard ports
+Come già accennato:
+1. I **frame** vengono raccolti dalla rete.
+2. Passano in sequenza attraverso vari **dissezionatori** (uno per livello).
+3. I protocolli sono **rilevati**:
+    - **Direttamente**, se il livello inferiore contiene un campo tipo (es: Ethernet indica IP).
+    - **Indirettamente**, con **port mapping** (es: TCP port 80 → HTTP) o **heuristiche** (es: pattern nel payload).
+
+🛑 Attenzione: **se un protocollo usa porte non standard**, il rilevamento potrebbe fallire.
 
 
 ## How to capture network traffic
-- Promiscuous mode
-    - Limitations?
-    - Remember the difference between hubs and switches!
-- Physical tap
-- Port mirroring on a managed switch
-- More “aggressive” approaches:
-    - ARP cache poisoning
-    - MAC flooding
-    - DHCP redirection
-    - Redirection and interception with ICMP
-- NOTICE: on virtualized environments and SDN, this can be easier or harder
 
-## Port mirroring
-- Switched Port Analyzer (SPAN) or Roving Analysis Port (RAP)
+```ad-abstract
+title: Promiscuous Mode
+La scheda di rete riceve **tutti i pacchetti** che passano sul collegamento, non solo quelli indirizzati al proprio MAC. 
 
-![[145a.png]]
+```
+
+Funziona bene con gli Hub ma non con gli switch, che inoltrano i pacchetti solo alla porta giusta.
+
+```ad-abstract
+title: Physical Tap
+Dispositivo hardware inserito fisicamente tra due host per copiare passivamente tutto il traffico.
+
+```
+
+```ad-abstract
+title: Port Mirroring
+Su switch gestiti (managed), una porta può essere configurata per **duplicare il traffico** verso un’altra porta di analisi.
+
+![[Pasted image 20250620165730.png]]
+
+```
+
+
+>NOTICE: on virtualized environments and SDN, this can be easier or harder
 
 ## Less conventional approaches for sniffing
-- ARP cache poisoning (or spoofing)
+- AR P cache poisoning (or spoofing)
     - Unsolicited ARP replies to steal IP addresses (ettercap, cain&abel)
 - MAC flooding
     - Fill the CAM of the switch to make it acting as a hub (macof)
@@ -207,7 +241,6 @@ Filters can be built interacting with the packets
     - ICMP type 5 (redirect) used to indicate a better route (ettercap)
 
 ## How to prevent packet capture
-
 - ==Dynamic address inspection==
     - Implemented in switches: Dynamic Address Resolution Inspection (DAI) validates ARP packets
     - IP-to-MAC address binding inspection, drop invalid packets
