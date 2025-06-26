@@ -1,5 +1,3 @@
-
-
 ## Network Sniffing
 Capturing packets from the network transmitted by others' nodes and reading the data content in search of sensitive information (e.g., passwords, session tokens).  
 
@@ -9,7 +7,7 @@ Capturing packets from the network transmitted by others' nodes and reading the 
 - **Requirements**: Attacker must be on the same network path or broadcasting domain.
 
 ## Realize network sniffing
-The network interface must operate in promiscuous mode for sniffing. The sniffer must be positioned along the network path or at minimum within the same network segment. In non-switched LANs (using hubs), this represents the ideal scenario since hubs duplicate every frame to all ports. In switched LAN environments, attackers must bypass switch segmentation through techniques like flooding the switch with excessive frames (MAC flooding) to overwhelm its CAM table, or executing ARP spoofing attacks to redirect traffic between ports - which enables potential Man-in-the-Middle attacks. For wireless LANs, sniffing becomes feasible either when no encryption is implemented or when weak encryption (like WEP) is used, effectively reducing the scenario to equivalent hub-based LAN conditions.
+L'interfaccia di rete deve operare in **modalità promiscua** per lo sniffing. Lo sniffer deve essere posizionato lungo il percorso di rete o almeno all'interno dello stesso segmento di rete. Nelle LAN non commutate (che utilizzano hub), questo rappresenta lo scenario ideale, poiché gli hub duplicano ogni frame su tutte le porte. Negli ambienti LAN commutate, gli aggressori devono aggirare la segmentazione dello switch attraverso tecniche come il flooding dello switch con frame eccessivi (MAC flooding) per sovraccaricarne la tabella CAM, o l'esecuzione di attacchi ARP spoofing per reindirizzare il traffico tra le porte, il che consente potenziali attacchi Man-in-the-Middle. Per le LAN wireless, lo sniffing diventa fattibile sia quando non viene implementata alcuna crittografia, sia quando viene utilizzata una crittografia debole (come WEP), riducendo di fatto lo scenario a condizioni equivalenti a quelle di una LAN basata su hub.
 
 ## Breaking the switch segmentation mechanism
 - _Bridges_ were the initial solution for reducing collisions and segmenting networks:
@@ -21,14 +19,15 @@ The network interface must operate in promiscuous mode for sniffing. The sniffer
     - Dynamically learn host locations in real-time
 
 ## MAC Address/CAM Table Review
-The Content Addressable Memory (CAM) table is a critical switching component that stores MAC addresses along with their associated physical ports and VLAN parameters. These tables have a fixed size limitation. As network traffic flows through the switch, the CAM table dynamically learns device locations by recording the source MAC address of incoming frames and associating them with the specific ingress port. When the switch encounters an unknown MAC address, it employs a flooding behavior, replicating the frame across all ports within the relevant VLAN to ensure delivery.
+## Revisione della tabella indirizzi MAC/CAM
+La tabella Content Addressable Memory (CAM) è un componente fondamentale dello switching che memorizza gli indirizzi MAC insieme alle relative porte fisiche e ai parametri VLAN. Queste tabelle hanno una limitazione di dimensione fissa. Mentre il traffico di rete attraversa lo switch, la tabella CAM apprende dinamicamente la posizione dei dispositivi registrando l'indirizzo MAC sorgente dei frame in ingresso e associandoli alla porta di ingresso specifica. Quando lo switch incontra un indirizzo MAC sconosciuto, adotta un comportamento di flooding, replicando il frame su tutte le porte della VLAN interessata per garantirne la consegna.
 
-**CAM Overview**
-This theoretical attack became practical in May 1999 with the release of the 'macof' tool, originally developed by Ian Viteck in about 100 lines of Perl code. Dug Song later ported it to C for inclusion in the 'dsniff' suite. The attack exploits the fixed size limitation of CAM tables in network switches. Most switches use hash algorithms to organize MAC addresses into the CAM table, similar to hashed lists with limited-capacity buckets. When multiple MAC addresses hash to the same value, the system uses multiple buckets (n) for storage. If all corresponding buckets become full, the switch reverts to flooding behavior for new unknown MAC addresses, effectively bypassing the segmentation benefits of switching.
+**Panoramica sulla CAM**
+Questo attacco teorico è diventato pratico nel maggio 1999 con il rilascio dello strumento "macof", originariamente sviluppato da Ian Viteck in circa 100 righe di codice Perl. Dug Song lo ha successivamente convertito in C per includerlo nella suite "`dsniff`". L'attacco sfrutta la limitazione di dimensione fissa delle tabelle CAM negli switch di rete. La maggior parte degli switch utilizza algoritmi hash per organizzare gli indirizzi MAC nella tabella CAM, in modo simile alle liste hash con bucket a capacità limitata. Quando più indirizzi MAC vengono convertiti in hash con lo stesso valore, il sistema utilizza più bucket (n) per l'archiviazione. Se tutti i bucket corrispondenti si riempiono, lo switch torna al comportamento di flooding per i nuovi indirizzi MAC sconosciuti, aggirando di fatto i vantaggi della segmentazione tipici dello switching.
 
 # ARP spoofing
-An ARP request message should be placed in a frame and broadcast to all computers on the network. Each computer receives the request and examines the IP address
-The computer mentioned in the request sends a response; all other computers process and discard the request without sending a response
+An ARP request message should be placed in a frame and broadcast to all computers on the network. Each computer receives the request and examines the IP address.
+The computer mentioned in the request sends a response; all other computers process and discard the request without sending a response.
 
 ![[2Semester/PND/images PND/151.png]]
 
@@ -42,7 +41,7 @@ It broadcasts an ARP request for IP of host B (MAC Dest = `ff:ff:ff:ff:ff:ff`)
 
 Host B sends back an ARP- reply
 The ARP reply has the MAC address of B as source and MAC address of A as destination
-(It was in the original ARP-request). Then Host a can finally send the IP packet.
+(It was in the original ARP-request). Then Host A can finally send the IP packet.
 
 ![[2Semester/PND/images PND/153.png]]
 
@@ -51,11 +50,10 @@ Dynamic table that holds the IP-MAC pairings
 - It is accessed before sending any Ethernet frame
 - It starts empty and is filled as the MAC addresses are collected
 - Unused MAC addresses are removed after a timeout (address ageing) in the order of minutes
-- According to RFC 826 (ARP), when receiving an ARP reply, the
 - IP-MAC pairing is updated (age and pairing...)
 
 ## Gratuitous ARP responses
-Gratuitous ARP is used by hosts to “announce” their IP address to the local network and avoid duplicate IP addresses on the network. Routers and other network hardware may use cache information gained from gratuitous ARP responses. Gratuitous ARP is a broadcast packet (like an ARP-request).
+`Gratuitous ARP` is used by hosts to “announce” their IP address to the local network and avoid duplicate IP addresses on the network. Routers and other network hardware may use cache information gained from gratuitous ARP responses. Gratuitous ARP is a broadcast packet (like an ARP-request).
 
 ![[154.png]]
 

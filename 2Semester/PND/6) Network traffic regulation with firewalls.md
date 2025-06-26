@@ -60,7 +60,7 @@ Un ==screening router== è un router configurato con **Access Control Lists (ACL
 
 Ampiamente utilizzate in switch, router e firewall. Di solito distinguono tra traffico in entrata e in uscita, per interfaccia/porta.
 
-==Stateless==: ogni pacchetto viene trattato in modo indipendente, senza alcuna conoscenza di ciò che lo ha preceduto
+==Stateless==: ogni pacchetto viene trattato in modo indipendente, senza alcuna conoscenza di ciò che lo ha preceduto.
 
 ## Dual-homed Host
 ```ad-abstract
@@ -91,7 +91,7 @@ Un **Bastion Host** è un computer **fortemente protetto (hardened)** progettato
 **Hardening** (messa in sicurezza)
 - Disattivazione servizi inutili
 - Controllo accessi rinforzati
-- RImozione di account e permessi superflui
+- Rimozione di account e permessi superflui
 - Configurazioni restrittive per componenti sensibili
 
 ```ad-question
@@ -192,7 +192,6 @@ General mechanism:
 
 
 ## How to check the direction of TCP?
-
 TCP three-way handshake e come i firewall determinano la direzione di una connessione analizzando i flag TCP e i numeri di sequenza.
 
 ![[26a.png|600]]
@@ -258,7 +257,7 @@ Packet filter presentano diversi limiti:
 - controllano pochi parametri (regole possono essere troppo generali e/o specifiche)
 - Non analizzano il contenuto (nei payload TCP)
 - Log limitati
-- Nessun suipporto per l-autenticazione
+- Nessun supporto per l'autenticazione
 - Vulnerabili ad attacchi che sfruttano bug nei protocolli TCP/IP
 
 ```
@@ -364,19 +363,11 @@ Il diagramma mostra come un firewall stateful traccia il ciclo di vita completo 
 ![[53a.png|400]]
 This mechanism work well with FTP or HTTP that use TCP.
 
-With TCP connection the statefulness is quite straightforward.
-What about stateless protocol? UDP, ICMP...
-They don't have a complex mechanism like this. 
-What can we do? UDP is connectionless protocol like ICMP. 
+Con le connessioni TCP la gestione stateful è diretta grazie agli stati di connessione ben definiti. Ma come gestiamo protocolli stateless come UDP e ICMP che non hanno meccanismi complessi di stato? Essendo UDP un protocollo connectionless come ICMP, introduciamo il concetto di tempo per simulare la statefulness. 
 
-We introduce the idea of a time.
-We introduce statefulness or stateless protocol considering also a connection 
-receive a packet come from internal network to outside. We create a connection only if we see a packet that has be sent from the inside. we accept answers from the outside only if 
+Il firewall crea una "pseudo-connessione" solo quando rileva un pacchetto proveniente dalla rete interna verso l'esterno, memorizzando temporaneamente le informazioni di source/destination. Le risposte dall'esterno vengono accettate solo se corrispondono a una entry esistente nella connection table e arrivano entro il timeout prestabilito. Questo meccanismo, chiamato ==Dynamic Packet Filtering==, permette comunicazioni bidirezionali sicure anche per protocolli intrinsecamente stateless, bloccando traffico non sollecitato dall'esterno mentre mantiene la flessibilità necessaria per applicazioni come DNS, DHCP e altri servizi UDP.
 
 ![[54a.png|400]]
-
-
-
 
 # Other types of firewalls
 
@@ -388,16 +379,11 @@ Can support user-to-gateway authentication
 - Log into the proxy server with username and password
 - Example: Microsoft ISA, SQUID
 
+>Sta nel livello applicativo
+
 ![[55a.png]]
 
-## Host based firewalls
-A firewall on each individual host to protect that one machine. Selectively enable specific services and ports that will be used to send and receive traffic
-- Ex: it's unlikely that an employee would need remote SSH access to her laptop
-A host-based firewall plays a big part in:
-- reducing what is accessible to an outside attacker
-- protecting the other elements of the IT system if one of the component (ex, a process) is compromised
-
-## Application-level firewall pro and cons
+==Vantages and Disadvantages==
 -  + Logging capacity
 -  + Intelligent filtering
 -  + User-level authentication
@@ -405,6 +391,13 @@ A host-based firewall plays a big part in:
  - - Can introduce lag
 -  - Application-specific
 -  - Not always transparent
+
+## Host based firewalls
+A firewall on each individual host to protect that one machine. Selectively enable specific services and ports that will be used to send and receive traffic
+- Ex: it's unlikely that an employee would need remote SSH access to her laptop
+A host-based firewall plays a big part in:
+- reducing what is accessible to an outside attacker
+- protecting the other elements of the IT system if one of the component (ex, a process) is compromised
 
 ## Circuit-level gateways (or generic proxy)
 Also known as a TCP relay
@@ -448,16 +441,3 @@ Next Generation firewalls try to include additional features. Not only traffic f
 - VPN gateway
 - Deep Packet Inspection
 -  Traffic shaping
-
-```ad-info
-title: Summary
-Traffic regulation: routers and firewall
-- Decide the packets that can pass through the node
-Firewall architectures: where they go in the network?
-- Network segmentation and DMZ
-Types of firewalls:
-- Host firewall, stateless, stateful, application-gateway, circuit-gateway
-Stateless firewall weaknesses
-- No state, IP fragmentation
-
-```

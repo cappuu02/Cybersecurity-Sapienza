@@ -75,8 +75,6 @@ If there are multiple possible reductions, RFC 5952 states that the longest stri
 
 ```
 
-
-
 # IPv6 Global Unicast Address
 
 ![[62a.png]]
@@ -106,7 +104,7 @@ I GUA cominciano con i **primi 3 bit `001`** e tutti gli indirizzi IPv6 da `2000
 
 ![[65a.png]]
  
->IANA ha diviso lo spazio IPv6 in $8$8 parti da $\frac{1}{8}$, per facilitare la gestione e l'assegnazione.
+>IANA ha diviso lo spazio IPv6 in $8$ parti da $\frac{1}{8}$, per facilitare la gestione e l'assegnazione.
 
 Salvo circostanze molto specifiche, tutti gli utenti finali avranno un indirizzo unicast globale
 
@@ -160,7 +158,7 @@ R1(config-if)#no shutdown
 R1(config-if)#exit
 ```
 
-# Link-local Unicast
+# IPv6 Link-local Unicast
 
 ## Link-Local Unicast Address
 ```ad-abstract
@@ -177,7 +175,7 @@ Features:
 
 
 - ==IPv6 Source== – Deve sempre essere un **indirizzo unicast**, quindi anche un link-local va bene.
-- ==IPv6 Destination== – Unicast, multicast, or anycast.
+- ==IPv6 Destination== – Unicast, multicast, or a.
 - Unicast, including a link-local address
 
 ![[70a.png]]
@@ -187,12 +185,12 @@ Features:
  Gli indirizzi link-local iniziano sempre con `FE80::/10`, cioè i primi $10$ bit sono `1111 1110 10`
  
  Modalità di generazione:
-- Automatically :
+- **Automatically** :
 	- FE80 (usually) – First 10 bits
 	- Interface ID
 		- EUI-64 (Deriva dall'indirizzo MAC)
 		- Random 64 bits (many host operating systems)
-- Static (manual) configuration – Pratica comune soprattutto sui router per configurare ad es. collegamenti IPv6 statici o tunnel
+- **Static (manual) configuration** – Pratica comune soprattutto sui router per configurare ad es. collegamenti IPv6 statici o tunnel
 
 ### Modified EUI-64 Format (Extended Unique Identifier–64)
 ![[72a.png]]
@@ -229,7 +227,7 @@ Componenti Principali
 		- lunghezza del prefisso
 		- Se usare SLAAC
 3. **Uso degli indirizzi link-local**
-	-  Sono usati come indirizzi sorgente prima che un dispositivo ottenga un indirizzo globale
+	- Sono usati come indirizzi sorgente prima che un dispositivo ottenga un indirizzo globale
 	- I router usano il loro indirizzo link-local come next-hop nelle tabelle di routing
 
 # SLAAC: stateless Address Autoconfiguration
@@ -257,7 +255,7 @@ Il dispositivo crea il suo indirizzo IPv6 combinando:
 
 ## Address Resolution: IPv4 and IPv6
 ![[77a.png]]
-**IPv4**: Non utilizzo l'IP ma l'indirizzo ARP. Inoltre la mia richiesta è inviata in broadcast dato che non conosco l'indirizzo MAC. Prima controllo nella ARP cache ma non è presente
+**IPv4**: Non utilizzo l'IP ma l'indirizzo ARP. Inoltre la mia richiesta è inviata in broadcast dato che non conosco l'indirizzo MAC. Prima controllo nella ARP cache ma non è presente.
 
 **IPv6** 
 Prima controllo nel Neighbor Cache ma non è presente. È più efficiente:
@@ -293,7 +291,7 @@ In IPv6 we have two different option to obtain an IPv6 address (GUA):
 _Stateless_ $\to$ SLACC + DHCPv6
 _Statefull_ $\to$ DHCPv6
 
-Host join inot a new network and said "how can i get my IPV6 address global Unicast for this network?" This packet is sent to a special destination address that is a link local multicast (IPv6 router of this link).
+Host join into a new network and said "how can i get my IPV6 address global Unicast for this network?" This packet is sent to a special destination address that is a link local multicast (IPv6 router of this link).
 
 Router send a router advertaisement. In this packet we said how the IP address is supposed to be created. (3 Options: stateless, stateless with DHCPv6 and statefull) 
 
@@ -316,14 +314,14 @@ Host send a router solicitation.
 Router:
 `FF02::1` send this information to a multicast address (to all devices)
 `FE80::1` from the router (its link local address)
-The Prefix to use is `2002:DB8:CAFE:1::`
+The Prefix to use is `2001:DB8:CAFE:1::`
 Send the Router Advertaisement to all the host.
 
 >Interface ID can be randomly generated or generated using EUI-$64$
 
 >We don't use DHCPv6
 
-		**SLAAC: ==Interface ID==**
+**SLAAC: ==Interface ID==**
 ```ad-abstract
 title: Definizione
 L'**Interface ID** (64 bit) è la parte che identifica univocamente un host all'interno di una rete IPv6. Viene generato automaticamente tramite **SLAAC** (Stateless Address Autoconfiguration)
@@ -348,14 +346,13 @@ L'**Interface ID** (64 bit) è la parte che identifica univocamente un host all'
 ![[91a.png]]
 
 ## Ensuring Unique Unicast Addresses
-Since we are generating IPv6 address in a random manner. It can happend that we pick the same address of any one else. (very unlucky!)
+Since we are generating IPv6 address in a random manner, It can happend that we pick the same address of any one else. (very unlucky!)
 To solve we use a mechanism called Duplicate Address Detection (DAD)
 - After sending a Neighbour solicitation, if i don't receive anything i have unique address 
 - If i receive something i have a duplicate address
 ![[92a.png]]
 
 #### SLACC + DHCPv6 (Stateless + )
-
 ![[93a.png]]
 
 ## Router as a Stateless DHCPv6 Server

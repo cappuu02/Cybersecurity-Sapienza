@@ -23,52 +23,67 @@ Typically based on the use of encryption, but several possible choices for:
 - Access Control
 - Traffic Analysis Protection
 
-## Traffic Analysis
-![[2Semester/PND/images PND/158.png]]
-
-
 ## Usability goals
-Transparency (something that does not impact on the software that we use)
+**_Transparency_** (something that does not impact on the software that we use)
 - VPN should be invisible to users, software, hardware.
-Flexibility ()
+**_Flexibility_** 
 -  VPN can be used between users, applications, hosts, sites.
-Simplicity
+**_Simplicity_**
 - VPN can be actually used
 
+From the point of view of the VPN we introduce the concept of protection between different elements of the internets.
+
+
 ## Site-to-site security
+Internet = insecure network
+We want to create another net that can protect our traffic.
+>Emulate net on top of the internet to emulate a connection between two hosts.
+
 ![[2Semester/PND/images PND/159.png]]
 
-we want to emulate an internet zone that filter our traffic from a site to another site.
 
 ## Host-to-site security
 ![[2Semester/PND/images PND/160.png]]
 
+>ACME configuration
 ## Host-to-host security
 ![[2Semester/PND/images PND/161.png]]
 
 >Protezione tra due siti oppure tra host e sito oppure tra due host!
 
 ## Physical layer
+Encryption at the physical layer (Before send data we perform an enc in the physical layer)
+Remember: point to point connection on phy layer!
 ![[2Semester/PND/images PND/162.png]]
 
 ## Datalink layer: protect a single link
+In the data link layer we are protected a single layer like for example the ethernet.
 ![[2Semester/PND/images PND/163.png]]
 
-- Confidentiality: on link (”virtual cable”)
+If we ENC at data link layer we are protecting everything that is inside the ethernet (IP, IP header, TCP header and application data)
+
+- Confidentiality: on link (”virtualcable”)
 - Integrity: on link
 - Authentication: none
 - Replay protection: none
 - Traffic analysis protection: on link
 - Access control: physical access
 - Transparency: full transparency
-- Flexibility: can be hard to add new sites
+- Flexibility: can be hard to add new sites 
 - Simplicity: excellent!
 
+>Protezione a livello di layer $\to$ appena usciamo dal layer la protezione non è più presente
 ## Network layer: protect end-to-end between systems
 ![[2Semester/PND/images PND/164.png]]
-- Confidentiality: between hosts/sites
+We are protected all inside the network layer. Protection that we gave with ipsec.
+This is the best solution to adopt.
+
+- Confidentiality: between hosts/sites 
 - Integrity: between hosts/sites
 - Authentication: for host or site
+
+>Packets that we are sending should be actually dec  only between src-dest. We need a way to establish many keys every single pairs of hosts in the internet $\to$ most challenges thing that we have in VPN (for confidentiality, integrity and authentication)
+
 - Replay protection: between hosts/sites
 - Traffic analysis protection: host/site information exposed
 - Access control: to host/site
@@ -76,11 +91,9 @@ we want to emulate an internet zone that filter our traffic from a site to anoth
 - Flexibility: may need HW or SW modifications
 -  Simplicity: good for site-to-site, not good for host-to-site
 
->most challenges things that we have in VPN
-
 ## Transport layer: Protection end-to-end between processes
+Here network layer is not anymore protected $\to$ here we protect the transport layer
 ![[2Semester/PND/images PND/165.png]]
-
 
 - Confidentiality: between apps/hosts/sites
 - Integrity: between apps/hosts/sites
@@ -93,6 +106,7 @@ we want to emulate an internet zone that filter our traffic from a site to anoth
 - Simplicity: good for site-to-site, not good for host-to-site
 
 ## Application layer: Security for a single application
+If we enc here it is not a real VPN.
 ![[2Semester/PND/images PND/166.png]]
 
 - Confidentiality: between users/apps
@@ -107,42 +121,41 @@ we want to emulate an internet zone that filter our traffic from a site to anoth
 
 ## VPN: Then?
 It looks best to introduce security in the
-- Transport layer
--  Network layer
+- **_Transport layer_**
+-  **_Network layer_**
 These are the most popular choices for VPNs. Other options:
 - Secure Application layer protocols: only protect a single application, but are often used for specialized purposes, e.g. S/MIME or PGP for secure e-mail
 - Secure Data Link layer protocols: are mostly used with PPP or other modem- based communication. e.g. PPTP, L2TP, LTF
 
 ## Tunneling
-Operation of a network connection on top of another network connection.
-It allows two hosts or sites to communicate through another network that they do not want to use directly.
+```ad-abstract
+title: Definition
 
->Concetto molto ad alto livello.
+Operation of a network connection on top of another network connection.
+It allows two hosts or sites to communicate through another network, thanks to a "tunnel" that they do not want to use directly. It's a method of passing a network connection inside another network connection.
+```
+
+>Tunnel has two different endpoints
+
+>Concetto che permette al nostro meccanismo di funzionare $\to$ molto ad alto livello.
 
 ![[2Semester/PND/images PND/167.png]]
 
 ### Site-to-site tunneling
 Enables a PDU to be transported from one site to another without its contents being processed by hosts on the route.
-==Idea==: Encapsulate the whole PDU in another PDU sent out on the network connecting the two sites.
+
+==Idea==: **Encapsulate** the whole PDU (protocol data unit) in another PDU sent out on the network connecting the two sites.
 -  Encapsulation takes place in edge router on src. site.
 -  Decapsulation takes place in edge router on dst. site.
 
 >Note that the host-to-host communication does not need to use IP
 
 ![[2Semester/PND/images PND/168.png]]
-
->Procedimento MPLS. 
-
 ### Secure tunneling
+If we use an encryption protocol, we can protect our content. (secure tunnel = VPN)
 ![[2Semester/PND/images PND/169.png]]
 
-- ==Enables a PDU to be transported from one site to another without its contents being seen or changed by hosts on the route.==
--  Idea: Encrypt the PDU, and then encapsulate it in another PDU sent out on the network connecting the two sites.
-	- Encryption can take place in edge router on src. site. 
-	- Decryption can take place in edge router on dst. site.
-
->Note: dst. address in IP header is for dst. edge router
-
+>In the visible green IP hdr. we don't see the real source and destination (We protect the real src/dst)
 
 Tunneling offers the basic method for providing a VPN.
 - Where in the network architecture to initiate and terminate the tunnel:
@@ -156,8 +169,8 @@ Tunneling offers the basic method for providing a VPN.
  - Other possibilities (see previous discussion)
 - And of course: Is tunneling the only possible technique?
 
-## Two main VPN modes
 
+## Two main VPN modes
 ==Split tunneling:== Some traffic goes through tunnel, other traffic uses remote user’s default gateway.
 
 ![[2Semester/PND/images PND/170.png]]
@@ -168,29 +181,33 @@ Tunneling offers the basic method for providing a VPN.
 ![[2Semester/PND/images PND/171.png]]
 
 # VPN device placement
-
+Where we place the two different endpoints for creating vpn tunnel? 
+The choice of the starting and finishing point of the tunnel is fundamental.
 ## SSL VPN Device placement
-Device placement is a challenge because it affects:
+La posizione del dispositivo VPN ha un impatto diretto su:
 -  Security
 -  Functionality
 - Performance
+
 Main options for placement:
--  VPN functionality in firewall
+- VPN functionality in firewall
 - VPN device in internal network
--  Single-interface VPN device in DMZ
+- Single-interface VPN device in DMZ
 - Dual-interface VPN device in DMZ
-Remember: Cryptographic protection only extends from VPN client systems to the SSL VPN device.
+
+>Remember: Cryptographic protection only extends from VPN client systems to the SSL VPN device.
 
 ## Firewall with an SSL VPN
-![[2Semester/PND/images PND/172.png]]
+![[2Semester/PND/images PND/172.png|500]]
 
 ## VPN-enabled firewall
-The VPN device communicates directly with internal hosts
-- Advantages
+In questa configurazione, il **firewall svolge anche la funzione di dispositivo VPN**: il tunnel VPN finisce direttamente sul firewall, che poi comunica con la rete interna.
+
+- **_Advantages_**
 	- No holes in FW between external VPN device and internal network.
 	- Traffic between device and internal network must go through FW.
 	- Simple network administration since only one “box” to administer.
-- Disadvantages
+- **_Disadvantages_**
 	- Limited to VPN functionality offered by FW vendor.
 	- FW directly accessible to external users via port 443.
 	- Adding VPN functionality to FW can introduce vulnerabilities.
@@ -198,14 +215,15 @@ The VPN device communicates directly with internal hosts
 > Note: TCP port 443 (standard) must be open on external FW interface, so clients can initiate connections
 
 ## SSL VPN in internal network
-![[2Semester/PND/images PND/173.png]]
 
-## VPN internal
-Advantages
+We make traffic come from internet to reach vpn gateway
+![[2Semester/PND/images PND/173.png|500]]
+### VPN internal
+**_Advantages_**
 -  Only single rule for single address to be added to FW.
 - No “holes” needed in FW between VPN device and internal network.
 - VPN traffic is behind FW, so protected from attacks by machines in DMZ.
-Disadvantages
+**_Disadvantages_**
 -  VPN traffic passes through FW on tunnel, so it is not analyzed.
 -  Unsolicited traffic can be sent into internal network from outside to internal VPN device.
 -  Internal network is compromised if VPN device is compromised.
@@ -215,17 +233,18 @@ Disadvantages
 ## SSL VPN In DMZ
 ![[2Semester/PND/images PND/174.png]]
 
-## DMZ with VPN
-Advantages
+### DMZ with VPN
+**_Advantages_**
 - Internal network protected against compromised VPN device.
 - Traffic between device and internal network must go through FW.
 - IDS in DMZ can analyze traffic destined for internal network.
-Disadvantages
+**_Disadvantages_**
 - Numerous ports open in FW between device and internal hosts.
 - Decrypted traffic from device to internal network must be sent through DMZ.
 - FW bypassed when user traffic is destined for hosts in DMZ.
 
 > Note: TCP port 443 (standard) opened on FW for the address of the device
+
 
 ## Dual interfaces VPN device in DMZ
 ![[2Semester/PND/images PND/175.png]]
@@ -254,7 +273,7 @@ Two implementation choices:
 SSL 3.0 has become TLS standard (RFC 2246) with small changes
 - Applies security in the Transport layer.
 - Originally designed (by Netscape) to offer security for client-server sessions.
-- If implemented on boundary routers (or proxies), can provide a tunnel between two sites – typically LANs.
+- If implemented on boundary routers (or proxies), can provide a tunnel between two sites (typically LANs)
 - Placed on top of TCP, so no need to change TCP/IP stack or OS.
 -  Provides secure channel (byte stream)
 	- Any TCP-based protocol
@@ -263,19 +282,37 @@ SSL 3.0 has become TLS standard (RFC 2246) with small changes
 - Optional server authentication with public key certificates
 	- Common on commercial sites
 
+
+```ad-success
+title: Important
+==TLS (Transport Layer Security)== è un protocollo che **aggiunge crittografia e autenticazione** sopra TCP.
+    
+Quando diciamo che "TLS fornisce un canale sicuro come TCP", intendiamo che:
+- **Mantiene l'affidabilità del trasporto**, come fa TCP (ordinamento, ritrasmissioni, controllo di flusso),
+        
+- **Ma in più cifra e autentica** i dati trasmessi, proteggendoli da intercettazioni e manomissioni.
+
+```
+
+
 ## How HTTPS (HTTP on top of TLS) works
+Before HTTP connection a TLS handshake has been done.
+Digital certificate is in cleartext and contains:
+- Public Key
+- digital signatur of CA on top of certificate (validate the correctness PK)
+Use a key to to do symmetric cryptography.
+
 ![[2Semester/PND/images PND/176.png]]
 
 
 ## SSL protocol Architecture
-Adds extra layer between T- and A-layers, and extra elements to A-layer
+SSL si inserisce **tra il livello di trasporto (TCP)** e il livello applicativo, aggiungendo **sicurezza**.
 
-Record Protocol: Protocol offering basic encryption and integrity services to applications
-
-Application Protocols: control operation of the record protocol
-- Handshake: Used to authenticate server (and optionally client) and to agree on encryption keys and algorithms.
-- Change cipher spec: Selects agreed keys and encryption algorithm until further notice.
-- Alert: Transfers information about failures.
+**_Record Protocol_**: Protocol offering basic _encryption_ and _integrity_ services to applications
+**_Application Protocols_**: Controlla e gestisce la sicurezza con tre sottoprotocolli
+- _Handshake_: Used to authenticate server (and optionally client) and to agree on encryption keys and algorithms.
+- _Change cipher spec_: Selects agreed keys and encryption algorithm until further notice.
+- _Alert_: Transfers information about failures.
 
 ![[2Semester/PND/images PND/177.png]]
 
@@ -283,7 +320,11 @@ Application Protocols: control operation of the record protocol
 ![[2Semester/PND/images PND/178.png]]
 
 ## Handshake protocol exchange
-Shaded transfers are optional or situation-dependent messages that are not always sent.
+```ad-abstract
+title: Definition Handshake
+Il **TLS Handshake** è il processo di **negoziazione e autenticazione** che avvia una connessione sicura tra client e server.
+
+```
 
 ![[2Semester/PND/images PND/179.png]]
 
@@ -294,47 +335,125 @@ Shaded transfers are optional or situation-dependent messages that are not alway
 4) Finish: Shared secret key is derived from pre-secrets exch. in 2, 3. Change Cipher Spec. protocol is activated. Summaries of progress of Handshake Protocol are exchanged and checked by both parties.
 
 ## Can we trust a public key?
+MITM can substitute real key!
 ![[2Semester/PND/images PND/180.png]]
+Il client chiede al server la sua chiave pubblica per cifrare i dati, ma un attaccante **Man-in-the-Middle (MITM)** intercetta la richiesta e **sostituisce la vera chiave con la propria**. Così, il client invia i dati cifrati all’attaccante, che li può leggere, ricifrare con la vera chiave del server e inoltrare. La comunicazione avviene, ma **l’attaccante può spiare o manipolare i dati**.
+
+```ad-warning
+title: Important
+Anche se la **cifratura asimmetrica** è usata, **non basta conoscere una chiave pubblica**: bisogna **fidarsi che quella chiave appartenga davvero al soggetto corretto**.
+
+```
+
+```ad-success
+title: Solution
+Utilizzare i Certificati Digitali.
+
+```
 
 ## Digital certificates
-- A document that certifies the relation between a public key and its owner
- - How? With a digital signature…
-- But, to verify a digital signature, we need another public key!
-- Then??
-- We need a public key that we trust
-- Trusted public keys are stored in certificates of Certification Autorities (CA)
+```ad-abstract
+title: Definition
+Un ==certificato digitale== è un documento elettronico che lega una chiave pubblica alla sua identità (cioè al proprietario), in modo affidabile.
+
+```
+
+How it works?
+1. Un ente chiamato **Certification Authority (CA)** verifica l'identità di qualcuno (es. un sito web).
+2. Dopo la verifica, la CA **firma digitalmente un certificato**, che contiene:
+	- Il **nome del proprietario**
+	- La **chiave pubblica**
+	- La **firma digitale della CA**
+
+Quando ricevi un certificato (es. da un sito HTTPS), il tuo browser:
+- **Verifica la firma** usando la **chiave pubblica della CA**, già presente tra le chiavi fidate del sistema.
+- Se la firma è valida, **può fidarsi** che quella chiave pubblica appartiene davvero al sito che stai visitando.
+
+```ad-info
+title: “Come posso fidarmi di una chiave pubblica?” 
+ 
+👉 Se è **certificata da una CA fidata**, puoi fidarti!
+
+```
 
 ## Public key certificate use (IMPORTANT FOR EXAM)
 ![[2Semester/PND/images PND/181.png]]
 
+### Fase 1: Creazione del certificato digitale firmato
+- Si parte da un **certificato non firmato**, che contiene:
+    - L’**ID dell’utente** (es. “Bob”)
+        - La sua **chiave pubblica**
+        - Informazioni sulla **CA** che lo certifica
+- **Hash (H)**
+    - Si calcola un **digest** del contenuto del certificato con una **funzione hash** (es. SHA-256).
+    - Questo hash è **univoco** per quel contenuto.
+- **Firma digitale (E)**
+    - L’hash viene **crittografato con la chiave privata della CA**.
+    - Questo crea la **firma digitale**.
+- **Risultato finale: certificato firmato**
+    - Il certificato + la firma digitale = **certificato digitale firmato**
+    - Ora possiamo distribuirlo in modo che altri possano **verificare che sia autentico**.
+
+### Fase 2: Verifica del certificato da parte del destinatario
+- **Ricezione del certificato firmato**
+    - Il destinatario riceve il certificato firmato, che contiene:
+        - I dati di Bob (chiave pubblica, ID…)
+        - La firma digitale
+- **Ricalcolo dell’hash (H)**
+    - Il destinatario calcola **di nuovo l’hash** dei dati del certificato ricevuto (escludendo la firma).
+- **Verifica della firma (D)**
+    - Prende la firma e la **decifra con la chiave pubblica della CA**.
+    - Il risultato è l’hash originale creato dalla CA.
+- **Confronto**
+    - Se l’hash decifrato (quello originale) **coincide** con l’hash ricalcolato dal destinatario:  
+        ✅ Il certificato è **autentico**  
+        ✅ La chiave pubblica appartiene davvero a Bob
+
 ## Certification Authority (CA)
-An organization that issues digital certificates
+Organizzazione fidata che ha il compito di collegare in modo affidabile un'entita ad una chiave pubblica rilasciando un certificato digitale firmato.
+
+
 The CA performs many tasks:
--  Receive application for keys.
--  Verify applicant’s identity, conduct due diligence appropriate to the trust level, and issue key pairs.
-- Store public keys and protect them from unauthorized modification.
--  Keep a register of valid keys.
-- Revoke and delete keys that are invalid or expired. Maintain a certificate revocation list (CRL).
-Certificates of CAs are stored in any computer that want to use internet securely
+- **Riceve richieste** di certificati digitali da utenti, aziende o siti.
+- **Verifica l’identità** del richiedente
+- **Genera o riceve le chiavi**:
+	- In alcuni casi genera le chiavi pubblica/privata per l’utente.
+    - In altri, l’utente fornisce la propria chiave pubblica.
+- **Firma il certificato**: la CA calcola un hash del certificato e lo **firma con la sua chiave privata**.
+- **Salva e protegge** i certificati emessi, e li rende disponibili.
+- **Revoca certificati** compromessi o scaduti, aggiornando la **CRL (Certificate Revocation List)**.
+
+```ad-info
+I certificati delle CA **radice (root)** più importanti sono **preinstallati** su ogni sistema operativo o browser moderno (Windows, macOS, Firefox, Chrome…).  
+Quindi il nostro computer **si fida automaticamente** di ciò che è firmato da queste CA.
+
+```
+
 
 ## PKI: Public Key Infrastructure
-Certification authorities are organized in a hierarchy, called Public Key Infrastructure
-To verify a certificate, one needs to verify all the signatures up to the top of the hierarchy. X.509 is the standard.
+La **PKI (Public Key Infrastructure)** è un **insieme di tecnologie, ruoli, politiche e procedure** usate per:
+- **Gestire** (creare, distribuire, conservare)
+- **Verificare**
+- **Revocare** i **certificati digitali** che associano una chiave pubblica a un’identità.
+
+Gerarchia:
+1. **_Root CA_**: al vertice, il suo certificato è autofirmato.
+2. **_Intermediate CA_**: riceve un certificato firmato dalla root. Firma i certificati per utenti o altre CA
+3. **_End-Entity_**: È il certificato dell'utente o server (es: un sito web HTTPS).
 
 ![[2Semester/PND/images PND/182.png]]
 
-## Certificate Authority (CA)
-![[2Semester/PND/images PND/183.png]]
+
 
 ## X.509
-Specified in RFC 5280
-- The most widely accepted format for public-key certificates
-- Certificates are used in most network security applications, including:
-	- IP security (IPSEC)
-	- Secure sockets layer (SSL)
-	- Secure electronic transactions (SET)
-	- S/MIME
-	- eBusiness applications
+X.509, definito nel RFC 5280, è il formato più diffuso per i certificati a chiave pubblica.
+
+I certificati X.509 vengono usati per garantire la sicurezza in molte applicazioni di rete, come:
+- IP security (IPSEC)
+- Secure sockets layer (SSL)
+- Secure electronic transactions (SET)
+- S/MIME
+- eBusiness applications
 
 ## X.509 certificate
 ![[2Semester/PND/images PND/184.png]]
@@ -347,6 +466,9 @@ Specified in RFC 5280
 - Encryption algorithm
 - Mode of block encryption (if block cipher used)
 - Cryptographic checksum algorithm
+
+```ad-example
+
 Example: TLS_RSA_WITH_AES_128_CBC_SHA
 -  TLS (Latest version of) TLS→
 - RSA RSA key exchange→
@@ -354,8 +476,10 @@ Example: TLS_RSA_WITH_AES_128_CBC_SHA
 - AES_128 128-bit AES encryption→
 - CBC Cipher Block Chaining→
 - SHA Use HMAC-SHA digest
+```
 
-## Key exchange and authentication
+
+## Key exchange and authentication 
 Possible ways of agreeing on secrets in TLS are:
 - RSA: RSA key exch. (secret encrypted with recipient’s publ. key)
 - DHE RSA: Ephemeral Diffie-Hellman with RSA signatures
@@ -365,65 +489,120 @@ Possible ways of agreeing on secrets in TLS are:
 - DH anon: Anonymous Diffie-Hellman (no authentication)
 - NULL No key exch.
 
-Variant: If followed by “EXPORT_”, weak encryption is used. (This option only available prior to TLSv1.1)
+```ad-success
+title: Important
+“Key exchange” only establishes a pre-secret! From this, a master secret is derived by a pseudo  random function (PRF). Shared secret encryption key is derived by expansion of master secret with another PRF. (In TLS several keys are derived for different purposes.)
+```
 
-Note: “Key exchange” only establishes a pre-secret! From this, a master secret is derived by a pseudo  random function (PRF). Shared secret encryption key is derived by expansion of master secret with another PRF. (In TLS several keys are derived for different purposes.)
 
 ## SSL Master Secret
 ![[2Semester/PND/images PND/185.png]]
+
+How the key is determine? 
 
 ## TLS Master Secret
 ![[2Semester/PND/images PND/186.png]]
 
 ## SSL/TLS Heartbeat
-It is an extension (RFC 6520) that allows to keep an established session alive. That is, as soon as the data exchange between two endpoints terminates, the session will also terminate
-To avoid the re-negotiation of the security parameters for establishing a secure session, we can keep using the same parameters even if there is no exchange of data.
 
-> It introduces two messages: HeartbeatRequest and HeartbeatResponse.
+### Scambio Heartbeat
+Un endpoint invia un HeartbeatRequest e attiva un timer di ritrasmissione; durante questo intervallo non invia altre richieste. Se non arriva una HeartbeatResponse entro il tempo previsto, la sessione si considera terminata.
 
-## Heartbeat exchange
-When one endpoint sends a HeartbeatRequest message to the other endpoints, the former also starts what is known as the retransmit timer.
-During the time interval of the retransmit timer, the sending endpoint will not send another HeartbeatRequest message. An SSL/TLS session is considered to have terminated in the absence of a HeartbeatResponse packet within a time interval.
+### Payload Heartbeat
+Per evitare attacchi di replay, il messaggio HeartbeatRequest contiene un payload che deve essere restituito invariato nel messaggio di risposta.
 
-## Heartbeat payload
-As a protection against a replay attack, HeartbeatRequest packets include a payload that must be returned without change by the receiver in its HeartbeatResponse packet
-The Heartbeat message is defined as:
-![[2Semester/PND/images PND/187.png]]
-
-## Heartbleed bug
-Bug in OpenSSL library (4/4/2014)
-The receiver of request did not check that the size of the payload in the packet actually equaled the value given by the sender to the payload length field in the request packet
-- The attacker sends little data but sets the size to max
-- The receiver allcates that amount of memory for the response and copied max bytes from the mem location where the request packet was received
--  Then, the actual payload returned could potentially include objects in the memory that had nothing to do with the received payload
-- Objects could be private keys, passwords, and such..
 
 ## SSL VPN Architecture
-Two primary models:
-●
-SSL Portal VPN
-– Remote users can access web-
-based services provided on the
-gateway
-– VPN gateway is reachable from a
-Web browser
-●
-SSL Tunnel VPN
-– Remote users can access network
-services protected by VPN
-gateway
-– More capabilities than portal
-VPNs, as easier to provide more
-services
+Esistono due modelli principali di SSL VPN:
 
-## SSL VPN functionalities
-Most SSL VPNs offer one or more core functionalities:
-● Proxying
-– Intermediate device appears as true server to client
-● Application translation
-– Conversion of information from one protocol to another.
-● e.g. Portal VPN offers translation for applications which are not Web-enabled, so
-users can use Web browser to access applications with no Web interface.
-● Network extension
-– Provision of partial or complete network access to remote users, typically via
-Tunnel VPN
+==SSL Portal VPN== : Accesso remoto a servizi web ospitati sul gateway tramite browser.
+==SSL Tunnel VPN==: Accesso remoto a servizi di rete protetti dal gateway, con più funzionalità rispetto al Portal VPN.
+
+## SSL VPN funzionalità
+Le SSL VPN offrono generalmente una o più di queste funzioni:
+- **Proxying**  
+    Il dispositivo fa da intermediario, apparendo come server reale al client.
+- **Application translation**  
+    Converte i protocolli, permettendo ad esempio ai Portal VPN di far accedere applicazioni non web tramite browser.
+- **Network extension**  
+    Fornisce accesso parziale o totale alla rete aziendale agli utenti remoti, tipicamente tramite Tunnel VPN.
+
+# IPSec
+```ad-abstract
+title: Definition
+==IPSec== è una suite di protocolli a livello di rete per garantire la sicurezza sulle comunicazioni IP.
+
+È integrato in IPv6 e disponibile come estensione per IPv4.
+
+```
+
+Supporta tre modalità di sicurezza principali:
+- **_Confidentiality_** (crittografia)
+- **_Integrity_** (integrità dati)
+- **_Authentication_** (autenticazione)
+
+## IPsec services
+IPsec offre tre servizi principali tramite protocolli distinti:
+- **Authentication Header (AH):** garantisce integrità e autenticazione dei pacchetti IP.
+- **Encapsulated Security Payload (ESP):** fornisce crittografia e, opzionalmente, autenticazione.
+- **Internet Key Exchange (IKE):** gestisce lo scambio e la gestione delle chiavi di sicurezza.
+
+## IPsec Security Associations
+Una Security Association (SA) è come una “connessione” IPsec che definisce tutti i parametri necessari per la comunicazione sicura, come algoritmi crittografici (AES, SHA1), modalità operative (CBC, HMAC), lunghezza delle chiavi e traffico protetto.
+
+- Entrambe le parti devono accordarsi sulla SA per comunicare in sicurezza.
+- Per comunicazioni bidirezionali servono due SA, una per ogni direzione.
+- I parametri della SA vengono negoziati tramite IKE prima di iniziare la comunicazione.
+
+Ogni SA è identificata da:
+- **Security Parameters Index (SPI):** un numero a 32 bit scelto dal mittente, usato per selezionare la SA corretta.
+- **Indirizzo di destinazione:** deve essere un indirizzo IP unicast.
+- **Protocollo di sicurezza:** AH o ESP.
+
+## IPsec modes
+==Transport Mode==: Protegge solo il payload del pacchetto IP, cioè i dati trasportati (come il livello trasporto — TCP/UDP). L’header IP originale resta visibile e non cifrato.
+
+==Tunnel Mode==: Protegge l’intero pacchetto IP originale, incapsulandolo dentro un nuovo pacchetto IP. Questo crea un “tunnel” sicuro tra due gateway o host, nascondendo completamente il contenuto e l’header IP originale.
+
+## Authentication with IPv4
+L’header AH (Authentication Header) viene inserito subito dopo l’header IP esterno più esterno, sia in modalità Transport che Tunnel.
+
+È importante ricordare che il controllo di integrità e l’autenticazione non coprono i campi dell’header IP che possono cambiare durante il percorso (campi mutabili o imprevedibili), quindi questi non sono protetti da AH.
+
+![[Pasted image 20250625164950.png]]
+
+## Authentication with IPv6
+Intestazione AH inserita dopo l'intestazione IP più esterna, a seconda che venga utilizzata la modalità Trasporto o Tunnel. Non dimenticare che il controllo di integrità (e quindi l'autenticazione) non copre i campi di intestazione modificabili e imprevedibili.
+
+![[Pasted image 20250625165033.png]]
+
+## ESP with IPv4
+In entrambe le versioni IPv4 e IPv6, l’header ESP viene inserito subito dopo l’header IP esterno, sia in modalità Transport che Tunnel.
+
+- Alla fine del payload del livello trasporto (T-layer) viene aggiunto un padding, per aumentare la protezione contro l’analisi del traffico (traffic analysis).
+- Dopo il payload con padding vengono aggiunti il trailer ESP e, opzionalmente, il campo di autenticazione ESP.
+
+Come per AH, l’autenticazione e l’integrità non coprono i campi dell’header IP che possono cambiare durante il transito (campi mutabili o imprevedibili).
+
+**ESP with IPv4**
+![[Pasted image 20250625165322.png]]
+
+**ESP with IPv6**
+![[Pasted image 20250625165209.png]]
+## Encryption + Authentication in IPsec
+La combinazione di crittografia e autenticazione può avvenire in vari modi:
+1. **ESP con autenticazione:** si cifra il dato con ESP e poi si aggiunge il campo AH.
+2. **Transport mode:** crittografia e autenticazione si applicano al payload IP, ma l’header IP non è protetto.
+3. **Tunnel mode:** crittografia e autenticazione si applicano all’intero pacchetto interno (payload + header).
+4. **Transport Adjacency:** si usano due SA in cascata, prima ESP (crittografia), poi AH (autenticazione).
+5. La crittografia copre il payload IP originale, mentre l’autenticazione protegge ESP più l’header IP originale, comprese le sorgenti e destinazioni.
+6. **Transport-Tunnel bundle:** per autenticare prima della crittografia, si usa un SA AH in modalità transport interna e un SA ESP in modalità tunnel esterna.
+7. L’autenticazione copre il payload IP e le parti immutabili dell’header IP; la crittografia copre l’intero pacchetto interno autenticato.
+
+## IPsec vs TLS
+TLS much more flexible because is in the upper levels
+TLS also provides application end-to-end security, best for web applications $\to$ HTTPS 
+IPsec hast to run in kernel space
+IPsec much more complex and complicated to manage with
+
+![[Pasted image 20250625165157.png]]

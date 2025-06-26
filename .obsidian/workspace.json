@@ -86,9 +86,57 @@
               "icon": "lucide-file",
               "title": "6) Network traffic regulation with firewalls"
             }
+          },
+          {
+            "id": "338c163702cd26cc",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/PND/7) NAT (Network Address Translation).md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "7) NAT (Network Address Translation)"
+            }
+          },
+          {
+            "id": "137e598fe0b4fb66",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/PND/8) Link-local attacks.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "8) Link-local attacks"
+            }
+          },
+          {
+            "id": "6688edeada811b8d",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2Semester/PND/9)VPN, SSL, TLS and IPSec.md",
+                "mode": "source",
+                "source": false
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "9)VPN, SSL, TLS and IPSec"
+            }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -157,7 +205,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 397.5
+    "width": 355.51103591918945,
+    "collapsed": true
   },
   "right": {
     "id": "05bd6b815e2aa124",
@@ -173,7 +222,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2Semester/IOT/15).md",
+                "file": "2Semester/PND/3) IPV6 Addressing.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -183,7 +232,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for 15)"
+              "title": "Backlinks for 3) IPV6 Addressing"
             }
           },
           {
@@ -219,13 +268,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2Semester/IOT/15).md",
+                "file": "2Semester/PND/3) IPV6 Addressing.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of 15)"
+              "title": "Outline of 3) IPV6 Addressing"
             }
           }
         ],
@@ -246,31 +295,33 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3920457694d24424",
+  "active": "b676c005aeb0a9ed",
   "lastOpenFiles": [
-    "2Semester/PND/5) IPv6 Security.md",
-    "2Semester/PND/8) Link-local attacks.md",
-    "2Semester/PND/9)VPN, SSL, TLS and IPSec.md",
-    "2Semester/PND/IDS (Intrusion Detection System).md",
-    "2Semester/PND/Proxies.md",
-    "2Semester/PND/Kathara Commands (Lab Activity).md",
-    "2Semester/PND/images/Pasted image 20250617221903.png",
-    "2Semester/PND/images/Pasted image 20250620165730.png",
-    "2Semester/PND/6) Network traffic regulation with firewalls.md",
-    "2Semester/PND/7) NAT.md",
-    "2Semester/PND/images/Pasted image 20250624142556.png",
-    "2Semester/PND/images/Pasted image 20250624125832.png",
-    "2Semester/PND/5) NewIPv6Security-Slides.pdf",
-    "2Semester/PND/4) IPv6 Protocol Overview.md",
-    "2Semester/PND/images/Pasted image 20250624093648.png",
-    "2Semester/PND/3) IPV6 Addressing.md",
-    "2Semester/PND/images/Pasted image 20250620173553.png",
-    "2Semester/PND/images/Pasted image 20250620173413.png",
-    "2Semester/PND/images/Pasted image 20250620173230.png",
-    "2Semester/PND/images/Pasted image 20250620173215.png",
-    "2Semester/PND/images/Pasted image 20250620172620.png",
-    "2Semester/PND/1) Lesson.md",
     "2Semester/PND/2) Network traffic monitoring and Wire shark lab.md",
+    "2Semester/PND/1) Lesson.md",
+    "2Semester/PND/9)VPN, SSL, TLS and IPSec.md",
+    "Pasted image 20250625165322.png",
+    "Pasted image 20250625165209.png",
+    "Pasted image 20250625165157.png",
+    "Pasted image 20250625165052.png",
+    "Pasted image 20250625165033.png",
+    "Pasted image 20250625164958.png",
+    "Pasted image 20250625164950.png",
+    "Pasted image 20250625163642.png",
+    "2Semester/PND/IDS (Intrusion Detection System).md",
+    "Pasted image 20250625142859.png",
+    "2Semester/PND/7) NAT (Network Address Translation).md",
+    "2Semester/PND/6) Network traffic regulation with firewalls.md",
+    "2Semester/PND/8) Link-local attacks.md",
+    "2Semester/PND/Proxies.md",
+    "2Semester/PND/4) IPv6 Protocol Overview.md",
+    "Pasted image 20250625115020.png",
+    "2Semester/PND/3) IPV6 Addressing.md",
+    "2Semester.zip",
+    "2Semester/PND/Kathara Commands (Lab Activity).md",
+    "2Semester/PND/5) IPv6 Security.md",
+    "2Semester/PND/08-NewIPv6Security-Slides.pdf",
+    "2Semester/PND/5) NewIPv6Security-Slides.pdf",
     "README.md",
     "Scaletta.md",
     "2Semester/ETH/8) Wireless Hacking.md",
@@ -290,8 +341,6 @@
     "2Semester/ETH/PDF",
     "2Semester/ETH/immagini",
     "2Semester/ETH/Images/Rainbow Tables.pdf",
-    "2Semester/ETH/Rainbow Tables.pdf",
-    "2Semester/IOT/Image IOT2ESONERO",
-    "2Semester/IOT/Untitled"
+    "2Semester/ETH/Rainbow Tables.pdf"
   ]
 }

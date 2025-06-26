@@ -6,8 +6,7 @@
 ![[105a.png]]
 
 **Temporary Addresses**
-Idea: provide additional addresses that have relatively short lifetimes and are used as the source address when originating connections. Same prefix as a public address, randomized
-value for the Interface ID. Short lifetime, usually hours or days. It is common to have multiple temporary addresses to make sure existing connections can continue while a new temporary address is created for new connections.
+Idea: Forniscono indirizzi aggiuntivi con durata relativamente breve, utilizzati come indirizzo sorgente per l'avvio delle connessioni. Stesso prefisso di un indirizzo pubblico, valore randomizzato per l'ID interfaccia. Durata breve, solitamente ore o giorni. È comune disporre di più indirizzi temporanei per garantire che le connessioni esistenti possano continuare mentre viene creato un nuovo indirizzo temporaneo per le nuove connessioni.
 
 ![[106a.png]]
 
@@ -25,7 +24,7 @@ A multicast address allows a device to send a single packet to multiple destinat
 - Flags `4 bit` identifica:
 	- `0000` per multicast assigned
 	- `0001` per solicited-node
-- Scope `4 bit` limita l'ambito di propagazione (dove l pacchetto multicast può viaggiare)
+- Scope `4 bit` limita l'ambito di propagazione (dove il pacchetto multicast può viaggiare)
 - Group ID identifica il gruppo multicast (identifica chi deve ricevere il pacchetto)
 
 ```ad-abstract
@@ -67,8 +66,7 @@ The **scope** is a 4-bit field in an IPv6 multicast address that determines the 
 • $0$ - Permanent, well-known multicast address assigned by IANA.
 	• Includes both assigned and solicited-node multicast addresses.
 • $1$ - Non-permanently-assigned, “dynamically" assigned multicast address.
-	• An example might be `FF18::CAFE:1234`, used for a multicast application
-with organizational scope.
+	• An example might be `FF18::CAFE:1234`, used for a multicast application with organizational scope.
 
 ![[Pasted image 20250624093648.png]]
 
@@ -79,20 +77,22 @@ L'**RFC 2375** è uno standard IETF che definisce l'assegnazione iniziale degli 
 ## Assigned Multicast Addresses with Link-local Scope
 La tabella mostra indirizzi multicast **well-known** usati per scopi specifici nella rete locale:
 ![[112a.png]]
+
+>Tali indirizzi con scope link local non sono instradabili oltre la rete locale. Sono utilizzati principalmente per protocolli di rete!
+## Assigned Multicast Addresses with SIte-Local Scope
+![[Pasted image 20250625115020.png]]
 Used to communicate within a “site”, possibly routed within the site.
-• Must have `IPv6` multicast routing enabled:
-• `DHCPv6`, relay agents and `DHCPv6` multicast addresses are included in Lesson
-`8`.
+- Must have `IPv6` multicast routing enabled:
 
->Tali indirizzi con scope link local non sono instradabili oltre la rete locale. SOno utilizzati principalmente per protocolli di rete!
 
-## DHCPv6 without and with relay agents
+
+	## DHCPv6 without and with relay agents
 ![[113a.png]]
 
 Immagine a sinistra: ==DHCPv6 senza relay agent==
 1. **Client**: Router solicitation.
 2. **Router**: Router Advertaisement.
-3. **Client**: invia un messaggio `SOLICIT` per cercare un seerver disponibile.
+3. **Client**: invia un messaggio `SOLICIT` per cercare un server disponibile.
 4. Il **server** gli risponde dicendo che è disponibile.
 5.  l **client** fa una `REQUEST` , ovvero chiede un indirizzo completo o solo opzioni.
 6. **Server** effettua una `REPLY`, assegnando l'indirizzo o fornendo le opzioni richieste.
@@ -107,12 +107,12 @@ Immagine a sinistra: ==DHCPv6 con relay agent==
 2. **Router Advertisement**  
 3. **SOLICIT**: Il client invia un messaggio SOLICIT.
 4. **RELAY-FORWARD**: Il router (relay agent) riceve il SOLICIT e lo **inoltra al server**.
-5. **RELAY-REPLY**: Il server risponde con ADVERTISE, ma lo manda **al router** (relay agent), non direttamente al client.
-6. **ADVERTISE**: Il router inoltra la risposta al client.
-7. **REQUEST o INFORMATION REQUEST**: Il client chiede un indirizzo o opzioni.
-8. **RELAY-FORWARD**: Il relay agent inoltra di nuovo verso il server.
-9. **RELAY-REPLY**: Il server risponde.
-10. **REPLY**: Il router inoltra la risposta finale al client.
+	1. **RELAY-REPLY**: Il server risponde con ADVERTISE, ma lo manda **al router** (relay agent), non direttamente al client.
+5. **ADVERTISE**: Il router inoltra la risposta al client.
+6. **REQUEST o INFORMATION REQUEST**: Il client chiede un indirizzo o opzioni.
+7. **RELAY-FORWARD**: Il relay agent inoltra di nuovo verso il server.
+8. **RELAY-REPLY**: Il server risponde.
+9. **REPLY**: Il router inoltra la risposta finale al client.
 
 >Usato quando **il client e il server DHCPv6 NON sono sulla stessa rete/link**.
 
